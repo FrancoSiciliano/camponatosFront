@@ -1,0 +1,21 @@
+.main-container-registro {
+    background-color: #b7e4c7;
+    height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.label-select {
+    width: 300px !important;
+    margin-bottom: 10px;
+}
+
+.boton-submit {
+    width: 300px;
+}
+
+.title {
+    margin-bottom: 50px !important;
+    justify-self: flex-start;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './datosjugador.css';
-import Avatar from '../assets/images/avatar-perfil.jpg';
+import Avatar from '../../assets/images/avatar-perfil.jpg';
 
 export const DatosJugador = () => {
     return (
