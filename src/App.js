@@ -24,9 +24,9 @@ function App() {
                     <Route path="/registroResponsable">
                         <RegistroResponsable/>
                     </Route>
-                  <Route path="/datosJugador">
-                    <DatosJugador />
-                  </Route>
+                    <Route path="/datosJugador">
+                        <DatosJugador />
+                    </Route>
                 </Switch>
             </Router>
         </div>

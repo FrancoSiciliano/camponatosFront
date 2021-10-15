@@ -1,6 +1,6 @@
 .header{
     position: fixed;
-    top: 80px;
+    top: 25px;
     width:100vw;
     display:flex;
     align-items: center;
@@ -14,16 +14,10 @@
     font-size: 50px !important;
     color: #2D6A4F; 
 }
-
-.main{
-    display: flex;
-}
-
 img{
     width: 220px;
     height: 200px;
 }
-
 .avatar{
     position: fixed;
     top: 30%;
@@ -35,10 +29,8 @@ img{
     left: 20%;
     font-family: 'Open Sans Condensed';
 }
-
 .boton {
     position: fixed;
-    top: 60%;
-    left: 0%;
-
+    top: 80%;
+    left: 50%;
 }

@@ -47,7 +47,7 @@ export const Login = () => {
     }
 
     return (
-        <div className="main">
+        <div>
             <div className="container-fluid main-container">
                 <h1>Iniciar Sesión</h1>
                 <Row className="g-1 columna-sign-in">
