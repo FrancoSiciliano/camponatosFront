@@ -6,6 +6,7 @@ import {RegistroResponsable} from "./components/Register/RegistroResponsable";
 import {SeleccionClub} from "./components/Register/SeleccionClub";
 import { DatosJugador } from './components/DatosJugador/DatosJugador';
 import './index.css'
+import { DatosRepresentante } from './components/DatosRepresentante/DatosRepresentante';
 
 function App() {
     return (
@@ -26,6 +27,9 @@ function App() {
                     </Route>
                     <Route path="/datosJugador">
                         <DatosJugador />
+                    </Route>
+                    <Route path="/datosRepresentante">
+                        <DatosRepresentante />
                     </Route>
                 </Switch>
             </Router>

@@ -1,5 +1,6 @@
 .header{
-    position:absolute;
+    position: fixed;
+    top: 25px;
     width:100vw;
     display:flex;
     align-items: center;
@@ -23,11 +24,18 @@ img{
     left: 2%;
 }
 .container-sm{
+    position: fixed;
+    top: 30%;
+    left: 20%;
     font-family: 'Open Sans Condensed';
 }
 .boton {
     position: fixed;
-    width:150px;
-    top: 85% !important;
-    left: 81.5% !important;
+    top: 80%;
+    left: 50%;
+}
+
+.club{
+    position:fixed;
+    left:33%;
 }
