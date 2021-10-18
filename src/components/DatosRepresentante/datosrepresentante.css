@@ -15,8 +15,11 @@
     color: #2D6A4F; 
 }
 img{
-    width: 220px;
-    height: 200px;
+    width: 300px !important;
+    height: 250px !important;
+}
+button{
+    font-size: 23px !important;
 }
 .avatar{
     position: fixed;
@@ -29,12 +32,16 @@ img{
     left: 20%;
     font-family: 'Open Sans Condensed';
 }
-.boton {
+.botonrep {
     position: fixed;
+    height: 50px;
+    width:200px;
     top: 80%;
     left: 50%;
 }
-
+input{
+    font-size: 20px !important;
+}
 .club{
     position:fixed;
     left:33%;

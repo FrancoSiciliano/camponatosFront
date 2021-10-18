@@ -7,6 +7,7 @@ import {SeleccionClub} from "./components/Register/SeleccionClub";
 import { DatosJugador } from './components/DatosJugador/DatosJugador';
 import './index.css'
 import { DatosRepresentante } from './components/DatosRepresentante/DatosRepresentante';
+import { DatosClub} from './components/DatosClub/DatosClub'
 
 function App() {
     return (
@@ -30,6 +31,9 @@ function App() {
                     </Route>
                     <Route path="/datosRepresentante">
                         <DatosRepresentante />
+                    </Route>
+                    <Route path="/datosClub">
+                        <DatosClub />
                     </Route>
                 </Switch>
             </Router>

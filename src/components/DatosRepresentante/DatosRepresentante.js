@@ -21,12 +21,12 @@ export const DatosRepresentante = () => {
                 <div className = 'container-sm'>
                     <Form>
                         <Row className="mb-3">
-                            <Form.Group as={Col} md='3' controlId="formGridNombre">
+                            <Form.Group as={Col} md='4' controlId="formGridNombre">
                                 <Form.Label>Nombre</Form.Label>
                                 <Form.Control type="text" placeholder="Nombre"/>
                             </Form.Group>
 
-                            <Form.Group as={Col} md='3'controlId="formGridLegajo">
+                            <Form.Group as={Col} md='4'controlId="formGridLegajo">
                                 <Form.Label>Legajo</Form.Label>
                                 <Form.Control type="text" placeholder="Legajo" readOnly />
                             </Form.Group>
@@ -43,7 +43,7 @@ export const DatosRepresentante = () => {
                                 <Form.Control type="text" placeholder="Club" />
                             </Form.Group>   
                         </Row>
-                        <Button className='boton' variant="success" type="submit">
+                        <Button className='botonrep' variant="success" type="submit">
                             Actualizar
                         </Button>
                     </Form>

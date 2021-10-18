@@ -18,15 +18,15 @@ export const DatosJugador = () => {
                 <div className = 'avatar'>
                     <img src = {Avatar} alt = 'avatarPerfil'/>
                 </div>
-                <div className = 'container-sm'>
-                    <Form>
-                        <Row className="mb-3">
-                            <Form.Group as={Col} md='3' controlId="formGridNombre">
+                <div className = 'container-sm contenedorJug'>
+                    <Form className = 'formJugador'>
+                        <Row className="mb-4">
+                            <Form.Group as={Col} md='4' controlId="formGridNombre">
                                 <Form.Label>Nombre</Form.Label>
                                 <Form.Control type="text" placeholder="Nombre" readOnly/>
                             </Form.Group>
 
-                            <Form.Group as={Col} md='3'controlId="formGridApellido">
+                            <Form.Group as={Col} md='4'controlId="formGridApellido">
                                 <Form.Label>Apellido</Form.Label>
                                 <Form.Control type="text" placeholder="Apellido" readOnly />
                             </Form.Group>
@@ -44,12 +44,12 @@ export const DatosJugador = () => {
 
                         <Row className="mb-3">
 
-                            <Form.Group as ={Col} md='3' controlId="formGridTipoDoc">
+                            <Form.Group as ={Col} md='4' controlId="formGridTipoDoc">
                                 <Form.Label>Tipo de documento</Form.Label>
                                 <Form.Control type= 'text' placeholder="Tipo de documento" readOnly />
                             </Form.Group>
 
-                            <Form.Group as ={Col} md='3' controlId="formGridDocumento">
+                            <Form.Group as ={Col} md='4' controlId="formGridDocumento">
                                 <Form.Label>Documento</Form.Label>
                                 <Form.Control type= 'text' placeholder="Documento" readOnly/>
                             </Form.Group>
@@ -69,12 +69,12 @@ export const DatosJugador = () => {
 
                         <Row>
                             
-                            <Form.Group as={Col} md='3' controlId="formGridTelefono">
+                            <Form.Group as={Col} md='4' controlId="formGridTelefono">
                                 <Form.Label>Telefono</Form.Label>
                                 <Form.Control type="text" placeholder="Numero de telefono" />
                             </Form.Group>
 
-                            <Form.Group as ={Col} md='3' controlId="formGridDireccion">
+                            <Form.Group as ={Col} md='4' controlId="formGridDireccion">
                                 <Form.Label>Direccion</Form.Label>
                                 <Form.Control type= 'text' placeholder="Calle 1234" />
                             </Form.Group>
@@ -86,7 +86,7 @@ export const DatosJugador = () => {
                             
                         </Row>
                       
-                        <Button className='boton' variant="success" type="submit">
+                        <Button className='botonjug' variant="success" type="submit">
                             Actualizar
                         </Button>
                     </Form>
