@@ -32,9 +32,145 @@
     top: 150px;
     border: 3px solid #2D6A4F;
 }
-.etiquetadatos{
-    font-size: 40px;
+
+.fila1A {
+    top: 210px;
+    left: -620px;
+    font-size: 20px;
+    position: fixed;
 }
+
+.fila2A {
+    top: 260px;
+    left: -620px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila3A {
+    top: 310px;
+    left: -580px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila4A {
+    top: 360px;
+    left: -615px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila5A {
+    top: 410px;
+    left: -595px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila6A {
+    top: 460px;
+    left: -610px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila7A {
+    top: 560px;
+    left: -625px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila8A {
+    top: 600px;
+    left: -627px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila9A {
+    top: 700px;
+    left: -607px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila10A {
+    top: 750px;
+    left: -620px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila1B {
+    top: 210px;
+    left: -215px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila2B {
+    top: 260px;
+    left: -235px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila3B {
+    top: 310px;
+    left: -222px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila4B {
+    top: 360px;
+    left: -205px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila5B {
+    top: 410px;
+    left: -219px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila6B {
+    top: 700px;
+    left: -200px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.fila7B {
+    top: 750px;
+    left: -188px;
+    font-size: 20px;
+    position: fixed;
+}
+
+.jugadorTitle {
+    font-size: 30px;
+    border-bottom: 3px solid #2D6A4F;
+    font-family: 'Arial';
+}
+
+.clubTitle {
+    font-size: 30px;
+    border-bottom: 3px solid #2D6A4F;
+    font-family: 'Arial';
+}
+
+.statsTitle {
+    font-size: 30px;
+    border-bottom: 3px solid #2D6A4F;
+    font-family: 'Arial';
+}
+
+
 .datosclub{
     position: fixed;
     width: 740px;
