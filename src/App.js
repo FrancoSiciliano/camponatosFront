@@ -8,6 +8,7 @@ import { DatosJugador } from './components/DatosJugador/DatosJugador';
 import './index.css'
 import { DatosRepresentante } from './components/DatosRepresentante/DatosRepresentante';
 import { DatosClub} from './components/DatosClub/DatosClub'
+import { Home } from './Paginas/Home'
 
 function App() {
     return (

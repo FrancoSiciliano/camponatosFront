@@ -7,7 +7,7 @@
     padding:0.3em;
   
 }
-input{
+.inputjug{
     font-size: 20px !important;
 }
 .header div.title h2{
@@ -15,14 +15,13 @@ input{
     font-size: 80px  !important;
     color: #2D6A4F; 
 }
-img{
-    width: 300px;
-    height: 250px;
-}
+
 .avatar{
     position: fixed;
     top: 30%;
     left: 2%;
+    width: 300px !important;
+    height: 250px !important;
 }
 .container-sm{
     font-family: 'Open Sans Condensed';
@@ -35,8 +34,6 @@ img{
     width:200px;
     top: 80% !important;
     left: 78% !important;
-}
-
-button{
     font-size: 23px !important;
 }
+

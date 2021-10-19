@@ -10,26 +10,26 @@ import Table from 'react-bootstrap/Table'
 export const DatosClub = () => {
     return (
         <div>
-             <div className = 'container-fluid main-container'>
+             <div className = 'container-fluid main-container datosperfiles'>
                 <div className = 'header'>
                     <div className = 'title'> 
                         <h2>Perfil del Club</h2> 
                     </div>
                 </div>
                 <div className = 'avatar'>
-                    <img src = {Avatar} alt = 'avatarPerfil'/>
+                    <img src = {Avatar} alt = 'avatarPerfil' width = '300px' height = '280px'/>
                 </div>
                 <div className = 'container-sm'>
                     <Form>
                         <Row className="mb-3">
                             <Form.Group as={Col} md='4' controlId="formGridNombre">
                                 <Form.Label>Nombre</Form.Label>
-                                <Form.Control type="text" placeholder="Nombre" readOnly/>
+                                <Form.Control className = 'inputclub' type="text" placeholder="Nombre" readOnly/>
                             </Form.Group>
 
                             <Form.Group as={Col} md='4'controlId="formGridDireccion">
                                 <Form.Label>Direccion</Form.Label>
-                                <Form.Control type="text" placeholder="Direccion" readOnly />
+                                <Form.Control className = 'inputclub' type="text" placeholder="Direccion" readOnly />
                             </Form.Group>
 
                         </Row>

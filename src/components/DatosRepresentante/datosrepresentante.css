@@ -14,17 +14,13 @@
     font-size: 50px !important;
     color: #2D6A4F; 
 }
-img{
-    width: 300px !important;
-    height: 250px !important;
-}
-button{
-    font-size: 23px !important;
-}
+
 .avatar{
     position: fixed;
     top: 30%;
     left: 2%;
+    width: 300px !important;
+    height: 250px !important;
 }
 .container-sm{
     position: fixed;
@@ -38,11 +34,14 @@ button{
     width:200px;
     top: 80%;
     left: 50%;
+    font-size: 23px !important;
 }
-input{
-    font-size: 20px !important;
-}
+
 .club{
     position:fixed;
     left:33%;
+}
+
+.inputrep{
+    font-size: 20px !important;
 }

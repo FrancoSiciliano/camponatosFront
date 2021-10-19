@@ -1,4 +1,4 @@
-.main-container{
+.datosperfiles{
     font-size: 30px !important;
 }
 
@@ -11,25 +11,20 @@
     padding:0.3em;
   
 }
-input{
-    font-size: 20px !important;
-}
+
 .header div.title h2{
     font-family: 'Open Sans Condensed Bold';
     font-size: 80px !important;
     color: #2D6A4F; 
 }
-button{
-    font-size: 23px !important;
-}
-img{
-    width: 300px;
-    height: 250px;
-}
+
+
 .avatar{
     position: fixed;
     top: 30%;
     left: 2%;
+    width: 300px;
+    height: 250px;
 }
 .container-sm{
     font-family: 'Open Sans Condensed';
@@ -40,8 +35,12 @@ img{
     width:200px;
     top: 38.5% !important;
     left: 75% !important;
+    font-size: 23px !important;
 }
 
+.inputclub {
+    font-size: 20px !important;
+}
 .scrollable{
     overflow-y:scroll !important;
     max-height:250px !important;
