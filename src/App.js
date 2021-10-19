@@ -9,6 +9,7 @@ import './index.css'
 import { DatosRepresentante } from './components/DatosRepresentante/DatosRepresentante';
 import { DatosClub} from './components/DatosClub/DatosClub'
 import { Home } from './Paginas/Home'
+import { LandingJugador } from './components/LandingJugador/LandingJugador';
 
 function App() {
     return (
@@ -38,6 +39,9 @@ function App() {
                     </Route>
                     <Route path="/datosClub">
                         <DatosClub />
+                    </Route>
+                    <Route path="/landingJugador">
+                        <LandingJugador />
                     </Route>
                 </Switch>
             </Router>
