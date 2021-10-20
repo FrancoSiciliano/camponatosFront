@@ -5,6 +5,10 @@
     width: 250px;
     height: 650px;
 }
+.form-label{
+    width: fit-content !important;
+    padding-left: 900px !important;
+}
 
 .contenedorprincipal{ 
     position: fixed ;
@@ -44,8 +48,8 @@
 }
 
 .fila1AR {
-    top: 210px;
-    left: -460px;
+    top: 212px;
+    left: -475px;
     position: fixed;
 }
 
@@ -55,8 +59,8 @@
     position: fixed;
 }
 .fila2AR {
-    top: 260px;
-    left: -460px;
+    top: 262px;
+    left: -475px;
     position: fixed;
 }
 .fila3A {
@@ -65,8 +69,8 @@
     position: fixed;
 }
 .fila3AR {
-    top: 310px;
-    left: -460px;
+    top: 312px;
+    left: -425px;
     position: fixed;
 }
 .fila4A {
@@ -75,8 +79,8 @@
     position: fixed;
 }
 .fila4AR {
-    top: 360px;
-    left: -460px;
+    top: 363px;
+    left: -470px;
     position: fixed;
 }
 
@@ -87,8 +91,8 @@
 }
 
 .fila5AR {
-    top: 410px;
-    left: -460px;
+    top: 412px;
+    left: -440px;
     position: fixed;
 }
 
@@ -98,7 +102,7 @@
     position: fixed;
 }
 .fila6AR {
-    top: 460px;
+    top: 462px;
     left: -460px;
     position: fixed;
 }
@@ -108,8 +112,8 @@
     position: fixed;
 }
 .fila7AR {
-    top: 580px;
-    left: -460px;
+    top: 582px;
+    left: -485px;
     position: fixed;
 }
 .fila8A {
@@ -119,8 +123,8 @@
 }
 
 .fila8AR {
-    top: 700px;
-    left: -470px;
+    top: 702px;
+    left: -500px;
     position: fixed;
 }
 
@@ -130,8 +134,8 @@
     position: fixed;
 }
 .fila9AR {
-    top: 750px;
-    left: -470px;
+    top: 752px;
+    left: -490px;
     position: fixed;
 }
 
@@ -142,8 +146,8 @@
 }
 
 .fila1BR{
-    top: 210px;
-    left: -130px;
+    top: 212px;
+    left: -149px;
     position: fixed;
 }
 
@@ -153,7 +157,7 @@
     position: fixed;
 }
 .fila2BR {
-    top: 260px;
+    top: 262px;
     left: -130px;
     position: fixed;
 }
@@ -163,8 +167,8 @@
     position: fixed;
 }
 .fila3BR {
-    top: 310px;
-    left: -110px;
+    top: 312px;
+    left: -135px;
     position: fixed;
 }
 .fila4B {
@@ -174,8 +178,8 @@
 }
 
 .fila4BR {
-    top: 360px;
-    left: -70px;
+    top: 362px;
+    left: -155px;
     position: fixed;
 }
 
@@ -186,8 +190,8 @@
 }
 
 .fila5BR {
-    top: 410px;
-    left: -120px;
+    top: 412px;
+    left: -140px;
     position: fixed;
 }
 
@@ -203,8 +207,8 @@
     position: fixed;
 }
 .fila7BR {
-    top: 583px;
-    left: -130px;
+    top: 585px;
+    left: -140px;
     position: fixed;
 }
 .fila8B {
@@ -214,8 +218,8 @@
 }
 
 .fila8BR {
-    top: 705px;
-    left: -130px;
+    top: 707px;
+    left: -135px;
     position: fixed;
 }
 .fila9B {
@@ -225,8 +229,8 @@
 }
 
 .fila9BR {
-    top: 750px;
-    left: -130px;
+    top: 752px;
+    left: -150px;
     position: fixed;
 }
 
