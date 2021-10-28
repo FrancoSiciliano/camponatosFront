@@ -8,8 +8,13 @@ import { DatosJugador } from './components/DatosJugador/DatosJugador';
 import './index.css'
 import { DatosRepresentante } from './components/DatosRepresentante/DatosRepresentante';
 import { DatosClub} from './components/DatosClub/DatosClub'
-import { Home } from './Paginas/Home'
+import { HomeClub } from './Paginas/SeccionClub/HomeClub'
 import { LandingJugador } from './components/LandingJugador/LandingJugador';
+import Listado from './components/GestionClub/GestionCampeonatos/Listado';
+import { TablaPartidos } from './components/GestionClub/GestionCampeonatos/TablaPartidos';
+import { TablaPosicion } from './components/GestionClub/GestionCampeonatos/TablaPosicion';
+import { PerfilClub } from './Paginas/SeccionClub/PerfilClub';
+import ListaJugadoresClub from './components/GestionClub/GestionJugadores/ListaJugadoresClub';
 
 function App() {
     return (
@@ -19,8 +24,8 @@ function App() {
                     <Route exact path="/">
                         <Login/>
                     </Route>
-                    <Route path="/home">
-                        <Home/>
+                    <Route path="/homeClub">
+                        <HomeClub/>
                     </Route>
                     <Route path="/seleccionClub">
                         <SeleccionClub/>
@@ -40,8 +45,23 @@ function App() {
                     <Route path="/datosClub">
                         <DatosClub />
                     </Route>
+                    <Route path="/tablaPartidos">
+                        <TablaPartidos />
+                    </Route>
+                    <Route path="/tablaPosiciones">
+                        <TablaPosicion/>
+                    </Route>
+                    <Route path="/perfilClub">
+                        <PerfilClub/>
+                    </Route>
                     <Route path="/landingJugador">
                         <LandingJugador />
+                    </Route>
+                    <Route path="/gestionar/campeonato">
+                        <Listado/>
+                    </Route>
+                    <Route path="/gestionar/jugadores">
+                        <ListaJugadoresClub/>
                     </Route>
                 </Switch>
             </Router>
