@@ -5,17 +5,18 @@
     width: 250px;
     height: 650px;
 }
-.form-label{
-    width: fit-content !important;
-    padding-left: 900px !important;
-}
+
 
 .contenedorprincipal{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: fixed ;
-    width: 990px ;
+    width: 100% ;
     height: 650px ;
-    top:70px;
-    left:0px ;
+    top: 50%;
+    left: 50%;
 }
 
 .datos{
@@ -42,193 +43,263 @@
     text-decoration: underline;
 }
 .fila1A {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 210px;
     left: -550px;
     position: fixed;
 }
 
 .fila1AR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 212px;
     left: -475px;
     position: fixed;
 }
 
 .fila2A {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 260px;
     left: -550px;
     position: fixed;
 }
 .fila2AR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 262px;
     left: -475px;
     position: fixed;
 }
 .fila3A {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 310px;
     left: -590px;
     position: fixed;
 }
 .fila3AR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 312px;
     left: -425px;
     position: fixed;
 }
 .fila4A {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 360px;
     left: -555px;
     position: fixed;
 }
 .fila4AR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 363px;
     left: -470px;
     position: fixed;
 }
 
 .fila5A {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 410px;
     left: -576px;
     position: fixed;
 }
 
 .fila5AR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 412px;
     left: -440px;
     position: fixed;
 }
 
 .fila6A {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 460px;
     left: -560px;
     position: fixed;
 }
 .fila6AR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 462px;
     left: -460px;
     position: fixed;
 }
 .fila7A {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 580px;
     left: -555px;
     position: fixed;
 }
 .fila7AR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 582px;
     left: -485px;
     position: fixed;
 }
 .fila8A {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 700px;
     left: -535px;
     position: fixed;
 }
 
 .fila8AR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 702px;
     left: -500px;
     position: fixed;
 }
 
 .fila9A {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 750px;
     left: -548px;
     position: fixed;
 }
 .fila9AR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 752px;
     left: -490px;
     position: fixed;
 }
 
 .fila1B {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 210px;
     left: -215px;
     position: fixed;
 }
 
 .fila1BR{
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 212px;
     left: -149px;
     position: fixed;
 }
 
 .fila2B {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 260px;
     left: -235px;
     position: fixed;
 }
 .fila2BR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 262px;
     left: -130px;
     position: fixed;
 }
 .fila3B {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 310px;
     left: -222px;
     position: fixed;
 }
 .fila3BR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 312px;
     left: -135px;
     position: fixed;
 }
 .fila4B {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 360px;
     left: -205px;
     position: fixed;
 }
 
 .fila4BR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 362px;
     left: -155px;
     position: fixed;
 }
 
 .fila5B {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 410px;
     left: -219px;
     position: fixed;
 }
 
 .fila5BR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 412px;
     left: -140px;
     position: fixed;
 }
 
 .fila6B {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 700px;
     left: -200px;
     position: fixed;
 }
 
 .fila7B {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 583px;
     left: -225px;
     position: fixed;
 }
 .fila7BR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 585px;
     left: -140px;
     position: fixed;
 }
 .fila8B {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 705px;
     left: -220px;
     position: fixed;
 }
 
 .fila8BR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 707px;
     left: -135px;
     position: fixed;
 }
 .fila9B {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 750px;
     left: -209px;
     position: fixed;
 }
 
 .fila9BR {
+    width: fit-content !important;
+    padding-left: 900px !important;
     top: 752px;
     left: -150px;
     position: fixed;
