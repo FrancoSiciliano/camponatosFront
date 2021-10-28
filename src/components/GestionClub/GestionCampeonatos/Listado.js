@@ -43,15 +43,15 @@ if(data){
             </thead>
             <tbody>
             {data.map((campeonato, index)=>{
-
+               var ids=campeonato.idCampeonato 
             return(
               <tr key={campeonato.descripcion}>
                 <td>{campeonato.idCampeonato}</td>
-                <td >{campeonato.descripcion}</td>
+                <td>{campeonato.descripcion}</td>
                 <td>{campeonato.fechaInicio}</td>
                 <td>{campeonato.fechaFin}</td>
                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to='/TablaPosicion'> Tabla</Link></Button></td>
-                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to='/TablaPartidos'> Partidos</Link></Button></td>
+                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/tablaPartidos', state:ids}}> Partidos</Link></Button></td>
               </tr>)
             })}
           </tbody>
