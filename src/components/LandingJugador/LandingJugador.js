@@ -4,12 +4,9 @@ import React from 'react'
 import {Form, Row, Col} from 'react-bootstrap'
 export const LandingJugador = () =>{
     return (
-
         <div className = 'contenedorprincipal' >
             <img className = 'imagenjugador' src = {Avatar} alt = 'imagenjugador'></img>
-            
             <div className = 'datos'>
-
                 <div className = 'datospersonales'>
                     <h1 className = "jugadorTitle">Datos personales</h1> 
                     <Form>
