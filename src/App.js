@@ -15,6 +15,7 @@ import { TablaPartidos } from './components/GestionClub/GestionCampeonatos/Tabla
 import { TablaPosicion } from './components/GestionClub/GestionCampeonatos/TablaPosicion';
 import { PerfilClub } from './Paginas/SeccionClub/PerfilClub';
 import ListaJugadoresClub from './components/GestionClub/GestionJugadores/ListaJugadoresClub';
+import { RegistroCampeonato } from './components/AdministradorComponente/CreacionCampeonato';
 
 function App() {
     return (
@@ -45,8 +46,7 @@ function App() {
                     <Route path="/datosClub">
                         <DatosClub />
                     </Route>
-                    <Route path="/tablaPartidos">
-                        <TablaPartidos />
+                    <Route path="/tablaPartidos" component={TablaPartidos} render={props=> <TablaPartidos{...props}/>}>
                     </Route>
                     <Route path="/tablaPosiciones">
                         <TablaPosicion/>
@@ -59,6 +59,9 @@ function App() {
                     </Route>
                     <Route path="/gestionar/campeonato">
                         <Listado/>
+                    </Route>
+                    <Route path="/administracion/crearcampeonato">
+                        <RegistroCampeonato/>
                     </Route>
                     <Route path="/gestionar/jugadores">
                         <ListaJugadoresClub/>
