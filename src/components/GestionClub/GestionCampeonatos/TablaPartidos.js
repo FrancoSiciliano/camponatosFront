@@ -2,12 +2,13 @@ import { Table,Button } from "react-bootstrap"
 import { useLocation } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import axios from "axios";
-export const TablaPartidos=()=>{
-  const location = useLocation()
+export const TablaPartidos=(props)=>{
+  let location = useLocation()
+  console.log(location)
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getAllPartidos`);
+        const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=`+location.state);
         const newData = response.data;
         setData(newData);
     };
