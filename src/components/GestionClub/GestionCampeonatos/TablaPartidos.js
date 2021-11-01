@@ -1,6 +1,7 @@
 import { Table,Button } from "react-bootstrap"
-import { useLocation } from 'react-router-dom'
+import { useLocation,Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
+import './Listado.css'
 import axios from "axios";
 export const TablaPartidos=(props)=>{
   let location = useLocation()
@@ -18,7 +19,7 @@ export const TablaPartidos=(props)=>{
     return(
     <Table striped bordered hover>
         <thead>
-            <tr><th colSpan="6">Nombre Campeonato</th></tr>
+            <tr><th colSpan="8">Nombre Campeonato</th></tr>
           <tr>
             <th>Fecha</th>
             <th>NroZona</th>
@@ -36,6 +37,7 @@ export const TablaPartidos=(props)=>{
   </thead>
   <tbody>
   {data.map((partido,index)=>{
+    var ids=partido.idPartido
   return(
     <tr key={index}>
       <td>{partido.nroFecha}</td>
@@ -43,11 +45,12 @@ export const TablaPartidos=(props)=>{
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm">Validar</Button></td>
+      <td><Button  type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/detallesPartidos', state:ids}}>Detalles</Link></Button></td>
+      <td><Button  type="submit" class="btn btn-primary btn-sm">Validar</Button></td>
     </tr>)
   })}
 </tbody>
 </Table>)}
 else{
-  return (<h1>Cargando...</h1>)
+  return (<h1>No se crearon Partidos para este campeonato</h1>)
     }}
