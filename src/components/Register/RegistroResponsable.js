@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
-import {Col, FloatingLabel, Form, FormControl, InputGroup, Row} from "react-bootstrap"
-import {Button} from "react-bootstrap";
+import {Col, FloatingLabel, Form,Row} from "react-bootstrap"
+
 import "../../../src/components/Register/Registros.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -94,8 +94,7 @@ export const RegistroResponsable = () => {
 
                         <Form.Group as={Col} controlId="formGridPassword" className="mb-3">
                             <FloatingLabel controlId="floatingInputGrid" label="Numero de documento">
-                                <Form.Control type="text" name="nroDoc" placeholder="Numero de documento"
-                                              value={datos.documento}
+                                <Form.Control type="text" name="nroDoc" placeholder="Numero de documento" value={datos.documento}
                                               onChange={handleChange}/>
                             </FloatingLabel>
                         </Form.Group>
