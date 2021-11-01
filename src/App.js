@@ -16,7 +16,10 @@ import { TablaPosicion } from './components/GestionClub/GestionCampeonatos/Tabla
 import { PerfilClub } from './Paginas/SeccionClub/PerfilClub';
 import ListaJugadoresClub from './components/GestionClub/GestionJugadores/ListaJugadoresClub';
 import { RegistroCampeonato } from './components/AdministradorComponente/CreacionCampeonato';
-
+import { HomeAdministrador } from './Paginas/SeccionAdministrador/HomeAdmistrador';
+import { BasicTable } from './components/Pruebas/basicTable';
+import CargarDatosPartidos from './components/AdministradorComponente/CargarDatosPartidos';
+import { DetallesPartido} from './components/GestionClub/GestionCampeonatos/DetallesPartido';
 function App() {
     return (
         <div className="App">
@@ -40,6 +43,9 @@ function App() {
                     <Route path="/datosJugador">
                         <DatosJugador />
                     </Route>
+                    <Route path="/detallesPartidos">
+                        <DetallesPartido/>
+                    </Route>
                     <Route path="/datosRepresentante">
                         <DatosRepresentante />
                     </Route>
@@ -60,11 +66,20 @@ function App() {
                     <Route path="/gestionar/campeonato">
                         <Listado/>
                     </Route>
-                    <Route path="/administracion/crearcampeonato">
+                    <Route path="/administracion">
+                        <HomeAdministrador/>
+                    </Route>
+                    <Route path="/registroCampeonato">
                         <RegistroCampeonato/>
+                    </Route>
+                    <Route path="/cargarDatosPartido">
+                        <CargarDatosPartidos/>
                     </Route>
                     <Route path="/gestionar/jugadores">
                         <ListaJugadoresClub/>
+                    </Route>
+                    <Route path="/pruebas">
+                        <BasicTable/>
                     </Route>
                 </Switch>
             </Router>
