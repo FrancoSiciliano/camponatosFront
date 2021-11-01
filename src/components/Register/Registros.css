@@ -1,5 +1,9 @@
 .main-container-registro {
-    background-color: #b7e4c7;
+    background-image: url("./travel-nomades-JO19K0HDDXI-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw 130vh;
+    padding: 300px;
+    width: 100vw !important;
     height: 100vh !important;
     display: flex;
     flex-direction: column;
@@ -19,3 +23,4 @@
     margin-bottom: 50px !important;
     justify-self: flex-start;
 }
+

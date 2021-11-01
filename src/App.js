@@ -10,6 +10,7 @@ import { DatosRepresentante } from './components/DatosRepresentante/DatosReprese
 import { DatosClub} from './components/DatosClub/DatosClub'
 import { Home } from './Paginas/Home'
 import { LandingJugador } from './components/LandingJugador/LandingJugador';
+import {CarouselCard} from "./components/Carousel/CarouselCard";
 
 function App() {
     return (
@@ -42,6 +43,9 @@ function App() {
                     </Route>
                     <Route path="/landingJugador">
                         <LandingJugador />
+                    </Route>
+                    <Route path="/test">
+                        <CarouselCard idClub="1"/>
                     </Route>
                 </Switch>
             </Router>

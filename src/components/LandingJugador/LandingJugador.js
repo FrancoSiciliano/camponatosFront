@@ -3,6 +3,17 @@ import './landingjugador.css'
 import React from 'react'
 import {Form, Row, Col} from 'react-bootstrap'
 export const LandingJugador = () =>{
+    const jugador = {
+        nombre: "erling",
+        apellido: "haaland",
+        fechaNacimiento: "20/1/21",
+        categoria: "2000",
+        tipoDoc: "DNI",
+        nroDoc: "123124124",
+        estado: "activo",
+        fechaAlta: "12/12/12",
+        direccion: "brandsen",
+    }
     return (
 
         <div className = 'contenedorprincipal' >

@@ -32,7 +32,7 @@ export const RegistroJugador = () => {
             setData(newData);
         };
         fetchData();
-    });
+    },[]);
 
     const handleChange = (event) => {
         setDatos({
@@ -116,7 +116,7 @@ export const RegistroJugador = () => {
     if (data) {
         return (
             <div className="main">
-                <div className="container main-container-registro">
+                <div className="main-container-registro">
                     <h1 className="title">Registro Jugador</h1>
 
                     <Form>
@@ -139,15 +139,15 @@ export const RegistroJugador = () => {
 
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGridPassword" sm="3">
-                                <FloatingLabel controlId="floatingInputGrid" label="Fecha Nacimiento">
+                                <FloatingLabel controlId="floatingInputGrid" label="Fecha Nacimiento" style={{fontSize: "14px"}}>
                                     <Form.Control type="date" placeholder="Fecha Nacimiento" name="fechaNacimiento" value={datos.fechaNacimiento}
-                                                  onChange={handleChange}/>
+                                                  onChange={handleChange} style={{fontSize: "13px"}}/>
                                 </FloatingLabel>
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGridEmail" sm="3">
-                                <FloatingLabel controlId="floatingInputGrid" label="Tipo de documento">
+                                <FloatingLabel controlId="floatingInputGrid" label="Tipo de documento" style={{fontSize: "12px"}}>
                                     <Form.Control type="text" name="tipoDoc" placeholder="Tipo de documento" value={datos.tipoDoc}
-                                                  onChange={handleChange}/>
+                                                  onChange={handleChange} id="tipoDoc"/>
                                 </FloatingLabel>
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGridPassword" sm="6">

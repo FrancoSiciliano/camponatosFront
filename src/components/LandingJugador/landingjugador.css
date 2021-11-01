@@ -2,8 +2,8 @@
     position: fixed;
     top: 150px;
     left: 20px;
-    width: 250px;
-    height: 650px;
+    width: 13vw;
+    height: 60vh;
 }
 .form-label{
     width: fit-content !important;

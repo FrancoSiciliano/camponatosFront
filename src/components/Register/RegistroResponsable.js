@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {Col, FloatingLabel, Form, FormControl, InputGroup, Row} from "react-bootstrap"
+import {Col, FloatingLabel, Form, FormControl, InputGroup, Row, Spinner} from "react-bootstrap"
 import {Button} from "react-bootstrap";
 import "../../../src/components/Register/Registros.css"
 import {useEffect, useState} from "react";
@@ -25,7 +25,7 @@ export const RegistroResponsable = () => {
             setData(newData);
         };
         fetchData();
-    });
+    }, [data]);
 
     const handleChange = (event) => {
         setDatos({
@@ -76,68 +76,73 @@ export const RegistroResponsable = () => {
         return string.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null;
     }
 
-    if (data) {
-        return (
-            <div className="main">
-                <div className="container main-container-registro">
-                    <h1 className="title">Registro Responsable</h1>
+    return (
+        <div className="main">
+            <div className="main-container-registro">
+                <h1 className="title">Registro Responsable</h1>
 
-                    <Form>
+                <Form>
 
-                        <Form.Group as={Col} controlId="formGridEmail" className="mb-3">
-                            <FloatingLabel controlId="floatingInputGrid" label="Nombre">
-                                <Form.Control type="text" name="nombre" placeholder="Nombre" value={datos.nombre}
-                                              onChange={handleChange}/>
-                            </FloatingLabel>
-                        </Form.Group>
-
-
-                        <Form.Group as={Col} controlId="formGridPassword" className="mb-3">
-                            <FloatingLabel controlId="floatingInputGrid" label="Numero de documento">
-                                <Form.Control type="text" name="nroDoc" placeholder="Numero de documento"
-                                              value={datos.documento}
-                                              onChange={handleChange}/>
-                            </FloatingLabel>
-                        </Form.Group>
-
-                        <Row className="mb-3">
-
-                            <Form.Group as={Col} controlId="formGridEmail">
-                                <FloatingLabel controlId="floatingInputGrid" label="Correo Electrónico">
-                                    <Form.Control type="email" placeholder="Correo Electrónico" name="mail"
-                                                  value={datos.mail}
-                                                  onChange={handleChange}/>
-                                </FloatingLabel>
-                            </Form.Group>
-
-                            <Form.Group as={Col} controlId="formGridPassword">
-                                <FloatingLabel controlId="floatingInputGrid" label="Password">
-                                    <Form.Control type="password" placeholder="Password" name="password"
-                                                  value={datos.password}
-                                                  onChange={handleChange}/>
-                                </FloatingLabel>
-                            </Form.Group>
-                        </Row>
-
-                        <FloatingLabel controlId="floatingSelect" label="Seleccione un equipo">
-                            <Form.Select className="label-select" onChange={handleChange} name="idClub">
-                                <option>Seleccionar</option>
-                                {data.map((club, index) => {
-                                    return (
-                                        <option key={index}
-                                                value={club.idClub}>{`${club.idClub} - ${club.nombre}`}</option>)
-                                })}
-                            </Form.Select>
+                    <Form.Group as={Col} controlId="formGridEmail" className="mb-3">
+                        <FloatingLabel controlId="floatingInputGrid" label="Nombre">
+                            <Form.Control type="text" name="nombre" placeholder="Nombre" value={datos.nombre}
+                                          onChange={handleChange}/>
                         </FloatingLabel>
-                        <Link className="btn btn-success" to="/registroResponsable" onClick={handleClick}>Finalizar</Link>
-                        <PopupRegistro show={showModal} onHide={() => setShowModal(false)} text={error}
-                                       title="No se puede registrar al jugador"/>
+                    </Form.Group>
 
-                    </Form>
-                </div>
+
+                    <Form.Group as={Col} controlId="formGridPassword" className="mb-3">
+                        <FloatingLabel controlId="floatingInputGrid" label="Numero de documento">
+                            <Form.Control type="text" name="nroDoc" placeholder="Numero de documento"
+                                          value={datos.documento}
+                                          onChange={handleChange}/>
+                        </FloatingLabel>
+                    </Form.Group>
+
+                    <Row className="mb-3">
+
+                        <Form.Group as={Col} controlId="formGridEmail">
+                            <FloatingLabel controlId="floatingInputGrid" label="Correo Electrónico">
+                                <Form.Control type="email" placeholder="Correo Electrónico" name="mail"
+                                              value={datos.mail}
+                                              onChange={handleChange}/>
+                            </FloatingLabel>
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="formGridPassword">
+                            <FloatingLabel controlId="floatingInputGrid" label="Password">
+                                <Form.Control type="password" placeholder="Password" name="password"
+                                              value={datos.password}
+                                              onChange={handleChange}/>
+                            </FloatingLabel>
+                        </Form.Group>
+                    </Row>
+
+                    {data ? <FloatingLabel controlId="floatingSelect" label="Seleccione un equipo">
+                        <Form.Select className="label-select" onChange={handleChange} name="idClub">
+                            <option>Seleccionar</option>
+                            {data.map((club, index) => {
+                                return (
+                                    <option key={index}
+                                            value={club.idClub}>{`${club.idClub} - ${club.nombre}`}</option>)
+                            })}
+                        </Form.Select>
+                    </FloatingLabel> : <div>
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                        <p>Cargando clubes...</p>
+                    </div>
+                    }
+                    { data ? <Link className="btn btn-success" to="/registroResponsable"
+                           onClick={handleClick}>Finalizar</Link> : <Button className="btn-success" disabled>Finalizar</Button>}
+                    <PopupRegistro show={showModal} onHide={() => setShowModal(false)} text={error}
+                                   title="No se puede registrar al responsable"/>
+
+                </Form>
             </div>
-        );
-    } else {
-        return (<h1>Algo salió mal...</h1>);
-    }
+        </div>
+    );
+
+
 }
