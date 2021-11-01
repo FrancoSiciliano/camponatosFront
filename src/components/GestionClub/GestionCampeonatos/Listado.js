@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import NavBarClub from "../../NavBars/NavBarClub";
-
+import { ErrorPagina } from "../../NoseEncuentra/ErrorPagina";
 
 //<td><Button type="submit" class="btn btn-primary btn-sm">Tabla</Button></td>
 //<td><Button type="submit" onClick={"GenerarPartidos"} class="btn btn-primary btn-sm"> <Link to="/TablaPartidos"> Partidos</Link></Button></td>
@@ -12,12 +12,12 @@ export const Listado = (props) =>{
   const [data, setData] = useState(null);
   useEffect(() => {
         const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getCampeonatosByClub?idClub=1`);
+        const response = await axios(`http://localhost:8080/getCampeonatos2`);
         const newData = response.data;
         setData(newData);};
         fetchData();});
 if(data){
-    return( <div>
+    return( <div className="ContenedorGestion">
             <NavBarClub/>
             <div className="Tabla">
             <Table striped bordered hover sm >
@@ -50,7 +50,7 @@ if(data){
                 <td>{campeonato.descripcion}</td>
                 <td>{campeonato.fechaInicio}</td>
                 <td>{campeonato.fechaFin}</td>
-                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to='/TablaPosicion'> Tabla</Link></Button></td>
+                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/tablaPosiciones', state:ids}}> Tabla</Link></Button></td>
                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/tablaPartidos', state:ids}}> Partidos</Link></Button></td>
               </tr>)
             })}
@@ -58,7 +58,7 @@ if(data){
           </Table>
           </div></div>)}
 else{
-  return(<h1>Oye que a pasado</h1>)
+  return(<ErrorPagina descripcion="Que A pasado?" />)
 }
 }
  
