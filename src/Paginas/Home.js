@@ -1,4 +1,4 @@
-import NavBarGeneral from "../components/NavBarGeneral/NavBarGeneal"
+import NavBarGeneral from "../components/NavBarGeneral/NavBarGeneral"
 const lista1 = ["hola","adios","mañana"]
 export const Home = () =>{
     return(<div className="contenedorHome">
