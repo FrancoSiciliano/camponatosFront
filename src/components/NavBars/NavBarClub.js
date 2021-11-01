@@ -3,7 +3,7 @@ import './NavBarCampeonatos.css'
 import { Navbar,Nav,NavDropdown } from 'react-bootstrap'
 function NavBarClub (props) {
   return(
-    <Navbar bg="dark">
+    <Navbar bg="dark" classname="Navbarcamp">
     <Container>
       <Navbar.Brand href="/homeClub">Campiones</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
