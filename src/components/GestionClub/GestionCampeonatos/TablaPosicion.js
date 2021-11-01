@@ -1,14 +1,14 @@
 import { Table,Button } from "react-bootstrap"
 import { useLocation } from 'react-router-dom'
 import {useEffect, useState} from "react";
-import { axios } from "axios";
+import  axios  from "axios";
 export const TablaPosicion=(props)=>{
   let location = useLocation()
   console.log(location)
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getAllPartidosByCampeonato?idCampeonato=`+location.state);
+        const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonatoidCampeonato=`+location.state);
         const newData = response.data;
         setData(newData);
     };
@@ -53,5 +53,5 @@ export const TablaPosicion=(props)=>{
 </tbody>
 </Table>)}
 else{
-  return (<h1>Cargando...</h1>)
+  return (<h1>No existe Tabla posicion para el campeonato</h1>)
     }}
