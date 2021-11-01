@@ -11,6 +11,7 @@ export const RegistroCampeonato = () => {
         descripcion: "",
         fechaInicio: "",
         fechaFin: "",
+        estado: "Activo"
     });
 
     const [data, setData] = useState(null);
@@ -29,7 +30,9 @@ export const RegistroCampeonato = () => {
     const handleChange = (event) => {
         setDatos({
             ...datos,
-            [event.target.name]: event.target.value,
+            [event.target.descripcion]: event.target.value,
+            [event.target.fechaInicio]: event.target.value,
+            [event.target.fechaFin]: event.target.value,
         })
     }
 
@@ -39,7 +42,8 @@ export const RegistroCampeonato = () => {
             setShowModal(true);
             return;
         }
-        alert(JSON.stringify(datos));
+        const response =  axios.post("localhost:3000/crearCampeonato",datos)
+        console.log(response)
     };
 
     const containsNumbers = (string) => {
@@ -57,18 +61,16 @@ return (
                                                   onChange={handleChange}/>
                                 </FloatingLabel>
                             </Form.Group>
-                            <Form.Group as={Col} controlId="formGridPassword" sm="3">
-                                <FloatingLabel controlId="floatingInputGrid" label="Fecha Nacimiento">
-                                    <Form.Control type="date" placeholder="Fecha Nacimiento" name="fechaNacimiento" value={datos.fechaNacimiento}
-                                                  onChange={handleChange}/>
+                            <Form.Group as={Col} controlId="formGridFecha" sm="3">
+                                <FloatingLabel controlId="floatingInputGrid" label="FechaInicio">
+                                    <Form.Control type="date"  name="fechaInicio" value={datos.fechaInicio}onChange={handleChange}/>
                                 </FloatingLabel>
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
-                            <Form.Group as={Col} controlId="formGridPassword" sm="3">
-                                <FloatingLabel controlId="floatingInputGrid" label="Fecha Nacimiento">
-                                    <Form.Control type="date" placeholder="Fecha Nacimiento" name="fechaNacimiento" value={datos.fechaNacimiento}
-                                                  onChange={handleChange}/>
+                            <Form.Group as={Col} controlId="formGridFecha" sm="3">
+                                <FloatingLabel controlId="floatingInputGrid" label="FechaFin">
+                                    <Form.Control type="date" name="fechaFin" value={datos.fechaFin}onChange={handleChange}/>
                                 </FloatingLabel>
                             </Form.Group>
                         </Row>
