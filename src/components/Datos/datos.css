@@ -8,10 +8,9 @@
 }
 .titledatos{
     position:relative;
-    align-items: center;
+    display: flex;
     top: 160px;
     justify-content:center;
-    padding:0.3em;
     font-family: 'Titillium Web', sans-serif;
     font-size: 80px !important;
     color: #ffffff;
@@ -19,25 +18,29 @@
 }
 .avatar{
     position: relative;
-    left: 80px;
+    left: 100px;
     top: 200px !important;
     width: 300px !important;
     height: 250px !important;
 }
+
 .contenedor-datos{
     font-family: 'Titillium Web', sans-serif;
     position: relative;
-    width: 1000px;
+    width: 1200px;
     height: 400px;
     left: 500px;
-    top: -40px !important;
+    top: -70px !important;
 }
 .formulario{
-    width: 1000px;
+    width: 1200px;
     height: 400px;
 }
 .boton{
+   
+    position: relative;
     margin-top: 20px !important;
+    left: 400px !important;
     width: 300px !important;
     font-size: 30px !important;
 }

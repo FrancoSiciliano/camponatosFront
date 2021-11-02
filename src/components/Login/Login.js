@@ -80,7 +80,7 @@ export const Login = () => {
                     </Button>
                 </Row>
                 <Row>
-                    <Link to={usuario.rol === "Responsable" ? "/registroResponsable" : "registroJugador"} className="link-dark" onClick={handleClickLink}> ¿Aún no estas registrado? Haz Clic aquí</Link>
+                    <Link to={usuario.rol === "Responsable" ? "/registroResponsable" : "registroJugador"}  style={{color: "black"}} onClick={handleClickLink}> ¿Aún no estas registrado? Haz Clic aquí</Link>
                     <PopupRegistro show={showModal} onHide={() => setShowModal(false)} text="No puede acceder al registro sin seleccionar un rol. No puede registrarse como administrador." title="Debe seleccionar un rol"/>
                 </Row>
             </div>

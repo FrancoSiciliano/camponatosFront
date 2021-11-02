@@ -77,7 +77,6 @@ export const DatosJugador = (props) => {
                 
                 <h2 className = 'titledatos'>Perfil del Jugador</h2> 
                 
-                
                 <div className = 'avatar'>
                     <img src = {Avatar} alt = 'avatarPerfil' width = '300px' height = '280px'/>
                 </div>

@@ -2,7 +2,7 @@ import {Table, Button} from "react-bootstrap";
 import '../GestionJugadores/ListaJugadoresClub.css'
 import {useEffect, useRef, useState} from "react";
 import axios from "axios";
-import NavBarClub from "../../NavBars/NavBarClub";
+import NavBarResponsable from "../../NavBars/NavBarResponsable";
 import '../GestionCampeonatos/Listado.css'
 import {Form} from "react-bootstrap";
 
@@ -28,7 +28,7 @@ export const ListaJugadoresClub = (props) => {
 
     if (jugadores) {
         return (<div>
-            <NavBarClub/>
+            <NavBarResponsable/>
             <div className="Tabla">
                 <Table striped bordered hover sm>
                     <thead>

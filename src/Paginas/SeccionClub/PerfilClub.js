@@ -1,9 +1,9 @@
 import { DatosClub } from "../../components/Datos/DatosClub"
-import NavBarClub from "../../components/NavBars/NavBarClub"
+import NavBarResponsable from "../../components/NavBars/NavBarResponsable"
 
 export const PerfilClub= ()=>{
     return(
-        <div><NavBarClub/>
+        <div><NavBarResponsable/>
             <DatosClub/>
             </div>
     )
