@@ -13,6 +13,20 @@ import { DatosJugadorLanding } from './components/LandingJugador/Datos/DatosJuga
 import {CarouselCard} from "./components/LandingJugador/Carousel/CarouselCard";
 import {LandingJugador} from "./components/LandingJugador/LandingJugador";
 
+import { DatosRepresentante } from './components/DatosRepresentante/DatosRepresentante';
+import { DatosClub} from './components/DatosClub/DatosClub'
+import { HomeClub } from './Paginas/SeccionClub/HomeClub'
+import { LandingJugador } from './components/LandingJugador/LandingJugador';
+import Listado from './components/GestionClub/GestionCampeonatos/Listado';
+import { TablaPartidos } from './components/GestionClub/GestionCampeonatos/TablaPartidos';
+import { TablaPosicion } from './components/GestionClub/GestionCampeonatos/TablaPosicion';
+import { PerfilClub } from './Paginas/SeccionClub/PerfilClub';
+import ListaJugadoresClub from './components/GestionClub/GestionJugadores/ListaJugadoresClub';
+import { RegistroCampeonato } from './components/AdministradorComponente/CreacionCampeonato';
+import { HomeAdministrador } from './Paginas/SeccionAdministrador/HomeAdmistrador';
+import { BasicTable } from './components/Pruebas/basicTable';
+import CargarDatosPartidos from './components/AdministradorComponente/CargarDatosPartidos';
+import { DetallesPartido} from './components/GestionClub/GestionCampeonatos/DetallesPartido';
 function App() {
     return (
         <div className="App">
@@ -21,8 +35,8 @@ function App() {
                     <Route exact path="/">
                         <Login/>
                     </Route>
-                    <Route path="/home">
-                        <Home/>
+                    <Route path="/homeClub">
+                        <HomeClub/>
                     </Route>
                     <Route path="/seleccionClub">
                         <SeleccionClub/>
@@ -36,14 +50,43 @@ function App() {
                     <Route path="/datosJugador">
                         <DatosJugador idJugador="1" />
                     </Route>
+                    <Route path="/detallesPartidos">
+                        <DetallesPartido/>
+                    </Route>
                     <Route path="/datosRepresentante">
                         <DatosRepresentante idRepresentante="1"/>
                     </Route>
                     <Route path="/datosClub">
                         <DatosClub idClub="1" />
                     </Route>
+                    <Route path="/tablaPartidos" component={TablaPartidos} render={props=> <TablaPartidos{...props}/>}>
+                    </Route>
+                    <Route path="/tablaPosiciones">
+                        <TablaPosicion/>
+                    </Route>
+                    <Route path="/perfilClub">
+                        <PerfilClub/>
+                    </Route>
                     <Route path="/landingJugador">
                         <LandingJugador idJugador="60"/>
+                    </Route>
+                    <Route path="/gestionar/campeonato">
+                        <Listado/>
+                    </Route>
+                    <Route path="/administracion">
+                        <HomeAdministrador/>
+                    </Route>
+                    <Route path="/registroCampeonato">
+                        <RegistroCampeonato/>
+                    </Route>
+                    <Route path="/cargarDatosPartido">
+                        <CargarDatosPartidos/>
+                    </Route>
+                    <Route path="/gestionar/jugadores">
+                        <ListaJugadoresClub/>
+                    </Route>
+                    <Route path="/pruebas">
+                        <BasicTable/>
                     </Route>
                 </Switch>
             </Router>

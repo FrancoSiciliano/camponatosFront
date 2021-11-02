@@ -1,0 +1,14 @@
+
+.Administracion{
+    display: flex;
+    width: 120%;
+}
+.d-grid{
+    margin-left:15%;
+    align-items: center;
+    justify-content: center;
+}
+.botonesAdmin{
+    height: 40%!important;
+    width: 140%;
+}
