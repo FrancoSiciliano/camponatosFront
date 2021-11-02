@@ -1,5 +1,5 @@
 import {Button, Card, Carousel, Col, Dropdown, Row, Form, Spinner} from "react-bootstrap";
-import "../../../src/components/Carousel/carousel.css"
+import "./carousel.css"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -34,15 +34,23 @@ export const CarouselCard = (props) => {
         }
     };
 
+    const handleFilteringByName = (event) => {
+        setCampeonatos(todosCampeonatos.filter((elem) => {
+            return elem.descripcion.toLowerCase().includes(event.target.value.toLowerCase());
+        }));
+    }
+
     return (
         <>
-            <div className="container main-container-carrusel">
+            <div className="main-container-carrusel">
 
-                <Form.Select className="filtro-estado" onChange={handleFilteringByState}>
+                <Form.Select className="filtro" onChange={handleFilteringByState}>
                     <option value="no-seleccionado">Seleccionar estado</option>
                     <option value="activo">Activo</option>
                     <option value="inactivo">Inactivo</option>
                 </Form.Select>
+
+                <Form.Control className="filtro" placeholder="Buscar por Nombre" onChange={handleFilteringByName}/>
 
                 <Carousel variant="dark" className="carrusel">
                     {campeonatos.map((campeonato, index) => {

@@ -9,8 +9,9 @@ import './index.css'
 import { DatosRepresentante } from './components/Datos/DatosRepresentante';
 import { DatosClub} from './components/Datos/DatosClub'
 import { Home } from './Paginas/Home'
-import { LandingJugador } from './components/LandingJugador/LandingJugador';
-import {CarouselCard} from "./components/Carousel/CarouselCard";
+import { DatosJugadorLanding } from './components/LandingJugador/Datos/DatosJugadorLanding';
+import {CarouselCard} from "./components/LandingJugador/Carousel/CarouselCard";
+import {LandingJugador} from "./components/LandingJugador/LandingJugador";
 
 function App() {
     return (
@@ -42,10 +43,7 @@ function App() {
                         <DatosClub idClub="1" />
                     </Route>
                     <Route path="/landingJugador">
-                        <LandingJugador />
-                    </Route>
-                    <Route path="/test">
-                        <CarouselCard idClub="1"/>
+                        <LandingJugador idJugador="60"/>
                     </Route>
                 </Switch>
             </Router>

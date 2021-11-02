@@ -4,20 +4,29 @@
 
 .main-container-carrusel {
     display: flex;
-    margin: 10px;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px !important;
+    width: 400px;
 }
 
-.filtro-estado {
+.filtro {
     height: 50px;
     width: 200px !important;
+    margin-bottom: 30px;
 }
 
 .carousel-indicators button {
     display: none;
 }
 
+.carousel-item {
+    width: 300px !important;
+}
+
 .carousel-inner {
-    left: 14%
+    left: 14%;
+    width: 300px !important;
 }
 
 .btn {
