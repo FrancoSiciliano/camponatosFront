@@ -4,7 +4,6 @@ import {RegistroJugador} from "./components/Register/RegistroJugador";
 import {RegistroResponsable} from "./components/Register/RegistroResponsable";
 import {SeleccionClub} from "./components/Register/SeleccionClub";
 import { DatosJugador } from './components/Datos/DatosJugador';
-import './index.css'
 import { DatosRepresentante } from './components/Datos/DatosRepresentante';
 import { DatosClub} from './components/Datos/DatosClub'
 import {LandingJugador} from "./components/LandingJugador/LandingJugador";
