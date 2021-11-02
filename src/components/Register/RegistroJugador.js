@@ -84,7 +84,7 @@ export const RegistroJugador = () => {
             return;
         }
 
-        if (datos.nroTelefono === "") {
+        if (datos.nroTelefono === "" || isNaN(datos.nroTelefono) ) {
             setError("Número de telefono no válido");
             setShowModal(true);
             return;

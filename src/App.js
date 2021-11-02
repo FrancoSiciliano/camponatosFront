@@ -4,10 +4,10 @@ import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
 import {RegistroJugador} from "./components/Register/RegistroJugador";
 import {RegistroResponsable} from "./components/Register/RegistroResponsable";
 import {SeleccionClub} from "./components/Register/SeleccionClub";
-import { DatosJugador } from './components/DatosJugador/DatosJugador';
+import { DatosJugador } from './components/Datos/DatosJugador';
 import './index.css'
-import { DatosRepresentante } from './components/DatosRepresentante/DatosRepresentante';
-import { DatosClub} from './components/DatosClub/DatosClub'
+import { DatosRepresentante } from './components/Datos/DatosRepresentante';
+import { DatosClub} from './components/Datos/DatosClub'
 import { Home } from './Paginas/Home'
 import { LandingJugador } from './components/LandingJugador/LandingJugador';
 import {CarouselCard} from "./components/Carousel/CarouselCard";
@@ -33,13 +33,13 @@ function App() {
                         <RegistroResponsable/>
                     </Route>
                     <Route path="/datosJugador">
-                        <DatosJugador />
+                        <DatosJugador idJugador="1" />
                     </Route>
                     <Route path="/datosRepresentante">
-                        <DatosRepresentante />
+                        <DatosRepresentante idRepresentante="1"/>
                     </Route>
                     <Route path="/datosClub">
-                        <DatosClub />
+                        <DatosClub idClub="1" />
                     </Route>
                     <Route path="/landingJugador">
                         <LandingJugador />
