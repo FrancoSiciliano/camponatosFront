@@ -1,0 +1,13 @@
+.titulo-partido {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.comparacion-partido {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.local, .visitante{
+    width: 500px !important;
+}
