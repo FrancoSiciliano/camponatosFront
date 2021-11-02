@@ -104,7 +104,7 @@ export const DatosJugador = (props) => {
 
                             <Form.Group as={Col} controlId="formGridCategoria" sm="1">
                                 <FloatingLabel className="floatingInputGridJug" label="Categoria" style={{fontSize: "19px"}}>
-                                    <Form.Control type="text" name="categoria" placeholder="Categoria" style={{fontSize: "20px"}} value={data.categoria} readOnly/>
+                                    <Form.Control type="text" name="categoria" placeholder="Categ." style={{fontSize: "20px"}} value={data.categoria} readOnly/>
                                 </FloatingLabel>
                             </Form.Group>
                         </Row>
