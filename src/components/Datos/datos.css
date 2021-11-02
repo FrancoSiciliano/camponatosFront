@@ -27,13 +27,13 @@
 .contenedor-datos{
     font-family: 'Titillium Web', sans-serif;
     position: relative;
-    width: 1200px;
+    width: 100vw !important;
     height: 400px;
     left: 500px;
     top: -40px !important;
 }
 .formulario{
-    width: 1200px;
+    width: 100vw !important;
     height: 400px;
 }
 .boton{

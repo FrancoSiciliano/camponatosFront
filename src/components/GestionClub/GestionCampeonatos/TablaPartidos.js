@@ -23,10 +23,10 @@ export const TablaPartidos=(props)=>{
             <tr><th colSpan="8">Nombre Campeonato</th></tr>
           <tr>
             <th>Fecha</th>
-            <th>NroZona</th>
+            <th>Nro Zona</th>
             <th>Categoria</th>
-            <th>ClubLocal</th>
-            <th>ClubVisitante</th>
+            <th>Club Local</th>
+            <th>Club Visitante</th>
             <th colSpan="2">
         <form  classname ="searchBar" onsubmit="event.preventDefault();" role="search">
         <input classname="searchBox"
