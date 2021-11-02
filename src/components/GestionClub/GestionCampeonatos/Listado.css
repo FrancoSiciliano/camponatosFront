@@ -18,16 +18,6 @@ td th{
     font-weight: 600;
     font-family: Helvetica, sans-serif;
 }
-.botonesTablas{
-    width: 125px;
-    background-color: #40916C;
-    border-color: transparent;
-}
-.botonesTablas:hover{
-    width: 125px;
-    background-color: #40916dcb;
-    border-color: transparent;
-}
 
 .Tabla .btn-primary{
     width: 125px;
@@ -35,7 +25,10 @@ td th{
     border-color: transparent;
 }
 .Tabla .btn-primary:hover{
-    width: 125px;
+    background-color: #40916dcb;
+    border-color: transparent;
+}
+.Tabla .btn-primary:focus{
     background-color: #40916dcb;
     border-color: transparent;
 }
@@ -50,7 +43,8 @@ a{
     border-radius: .7rem;
 }
 .botonsearch{
-    width: 70px;
+    border: 1px transparent!important;
+    width: 200px!important;
     height: 50px;
 }
 th{
@@ -61,20 +55,12 @@ th{
 .searchBox,.SearchButtom{
     height: 5rem;
     font-family: 'Lato', sans-serif;
-    border: 0;
+    border: 1;
     color: #2f2f2f;
     font-size: 1.8rem;
   }
   input[type="search"] {
-    width: 50%;
-    background: #fff;
-    padding: 0 1.6rem;
-    border-color: transparent;
-    border-radius: 2px solid rgb(48, 48, 48);
-    appearance: none; 
-    transition: all .3s cubic-bezier(0, 0, 0.43, 1.49);
-    z-index: 1;
-    position: relative;
+    margin-right: 5%;
   }
   input[type="search"]:focus{
       border-color: transparent;

@@ -12,7 +12,7 @@ export const Listado = (props) =>{
   const [data, setData] = useState(null);
   useEffect(() => {
         const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getCampeonatos2`);
+        const response = await axios(`http://localhost:8080/getCampeonatos`);
         const newData = response.data;
         setData(newData);};
         fetchData();});
@@ -42,7 +42,7 @@ if(data){
               </tr>
             </thead>
             <tbody>
-            {data.map((campeonato, index)=>{
+          {data.map((campeonato, index)=>{
                var ids=campeonato.idCampeonato 
             return(
               <tr key={campeonato.descripcion}>
@@ -53,7 +53,7 @@ if(data){
                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/tablaPosiciones', state:ids}}> Tabla</Link></Button></td>
                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/tablaPartidos', state:ids}}> Partidos</Link></Button></td>
               </tr>)
-            })}
+})}
           </tbody>
           </Table>
           </div></div>)}

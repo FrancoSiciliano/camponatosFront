@@ -17,6 +17,7 @@ export const TablaPartidos=(props)=>{
 });
   if(data){
     return(
+      <div className="Tabla">
     <Table striped bordered hover>
         <thead>
             <tr><th colSpan="8">Nombre Campeonato</th></tr>
@@ -38,6 +39,9 @@ export const TablaPartidos=(props)=>{
   <tbody>
   {data.map((partido,index)=>{
     var ids=partido.idPartido
+    var validadoLocal=partido.convalidaLocal
+    var validadoVisitante=partido.convalidaVisitante
+  
   return(
     <tr key={index}>
       <td>{partido.nroFecha}</td>
@@ -45,12 +49,12 @@ export const TablaPartidos=(props)=>{
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Button  type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/detallesPartidos', state:ids}}>Detalles</Link></Button></td>
-      <td><Button  type="submit" class="btn btn-primary btn-sm">Validar</Button></td>
+      <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></Button></td>
+      <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"> Validar</Button></td>
     </tr>)
   })}
 </tbody>
-</Table>)}
+</Table></div>)}
 else{
   return (<h1>No se crearon Partidos para este campeonato</h1>)
     }}

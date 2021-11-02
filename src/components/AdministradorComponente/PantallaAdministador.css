@@ -1,8 +1,7 @@
-.TablaAdministracion{
-    width: 50%;
-}
+
 .Administracion{
     display: flex;
+    width: 120%;
 }
 .d-grid{
     margin-left:15%;

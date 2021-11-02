@@ -3,7 +3,7 @@ import '../GestionJugadores/ListaJugadoresClub.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import NavBarClub from "../../NavBars/NavBarClub";
-
+import '../GestionCampeonatos/Listado.css'
 
 export const ListaJugadoresClub = (props) =>{
     const [data, setData] = useState(null);
@@ -16,7 +16,7 @@ export const ListaJugadoresClub = (props) =>{
   if(data){
       return( <div>
               <NavBarClub/>
-              <div className="TablaJugadores">
+              <div className="Tabla">
               <Table striped bordered hover sm >
                 <thead>
                     <tr borderless>

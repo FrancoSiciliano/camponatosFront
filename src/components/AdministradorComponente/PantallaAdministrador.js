@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import './PantallaAdministador.css'
 import { Link } from "react-router-dom";
+import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 
 //<td><Button type="submit" class="btn btn-primary btn-sm">Tabla</Button></td>
 //<td><Button type="submit" onClick={"GenerarPartidos"} class="btn btn-primary btn-sm"> <Link to="/TablaPartidos"> Partidos</Link></Button></td>
@@ -16,9 +17,9 @@ export const PantallaAdministrador = (props) =>{
         setData(newData);};
         fetchData();});
 if(data){
-    return( <div className="Administracion">
-    
-            <div className="TablaAdministracion">
+    return( <div> <NavBarAdministracion/><div className="Administracion">
+           
+            <div className="Tabla">
             <Table striped bordered hover sm >
               <thead>
                   <tr borderless>
@@ -62,7 +63,7 @@ if(data){
               </Button>
           </div>
           </div>
-          )}
+          </div>)}
 else{
   return(<h1>Oye que a pasado</h1>)
 }
