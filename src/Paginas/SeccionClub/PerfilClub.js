@@ -1,4 +1,4 @@
-import { DatosClub } from "../../components/DatosClub/DatosClub"
+import { DatosClub } from "../../components/Datos/DatosClub"
 import NavBarClub from "../../components/NavBars/NavBarClub"
 
 export const PerfilClub= ()=>{

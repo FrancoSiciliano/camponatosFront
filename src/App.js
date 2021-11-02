@@ -8,15 +8,8 @@ import { DatosJugador } from './components/Datos/DatosJugador';
 import './index.css'
 import { DatosRepresentante } from './components/Datos/DatosRepresentante';
 import { DatosClub} from './components/Datos/DatosClub'
-import { Home } from './Paginas/Home'
-import { DatosJugadorLanding } from './components/LandingJugador/Datos/DatosJugadorLanding';
-import {CarouselCard} from "./components/LandingJugador/Carousel/CarouselCard";
 import {LandingJugador} from "./components/LandingJugador/LandingJugador";
-
-import { DatosRepresentante } from './components/DatosRepresentante/DatosRepresentante';
-import { DatosClub} from './components/DatosClub/DatosClub'
 import { HomeClub } from './Paginas/SeccionClub/HomeClub'
-import { LandingJugador } from './components/LandingJugador/LandingJugador';
 import Listado from './components/GestionClub/GestionCampeonatos/Listado';
 import { TablaPartidos } from './components/GestionClub/GestionCampeonatos/TablaPartidos';
 import { TablaPosicion } from './components/GestionClub/GestionCampeonatos/TablaPosicion';
@@ -24,7 +17,6 @@ import { PerfilClub } from './Paginas/SeccionClub/PerfilClub';
 import ListaJugadoresClub from './components/GestionClub/GestionJugadores/ListaJugadoresClub';
 import { RegistroCampeonato } from './components/AdministradorComponente/CreacionCampeonato';
 import { HomeAdministrador } from './Paginas/SeccionAdministrador/HomeAdmistrador';
-import { BasicTable } from './components/Pruebas/basicTable';
 import CargarDatosPartidos from './components/AdministradorComponente/CargarDatosPartidos';
 import { DetallesPartido} from './components/GestionClub/GestionCampeonatos/DetallesPartido';
 function App() {
@@ -84,9 +76,6 @@ function App() {
                     </Route>
                     <Route path="/gestionar/jugadores">
                         <ListaJugadoresClub/>
-                    </Route>
-                    <Route path="/pruebas">
-                        <BasicTable/>
                     </Route>
                 </Switch>
             </Router>
