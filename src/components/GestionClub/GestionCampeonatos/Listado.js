@@ -46,7 +46,6 @@ export const Listado = (props) => {
                         <th>Fecha Inicio</th>
                         <th>Fecha Fin</th>
                         <th colSpan="2">
-
                             <Form.Control classname="searchBox"
                                           id="search" type="search" placeholder="Filtrar por Nombre"
                                           onChange={handleChange}/>
@@ -57,6 +56,8 @@ export const Listado = (props) => {
                     <tbody>
                     {campeonatos.map((campeonato) => {
                         let ids = campeonato.idCampeonato
+                        let estado = campeonato.estado
+                        if(estado.toUpperCase() ==="ACTIVO"){
                         return (
                             <tr key={campeonato.descripcion}>
                                 <td>{campeonato.idCampeonato}</td>
@@ -68,7 +69,7 @@ export const Listado = (props) => {
                                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
                                     to={{pathname: '/tablaPartidos', state: ids}}>Partidos</Link></Button></td>
                             </tr>)
-                    })}
+    }})}
                     </tbody>
                 </Table>
             </div>
