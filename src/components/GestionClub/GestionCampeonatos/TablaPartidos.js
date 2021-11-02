@@ -9,12 +9,12 @@ export const TablaPartidos=(props)=>{
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=`+location.state);
+        const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state}`);
         const newData = response.data;
         setData(newData);
     };
     fetchData();
-});
+},[]);
   if(data){
     return(
       <div className="Tabla">
@@ -41,7 +41,7 @@ export const TablaPartidos=(props)=>{
     var ids=partido.idPartido
     var validadoLocal=partido.convalidaLocal
     var validadoVisitante=partido.convalidaVisitante
-  
+
   return(
     <tr key={index}>
       <td>{partido.nroFecha}</td>
