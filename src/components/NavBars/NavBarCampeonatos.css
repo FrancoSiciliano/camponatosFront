@@ -1,9 +1,12 @@
 .bg-dark{
     background: #2d6a4f!important;
 }
+.NavBarResponsable a{
+    color: white !important;
+}
 .Navbarcamp{
     background-color: #52B788!important;
 }
-.dropdown-item{
+.NavBarResponsable a .dropdown-item{
     color: black!important;
 }

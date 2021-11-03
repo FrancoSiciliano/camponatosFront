@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 .Tabla{
     display: flex;
     align-items: center;
@@ -8,22 +9,44 @@ tbody,td,th,thead,tr{
     color: rgb(0, 0, 0)!important;
     border-style: solid 0.6rem!important;
     border-color: #40916C!important;
+=======
+.TablaResponsable {
+    background-color: #fff;
+}
+.HeaderResponsable{
+    color: rgb(0, 0, 0) !important;
+    border-color: #40916C !important;
+    border-top: transparent !important;
+}
+tbody, td, th, thead, tr {
+    color: rgb(0, 0, 0) !important;
+    border-color: #40916C !important;
+>>>>>>> Stashed changes
 }
 thead,th{
     border-top: transparent!important;
 }
+<<<<<<< Updated upstream
 td th{
+=======
+td th {
+>>>>>>> Stashed changes
     font-size: large;
     color: rgb(78, 76, 76);
     font-weight: 600;
     font-family: Helvetica, sans-serif;
 }
 
+<<<<<<< Updated upstream
 .Tabla .btn-primary{
+=======
+.TablaResponsable .btn-primary {
+>>>>>>> Stashed changes
     width: 125px;
     background-color: #40916C;
     border-color: transparent;
 }
+<<<<<<< Updated upstream
 .Tabla .btn-primary:hover{
     background-color: #40916dcb;
     border-color: transparent;
@@ -35,6 +58,22 @@ td th{
 a{
     color: white!important;
     text-decoration: none!important;
+=======
+
+.TablaResponsable .btn-primary:hover {
+    background-color: #40916dcb;
+    border-color: transparent;
+}
+
+.TablaResponsable .btn-primary:focus {
+    background-color: #40916dcb;
+    border-color: transparent;
+}
+
+.TablaResponsable .btn-primary a {
+    color: white !important;
+    text-decoration: none !important;
+>>>>>>> Stashed changes
 }
 .searchBar{
     position: relative;

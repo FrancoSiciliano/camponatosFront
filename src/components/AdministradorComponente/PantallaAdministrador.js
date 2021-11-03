@@ -19,7 +19,7 @@ export const PantallaAdministrador = (props) =>{
 if(data){
     return( <div> <NavBarAdministracion/><div className="Administracion">
            
-            <div className="Tabla">
+            <div className="TablaAdministrador">
             <Table striped bordered hover sm >
               <thead>
                   <tr borderless>
@@ -56,16 +56,20 @@ if(data){
                 </Link>
               </Button>
             <Button className="botonesAdmin" variant="primary" size="sm">
+            <Link to="/crearPartido">
                 Crear Partidos
+            </Link>
             </Button>
             <Button className="botonesAdmin" variant="primary" size="sm">
+            <Link to="/verTablas">
                 Ver Tablas
+            </Link>
               </Button>
           </div>
           </div>
           </div>)}
 else{
-  return(<h1>Oye que a pasado</h1>)
+  return(<h1>No Iniciaste el Server</h1>)
 }
 }
  

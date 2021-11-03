@@ -19,6 +19,7 @@ export const Listado = (props) =>{
 if(data){
     return( <div className="ContenedorGestion">
             <NavBarClub/>
+<<<<<<< Updated upstream
             <div className="Tabla">
             <Table striped bordered hover sm >
               <thead>
@@ -59,6 +60,53 @@ if(data){
           </div></div>)}
 else{
   return(<ErrorPagina descripcion="Que A pasado?" />)
+=======
+            <div className="TablaResponsable">
+                <Table striped bordered hover sm>
+                    <thead className="HeaderResponsable">
+                    <tr borderless>
+                        <th colSpan="6">
+                            Campeonatos Activos del Club
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Fin</th>
+                        <th colSpan="2">
+                            <Form.Control classname="searchBox"
+                                          id="search" type="search" placeholder="Filtrar por Nombre"
+                                          onChange={handleChange} autoComplete="off"/>
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {campeonatos.map((campeonato) => {
+                        let ids = campeonato.idCampeonato
+                        let estado = campeonato.estado
+                        if(estado.toUpperCase() ==="ACTIVO"){
+                        return (
+                            <tr key={campeonato.descripcion}>
+                                <td>{campeonato.idCampeonato}</td>
+                                <td>{campeonato.descripcion}</td>
+                                <td>{campeonato.fechaInicio}</td>
+                                <td>{campeonato.fechaFin}</td>
+                                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
+                                    to={{pathname: '/tablaPosiciones', state: ids}}>Tabla</Link></Button></td>
+                                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
+                                    to={{pathname: '/tablaPartidos', state: ids}}>Partidos</Link></Button></td>
+                            </tr>)
+    }})}
+                    </tbody>
+                </Table>
+            </div>
+        </div>)
+    } else {
+        return (<ErrorPagina descripcion="Que A pasado?"/>)
+    }
+>>>>>>> Stashed changes
 }
 }
  

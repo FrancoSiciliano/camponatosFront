@@ -1,7 +1,7 @@
-import { Table,Button } from "react-bootstrap"
+import { Table,Button ,Form} from "react-bootstrap"
 import { useLocation,Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
-import './Listado.css'
+import './TablaPartidos.css'
 import axios from "axios";
 export const TablaPartidos=(props)=>{
   let location = useLocation()
@@ -17,7 +17,7 @@ export const TablaPartidos=(props)=>{
 });
   if(data){
     return(
-      <div className="Tabla">
+      <div className="TablaPartidos">
     <Table striped bordered hover>
         <thead>
             <tr><th colSpan="8">Nombre Campeonato</th></tr>
@@ -28,11 +28,9 @@ export const TablaPartidos=(props)=>{
             <th>ClubLocal</th>
             <th>ClubVisitante</th>
             <th colSpan="2">
-        <form  classname ="searchBar" onsubmit="event.preventDefault();" role="search">
-        <input classname="searchBox"
-        id="search" type="search" placeholder="Filtrar por Nombre" autofocus required />
-        <button type="button" classname="botonsearch">search</button>
-</form>
+            <Form.Control classname="searchBox"
+                                          id="search" type="search" placeholder="Filtrar por Nombre"
+                                          onChange={""} autoComplete="off"/>
 </th>
     </tr>
   </thead>

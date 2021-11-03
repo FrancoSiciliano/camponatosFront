@@ -1,6 +1,11 @@
 import {Link} from "react-router-dom";
+<<<<<<< Updated upstream
 import {Col, FloatingLabel, Form,Row} from "react-bootstrap"
 
+=======
+import {Col, FloatingLabel, Form, Row, Spinner} from "react-bootstrap"
+import {Button} from "react-bootstrap";
+>>>>>>> Stashed changes
 import "../../../src/components/Register/Registros.css"
 import {useEffect, useState} from "react";
 import axios from "axios";

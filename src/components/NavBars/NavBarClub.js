@@ -3,6 +3,7 @@ import './NavBarCampeonatos.css'
 import { Navbar,Nav,NavDropdown } from 'react-bootstrap'
 function NavBarClub (props) {
   return(
+    <div className="NavBarResponsable">
     <Navbar bg="dark" classname="Navbarcamp">
     <Container>
       <Navbar.Brand href="/homeClub">Campiones</Navbar.Brand>
@@ -21,6 +22,6 @@ function NavBarClub (props) {
         </Nav>
       </Navbar.Collapse>
     </Container>
-  </Navbar>)}
+  </Navbar></div>)}
 
 export default NavBarClub;

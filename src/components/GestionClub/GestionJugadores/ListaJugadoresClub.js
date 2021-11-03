@@ -8,6 +8,7 @@ import '../GestionCampeonatos/Listado.css'
 export const ListaJugadoresClub = (props) =>{
     const [data, setData] = useState(null);
     useEffect(() => {
+<<<<<<< Updated upstream
           const fetchData = async () => {
           const response = await axios(`http://localhost:8080/getJugadores`);
           const newData = response.data;
@@ -22,6 +23,32 @@ export const ListaJugadoresClub = (props) =>{
                     <tr borderless>
                         <th  colSpan="15">
                           Jugadores del Club
+=======
+        const fetchData = async () => {
+            const response = await axios(`http://localhost:8080/getJugadores`);
+            const newData = response.data;
+            setJugadores(newData);
+            todosJugadores.current = newData;
+        };
+        fetchData();
+    }, []);
+
+    const handleChange = (event) => {
+        setJugadores(todosJugadores.current.filter((elem) => {
+            return `${elem.nombre} + ${elem.apellido}`.toLowerCase().includes(event.target.value.toLowerCase());
+        }));
+    }
+
+    if (jugadores) {
+        return (<div>
+            <NavBarClub/>
+            <div className="TablaJugadoresClub">
+                <Table striped bordered hover sm>
+                    <thead>
+                    <tr>
+                        <th colSpan="15">
+                            Jugadores del Club
+>>>>>>> Stashed changes
                         </th>
                       </tr>
                   <tr>
