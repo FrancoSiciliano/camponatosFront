@@ -1,7 +1,7 @@
 import { Table,Button } from "react-bootstrap"
 import { useLocation,Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
-import './Listado.css'
+import './TablaPartidos.css'
 import axios from "axios";
 export const TablaPartidos=(props)=>{
   let location = useLocation()
@@ -17,7 +17,7 @@ export const TablaPartidos=(props)=>{
 },[]);
   if(data){
     return(
-      <div className="Tabla">
+      <div className="TablaPartidos">
     <Table striped bordered hover>
         <thead>
             <tr><th colSpan="8">Nombre Campeonato</th></tr>

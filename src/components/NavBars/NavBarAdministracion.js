@@ -1,5 +1,4 @@
 import Container from 'react-bootstrap/Container'
-import './NavBarCampeonatos.css'
 import { Navbar,Nav,NavDropdown } from 'react-bootstrap'
 function NavBarAdministracion (props) {
   return(

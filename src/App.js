@@ -8,7 +8,7 @@ import { DatosRepresentante } from "./components/Datos/DatosRepresentante";
 import { DatosClub } from "./components/Datos/DatosClub";
 import { LandingJugador } from "./components/LandingJugador/LandingJugador";
 import { LandingResponsable } from "./Paginas/SeccionClub/LandingResponsable";
-import Listado from "./components/GestionClub/GestionCampeonatos/Listado";
+import CampeonatosResponsable from "./components/GestionClub/GestionCampeonatos/CampeonatosResponsable";
 import { TablaPartidos } from "./components/GestionClub/GestionCampeonatos/TablaPartidos";
 import { TablaPosicion } from "./components/GestionClub/GestionCampeonatos/TablaPosicion";
 import { PerfilClub } from "./Paginas/SeccionClub/PerfilClub";
@@ -64,7 +64,7 @@ function App() {
             <LandingJugador idJugador="60" />
           </Route>
           <Route path="/gestionar/campeonato">
-            <Listado />
+            <CampeonatosResponsable />
           </Route>
           <Route path="/administracion">
             <HomeAdministrador />

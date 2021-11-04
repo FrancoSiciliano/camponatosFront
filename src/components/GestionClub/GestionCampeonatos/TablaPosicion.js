@@ -2,13 +2,14 @@ import { Table,Button } from "react-bootstrap"
 import { useLocation } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import  axios  from "axios";
+import NavBarResponsable from "../../NavBars/NavBarResponsable";
 export const TablaPosicion=(props)=>{
   let location = useLocation()
   console.log(location)
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonatoidCampeonato=`+location.state);
+        const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonatoidCampeonato=${location.state}`);
         const newData = response.data;
         setData(newData);
     };
@@ -16,6 +17,8 @@ export const TablaPosicion=(props)=>{
 });
   if(data){
     return(
+      <div>
+    <NavBarResponsable/>
     <Table striped bordered hover>
         <thead>
             <tr><th colSpan="6">Nombre Campeonato</th></tr>
@@ -51,7 +54,8 @@ export const TablaPosicion=(props)=>{
     </tr>
   })}
 </tbody>
-</Table>)}
+</Table></div>)}
 else{
-  return (<h1>No existe Tabla posicion para el campeonato</h1>)
-    }}
+  return (<div><NavBarResponsable/>
+  <h1>No existe Tabla posicion para el campeonato</h1>
+  </div>)}}

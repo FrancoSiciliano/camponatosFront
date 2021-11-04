@@ -1,17 +1,16 @@
 import Container from 'react-bootstrap/Container'
-import './NavBarCampeonatos.css'
+import './NavBarResponsable.css'
 import { Navbar,Nav,NavDropdown } from 'react-bootstrap'
 function NavBarResponsable (props) {
   return(
-    <Navbar bg="dark" classname="Navbarcamp">
+    <Navbar classname="NavbarResponsable">
     <Container>
-      <Navbar.Brand href="/homeClub">Campiones</Navbar.Brand>
+      <Navbar.Brand href="/homeClub" classname="LogoNavbar">Campiones</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link href="/homeClub">Home</Nav.Link>
-          <Nav.Link href="/perfilClub">Perfil</Nav.Link>
-          <NavDropdown title="Gestionar" id="basic-nav-dropdown">
+          <Nav.Link href="/datosRepresentante" classname="LinkNavbar">Perfil</Nav.Link>
+          <NavDropdown title="Gestionar" id="basic-nav-dropdown" classname="LinkNavbar">
             <NavDropdown.Item href="/gestionar/campeonato">Campeonatos</NavDropdown.Item>
             <NavDropdown.Item href="/gestionar/jugadores"> Jugadores</NavDropdown.Item>
           </NavDropdown>
