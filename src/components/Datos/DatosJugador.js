@@ -169,6 +169,5 @@ export const DatosJugador = (props) => {
                 </div>
             </div>
         </div>
-    
     )
 }

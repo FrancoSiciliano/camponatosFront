@@ -1,32 +1,18 @@
 
 import React from "react";
-import {Col, FloatingLabel, Form, FormControl, InputGroup, Row,Button} from "react-bootstrap"
+import {Col, FloatingLabel, Form,Row,Button} from "react-bootstrap"
 import "../../../src/components/Register/Registros.css"
 import {useState} from "react";
 import axios from "axios";
-import {PopupRegistro} from "../Login/PopupRegistro";
 
 
 export const RegistroCampeonato = () => {
-    const [post, setPost] = React.useState(null);
-    const baseURL = "http://localhost:8080/crearCampeonato";
     const [datos, setDatos] = useState({
         descripcion: "",
         fechaInicio: "",
         fechaFin: "",
         estado: "Activo"
-    });
-    const createPost= ()=>{
-        axios.post(baseURL,{
-            descripcion:datos.descripcion,
-            fechaInicio:datos.fechaInicio,
-            fechaFin:datos.fechaFin,
-            estado:datos.estado
-        }).then((response) => {
-            console.log(response)
-            setPost(response.data);
-          });
-    }
+    },[]);
 
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
@@ -37,17 +23,8 @@ export const RegistroCampeonato = () => {
             [event.target.name]: event.target.value,
         })
     }
-    const handleSubmit = (event) => {
-        console.log(datos)
-        const res=fetch(`http://localhost:8080/crearCampeonato`,{method:'POST', body:JSON.stringify(datos)})
-        .then(res=>res.json())
-        console.log(res)
-    };
-
     const handleClick = (event) => {
-        console.log(datos)
-        const res=fetch(`http://localhost:8080/crearCampeonato`,{method:'POST', body:JSON.stringify(datos)})
-        .then(res=>res.json())
+        const res=axios.post(`http://localhost:8080/crearCampeonato?descripcion=${datos.descripcion}&fechaInicio=${datos.fechaInicio}&fechaFin=${datos.fechaFin}&estado=activo`)
         console.log(res)
     };
 
@@ -79,9 +56,7 @@ return (
                                 </FloatingLabel>
                             </Form.Group>
                         </Row>
-                        <button onClick={createPost}>Finalizar</button>
-                        <Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm" onClick={createPost}> Finalizar</Button>
-                        <PopupRegistro show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al jugador"/>
+                        <Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm" onClick={handleClick}> Finalizar</Button>
                     </Form>
                 </div>
             </div>
