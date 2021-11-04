@@ -3,7 +3,7 @@ import './CampeonatosResponsable.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import {ErrorPagina} from "../../NoseEncuentra/ErrorPagina";
+import {ErrorPagina} from "../../NotFound/ErrorPagina";
 import NavBarResponsable from "../../NavBars/NavBarResponsable";
 
 //<td><Button type="submit" class="btn btn-primary btn-sm">Tabla</Button></td>

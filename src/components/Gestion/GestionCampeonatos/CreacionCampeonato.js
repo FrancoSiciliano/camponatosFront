@@ -1,7 +1,7 @@
 
 import React from "react";
 import {Col, FloatingLabel, Form,Row,Button} from "react-bootstrap"
-import "../../../src/components/Register/Registros.css"
+import "../../Registros/Registros.css"
 import {useState} from "react";
 import axios from "axios";
 

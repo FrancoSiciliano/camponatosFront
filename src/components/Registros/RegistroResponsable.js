@@ -1,10 +1,10 @@
 import {Link} from "react-router-dom";
 import {Col, FloatingLabel, Form,Row, Spinner} from "react-bootstrap"
 import {Button} from "react-bootstrap";
-import "../../../src/components/Register/Registros.css"
+import ".//Registros.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {PopupRegistro} from "../Login/PopupRegistro";
+import {PopUp} from "../PopUp/PopUp";
 
 export const RegistroResponsable = () => {
 
@@ -136,8 +136,8 @@ export const RegistroResponsable = () => {
                     }
                     { data ? <Link className="btn btn-success" to="/registroResponsable"
                            onClick={handleClick}>Finalizar</Link> : <Button className="btn-success" disabled>Finalizar</Button>}
-                    <PopupRegistro show={showModal} onHide={() => setShowModal(false)} text={error}
-                                   title="No se puede registrar al responsable"/>
+                    <PopUp show={showModal} onHide={() => setShowModal(false)} text={error}
+                           title="No se puede registrar al responsable"/>
 
                 </Form>
             </div>

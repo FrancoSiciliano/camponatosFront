@@ -5,7 +5,7 @@ import {Col, FloatingLabel, Form, Row, Button} from "react-bootstrap"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {PopupRegistro} from "../Login/PopupRegistro";
+import {PopUp} from "../PopUp/PopUp";
 
 export const DatosJugador = (props) => {
     const [data, setData] = useState([]);
@@ -164,7 +164,7 @@ export const DatosJugador = (props) => {
                         </Row>
 
                         <Button type="submit" className="btn btn-success boton"> Actualizar</Button>
-                        <PopupRegistro show={showModal} onHide={() => setShowModal(false)} text={popUp.mensaje} title={popUp.titulo}/>
+                        <PopUp show={showModal} onHide={() => setShowModal(false)} text={popUp.mensaje} title={popUp.titulo}/>
                     </Form>
                 </div>
             </div>

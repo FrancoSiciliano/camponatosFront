@@ -1,4 +1,4 @@
-import validacion from "./validacion"
+import validacion from "../../FuncionesAdministrador/validacion"
 import React, { useState } from "react";
 
 

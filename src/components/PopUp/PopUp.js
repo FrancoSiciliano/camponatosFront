@@ -1,6 +1,6 @@
 import {Button, Modal} from "react-bootstrap";
 
-export const PopupRegistro = (props) => {
+export const PopUp = (props) => {
     return (
         <Modal
             show={props.show}

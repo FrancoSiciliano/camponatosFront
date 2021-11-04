@@ -1,7 +1,7 @@
-import './datosJugadorLanding.css'
+import './PerfilJugador.css'
 import React from 'react'
 
-export const DatosJugadorLanding = (props) => {
+export const PerfilJugador = (props) => {
     const jugador = props.jugadorData;
     const stats = props.estadisticas;
 

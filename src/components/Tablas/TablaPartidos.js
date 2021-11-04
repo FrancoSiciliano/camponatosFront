@@ -3,7 +3,7 @@ import { useLocation,Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import './TablaPartidos.css'
 import axios from "axios";
-import NavBarResponsable from "../../NavBars/NavBarResponsable";
+import NavBarResponsable from "../NavBars/NavBarResponsable";
 export const TablaPartidos=()=>{
   let location = useLocation()
   console.log(location)

@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import { FloatingLabel, Spinner } from 'react-bootstrap';
 import { useState, useEffect} from 'react';
-import {PopupRegistro} from "../Login/PopupRegistro";
+import {PopUp} from "../PopUp/PopUp";
 import axios from 'axios';
 
 export const DatosRepresentante = (props) => {
@@ -123,7 +123,7 @@ export const DatosRepresentante = (props) => {
                             </Row>
                             
 
-                            <PopupRegistro show={showModal} onHide={() => setShowModal(false)} text={popUp.mensaje} title={popUp.titulo}/>
+                            <PopUp show={showModal} onHide={() => setShowModal(false)} text={popUp.mensaje} title={popUp.titulo}/>
 
                             <Button type="submit" className="btn btn-success boton"> Actualizar </Button>
                             

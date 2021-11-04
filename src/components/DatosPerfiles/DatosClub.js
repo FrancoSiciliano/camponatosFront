@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
-import {PopupRegistro} from "../Login/PopupRegistro";
+import {PopUp} from "../PopUp/PopUp";
 
 export const DatosClub = (props) => {
 
@@ -128,7 +128,7 @@ export const DatosClub = (props) => {
                             </div>
                         </Row>
 
-                        <PopupRegistro show={showModal} onHide={() => setShowModal(false)} text={popUp.mensaje} title={popUp.titulo}/>
+                        <PopUp show={showModal} onHide={() => setShowModal(false)} text={popUp.mensaje} title={popUp.titulo}/>
 
                         <Button type="submit" className="btn btn-success boton"> Actualizar</Button>
                         

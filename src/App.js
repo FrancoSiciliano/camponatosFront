@@ -1,23 +1,23 @@
 import { Login } from "./components/Login/Login";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { RegistroJugador } from "./components/Register/RegistroJugador";
-import { RegistroResponsable } from "./components/Register/RegistroResponsable";
-import { SeleccionClub } from "./components/Register/SeleccionClub";
-import { DatosJugador } from "./components/Datos/DatosJugador";
-import { DatosRepresentante } from "./components/Datos/DatosRepresentante";
-import { DatosClub } from "./components/Datos/DatosClub";
+import { RegistroJugador } from "./components/Registros/RegistroJugador";
+import { RegistroResponsable } from "./components/Registros/RegistroResponsable";
+import { SeleccionClub } from "./components/Registros/SeleccionClub";
+import { DatosJugador } from "./components/DatosPerfiles/DatosJugador";
+import { DatosRepresentante } from "./components/DatosPerfiles/DatosRepresentante";
+import { DatosClub } from "./components/DatosPerfiles/DatosClub";
 import { LandingJugador } from "./components/LandingJugador/LandingJugador";
-import { LandingResponsable } from "./Paginas/SeccionClub/LandingResponsable";
-import CampeonatosResponsable from "./components/GestionClub/GestionCampeonatos/CampeonatosResponsable";
-import { TablaPartidos } from "./components/GestionClub/GestionCampeonatos/TablaPartidos";
-import { TablaPosicion } from "./components/GestionClub/GestionCampeonatos/TablaPosicion";
-import { PerfilClub } from "./Paginas/SeccionClub/PerfilClub";
-import ListaJugadoresClub from "./components/GestionClub/GestionJugadores/ListaJugadoresClub";
-import { RegistroCampeonato } from "./components/Administrador/CreacionCampeonato";
-import { HomeAdministrador } from "./Paginas/SeccionAdministrador/HomeAdmistrador";
-import CargarDatosPartidos from "./components/Administrador/CargarDatosPartidos";
-import { DetallesPartido } from "./components/GestionClub/GestionCampeonatos/DetallesPartido";
-import { CrearPartido } from "./components/Administrador/CrearPartido";
+import { LandingResponsable } from "./components/LandingResponsable/LandingResponsable";
+import CampeonatosResponsable from "./components/Gestion/GestionCampeonatos/CampeonatosResponsable";
+import { TablaPartidos } from "./components/Tablas/TablaPartidos";
+import { TablaPosicion } from "./components/Tablas/TablaPosicion";
+import { PerfilClub } from "./components/LandingResponsable/PerfilClub";
+import ListaJugadoresClub from "./components/Gestion/GestionJugadores/ListaJugadoresClub";
+import { RegistroCampeonato } from "./components/Gestion/GestionCampeonatos/CreacionCampeonato";
+import { HomeAdministrador } from "./components/LandingAdministrador/HomeAdmistrador";
+import CargarDatosPartidos from "./components/Gestion/GestionPartidos/CargarDatosPartidos";
+import { DetallesPartido } from "./components/Tablas/DetallesPartido";
+import { CrearPartido } from "./components/Gestion/GestionPartidos/CrearPartido";
 function App() {
   return (
     <div className="App">

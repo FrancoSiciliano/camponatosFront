@@ -1,5 +1,5 @@
 import NavBarJugador from "../NavBars/NavBarJugador";
-import {DatosJugadorLanding} from "./Datos/DatosJugadorLanding";
+import {PerfilJugador} from "./Datos/PerfilJugador";
 import {CarouselCard} from "./Carousel/CarouselCard";
 import './landingPageJugador.css'
 import {useEffect, useState} from "react";
@@ -26,7 +26,7 @@ export const LandingJugador = (props) => {
             <div>
                 <NavBarJugador/>
                 <div className="contenido-landing-jugador">
-                    <DatosJugadorLanding jugadorData={jugador} estadisticas={stats}/>
+                    <PerfilJugador jugadorData={jugador} estadisticas={stats}/>
                     <CarouselCard idClub={stats.idClub}/>
                 </div>
             </div>

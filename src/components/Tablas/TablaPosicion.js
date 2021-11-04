@@ -2,7 +2,7 @@ import { Table,Button } from "react-bootstrap"
 import { useLocation } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import  axios  from "axios";
-import NavBarResponsable from "../../NavBars/NavBarResponsable";
+import NavBarResponsable from "../NavBars/NavBarResponsable";
 export const TablaPosicion=(props)=>{
   let location = useLocation()
   console.log(location)

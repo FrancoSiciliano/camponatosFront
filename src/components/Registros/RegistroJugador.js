@@ -1,10 +1,10 @@
 import {Link} from "react-router-dom";
 import {Col, FloatingLabel, Form,Row} from "react-bootstrap"
 
-import "../../../src/components/Register/Registros.css"
+import ".//Registros.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {PopupRegistro} from "../Login/PopupRegistro";
+import {PopUp} from "../PopUp/PopUp";
 
 export const RegistroJugador = () => {
 
@@ -204,7 +204,7 @@ export const RegistroJugador = () => {
                         <Link className="btn btn-success" to="/registroJugador" onClick={handleClick}>Finalizar</Link>
 
 
-                        <PopupRegistro show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al jugador"/>
+                        <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al jugador"/>
                     </Form>
                 </div>
             </div>
