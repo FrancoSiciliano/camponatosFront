@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container'
-import { Navbar,Nav,NavDropdown } from 'react-bootstrap'
+import { Navbar,Nav } from 'react-bootstrap'
 import './NavBarAdministracion.css'
-function NavBarAdministracion (props) {
+function NavBarAdministracion () {
   return(
     <Navbar bg="dark" classname="Navbarcamp">
     <Container>

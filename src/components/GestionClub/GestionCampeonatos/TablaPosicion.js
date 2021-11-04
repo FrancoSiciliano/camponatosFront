@@ -9,7 +9,7 @@ export const TablaPosicion=(props)=>{
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonatoidCampeonato=${location.state}`);
+        const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonato?idCampeonato=${location.state}`);
         const newData = response.data;
         setData(newData);
     };
@@ -24,6 +24,7 @@ export const TablaPosicion=(props)=>{
             <tr><th colSpan="6">Nombre Campeonato</th></tr>
           <tr>
             <th>Club</th>
+            <th>J</th>
             <th>G</th>
             <th>E</th>
             <th>P</th>
@@ -43,16 +44,20 @@ export const TablaPosicion=(props)=>{
   </thead>
   <tbody>
   {data.map((tabla,index)=>{
-
+    return(
     <tr key={index}>
-      <td>{tabla.nroFecha}</td>
-      <td>{tabla.nroZona}</td>
-      <td>{tabla.categoria}</td>
-      <td>{tabla.clubLocal.nombre}</td>
-      <td>{tabla.clubVisitante.nombre}</td>
-      <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm">Validar</Button></td>
+      <td>{tabla.club.nombre}</td>
+      <td>{tabla.cantidadJugados}</td>
+      <td>{tabla.cantidadGanados}</td>
+      <td>{tabla.cantidadEmpatados}</td>
+      <td>{tabla.cantidadPerdidos}</td>
+      <td>{tabla.golesFavor}</td>
+      <td>{tabla.golesContra}</td>
+      <td>{tabla.diferenciaGoles}</td>
+      <td>{tabla.puntos}</td>
+      <td>{tabla.promedio}</td>
     </tr>
-  })}
+  )})}
 </tbody>
 </Table></div>)}
 else{

@@ -1,4 +1,4 @@
-import {Button, Card, Carousel, Col, Dropdown, Row, Form, Spinner} from "react-bootstrap";
+import { Card, Carousel, Form} from "react-bootstrap";
 import "./carousel.css"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";

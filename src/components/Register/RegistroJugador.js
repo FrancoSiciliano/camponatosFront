@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
-import {Col, FloatingLabel, Form, FormControl, InputGroup, Row} from "react-bootstrap"
-import {Button} from "react-bootstrap";
+import {Col, FloatingLabel, Form,Row} from "react-bootstrap"
+
 import "../../../src/components/Register/Registros.css"
 import {useEffect, useState} from "react";
 import axios from "axios";

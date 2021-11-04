@@ -55,19 +55,20 @@ export const CampeonatosResponsable = (props) => {
                     </thead>
                     <tbody>
                     {campeonatos.map((campeonato,index) => {
+                        let descripcion = campeonato.descripcion
                         let ids = campeonato.idCampeonato
                         let estado = campeonato.estado
                         if(estado.toUpperCase() ==="ACTIVO"){
                         return (
                             <tr key={ids}>
                                 <td>{ids}</td>
-                                <td>{campeonato.descripcion}</td>
+                                <td>{descripcion}</td>
                                 <td>{campeonato.fechaInicio}</td>
                                 <td>{campeonato.fechaFin}</td>
                                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
-                                    to={{pathname: '/tablaPosiciones', state: ids}}>Tabla</Link></Button></td>
+                                    to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></Button></td>
                                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
-                                    to={{pathname: '/tablaPartidos', state: ids}}>Partidos</Link></Button></td>
+                                    to={{pathname: '/tablaPartidos', state:{id:ids,descrip:descripcion}}}>Partidos</Link></Button></td>
                             </tr>)
     }})}
                     </tbody>

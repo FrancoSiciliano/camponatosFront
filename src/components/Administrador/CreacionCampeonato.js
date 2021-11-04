@@ -14,8 +14,6 @@ export const RegistroCampeonato = () => {
         estado: "Activo"
     },[]);
 
-    const [error, setError] = useState(null);
-    const [showModal, setShowModal] = useState(false);
 
     const handleChange = (event) => {
         setDatos({
@@ -24,24 +22,21 @@ export const RegistroCampeonato = () => {
         })
     }
     const handleClick = (event) => {
+        console.log("HOOOOOOOOOOOOOOOO")
         const res=axios.post(`http://localhost:8080/crearCampeonato?descripcion=${datos.descripcion}&fechaInicio=${datos.fechaInicio}&fechaFin=${datos.fechaFin}&estado=activo`)
         console.log(res)
     };
 
-    const containsNumbers = (string) => {
-        return string.match(/\d+/g) != null;
-    };
 return (
             <div className="main">
                 <div className="container main-container-registro">
-                    <h1 className="title">Registro Campeonato</h1>
+                    <h1 className="TituloRegistroCampeonato">Registro Campeonato</h1>
                     <Form>
-                        <Row className="mb-3">
+                        <Row className="mb-1">
                             <Form.Group as={Col} controlId="formGridFecha" sm="3">
                                 <FloatingLabel controlId="floatingInputGrid" label="FechaInicio">
                                     <Form.Control type="date"  name="fechaInicio" value={datos.fechaInicio}onChange={handleChange}/>
                                 </FloatingLabel>
-                              
                                 <FloatingLabel controlId="floatingInputGrid" label="FechaFin">
                                     <Form.Control type="date" name="fechaFin" value={datos.fechaFin}onChange={handleChange}/>
                                 </FloatingLabel>

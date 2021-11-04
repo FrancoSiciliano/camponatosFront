@@ -1,10 +1,9 @@
-import {useCallback, useState} from "react";
+import { useState} from "react";
 import '../../../src/components/Login/Login.css'
 import {Row, Form, Button} from "react-bootstrap";
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import {Link} from "react-router-dom";
 import {PopupRegistro} from "./PopupRegistro";
-import transitionEndListener from "react-bootstrap/transitionEndListener";
 
 const roles = [
     {
