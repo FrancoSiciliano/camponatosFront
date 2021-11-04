@@ -43,7 +43,7 @@ export const CarouselCard = (props) => {
     return (
         <>
             <div className="main-container-carrusel">
-
+                <p> Seleccionar estado de los campeonatos </p>
                 <Form.Select className="filtro" onChange={handleFilteringByState}>
                     <option value="no-seleccionado">Seleccionar estado</option>
                     <option value="activo">Activo</option>

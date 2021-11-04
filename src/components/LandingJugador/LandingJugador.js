@@ -1,4 +1,4 @@
-import NavBarGeneral from "../NavBarGeneral/NavBarGeneral";
+import NavBarJugador from "../NavBars/NavBarJugador";
 import {DatosJugadorLanding} from "./Datos/DatosJugadorLanding";
 import {CarouselCard} from "./Carousel/CarouselCard";
 import './landingPageJugador.css'
@@ -24,7 +24,7 @@ export const LandingJugador = (props) => {
     if (jugador && stats) {
         return (
             <div>
-                <NavBarGeneral enlaces={["a", "b"]}/>
+                <NavBarJugador/>
                 <div className="contenido-landing-jugador">
                     <DatosJugadorLanding jugadorData={jugador} estadisticas={stats}/>
                     <CarouselCard idClub={stats.idClub}/>
@@ -32,6 +32,6 @@ export const LandingJugador = (props) => {
             </div>
         )
     } else {
-        return (<h1>Hola</h1>)
+        return (<h1>The server isnt working</h1>)
     }
 }

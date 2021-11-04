@@ -1,5 +1,6 @@
 import Container from 'react-bootstrap/Container'
 import { Navbar,Nav } from 'react-bootstrap'
+
 function NavBarGeneral (props) {
   const lista = props.enlaces.map((enlace) =>//enlace lista de strings 
   <Nav.Link href={"/" + enlace}>{enlace}</Nav.Link>);
