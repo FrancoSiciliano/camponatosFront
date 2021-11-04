@@ -1,7 +1,5 @@
 import validacion from "./validacion"
-import './SignUpComponete.css'
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 
 
   function CargarDatosPartidos(){

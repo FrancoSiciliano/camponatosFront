@@ -5,8 +5,7 @@ import './PantallaAdministador.css'
 import { Link } from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 
-//<td><Button type="submit" class="btn btn-primary btn-sm">Tabla</Button></td>
-//<td><Button type="submit" onClick={"GenerarPartidos"} class="btn btn-primary btn-sm"> <Link to="/TablaPartidos"> Partidos</Link></Button></td>
+
 export const PantallaAdministrador = (props) =>{
   
   const [data, setData] = useState(null);
@@ -19,7 +18,7 @@ export const PantallaAdministrador = (props) =>{
 if(data){
     return( <div> <NavBarAdministracion/><div className="Administracion">
            
-            <div className="Tabla">
+            <div className="TablaAdministrador">
             <Table striped bordered hover sm >
               <thead>
                   <tr borderless>
@@ -56,7 +55,9 @@ if(data){
                 </Link>
               </Button>
             <Button className="botonesAdmin" variant="primary" size="sm">
+            <Link to="/crearPartido">
                 Crear Partidos
+            </Link>
             </Button>
             <Button className="botonesAdmin" variant="primary" size="sm">
                 Ver Tablas

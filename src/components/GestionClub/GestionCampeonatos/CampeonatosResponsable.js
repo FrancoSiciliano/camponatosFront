@@ -1,5 +1,5 @@
 import {Table, Button, Form} from "react-bootstrap";
-import './Listado.css'
+import './CampeonatosResponsable.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
@@ -8,7 +8,7 @@ import NavBarResponsable from "../../NavBars/NavBarResponsable";
 
 //<td><Button type="submit" class="btn btn-primary btn-sm">Tabla</Button></td>
 //<td><Button type="submit" onClick={"GenerarPartidos"} class="btn btn-primary btn-sm"> <Link to="/TablaPartidos"> Partidos</Link></Button></td>
-export const Listado = (props) => {
+export const CampeonatosResponsable = (props) => {
     const [campeonatos, setCampeonatos] = useState(null);
     const [todosCampeonatos, setTodosCampeonatos] = useState(null);
 
@@ -32,7 +32,7 @@ export const Listado = (props) => {
     if (campeonatos) {
         return (<div className="ContenedorGestion">
             <NavBarResponsable/>
-            <div className="Tabla">
+            <div className="TablaCampeonatosResponsables">
                 <Table striped bordered hover sm>
                     <thead>
                     <tr borderless>
@@ -48,26 +48,27 @@ export const Listado = (props) => {
                         <th colSpan="2">
                             <Form.Control classname="searchBox"
                                           id="search" type="search" placeholder="Filtrar por Nombre"
-                                          onChange={handleChange}/>
+                                          onChange={handleChange} autoComplete="off"/>
 
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    {campeonatos.map((campeonato) => {
+                    {campeonatos.map((campeonato,index) => {
+                        let descripcion = campeonato.descripcion
                         let ids = campeonato.idCampeonato
                         let estado = campeonato.estado
                         if(estado.toUpperCase() ==="ACTIVO"){
                         return (
-                            <tr key={campeonato.descripcion}>
-                                <td>{campeonato.idCampeonato}</td>
-                                <td>{campeonato.descripcion}</td>
+                            <tr key={ids}>
+                                <td>{ids}</td>
+                                <td>{descripcion}</td>
                                 <td>{campeonato.fechaInicio}</td>
                                 <td>{campeonato.fechaFin}</td>
                                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
-                                    to={{pathname: '/tablaPosiciones', state: ids}}>Tabla</Link></Button></td>
+                                    to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></Button></td>
                                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
-                                    to={{pathname: '/tablaPartidos', state: ids}}>Partidos</Link></Button></td>
+                                    to={{pathname: '/tablaPartidos', state:{id:ids,descrip:descripcion}}}>Partidos</Link></Button></td>
                             </tr>)
     }})}
                     </tbody>
@@ -80,4 +81,4 @@ export const Listado = (props) => {
 }
 
 
-export default Listado;
+export default CampeonatosResponsable;

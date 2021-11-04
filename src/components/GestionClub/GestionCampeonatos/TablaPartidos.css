@@ -1,4 +1,4 @@
-.Tabla {
+.TablaPartidos {
     background-color: #fff;
 }
 
@@ -22,23 +22,23 @@ td th {
     font-family: Helvetica, sans-serif;
 }
 
-.Tabla .btn-primary {
+.TablaPartidos .btn-primary {
     width: 125px;
     background-color: #40916C;
     border-color: transparent;
 }
 
-.Tabla .btn-primary:hover {
+.TablaPartidos .btn-primary:hover {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.Tabla .btn-primary:focus {
+.TablaPartidos .btn-primary:focus {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-a {
+.TablaPartidos .btn-primary a {
     color: white !important;
     text-decoration: none !important;
 }

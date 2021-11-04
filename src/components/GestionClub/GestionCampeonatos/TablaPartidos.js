@@ -1,26 +1,28 @@
-import { Table,Button } from "react-bootstrap"
+import { Table,Button,Form } from "react-bootstrap"
 import { useLocation,Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
-import './Listado.css'
+import './TablaPartidos.css'
 import axios from "axios";
-export const TablaPartidos=(props)=>{
+import NavBarResponsable from "../../NavBars/NavBarResponsable";
+export const TablaPartidos=()=>{
   let location = useLocation()
   console.log(location)
   const [data, setData] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state}`);
+        const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.id}`);
         const newData = response.data;
         setData(newData);
     };
     fetchData();
 },[]);
   if(data){
-    return(
-      <div className="Tabla">
+    return(<div><NavBarResponsable/>
+      <div className="TablaPartidos">
     <Table striped bordered hover>
         <thead>
-            <tr><th colSpan="8">Nombre Campeonato</th></tr>
+            <tr><th colSpan="8">{location.state.descrip}</th></tr>
           <tr>
             <th>Fecha</th>
             <th>Nro Zona</th>
@@ -28,11 +30,9 @@ export const TablaPartidos=(props)=>{
             <th>Club Local</th>
             <th>Club Visitante</th>
             <th colSpan="2">
-        <form  classname ="searchBar" onsubmit="event.preventDefault();" role="search">
-        <input classname="searchBox"
-        id="search" type="search" placeholder="Filtrar por Nombre" autofocus required />
-        <button type="button" classname="botonsearch">search</button>
-</form>
+            <Form.Control classname="searchBox"
+                                          id="search" type="search" placeholder="Filtrar por Nombre"
+                                          onChange={""} autoComplete="off"/>
 </th>
     </tr>
   </thead>
@@ -54,7 +54,7 @@ export const TablaPartidos=(props)=>{
     </tr>)
   })}
 </tbody>
-</Table></div>)}
+</Table></div></div>)}
 else{
   return (<h1>No se crearon Partidos para este campeonato</h1>)
     }}

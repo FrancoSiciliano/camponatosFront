@@ -1,4 +1,18 @@
-.TablaListaJugadoresClub {
+
+.Administracion{
+    display: flex;
+}
+.d-grid{
+    margin-left:15%;
+    align-items: center;
+    justify-content: center;
+}
+.botonesAdmin{
+    height: 40%!important;
+    width: 140%;
+}
+.TablaAdministrador {
+    width: 60%;
     background-color: #fff;
 }
 
@@ -21,24 +35,31 @@ td th {
     font-weight: 600;
     font-family: Helvetica, sans-serif;
 }
-
-.TablaListaJugadoresClub .btn-primary {
+.botonesAdmin{
+    background-color: #40916C!important;
+    border-color: transparent !important;
+}
+.botonesAdmin a{
+    
+    color: white!important;
+}
+.TablaAdministrador .btn-primary {
     width: 125px;
     background-color: #40916C;
     border-color: transparent;
 }
 
-.TablaListaJugadoresClub .btn-primary:hover {
+.TablaAdministrador .btn-primary:hover {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.TablaListaJugadoresClub .btn-primary:focus {
+.TablaAdministrador .btn-primary:focus {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.TablaListaJugadoresClub .btn-primary a {
+.TablaAdministrador .btn-primary a {
     color: white !important;
     text-decoration: none !important;
 }
