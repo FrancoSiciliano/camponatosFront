@@ -1,5 +1,5 @@
 import { PantallaAdministrador } from "../FuncionesAdministrador/PantallaAdministrador"
-export const HomeAdministrador = () =>{
+export const LandingAdministrador = () =>{
     return(<div className="contenedorHome">
         <PantallaAdministrador/>
     </div>

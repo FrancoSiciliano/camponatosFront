@@ -1,0 +1,27 @@
+.botones-home {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 100px;
+    justify-content: space-between;
+}
+
+.boton-home {
+    height: 45px;
+}
+
+.titulo-home {
+    font-size: 200px !important;
+}
+
+.contenedor-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../../assets/images/fondo-home.jpg");
+    background-size: cover;
+    background-position: center;
+}

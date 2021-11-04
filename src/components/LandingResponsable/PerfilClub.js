@@ -3,8 +3,9 @@ import NavBarResponsable from "../NavBars/NavBarResponsable"
 
 export const PerfilClub= ()=>{
     return(
-        <div><NavBarResponsable/>
-            <DatosClub/>
+        <div>
+            <NavBarResponsable/>
+            <DatosClub idJugador="1"/>
             </div>
     )
 }

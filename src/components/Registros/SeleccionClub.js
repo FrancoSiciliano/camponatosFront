@@ -32,6 +32,6 @@ export const SeleccionClub = () => {
             </div>
         )
     } else {
-        return (<h1>Cargando...</h1>)
+        return (<h1>The server isn't working ...</h1>)
     }
 }

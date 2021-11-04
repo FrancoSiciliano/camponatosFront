@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {Col, FloatingLabel, Form,Row, Spinner} from "react-bootstrap"
+import {Col, FloatingLabel, Form, Row, Spinner} from "react-bootstrap"
 import {Button} from "react-bootstrap";
 import ".//Registros.css"
 import {useEffect, useState} from "react";
@@ -79,7 +79,7 @@ export const RegistroResponsable = () => {
     return (
         <div className="main">
             <div className="main-container-registro">
-                <h1 className="title">Registro Responsable</h1>
+                <h1 className="titulo-responsable">Registro Responsable</h1>
 
                 <Form>
 
@@ -134,8 +134,9 @@ export const RegistroResponsable = () => {
                         <p>Cargando clubes...</p>
                     </div>
                     }
-                    { data ? <Link className="btn btn-success" to="/registroResponsable"
-                           onClick={handleClick}>Finalizar</Link> : <Button className="btn-success" disabled>Finalizar</Button>}
+                    {data ? <Link className="btn btn-success" to="/home/responsable"
+                                  onClick={handleClick}>Finalizar</Link> :
+                        <Button className="btn-success" disabled>Finalizar</Button>}
                     <PopUp show={showModal} onHide={() => setShowModal(false)} text={error}
                            title="No se puede registrar al responsable"/>
 

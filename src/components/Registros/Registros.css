@@ -1,7 +1,8 @@
 .main-container-registro {
     background-image: url("../../assets/images/travel-nomades-JO19K0HDDXI-unsplash.jpg");
     background-repeat: no-repeat;
-    background-size: 100vw 130vh;
+    background-size: cover;
+    background-position: center;
     padding: 300px;
     width: 100vw !important;
     height: 100vh !important;
@@ -19,7 +20,7 @@
     width: 300px;
 }
 
-.title {
+.titulo-responsable {
     margin-bottom: 50px !important;
     justify-self: flex-start;
 }
