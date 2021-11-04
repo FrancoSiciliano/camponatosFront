@@ -1,9 +1,17 @@
-.navbar{
-    background-color: #2D6A4F;
+.ddJugadores{
+    background-color: white;
+    font-color: black;
+    border-color:white;
 }
-.navbar-light .navbar-brand{
-    color: white!important;
+
+.ddJugadores:hover{
+    
 }
-.navbar-light .navbar-nav .nav-link{
-    color: white!important;
+
+.navbarsLanding{
+    display: flex; 
+    width: 400px;
+    position: relative;
+    left: 1200px;
+    justifyContent: space-around 
 }
