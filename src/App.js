@@ -2,16 +2,13 @@ import { Login } from "./components/Login/Login";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { RegistroJugador } from "./components/Registros/RegistroJugador";
 import { RegistroResponsable } from "./components/Registros/RegistroResponsable";
-import { SeleccionClub } from "./components/Registros/SeleccionClub";
 import { DatosJugador } from "./components/DatosPerfiles/DatosJugador";
 import { DatosRepresentante } from "./components/DatosPerfiles/DatosRepresentante";
 import { DatosClub } from "./components/DatosPerfiles/DatosClub";
 import { LandingJugador } from "./components/LandingJugador/LandingJugador";
 import { LandingResponsable } from "./components/LandingResponsable/LandingResponsable";
 import CampeonatosResponsable from "./components/Gestion/GestionCampeonatos/CampeonatosResponsable";
-import { TablaPartidos } from "./components/Tablas/TablaPartidos";
 import { TablaPosicion } from "./components/Tablas/TablaPosicion";
-import { PerfilClub } from "./components/LandingResponsable/PerfilClub";
 import ListaJugadoresClub from "./components/Gestion/GestionJugadores/ListaJugadoresClub";
 import { RegistroCampeonato } from "./components/Gestion/GestionCampeonatos/CreacionCampeonato";
 import { LandingAdministrador} from "./components/LandingAdministrador/LandingAdmistrador";
@@ -22,6 +19,7 @@ import {Home} from "./components/LandingGeneral/Home";
 import './App.css'
 import {DefinirClubesCampeonato} from "./components/Gestion/GestionCampeonatos/DefinirClubesCampeonato";
 import TablaCampeonatos from "./components/Tablas/TablaCampeonatos";
+import {TablaPartidosCampeonatos} from "./components/Tablas/TablaPartidosCampeonatos";
 function App() {
   return (
     <div className="App">
