@@ -1,12 +1,9 @@
 .ddJugadores{
-    background-color: white;
-    font-color: black;
-    border-color:white;
+    background-color: white !important;
+    border-color:white !important;
+    color:black !important;
 }
 
-.ddJugadores:hover{
-    
-}
 
 .navbarsLanding{
     display: flex; 

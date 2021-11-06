@@ -35,7 +35,7 @@ function App() {
           <Route path="/home/administracion">
             <LandingAdministrador />
           </Route>
-          <Route path="/home/responsable">
+          <Route path="/home/representante">
             <LandingResponsable />
           </Route>
           <Route path="/home/jugador">

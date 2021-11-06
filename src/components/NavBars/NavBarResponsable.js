@@ -1,9 +1,15 @@
 import Container from 'react-bootstrap/Container'
 import './NavBarResponsable.css'
-import { Navbar,Nav,NavDropdown, Dropdown} from 'react-bootstrap'
-
+import { Navbar,Nav,NavDropdown, Dropdown, Button, Modal, Form} from 'react-bootstrap'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import {MdSportsSoccer} from 'react-icons/all'
+
 function NavBarResponsable (props) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return(
     <Navbar collapseOnSelect expand="lg" classname="NavbarResponsable">
     <Container fluid>
@@ -20,8 +26,28 @@ function NavBarResponsable (props) {
               JUGADORES
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">PERFIL</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">AGREGAR</Dropdown.Item>
+            <Button className = 'ddJugadores'onClick={handleShow}>
+              EDITAR PERFIL
+            </Button>
+
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>EDITAR PERFIL JUGADOR</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Ingresar ID del jugador 
+                <Form.Control type="text" placeholder="ID Jugador" />  
+              </Modal.Body>
+              <Modal.Footer>
+                <Link className="btn btn-success" to="/datos/jugador" onClick={handleClose}>
+                  Editar
+                </Link>
+                <Button variant="secondary" onClick={handleClose}>
+                  Cerrar
+                </Button>
+              </Modal.Footer>
+            </Modal>
+              <Dropdown.Item href="#/agregar/jugador">AGREGAR</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
         </NavDropdown>

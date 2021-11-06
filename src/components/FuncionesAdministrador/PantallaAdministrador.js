@@ -16,9 +16,10 @@ export const PantallaAdministrador = (props) =>{
         setData(newData);};
         fetchData();});
 if(data){
-    return( <div> <NavBarAdministracion/><div className="Administracion">
-           
-            <div className="TablaAdministrador">
+    return( 
+      <div> <NavBarAdministracion/>
+        <div className="Administracion">
+          <div className="TablaAdministrador">
             <Table striped bordered hover sm >
               <thead>
                   <tr borderless>
@@ -61,10 +62,11 @@ if(data){
             </Button>
             <Button className="botonesAdmin" variant="primary" size="sm">
                 Ver Tablas
-              </Button>
+            </Button>
           </div>
-          </div>
-          </div>)}
+        </div>
+      </div>
+      )}
 else{
   return(<h1>Oye que a pasado</h1>)
 }
