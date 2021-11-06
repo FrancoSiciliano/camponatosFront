@@ -35,7 +35,7 @@ export const CampeonatosResponsable = (props) => {
                 <Table striped bordered hover sm>
                     <thead>
                     <tr borderless>
-                        <th colSpan="6">
+                        <th colSpan="6" className = 'tituloTablaCamp'>
                             Campeonatos Activos del Club
                         </th>
                     </tr>

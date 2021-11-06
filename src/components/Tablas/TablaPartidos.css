@@ -1,13 +1,11 @@
 .TablaPartidos {
-    margin-top: 13%;
-    margin-left:3%;
-    margin-right: 3%;
-    width: 50%;
-    height: 50%;
+    margin-left:20px;
     background-color: #fff;
 }
 
-
+.tituloTablaPartidos{
+    font-size: 30px;
+}
 tbody, td, th, thead, tr {
     color: rgb(0, 0, 0) !important;
     border-color: #40916C !important;

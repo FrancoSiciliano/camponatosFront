@@ -7,3 +7,9 @@
 .navbar-light .navbar-nav .nav-link{
     color: white!important;
 }
+
+.editar-admin{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

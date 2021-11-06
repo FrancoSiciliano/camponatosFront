@@ -23,7 +23,7 @@ export const LandingJugador = (props) => {
 
     if (jugador && stats) {
         return (
-            <div>
+            <div className = 'contenedor-home-jugador'>
                 <NavBarJugador/>
                 <div className="contenido-landing-jugador">
                     <PerfilJugador jugadorData={jugador} estadisticas={stats}/>
