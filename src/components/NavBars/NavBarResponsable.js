@@ -14,7 +14,7 @@ function NavBarResponsable (props) {
     <Navbar collapseOnSelect expand="lg" classname="NavbarResponsable">
     <Container fluid>
       <MdSportsSoccer style={{width:'30px', height:'30px', color:'white', marginRight:'10px'}}/>
-      <Navbar.Brand style = {{marginRight: '60%'}} href="/home/responsable" classname="LogoNavbar">PERFIL REPRESENTANTE</Navbar.Brand>
+      <Navbar.Brand style = {{marginRight: '60%'}} href="/home/representante" classname="LogoNavbar">PERFIL REPRESENTANTE</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="me-auto" >

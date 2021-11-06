@@ -2,16 +2,14 @@ import { Login } from "./components/Login/Login";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { RegistroJugador } from "./components/Registros/RegistroJugador";
 import { RegistroResponsable } from "./components/Registros/RegistroResponsable";
-import { SeleccionClub } from "./components/Registros/SeleccionClub";
 import { DatosJugador } from "./components/DatosPerfiles/DatosJugador";
 import { DatosRepresentante } from "./components/DatosPerfiles/DatosRepresentante";
 import { DatosClub } from "./components/DatosPerfiles/DatosClub";
 import { LandingJugador } from "./components/LandingJugador/LandingJugador";
 import { LandingResponsable } from "./components/LandingResponsable/LandingResponsable";
 import CampeonatosResponsable from "./components/Gestion/GestionCampeonatos/CampeonatosResponsable";
-import { TablaPartidos, TablaPartidosCampeonatos } from "./components/Tablas/TablaPartidosCampeonatos";
+import { TablaPartidosCampeonatos } from "./components/Tablas/TablaPartidosCampeonatos";
 import { TablaPosicion } from "./components/Tablas/TablaPosicion";
-import { PerfilClub } from "./components/LandingResponsable/PerfilClub";
 import ListaJugadoresClub from "./components/Gestion/GestionJugadores/ListaJugadoresClub";
 import { RegistroCampeonato } from "./components/Gestion/GestionCampeonatos/CreacionCampeonato";
 import { LandingAdministrador} from "./components/LandingAdministrador/LandingAdmistrador";
@@ -61,8 +59,8 @@ function App() {
           <Route path="/datos/representante">
             <DatosRepresentante idRepresentante="1" />
           </Route>
-          <Route path="/perfil/club">
-            <PerfilClub />
+          <Route path="/datos/club">
+            <DatosClub/>
           </Route>
 
 
