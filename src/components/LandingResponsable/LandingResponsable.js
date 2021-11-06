@@ -5,10 +5,17 @@ import './LandingResponsable.css'
 export const LandingResponsable = () =>{
     return(
     <div className="contenedorHome">
+        
         <NavBarResponsable/>
+    
         <div className="TablasHomeCampeonatosResponsables">
-            <CampeonatosResponsable/>
-            <TablaPartidosResponsables/>
+            <div>
+                <CampeonatosResponsable/> 
+            </div> 
+            <div>
+                <TablaPartidosResponsables/>   
+            </div>
+               
         </div>
     </div>
     )

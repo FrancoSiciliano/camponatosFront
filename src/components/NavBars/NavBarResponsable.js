@@ -4,9 +4,10 @@ import { Navbar,Nav,NavDropdown, Dropdown, Button, Modal, Form} from 'react-boot
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {MdSportsSoccer} from 'react-icons/all'
+import { BiUserCircle, BiLogOut} from 'react-icons/bi';
+
 function NavBarResponsable (props) {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return(
@@ -17,7 +18,11 @@ function NavBarResponsable (props) {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="me-auto" >
-        <Nav.Link href="/datos/representante" classname="LinkNavbar">MI PERFIL</Nav.Link>
+        <div className = 'miperfil'>
+          <BiUserCircle style={{position:'relative', top:'5px' ,width:'30px', height:'30px', color:'white'}}/>
+          <Nav.Link href="/datos/representante" classname="LinkNavbar">MI PERFIL</Nav.Link>
+        </div>
+        <div className = 'jugadores-div'>
         <NavDropdown title="GESTIONAR" id="basic-nav-dropdown" classname="LinkNavbar">
           <NavDropdown.Item href="/perfil/club">CLUB</NavDropdown.Item>
           <Dropdown>
@@ -50,7 +55,11 @@ function NavBarResponsable (props) {
             </Dropdown.Menu>
         </Dropdown>
         </NavDropdown>
-        <Nav.Link href="/">CERRAR SESION</Nav.Link>
+        </div>
+        <div className = 'cerrarsesion'>
+          <BiLogOut  style={{position:'relative', top:'5px' ,width:'30px', height:'30px', color:'white'}}/>
+          <Nav.Link href="/">CERRAR SESION</Nav.Link>
+        </div>
 
       </Nav>
       </Navbar.Collapse>

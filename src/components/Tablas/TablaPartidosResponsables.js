@@ -24,7 +24,7 @@ export const TablaPartidosResponsables=()=>{
     <div className="TablaPartidosResponsables scrollable">
     <Table responsive="md">
         <thead>
-            <tr><th colSpan="8">Partidos A Validar</th></tr>
+            <tr><th colSpan="8" className= 'tituloTablaPartidos'>Partidos A Validar</th></tr>
           <tr>
             <th>Fecha</th>
             <th>Categoria</th>
