@@ -35,7 +35,7 @@ export const CampeonatosResponsable = (props) => {
                 <Table striped bordered hover sm>
                     <thead>
                     <tr borderless>
-                        <th colSpan="6">
+                        <th colSpan="6" className = 'tituloTablaCamp'>
                             Campeonatos Activos del Club
                         </th>
                     </tr>
@@ -64,7 +64,7 @@ export const CampeonatosResponsable = (props) => {
                                 <td>{descripcion}</td>
                                 <td>{campeonato.fechaInicio}</td>
                                 <td>{campeonato.fechaFin}</td>
-                                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
+                                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link 
                                     to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></Button></td>
                                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
                                     to={{pathname: '/tablaPartidos', state:{id:ids,descrip:descripcion}}}>Partidos</Link></Button></td>
@@ -75,7 +75,7 @@ export const CampeonatosResponsable = (props) => {
             </div>
         </div>)
     } else {
-        return (<ErrorPagina descripcion="Que A pasado?"/>)
+        return (<h1>The server isnt working</h1>)
     }
 }
 

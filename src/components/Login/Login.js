@@ -2,13 +2,12 @@ import { useState} from "react";
 import '../../../src/components/Login/Login.css'
 import {Row, Form, Button} from "react-bootstrap";
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
-import {Link} from "react-router-dom";
-import {PopUp} from "../PopUp/PopUp";
+
 
 const roles = [
     {
         value: "Admin",
-        label: "FuncionesAdministrador",
+        label: "Administrador",
     }, {
         value: "Responsable",
         label: "Responsable",
@@ -77,10 +76,6 @@ export const Login = () => {
                     <Button type="submit" onClick={handleClick} className="btn-success">
                         Iniciar Sesión
                     </Button>
-                </Row>
-                <Row>
-                    <Link to={usuario.rol === "Responsable" ? "/registroResponsable" : "registroJugador"}  style={{color: "black"}} onClick={handleClickLink}> ¿Aún no estas registrado? Haz Clic aquí</Link>
-                    <PopUp show={showModal} onHide={() => setShowModal(false)} text="No puede acceder al registro sin seleccionar un rol. No puede registrarse como administrador." title="Debe seleccionar un rol"/>
                 </Row>
             </div>
         </div>

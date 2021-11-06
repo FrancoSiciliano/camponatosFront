@@ -61,7 +61,9 @@ if(data){
             </Link>
             </Button>
             <Button className="botonesAdmin" variant="primary" size="sm">
+            <Link to="/tablaCampeoantos">
                 Ver Tablas
+            </Link>
             </Button>
           </div>
         </div>

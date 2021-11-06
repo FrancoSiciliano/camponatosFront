@@ -40,7 +40,7 @@ td th {
     border-color: transparent !important;
 }
 .botonesAdmin a{
-    
+    text-decoration: none;
     color: white!important;
 }
 .TablaAdministrador .btn-primary {

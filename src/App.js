@@ -21,6 +21,7 @@ import { CrearPartido } from "./components/Gestion/GestionPartidos/CrearPartido"
 import {Home} from "./components/LandingGeneral/Home";
 import './App.css'
 import {DefinirClubesCampeonato} from "./components/Gestion/GestionCampeonatos/DefinirClubesCampeonato";
+import TablaCampeonatos from "./components/Tablas/TablaCampeonatos";
 function App() {
   return (
     <div className="App">
@@ -64,17 +65,24 @@ function App() {
           <Route path="/datos/representante">
             <DatosRepresentante idRepresentante="1" />
           </Route>
-          <Route path="/perfil/club">
-            <PerfilClub />
+          <Route path="/datos/club">
+            <DatosClub/>
           </Route>
 
 
           <Route path="/detalles/partidos">
             <DetallesPartido />
           </Route>
+          <Route path="/tablaCampeoantos">
+            <TablaCampeonatos/>
+          </Route>
           <Route path="/tablaPosiciones">
             <TablaPosicion/>
           </Route>
+          <Route path="/partidosAdministrador">
+            <TablaPartidosCampeonatos/>
+          </Route>
+          /
           <Route path="/gestionar/campeonato">
             <CampeonatosResponsable />
           </Route>

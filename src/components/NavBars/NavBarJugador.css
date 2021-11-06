@@ -1,0 +1,29 @@
+
+.miperfil{
+    margin-right: 10px;
+    position: relative;
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    box-sizing: border-box
+}
+
+.miperfil:hover{
+    background-color: #198754;
+    transition: 100ms;
+  
+}
+.cerrarsesion{
+    margin-left:10px;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box
+}
+
+.cerrarsesion:hover{
+    background-color: #198754;
+    transition: 100ms;
+      
+}

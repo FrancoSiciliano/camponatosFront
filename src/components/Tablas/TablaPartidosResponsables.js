@@ -1,26 +1,30 @@
 import { Table,Button,Form } from "react-bootstrap"
 import { useLocation,Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
-import './TablaPartidos.css'
+import './TablaPartidosResponsables.css'
 import axios from "axios";
 export const TablaPartidosResponsables=()=>{
   let location = useLocation()
   console.log(location)
+  var links=`http://localhost:8080/getPartidosByClubLocal?idClub=1`
+  var links2=`http://localhost:8080/getPartidosByClubVisitante?idClub=1`
   const [data, setData] = useState(null);
   useEffect(() => {
-    const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getPartidosByClubLocal?idClub=1`);
-        const newData = response.data;
-        setData(newData);
+    const fetchData = async (url) => {
+        const response = await axios(url);
+        const Datanew = response.data;
+        setData(Datanew);
     };
-    fetchData();
+    fetchData(links);
+    console.log(fetchData(links))
 },[]);
+
   if(data){
     return(
-    <div className="TablaPartidos scrollable">
+    <div className="TablaPartidosResponsables scrollable">
     <Table responsive="md">
         <thead>
-            <tr><th colSpan="8">Partidos A Validar</th></tr>
+            <tr><th colSpan="8" className= 'tituloTablaPartidos'>Partidos A Validar</th></tr>
           <tr>
             <th>Fecha</th>
             <th>Categoria</th>
@@ -42,12 +46,12 @@ export const TablaPartidosResponsables=()=>{
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></Button></td>
+      <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link style={{ textDecoration: 'none', }} to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></Button></td>
       <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"> Validar</Button></td>
     </tr>)
   })}
 </tbody>
 </Table></div> )}
 else{
-  return(<h1>Pos se rompio</h1>)
+  return(<h1>The server isnt working</h1>)
 }}
