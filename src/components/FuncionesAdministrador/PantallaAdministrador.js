@@ -50,7 +50,7 @@ if(data){
           </Table>
           </div>
           <div className="d-grid">
-          <Button className ="botonesAdmin" variant="primary" size="sm"><Link to="/registroCampeonato">
+          <Button className ="botonesAdmin" variant="primary" size="sm"><Link to="/registro/campeonato">
                 Crear Campeonatos
                 </Link>
               </Button>

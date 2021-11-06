@@ -1,6 +1,12 @@
 .TablaPartidos {
+    margin-top: 13%;
+    margin-left:3%;
+    margin-right: 3%;
+    width: 50%;
+    height: 50%;
     background-color: #fff;
 }
+
 
 tbody, td, th, thead, tr {
     color: rgb(0, 0, 0) !important;
@@ -72,5 +78,5 @@ input[type="search"]:focus {
 }
 
 .ContenedorGestion {
-    background-color: #D8F3DC;
+    background-color: #fff!important;
 }

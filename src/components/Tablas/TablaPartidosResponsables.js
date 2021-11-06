@@ -1,33 +1,28 @@
 import { Table,Button,Form } from "react-bootstrap"
 import { useLocation,Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
-
-import axios from "axios";
-import NavBarResponsable from "../NavBars/NavBarResponsable";
-/* DEJENLO ASI, QUE PUEDE QUE SEA UTIL
 import './TablaPartidos.css'
-export const TablaPartidos=()=>{
+import axios from "axios";
+export const TablaPartidosResponsables=()=>{
   let location = useLocation()
   console.log(location)
   const [data, setData] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.id}`);
+        const response = await axios(`http://localhost:8080/getPartidosByClubLocal?idClub=1`);
         const newData = response.data;
         setData(newData);
     };
     fetchData();
 },[]);
   if(data){
-    return(<div><NavBarResponsable/>
-      <div className="TablaPartidos">
-    <Table striped bordered hover>
+    return(
+    <div className="TablaPartidos scrollable">
+    <Table responsive="md">
         <thead>
-            <tr><th colSpan="8">{location.state.descrip}</th></tr>
+            <tr><th colSpan="8">Partidos A Validar</th></tr>
           <tr>
             <th>Fecha</th>
-            <th>Nro Zona</th>
             <th>Categoria</th>
             <th>Club Local</th>
             <th>Club Visitante</th>
@@ -41,13 +36,9 @@ export const TablaPartidos=()=>{
   <tbody>
   {data.map((partido,index)=>{
     var ids=partido.idPartido
-    var validadoLocal=partido.convalidaLocal
-    var validadoVisitante=partido.convalidaVisitante
-
   return(
     <tr key={index}>
       <td>{partido.nroFecha}</td>
-      <td>{partido.nroZona}</td>
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
@@ -56,8 +47,7 @@ export const TablaPartidos=()=>{
     </tr>)
   })}
 </tbody>
-</Table></div></div>)}
+</Table></div> )}
 else{
-  return (<h1>No se crearon Partidos para este campeonato</h1>)
-    }}
-*/
+  return(<h1>Pos se rompio</h1>)
+}}

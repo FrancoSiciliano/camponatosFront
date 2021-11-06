@@ -69,11 +69,12 @@ function App() {
             <DetallesPartido />
           </Route>
           <Route path="/tablaPosiciones">
-            <TablaPosicion />
+            <TablaPosicion/>
           </Route>
           <Route path="/gestionar/campeonato">
             <CampeonatosResponsable />
           </Route>
+          
           <Route path="/cargar/datos/partido">
             <CargarDatosPartidos />
           </Route>

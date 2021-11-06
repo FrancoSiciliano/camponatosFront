@@ -31,7 +31,6 @@ export const CampeonatosResponsable = (props) => {
 
     if (campeonatos) {
         return (<div className="ContenedorGestion">
-            <NavBarResponsable/>
             <div className="TablaCampeonatosResponsables">
                 <Table striped bordered hover sm>
                     <thead>
