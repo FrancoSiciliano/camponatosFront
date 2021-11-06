@@ -75,7 +75,7 @@ export const CampeonatosResponsable = (props) => {
             </div>
         </div>)
     } else {
-        return (<ErrorPagina descripcion="Que A pasado?"/>)
+        return (<h1>The server isnt working</h1>)
     }
 }
 

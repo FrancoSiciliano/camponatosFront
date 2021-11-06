@@ -53,5 +53,5 @@ export const TablaPartidosResponsables=()=>{
 </tbody>
 </Table></div> )}
 else{
-  return(<h1>Pos se rompio</h1>)
+  return(<h1>The server isnt working</h1>)
 }}
