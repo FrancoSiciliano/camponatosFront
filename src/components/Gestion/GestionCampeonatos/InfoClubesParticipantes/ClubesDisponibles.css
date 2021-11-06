@@ -1,0 +1,39 @@
+.card-club {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    border-radius: 10px;
+    padding: 5px 10px 5px 30px;
+    background: #e0e0e0;
+    margin: 5px 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.identificador-card-club {
+    margin: 0;
+}
+
+.contenedor-principal-cards-club {
+    margin-top: 50px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 11.5px );
+    -webkit-backdrop-filter: blur( 11.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 30px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 450px ;
+    height: 349px;
+}
+
+.contenedor-cards-club {
+    border-radius: 10px;
+    background-color: transparent !important;
+    height: 250px;
+    width: 305px;
+}

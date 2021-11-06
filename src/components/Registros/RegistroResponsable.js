@@ -38,31 +38,26 @@ export const RegistroResponsable = () => {
         if (datos.nombre === "" || containsNumbers(datos.nombre)) {
             setError("Nombre no válido");
             setShowModal(true);
-            return;
         }
 
-        if (datos.documento === "" || isNaN(datos.documento)) {
+        else if (datos.documento === "" || isNaN(datos.documento)) {
             setError("Número de documento no válido");
             setShowModal(true);
-            return;
         }
 
-        if (datos.mail === "" || !isMail(datos.mail)) {
+        else if (datos.mail === "" || !isMail(datos.mail)) {
             setError("Correo Electrónico no válido");
             setShowModal(true);
-            return;
         }
 
-        if (datos.password === "") {
+        else if (datos.password === "") {
             setError("No puede dejar la contraseña vacía");
             setShowModal(true);
-            return;
         }
 
-        if (datos.idClub === "" || datos.idClub === "Seleccionar") {
+        else if (datos.idClub === "" || datos.idClub === "Seleccionar") {
             setError("Por favor, seleccione el club al que pertenece el jugador");
             setShowModal(true);
-            return;
         }
 
         alert(JSON.stringify(datos));

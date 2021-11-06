@@ -1,0 +1,35 @@
+.contenedor-principal-difinir-clubes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url("../../../assets/images/fondo-definir-camp.jpg");
+    background-size: cover;
+    height: 100vh;
+}
+
+/* width */
+.scrollable::-webkit-scrollbar {
+    width: 5px;
+
+}
+
+/* Track */
+.scrollable::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.scrollable::-webkit-scrollbar-thumb {
+    background: rgba(181, 175, 175, 0.5);
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+.scrollable::-webkit-scrollbar-thumb:hover {
+    background: rgba(181, 175, 175, 0.75);
+}
+
+.cantidad-card-agregados {
+    margin-top: 5px;
+}

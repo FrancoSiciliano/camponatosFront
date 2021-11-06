@@ -20,6 +20,7 @@ import { DetallesPartido } from "./components/Tablas/DetallesPartido";
 import { CrearPartido } from "./components/Gestion/GestionPartidos/CrearPartido";
 import {Home} from "./components/LandingGeneral/Home";
 import './App.css'
+import {DefinirClubesCampeonato} from "./components/Gestion/GestionCampeonatos/DefinirClubesCampeonato";
 function App() {
   return (
     <div className="App">
@@ -51,6 +52,9 @@ function App() {
           </Route>
           <Route path="/registro/campeonato">
             <RegistroCampeonato />
+          </Route>
+          <Route path="/agregar/clubes">
+            <DefinirClubesCampeonato />
           </Route>
 
 

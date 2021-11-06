@@ -45,61 +45,51 @@ export const RegistroJugador = () => {
         if (datos.nombre === "" || containsNumbers(datos.nombre)) {
             setError("Nombre no válido");
             setShowModal(true);
-            return;
         }
 
-        if (datos.apellido === "" || containsNumbers(datos.apellido)) {
+        else if (datos.apellido === "" || containsNumbers(datos.apellido)) {
             setError("Apellido no válido");
             setShowModal(true);
-            return;
         }
 
-        if (datos.tipoDoc === "" || containsNumbers(datos.tipoDoc)){
+        else if (datos.tipoDoc === "" || containsNumbers(datos.tipoDoc)){
             setError("Tipo de documento no válido");
             setShowModal(true);
-            return;
         }
 
-        if (datos.nroDoc === "" || isNaN(datos.nroDoc)) {
+        else if (datos.nroDoc === "" || isNaN(datos.nroDoc)) {
             setError("Número de documento no válido");
             setShowModal(true);
-            return;
         }
 
-        if (datos.mail === "" || !isMail(datos.mail)) {
+        else if (datos.mail === "" || !isMail(datos.mail)) {
             setError("Correo Electrónico no válido");
             setShowModal(true);
-            return;
         }
 
-        if (datos.password === "") {
+        else if (datos.password === "") {
             setError("No puede dejar la contraseña vacía");
             setShowModal(true);
-            return;
         }
 
-        if (datos.direccion === "") {
+        else if (datos.direccion === "") {
             setError("Dirección no Válida");
             setShowModal(true);
-            return;
         }
 
-        if (datos.nroTelefono === "" || isNaN(datos.nroTelefono) ) {
+        else if (datos.nroTelefono === "" || isNaN(datos.nroTelefono) ) {
             setError("Número de telefono no válido");
             setShowModal(true);
-            return;
         }
 
-        if (datos.idClub === "" || datos.idClub === "Seleccionar") {
+        else if (datos.idClub === "" || datos.idClub === "Seleccionar") {
             setError("Por favor, seleccione el club al que pertenece el jugador");
             setShowModal(true);
-            return;
         }
 
-        if (datos.fechaNacimiento === "") {
+        else if (datos.fechaNacimiento === "") {
             setError("Por favor, Ingrese una fecha de nacimiento");
             setShowModal(true);
-            return;
         }
 
         alert(JSON.stringify(datos));
@@ -117,7 +107,7 @@ export const RegistroJugador = () => {
         return (
             <div className="main">
                 <div className="main-container-registro">
-                    <h1 className="title">Registro Jugador</h1>
+                    <h1 className="titulo-responsable">Registro Jugador</h1>
 
                     <Form>
 
