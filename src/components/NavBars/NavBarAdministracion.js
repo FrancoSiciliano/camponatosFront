@@ -1,18 +1,22 @@
 import Container from 'react-bootstrap/Container'
 import { Navbar,Nav } from 'react-bootstrap'
 import './NavBarAdministracion.css'
+import {MdSportsSoccer} from 'react-icons/all'
+
 function NavBarAdministracion () {
   return(
-    <Navbar bg="dark" classname="Navbarcamp">
-    <Container>
-      <Navbar.Brand href="/administracion">Administracion</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-          <Nav.Link href="/perfilAdministrador">Perfil</Nav.Link>          
+      <Navbar>
+      <Container fluid>
+        <MdSportsSoccer style={{width:'30px', height:'30px', color:'white', marginRight:'10px'}}/>
+        <Navbar.Brand  style = {{marginRight: '70%'}} href="#"> PERFIL ADMINISTRADOR </Navbar.Brand>
+        <Nav className="me-auto" >
+          <Nav.Link href = "/"  > CERRAR SESION </Nav.Link>
         </Nav>
-      </Navbar.Collapse>
-    </Container>
-  </Navbar>)}
+        
+      </Container>
+        </Navbar>   
+  )
+  
+}
 
 export default NavBarAdministracion;
