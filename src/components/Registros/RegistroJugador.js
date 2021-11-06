@@ -191,16 +191,6 @@ export const RegistroJugador = () => {
                             </Form.Group>
                         </Row>
 
-                        <FloatingLabel controlId="floatingSelect" label="Seleccione un equipo">
-                            <Form.Select className="label-select" onChange={handleChange} name="idClub">
-                                <option>Seleccionar</option>
-                                {data.map((club, index) => {
-                                    return (
-                                        <option key={index}
-                                                value={club.idClub}>{`${club.idClub} - ${club.nombre}`}</option>)
-                                })}
-                            </Form.Select>
-                        </FloatingLabel>
                         <Link className="btn btn-success" to="/registroJugador" onClick={handleClick}>Finalizar</Link>
 
 

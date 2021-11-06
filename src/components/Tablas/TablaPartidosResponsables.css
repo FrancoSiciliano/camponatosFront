@@ -1,20 +1,12 @@
-
-.Administracion{
-    display: flex;
-}
-.d-grid{
-    margin-left:15%;
-    align-items: center;
-    justify-content: center;
-}
-.botonesAdmin{
-    height: 40%!important;
-    width: 140%;
-}
-.TablaAdministrador {
-    width: 60%;
+.TablaPartidosResponsables {
+    margin-top: 13%;
+    margin-left:3%;
+    margin-right: 3%;
+    width: 50%;
+    height: 50%;
     background-color: #fff;
 }
+
 
 tbody, td, th, thead, tr {
     color: rgb(0, 0, 0) !important;
@@ -35,31 +27,24 @@ td th {
     font-weight: 600;
     font-family: Helvetica, sans-serif;
 }
-.botonesAdmin{
-    background-color: #40916C!important;
-    border-color: transparent !important;
-}
-.botonesAdmin a{
-    text-decoration: none;
-    color: white!important;
-}
-.TablaAdministrador .btn-primary {
+
+.TablaPartidosResponsables .btn-primary {
     width: 125px;
     background-color: #40916C;
     border-color: transparent;
 }
 
-.TablaAdministrador .btn-primary:hover {
+.TablaPartidosResponsables .btn-primary:hover {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.TablaAdministrador .btn-primary:focus {
+.TablaPartidosResponsables .btn-primary:focus {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.TablaAdministrador .btn-primary a {
+.TablaPartidosResponsables .btn-primary a {
     color: white !important;
     text-decoration: none !important;
 }
@@ -93,5 +78,5 @@ input[type="search"]:focus {
 }
 
 .ContenedorGestion {
-    background-color: #D8F3DC;
+    background-color: #fff!important;
 }

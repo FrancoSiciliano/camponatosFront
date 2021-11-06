@@ -1,14 +1,10 @@
 import {Table, Button, Form} from "react-bootstrap";
-import './CampeonatosResponsable.css'
+import './TablaCampeonatos.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import {ErrorPagina} from "../../NotFound/ErrorPagina";
-import NavBarResponsable from "../../NavBars/NavBarResponsable";
-
-//<td><Button type="submit" class="btn btn-primary btn-sm">Tabla</Button></td>
-//<td><Button type="submit" onClick={"GenerarPartidos"} class="btn btn-primary btn-sm"> <Link to="/TablaPartidos"> Partidos</Link></Button></td>
-export const CampeonatosResponsable = (props) => {
+import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+export const TablaCampeonatos = (props) => {
     const [campeonatos, setCampeonatos] = useState(null);
     const [todosCampeonatos, setTodosCampeonatos] = useState(null);
 
@@ -31,12 +27,13 @@ export const CampeonatosResponsable = (props) => {
 
     if (campeonatos) {
         return (<div className="ContenedorGestion">
+            <NavBarAdministracion/>
             <div className="TablaCampeonatosResponsables">
                 <Table striped bordered hover sm>
                     <thead>
                     <tr borderless>
                         <th colSpan="6">
-                            Campeonatos Activos del Club
+                            CAMPEONATOS
                         </th>
                     </tr>
                     <tr>
@@ -67,7 +64,7 @@ export const CampeonatosResponsable = (props) => {
                                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link 
                                     to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></Button></td>
                                 <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
-                                    to={{pathname: '/tablaPartidos', state:{id:ids,descrip:descripcion}}}>Partidos</Link></Button></td>
+                                    to={{pathname: '/partidosAdministrador', state:{id:ids,descrip:descripcion}}}>Partidos</Link></Button></td>
                             </tr>)
     }})}
                     </tbody>
@@ -75,9 +72,9 @@ export const CampeonatosResponsable = (props) => {
             </div>
         </div>)
     } else {
-        return (<ErrorPagina descripcion="Que A pasado?"/>)
+        return (<h1>Cuando algo se rompe se rompe</h1>)
     }
 }
 
 
-export default CampeonatosResponsable;
+export default TablaCampeonatos;

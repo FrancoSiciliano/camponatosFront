@@ -9,7 +9,7 @@ import { DatosClub } from "./components/DatosPerfiles/DatosClub";
 import { LandingJugador } from "./components/LandingJugador/LandingJugador";
 import { LandingResponsable } from "./components/LandingResponsable/LandingResponsable";
 import CampeonatosResponsable from "./components/Gestion/GestionCampeonatos/CampeonatosResponsable";
-import { TablaPartidos } from "./components/Tablas/TablaPartidos";
+import { TablaPartidos, TablaPartidosCampeonatos } from "./components/Tablas/TablaPartidosCampeonatos";
 import { TablaPosicion } from "./components/Tablas/TablaPosicion";
 import { PerfilClub } from "./components/LandingResponsable/PerfilClub";
 import ListaJugadoresClub from "./components/Gestion/GestionJugadores/ListaJugadoresClub";
@@ -20,6 +20,7 @@ import { DetallesPartido } from "./components/Tablas/DetallesPartido";
 import { CrearPartido } from "./components/Gestion/GestionPartidos/CrearPartido";
 import {Home} from "./components/LandingGeneral/Home";
 import './App.css'
+import TablaCampeonatos from "./components/Tablas/TablaCampeonatos";
 function App() {
   return (
     <div className="App">
@@ -68,9 +69,16 @@ function App() {
           <Route path="/detalles/partidos">
             <DetallesPartido />
           </Route>
+          <Route path="/tablaCampeoantos">
+            <TablaCampeonatos/>
+          </Route>
           <Route path="/tablaPosiciones">
             <TablaPosicion/>
           </Route>
+          <Route path="/partidosAdministrador">
+            <TablaPartidosCampeonatos/>
+          </Route>
+          /
           <Route path="/gestionar/campeonato">
             <CampeonatosResponsable />
           </Route>

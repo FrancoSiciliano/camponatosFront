@@ -1,9 +1,4 @@
-.TablaPartidos {
-    margin-top: 13%;
-    margin-left:3%;
-    margin-right: 3%;
-    width: 50%;
-    height: 50%;
+.TablaPartidosCampeoantos {
     background-color: #fff;
 }
 
@@ -28,23 +23,23 @@ td th {
     font-family: Helvetica, sans-serif;
 }
 
-.TablaPartidos .btn-primary {
+.TablaPartidosCampeoantos .btn-primary {
     width: 125px;
     background-color: #40916C;
     border-color: transparent;
 }
 
-.TablaPartidos .btn-primary:hover {
+.TablaPartidosCampeoantos .btn-primary:hover {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.TablaPartidos .btn-primary:focus {
+.TablaPartidosCampeoantos .btn-primary:focus {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.TablaPartidos .btn-primary a {
+.TablaPartidosCampeoantos .btn-primary a {
     color: white !important;
     text-decoration: none !important;
 }

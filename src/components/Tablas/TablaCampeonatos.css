@@ -1,18 +1,4 @@
-
-.Administracion{
-    display: flex;
-}
-.d-grid{
-    margin-left:15%;
-    align-items: center;
-    justify-content: center;
-}
-.botonesAdmin{
-    height: 40%!important;
-    width: 140%;
-}
-.TablaAdministrador {
-    width: 60%;
+.TablaCampeonatosResponsables {
     background-color: #fff;
 }
 
@@ -35,31 +21,24 @@ td th {
     font-weight: 600;
     font-family: Helvetica, sans-serif;
 }
-.botonesAdmin{
-    background-color: #40916C!important;
-    border-color: transparent !important;
-}
-.botonesAdmin a{
-    text-decoration: none;
-    color: white!important;
-}
-.TablaAdministrador .btn-primary {
+
+.TablaCampeonatosResponsables .btn-primary {
     width: 125px;
     background-color: #40916C;
     border-color: transparent;
 }
 
-.TablaAdministrador .btn-primary:hover {
+.TablaCampeonatosResponsables .btn-primary:hover {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.TablaAdministrador .btn-primary:focus {
+.TablaCampeonatosResponsables .btn-primary:focus {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.TablaAdministrador .btn-primary a {
+.TablaCampeonatosResponsables .btn-primary a {
     color: white !important;
     text-decoration: none !important;
 }

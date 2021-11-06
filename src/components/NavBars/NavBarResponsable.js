@@ -4,7 +4,6 @@ import { Navbar,Nav,NavDropdown, Dropdown, Button, Modal, Form} from 'react-boot
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {MdSportsSoccer} from 'react-icons/all'
-
 function NavBarResponsable (props) {
   const [show, setShow] = useState(false);
 
@@ -20,7 +19,7 @@ function NavBarResponsable (props) {
       <Nav className="me-auto" >
         <Nav.Link href="/datos/representante" classname="LinkNavbar">MI PERFIL</Nav.Link>
         <NavDropdown title="GESTIONAR" id="basic-nav-dropdown" classname="LinkNavbar">
-          <NavDropdown.Item href="/gestionar/campeonato"> CLUB </NavDropdown.Item>
+          <NavDropdown.Item href="/perfil/club">CLUB</NavDropdown.Item>
           <Dropdown>
             <Dropdown.Toggle className= 'ddJugadores'>
               JUGADORES
@@ -47,7 +46,7 @@ function NavBarResponsable (props) {
                 </Button>
               </Modal.Footer>
             </Modal>
-              <Dropdown.Item href="#/agregar/jugador">AGREGAR</Dropdown.Item>
+              <Dropdown.Item href="/registro/jugador">AGREGAR</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
         </NavDropdown>

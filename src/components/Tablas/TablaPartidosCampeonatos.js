@@ -4,9 +4,10 @@ import {useEffect, useState} from "react";
 
 import axios from "axios";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
-/* DEJENLO ASI, QUE PUEDE QUE SEA UTIL
-import './TablaPartidos.css'
-export const TablaPartidos=()=>{
+
+import './TablaPartidosCampeonatos.css'
+import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+export const TablaPartidosCampeonatos=()=>{
   let location = useLocation()
   console.log(location)
   const [data, setData] = useState(null);
@@ -20,8 +21,8 @@ export const TablaPartidos=()=>{
     fetchData();
 },[]);
   if(data){
-    return(<div><NavBarResponsable/>
-      <div className="TablaPartidos">
+    return(<div><NavBarAdministracion/>
+      <div className="TablaPartidosCampeoantos">
     <Table striped bordered hover>
         <thead>
             <tr><th colSpan="8">{location.state.descrip}</th></tr>
@@ -51,8 +52,7 @@ export const TablaPartidos=()=>{
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></Button></td>
-      <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"> Validar</Button></td>
+      <td><Button classname="botonesTablasAdministracion" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></Button></td>
     </tr>)
   })}
 </tbody>
@@ -60,4 +60,3 @@ export const TablaPartidos=()=>{
 else{
   return (<h1>No se crearon Partidos para este campeonato</h1>)
     }}
-*/
