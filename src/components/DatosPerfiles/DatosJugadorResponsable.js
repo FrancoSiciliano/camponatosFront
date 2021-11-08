@@ -33,6 +33,7 @@ export const DatosJugadorResponsable = (props) => {
 
     const postData = async (data) => {
         try{
+            /* AGREGAR METODOS QUE FALTAN PARA MODIFICAR LOS DATOS*/
             await axios.post(url + `modificarDireccion?idJugador=${props.idJugador}&direccion=${data.direccion}`)
             await axios.post(url + `modificarMail?idJugador=${props.idJugador}&mail=${data.mail}`)
             await axios.post(url + `modificarTelefono?idJugador=${props.idJugador}&telefono=${data.telefono}`)
