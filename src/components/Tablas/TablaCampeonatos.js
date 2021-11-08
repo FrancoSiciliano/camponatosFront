@@ -61,10 +61,8 @@ export const TablaCampeonatos = (props) => {
                                 <td>{descripcion}</td>
                                 <td>{campeonato.fechaInicio}</td>
                                 <td>{campeonato.fechaFin}</td>
-                                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link 
-                                    to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></Button></td>
-                                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
-                                    to={{pathname: '/partidosAdministrador', state:{id:ids,descrip:descripcion}}}>Partidos</Link></Button></td>
+                                <td><Link className='btn btn-success' to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></td>
+                                <td><Link className='btn btn-success' to={{pathname: '/partidosAdministrador', state:{id:ids,descrip:descripcion}}}>Partidos</Link></td>
                             </tr>)
     }})}
                     </tbody>

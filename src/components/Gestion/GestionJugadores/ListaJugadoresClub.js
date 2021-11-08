@@ -39,7 +39,7 @@ export const ListaJugadoresClub = (props) => {
                     <thead>
                     <tr>
                         <th colSpan="15">
-                            Jugadores del Club
+                            Jugadores Asignados a {location.state.descrip}
                         </th>
                     </tr>
                     <tr>
@@ -94,7 +94,7 @@ export const ListaJugadoresClub = (props) => {
             </div>
         </div>)
     } else {
-        return (<h1>Oye que a pasado</h1>)
+        return (<div><NavBarResponsable/> <h1>The server isnt working</h1></div>)
     }
 }
 
