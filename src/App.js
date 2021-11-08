@@ -71,6 +71,9 @@ function App() {
           <Route path="/detalles/partidos">
             <DetallesPartido />
           </Route>
+          <Route path="/tabla/habilitacion/jugadores/campeonato">
+            <ListaJugadoresClub/>
+          </Route>
           <Route path="/tablaCampeoantos">
             <TablaCampeonatos/>
           </Route>

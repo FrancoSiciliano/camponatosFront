@@ -18,7 +18,6 @@ function NavBarJugador () {
               <BiLogOut  style={{position:'relative', top:'5px' ,width:'30px', height:'30px', color:'white'}}/>
               <Nav.Link href = "/"  > CERRAR SESION </Nav.Link>
             </div>
-            
           </Nav>
           
         </Container>

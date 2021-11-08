@@ -58,5 +58,6 @@ export const TablaPartidosCampeonatos=()=>{
 </tbody>
 </Table></div></div>)}
 else{
-  return (<h1>No se crearon Partidos para este campeonato</h1>)
+  return (<div>
+    <NavBarAdministracion/><h1>The server isnt working</h1></div>)
     }}

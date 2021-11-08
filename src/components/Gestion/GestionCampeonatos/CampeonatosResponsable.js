@@ -35,7 +35,7 @@ export const CampeonatosResponsable = (props) => {
                 <Table striped bordered hover sm>
                     <thead>
                     <tr borderless>
-                        <th colSpan="6" className = 'tituloTablaCamp'>
+                        <th colSpan="7" className = 'tituloTablaCamp'>
                             Campeonatos Activos del Club
                         </th>
                     </tr>
@@ -44,7 +44,7 @@ export const CampeonatosResponsable = (props) => {
                         <th>Nombre</th>
                         <th>Fecha Inicio</th>
                         <th>Fecha Fin</th>
-                        <th colSpan="2">
+                        <th colSpan="3">
                             <Form.Control classname="searchBox"
                                           id="search" type="search" placeholder="Filtrar por Nombre"
                                           onChange={handleChange} autoComplete="off"/>
@@ -67,7 +67,9 @@ export const CampeonatosResponsable = (props) => {
                                 <td><Link className='btn btn-success botonesRepresentante'
                                     to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></td>
                                 <td><Link className='btn btn-success botonesRepresentante'
-                                    to={{pathname: '/tablaPartidos', state:{id:ids,descrip:descripcion}}}>Partidos</Link></td>
+                                    to={{pathname: '/partidosAdministrador', state:{id:ids,descrip:descripcion}}}>Partidos</Link></td>
+                                <td><Link className='btn btn-success botonesRepresentante'
+                                    to={{pathname: '/tabla/habilitacion/jugadores/campeonato', state:{id:ids,descrip:descripcion}}}>Jugadores</Link></td>
                             </tr>)
     }})}
                     </tbody>

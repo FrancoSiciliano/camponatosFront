@@ -28,7 +28,7 @@ export const ListaJugadoresClub = (props) => {
     if (jugadores) {
         return (<div>
             <NavBarResponsable/>
-            <div className="TablaListaJugadoresClub">
+            <div className="TablaListaJugadoresClub scrollable-responsable">
                 <Table striped bordered hover sm>
                     <thead>
                     <tr>
@@ -74,9 +74,9 @@ export const ListaJugadoresClub = (props) => {
                                 <td>{jugadores.fechaAlta}</td>
                                 <td>{jugadores.estado ? "Activo" : "Inactivo"}</td>
                                 <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm">Modificar</Button></td>
+                                            class="btn btn-success btn-sm">Habilitar</Button></td>
                                 <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm"> Eliminar</Button></td>
+                                            class="btn btn-success btn-sm"> Deshabilitar</Button></td>
                             </tr>)
                     })}
                     </tbody>
