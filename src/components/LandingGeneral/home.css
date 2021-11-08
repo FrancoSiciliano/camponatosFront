@@ -5,6 +5,15 @@
     height: 300px;
     justify-content: space-between;
 }
+.ColumnasHome{
+    width: 300px;
+    margin-bottom: 15px;
+}
+.ColumnasHomeBotones{
+    width: 300px;
+    height: 50px;
+    margin-bottom: 35px;
+}
 
 .boton-home {
     padding: 20px !important;
