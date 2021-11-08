@@ -4,21 +4,27 @@ import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import NavBarResponsable from "../../NavBars/NavBarResponsable";
 import {Form} from "react-bootstrap";
+import { useLocation } from "react-router";
 
 export const ListaJugadoresClub = (props) => {
     const [jugadores, setJugadores] = useState(null);
+    const [partidos, setPartidos]=useState(null)
     const todosJugadores = useRef(null);
+    let location = useLocation()
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios(`http://localhost:8080/getJugadores`);
+            const repuesta = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.id}`);
+            const partido = repuesta.data;
             const newData = response.data;
+            setPartidos(partido);
             setJugadores(newData);
             todosJugadores.current = newData;
         };
         fetchData();
     }, []);
-
+    var categoria =0;
     const handleChange = (event) => {
         setJugadores(todosJugadores.current.filter((elem) => {
             return `${elem.nombre} + ${elem.apellido}`.toLowerCase().includes(event.target.value.toLowerCase());
@@ -58,7 +64,11 @@ export const ListaJugadoresClub = (props) => {
                     </tr>
                     </thead>
                     <tbody>
+                    {partidos.map((partidos, index) => {
+                         categoria=partidos.categoria;
+                    })}
                     {jugadores.map((jugadores, index) => {
+                        if(parseInt(jugadores.categoria)>=categoria){
                         return (
                             <tr key={index}>
                                 <td>{jugadores.idJugador}</td>
@@ -78,7 +88,7 @@ export const ListaJugadoresClub = (props) => {
                                 <td><Button classname="botonesTablas" type="submit"
                                             class="btn btn-success btn-sm"> Deshabilitar</Button></td>
                             </tr>)
-                    })}
+                    }})}
                     </tbody>
                 </Table>
             </div>
