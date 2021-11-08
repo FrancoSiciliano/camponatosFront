@@ -1,16 +1,19 @@
 .botones-home {
+    margin-top: 4%;
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 100px;
+    height: 300px;
     justify-content: space-between;
 }
 
 .boton-home {
-    height: 45px;
+    padding: 20px !important;
+    font-size: 20px !important;
+    width: 240px;
 }
 
 .titulo-home {
+    margin-top: 25%;
     font-size: 200px !important;
 }
 
@@ -18,7 +21,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
     height: 100vh;
     width: 100vw;
     background-image: url("../../assets/images/fondo-home.jpg");
