@@ -9,7 +9,6 @@ import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 export const TablaPartidosCampeonatos=()=>{
   let location = useLocation()
-  console.log(location)
   const [data, setData] = useState(null);
 
   useEffect(() => {
