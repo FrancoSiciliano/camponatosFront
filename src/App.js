@@ -20,6 +20,7 @@ import './App.css'
 import {DefinirClubesCampeonato} from "./components/Gestion/GestionCampeonatos/DefinirClubesCampeonato";
 import TablaCampeonatos from "./components/Tablas/TablaCampeonatos";
 import {TablaPartidosCampeonatos} from "./components/Tablas/TablaPartidosCampeonatos";
+import { DatosJugadorResponsable } from "./components/DatosPerfiles/DatosJugadorResponsable";
 function App() {
   return (
     <div className="App">
@@ -59,6 +60,9 @@ function App() {
 
           <Route path="/datos/jugador">
             <DatosJugador idJugador="1" />
+          </Route>
+          <Route exact path="/datos/edicion/responsable">
+            <DatosJugadorResponsable idJugador="1" />
           </Route>
           <Route path="/datos/representante">
             <DatosRepresentante idRepresentante="1" />

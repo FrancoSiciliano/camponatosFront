@@ -34,12 +34,12 @@ export const ListaJugadoresClub = (props) => {
     if (jugadores) {
         return (<div>
             <NavBarResponsable/>
-            <div className="TablaListaJugadoresClub scrollable-responsable">
+            <div className="TablaListaJugadoresClub scrollable-lista-jugadores">
                 <Table striped bordered hover sm>
                     <thead>
                     <tr>
-                        <th colSpan="15">
-                            Jugadores del Club
+                        <th colSpan="15" className='titulo-tabla-jug-camp'>
+                            Jugadores Asignados a {location.state.descrip}
                         </th>
                     </tr>
                     <tr>
@@ -94,7 +94,7 @@ export const ListaJugadoresClub = (props) => {
             </div>
         </div>)
     } else {
-        return (<h1>Oye que a pasado</h1>)
+        return (<div><NavBarResponsable/> <h1>The server isnt working</h1></div>)
     }
 }
 

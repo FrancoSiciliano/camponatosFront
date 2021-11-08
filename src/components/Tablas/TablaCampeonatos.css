@@ -22,23 +22,23 @@ td th {
     font-family: Helvetica, sans-serif;
 }
 
-.TablaCampeonatosResponsables .btn-primary {
+.TablaCampeonatosResponsables .btn-success {
     width: 125px;
     background-color: #40916C;
     border-color: transparent;
 }
 
-.TablaCampeonatosResponsables .btn-primary:hover {
+.TablaCampeonatosResponsables .btn-success:hover {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.TablaCampeonatosResponsables .btn-primary:focus {
+.TablaCampeonatosResponsables .btn-success:focus {
     background-color: #40916dcb;
     border-color: transparent;
 }
 
-.TablaCampeonatosResponsables .btn-primary a {
+.TablaCampeonatosResponsables .btn-success a {
     color: white !important;
     text-decoration: none !important;
 }
