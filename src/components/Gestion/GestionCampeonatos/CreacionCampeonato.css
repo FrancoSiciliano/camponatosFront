@@ -6,3 +6,12 @@
     color: white;
     text-decoration: none;
 }
+
+.label-select {
+    width: 150px !important;
+}
+
+.nroZonas {
+    width: 150px !important;
+    margin-left: 5px !important;
+}

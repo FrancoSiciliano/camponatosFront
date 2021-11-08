@@ -28,9 +28,23 @@ export const RegistroCampeonato = () => {
         fechaFin: "",
         tipo: "nada",
         categoria: "",
-        estado: "Activo"
+        estado: "Activo",
+        nroZonas: "0"
     });
 
+    const esDivisiblePor2n = (num) => {
+        num = parseInt(num);
+        while (num !== 2) {
+            console.log("hola")
+            if ((num / 2) % 2 === 0) {
+                num = num / 2
+            } else {
+                return false;
+            }
+        }
+
+        return true;
+    }
     // const postData = async (datos) => {
     //     await axios.post(url + `crearCampeonato?descripcion=${datos.descripcion}&fechaInicio=${datos.fechaInicio.replaceAll("-", "/")}&fechaFin=${datos.fechaFin.replaceAll("-", "/")}&estado=${datos.estado}`)
     // }
@@ -65,6 +79,14 @@ export const RegistroCampeonato = () => {
             setTituloError("Nombre no válido");
             setShowModal(true);
             return false;
+
+        } else if (datos.tipo === "Zonas") {
+            if (datos.nroZonas === 0 || !esDivisiblePor2n(datos.nroZonas)) {
+                setMensajeError("No puede crearse un campeonato con " + datos.nroZonas + " zonas");
+                setTituloError("Número de zonas no válido");
+                setShowModal(true);
+                return false;
+            }
         }
 
         return true;
@@ -73,7 +95,10 @@ export const RegistroCampeonato = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (controlInputs()) history.push("/agregar/clubes", datos);
+        if (controlInputs()) {
+            history.push("/agregar/clubes", datos)
+        }
+        ;
     }
 
     const handleChange = (event) => {
@@ -101,7 +126,7 @@ export const RegistroCampeonato = () => {
                                               onChange={handleChange} min={minFecha}/>
                             </FloatingLabel>
                         </Form.Group>
-                        <Form.Group as={Col} controlId="formGridTipo" sm="3" style={{width: "200px"}}>
+                        <Form.Group as={Col} controlId="formGridTipo" sm="3" style={{width: "150px"}}>
                             <FloatingLabel controlId="floatingSelect" label="Tipo de torneo">
                                 <Form.Select className="label-select" onChange={handleChange} name="tipo"
                                              value={datos.tipo}>
@@ -109,6 +134,18 @@ export const RegistroCampeonato = () => {
                                     <option value="Puntos">Puntos</option>
                                     <option value="Zonas">Zonas</option>
                                 </Form.Select>
+                            </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group as={Col} sm="3" controlId="formGridInput">
+                            <FloatingLabel controlId="floatingInputGrid" label="Numero de Zonas">
+                                {datos.tipo !== "Zonas" ?
+                                    <Form.Control type="number" placeholder="Zonas" name="nroZonas" className="nroZonas"
+                                                  value={0}
+                                                  onChange={handleChange}
+                                                  readOnly/> :
+                                    <Form.Control type="number" placeholder="Zonas" name="nroZonas" className="nroZonas"
+                                                  value={datos.nroZonas}
+                                                  onChange={handleChange}/>}
                             </FloatingLabel>
                         </Form.Group>
 

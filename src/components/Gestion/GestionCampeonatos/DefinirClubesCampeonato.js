@@ -5,11 +5,14 @@ import {CardClub} from "./InfoClubesParticipantes/CardClub";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {BiCheck} from "react-icons/all";
+import {Button} from "react-bootstrap";
+import transitionEndListener from "react-bootstrap/transitionEndListener";
 
 export const DefinirClubesCampeonato = () => {
     const history = useHistory();
     const [clubesDisponibles, setClubesDisponibles] = useState([]);
     const [clubesAgregados, setClubesAgregados] = useState([]);
+    const state = history.location.state;
     const tipo = history.location.state.tipo;
 
     useEffect(() => {
@@ -35,6 +38,14 @@ export const DefinirClubesCampeonato = () => {
         setClubesAgregados(auxAgregados);
 
         setClubesDisponibles(auxDisponibles);
+    }
+
+    const checkClubes = () => {
+        if (tipo === "Puntos") {
+            return clubesAgregados.length !== 0;
+        } else if (tipo === "Zonas") {
+            return clubesAgregados.length % 2 === 0 && clubesAgregados.length !== 0  && clubesAgregados.length > state.nroZonas && clubesAgregados.length % state.nroZonas === 0;
+        }
     }
 
     const handleClickAgregado = (idClub) => {
@@ -88,9 +99,12 @@ export const DefinirClubesCampeonato = () => {
                         )
                     })}
                 </div>
-                <h5 className="cantidad-card-agregados">
-                    {"Cantidad: " + clubesAgregados.length}
-                </h5>
+                <div style={{display: "flex", justifyContent: "space-between", width:"200px", alignItems: "center"}}>
+                    <h5 className="cantidad-card-agregados">
+                        {"Cantidad: " + clubesAgregados.length}
+                    </h5>
+                    {checkClubes() ? <Button className="btn btn-success" style={{margin: "5px 0"}} >Finalizar</Button> : <Button className="btn btn-success" style={{margin: "5px 0"}} disabled>Finalizar</Button>}
+                </div>
             </div>
         </div>)
     }
