@@ -15,7 +15,6 @@
     margin-right: 10%;
     margin-left: 25%;
     border-style:double;
-    border-color: rgb(81, 153, 9);
     border-radius: 5%;
     background: rgba(8, 107, 51, 0.15);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -32,9 +31,6 @@
     width: 60%;
     font-weight: 600;
     color: #0b770b;
-    border-bottom: 3px solid #25df5d;
-    border-right: 3px solid #25df5d;
-    border-left: 3px solid #25df5d;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
@@ -47,9 +43,9 @@
     display: inline-block;
     text-align: right;
     width: 30%;
+    margin-top:1%;
     margin-right: 1%;
     margin-left: 5%;
-    
 }
 
 
@@ -57,12 +53,10 @@
     width: 40%;
     margin-left: 1%;
     display: inline-block;
-    border-color: #6ee08e;
 }
 
 .rowCargaResultadosPartidos input:hover {
     background-color: rgb(238, 238, 238);
-    border-color: rgb(113, 250, 158);
 }
 
 .contenedorCargaDatosPartido p {

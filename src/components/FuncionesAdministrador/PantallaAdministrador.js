@@ -45,7 +45,7 @@ if(data){
               <td>{partido.clubLocal.nombre}</td>
               <td>{partido.clubVisitante.nombre}</td>
               <td>{partido.fechaPartido}</td>
-              <td><Link className = 'btn btn-success botonesAdmin-tabla' to="/cargarDatosPartido">Cargar Datos</Link></td>
+              <td><Link className = 'btn btn-success botonesAdmin-tabla' to="/cargar/datos/partido">Cargar Datos</Link></td>
             </tr>)
           })}
             </tbody>
