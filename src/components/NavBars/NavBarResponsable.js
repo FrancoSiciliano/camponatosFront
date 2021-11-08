@@ -24,7 +24,7 @@ function NavBarResponsable (props) {
         </div>
         <div className = 'jugadores-div'>
         <NavDropdown title="GESTIONAR" id="basic-nav-dropdown" classname="LinkNavbar">
-          <NavDropdown.Item href="/perfil/club">CLUB</NavDropdown.Item>
+          <NavDropdown.Item href="/datos/club">CLUB</NavDropdown.Item>
           <Dropdown>
             <Dropdown.Toggle className= 'ddJugadores'>
               JUGADORES
@@ -43,7 +43,7 @@ function NavBarResponsable (props) {
                 <Form.Control type="text" placeholder="ID Jugador" />  
               </Modal.Body>
               <Modal.Footer>
-                <Link className="btn btn-success" to="/datos/jugador" onClick={handleClose}>
+                <Link className="btn btn-success" to="/datos/edicion/responsable" onClick={handleClose}>
                   Editar
                 </Link>
                 <Button variant="secondary" onClick={handleClose}>

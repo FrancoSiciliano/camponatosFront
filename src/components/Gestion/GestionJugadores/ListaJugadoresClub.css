@@ -74,3 +74,13 @@ input[type="search"]:focus {
 .ContenedorGestion {
     background-color: #D8F3DC;
 }
+
+.scrollable-lista-jugadores{
+    background-color: #FFFF !important;
+    overflow-y:scroll !important;
+    max-height:93vh !important;
+}
+
+.titulo-tabla-jug-camp{
+    font-size: 30px;
+}
