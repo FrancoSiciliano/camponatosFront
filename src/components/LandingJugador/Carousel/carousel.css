@@ -47,3 +47,8 @@ ul {
     list-style-type: none;
     text-align: left;
 }
+ 
+.botoncarrusel{
+    background-color: #40916C !important;
+    border-color: transparent !important;
+}

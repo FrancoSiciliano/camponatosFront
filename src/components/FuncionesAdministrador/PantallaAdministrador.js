@@ -17,58 +17,57 @@ export const PantallaAdministrador = (props) =>{
         fetchData();});
 if(data){
     return( 
-      <div> <NavBarAdministracion/>
-        <div className="Administracion">
-          <div className="TablaAdministrador">
-            <Table striped bordered hover sm >
-              <thead>
-                  <tr borderless>
-                      <th  colSpan="6">
-                        Listado de Partidos a cargar
-                      </th>
-                    </tr>
-                <tr>
-                <th>Camp</th>
-                <th>Club L</th>
-                <th>Club V</th>
-                <th>Fecha</th>
-                <th>Cargar datos</th>
-              </tr>
-            </thead>
-            <tbody>
-            {data.map((partido, index)=>{
-               var ids=partido.idPartido
-            return(
-              <tr key={partido.descripcion}>
-                <td>{partido.campeonato.descripcion}</td>
-                <td>{partido.clubLocal.nombre}</td>
-                <td>{partido.clubVisitante.nombre}</td>
-                <td>{partido.fechaPartido}</td>
-                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link to="/cargarDatosPartido">Cargar Datos</Link></Button></td>
-              </tr>)
-            })}
-          </tbody>
+    <div className = 'contenedorHome'> 
+      <NavBarAdministracion/>
+      <div className="Administracion">
+        <div className="TablaAdministrador scrollable-responsable">
+          <Table striped bordered hover sm >
+            <thead>
+                <tr borderless>
+                    <th  colSpan="6">
+                      Listado de Partidos a cargar
+                    </th>
+                  </tr>
+              <tr>
+              <th>Camp</th>
+              <th>Club L</th>
+              <th>Club V</th>
+              <th>Fecha</th>
+              <th>Cargar datos</th>
+            </tr>
+          </thead>
+          <tbody>
+          {data.map((partido, index)=>{
+            
+          return(
+            <tr key={partido.descripcion}>
+              <td>{partido.campeonato.descripcion}</td>
+              <td>{partido.clubLocal.nombre}</td>
+              <td>{partido.clubVisitante.nombre}</td>
+              <td>{partido.fechaPartido}</td>
+              <td><Link className = 'btn btn-success botonesAdmin-tabla' to="/cargarDatosPartido">Cargar Datos</Link></td>
+            </tr>)
+          })}
+            </tbody>
           </Table>
-          </div>
-          <div className="d-grid">
-          <Button className ="botonesAdmin" variant="primary" size="sm"><Link to="/registro/campeonato">
-                Crear Campeonatos
-                </Link>
-              </Button>
-            <Button className="botonesAdmin" variant="primary" size="sm">
-            <Link to="/crearPartido">
-                Crear Partidos
-            </Link>
-            </Button>
-            <Button className="botonesAdmin" variant="primary" size="sm">
-            <Link to="/tablaCampeoantos">
-                Ver Tablas
-            </Link>
-            </Button>
-          </div>
+        </div>
+        <div className="botones-columna-admin">
+          <Link className="btn btn-success botonesAdmin" to="/registro/campeonato">
+              Crear Campeonatos
+          </Link>
+          
+          <Link className="btn btn-success botonesAdmin" to="/crearPartido">
+              Crear Partidos
+          </Link>
+      
+          <Link className = 'btn btn-success botonesAdmin' to="/tablaCampeoantos">
+              Ver Tablas
+          </Link>
+          
         </div>
       </div>
-      )}
+    </div>
+  )}
 else{
   return(<h1>Oye que a pasado</h1>)
 }

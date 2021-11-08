@@ -31,7 +31,7 @@ export const CampeonatosResponsable = (props) => {
 
     if (campeonatos) {
         return (<div className="ContenedorGestion">
-            <div className="TablaCampeonatosResponsables">
+            <div className="TablaCampeonatosResponsables scrollable-responsable">
                 <Table striped bordered hover sm>
                     <thead>
                     <tr borderless>
@@ -64,10 +64,10 @@ export const CampeonatosResponsable = (props) => {
                                 <td>{descripcion}</td>
                                 <td>{campeonato.fechaInicio}</td>
                                 <td>{campeonato.fechaFin}</td>
-                                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link 
-                                    to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></Button></td>
-                                <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link
-                                    to={{pathname: '/tablaPartidos', state:{id:ids,descrip:descripcion}}}>Partidos</Link></Button></td>
+                                <td><Link className='btn btn-success botonesRepresentante'
+                                    to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></td>
+                                <td><Link className='btn btn-success botonesRepresentante'
+                                    to={{pathname: '/tablaPartidos', state:{id:ids,descrip:descripcion}}}>Partidos</Link></td>
                             </tr>)
     }})}
                     </tbody>

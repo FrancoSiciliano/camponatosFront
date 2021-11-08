@@ -9,10 +9,10 @@ export const LandingResponsable = () =>{
         <NavBarResponsable/>
     
         <div className="TablasHomeCampeonatosResponsables">
-            <div>
+            <div className = 'tablas-home-responsable'>
                 <CampeonatosResponsable/> 
             </div> 
-            <div>
+            <div className = 'tablas-home-responsable'>
                 <TablaPartidosResponsables/>   
             </div>
                

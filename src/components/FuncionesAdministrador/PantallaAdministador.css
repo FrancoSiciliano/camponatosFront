@@ -1,15 +1,30 @@
 
 .Administracion{
+    width: 100%;
+    height: 90% ;
+    position: relative;
     display: flex;
-}
-.d-grid{
-    margin-left:15%;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
+.botones-columna-admin{
+    height: 350px;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
 .botonesAdmin{
-    height: 40%!important;
-    width: 140%;
+    padding: 20px !important;
+    width: 220px !important;
+}
+
+.botonesAdmin-tabla{
+    background-color: #40916C!important;
+    border-color: transparent !important;
+    
 }
 .TablaAdministrador {
     width: 60%;
@@ -95,3 +110,4 @@ input[type="search"]:focus {
 .ContenedorGestion {
     background-color: #D8F3DC;
 }
+

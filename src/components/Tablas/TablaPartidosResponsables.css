@@ -78,3 +78,14 @@ input[type="search"]:focus {
 .ContenedorGestion {
     background-color: #fff!important;
 }
+
+.scrollable-responsable{
+    background-color: #FFFF !important;
+    overflow-y:scroll !important;
+    max-height:400px !important;
+}
+
+.botonTablaValidar{
+    background-color: #40916C!important;
+    border-color: transparent !important;
+}

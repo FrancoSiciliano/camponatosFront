@@ -21,7 +21,7 @@ export const TablaPartidosResponsables=()=>{
 
   if(data){
     return(
-    <div className="TablaPartidosResponsables scrollable">
+    <div className="TablaPartidosResponsables scrollable-responsable">
     <Table responsive="md">
         <thead>
             <tr><th colSpan="8" className= 'tituloTablaPartidos'>Partidos A Validar</th></tr>
@@ -46,8 +46,8 @@ export const TablaPartidosResponsables=()=>{
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"><Link style={{ textDecoration: 'none', }} to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></Button></td>
-      <td><Button classname="botonesTablas" type="submit" class="btn btn-primary btn-sm"> Validar</Button></td>
+      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></td>
+      <td><Button classname="botonTablaValidar" type="submit" class="btn btn-primary btn-sm"> Validar</Button></td>
     </tr>)
   })}
 </tbody>

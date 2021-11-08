@@ -68,8 +68,8 @@ export const CarouselCard = (props) => {
                                                 <li>Estado: {campeonato.estado}</li>
                                             </ul>
                                         </Card.Text>
-                                        <Link to="/test" className="btn btn-success"> Ir a Tabla</Link>
-                                        <Link to="/test" className="btn btn-success"> Estadisticas </Link>
+                                        <Link to="/test" className="btn btn-success botoncarrusel"> Ir a Tabla</Link>
+                                        <Link to="/test" className="btn btn-success botoncarrusel"> Estadisticas </Link>
                                     </Card.Body>
                                 </Card>
                             </Carousel.Item>
