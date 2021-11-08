@@ -58,12 +58,12 @@ export const DatosJugadorResponsable = (props) => {
             setShowModal(true);
         }
 
-        else if (data.tipoDoc === "" || containsNumbers(data.tipoDoc)){
+        else if (data.tipoDocumento === "" || containsNumbers(data.tipoDoc)){
             setpopUp({mensaje: "Tipo de documento no válido", titulo: "Dato erroneo"});
             setShowModal(true);
         }
 
-        else if (data.nroDoc === "" || isNaN(data.nroDoc)) {
+        else if (data.documento === "" || isNaN(data.nroDoc)) {
             setpopUp({mensaje: "Número de documento no válido", titulo: "Dato erroneo"});
             setShowModal(true);
         }
@@ -80,6 +80,11 @@ export const DatosJugadorResponsable = (props) => {
 
         else if (data.telefono === "" || isNaN(data.telefono)) {
             setpopUp({mensaje: "Telefono no válido", titulo: "Dato erroneo"});
+            setShowModal(true);
+        }
+
+        else if (data.password === "") {
+            setpopUp({mensaje: "Password inválida", titulo: "Dato erroneo"});
             setShowModal(true);
         }
         postData(data)
@@ -134,13 +139,13 @@ export const DatosJugadorResponsable = (props) => {
                             
                             <Form.Group as={Col} controlId="formGridTipoDocumento" sm="3">
                                 <FloatingLabel className="floatingInputGridJug" label="Tipo documento" style={{fontSize: "19px"}}>
-                                    <Form.Control type="text" name="tipodocumento" placeholder="Tipo documento" style={{fontSize: "20px"}} value= {data.tipoDocumento} />
+                                    <Form.Control type="text" name="tipoDocumento" placeholder="Tipo documento" style={{fontSize: "20px"}} value= {data.tipoDocumento} />
                                 </FloatingLabel>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridNumeroDoc" sm="3">
                                 <FloatingLabel className="floatingInputGridJug" label="Numero de documento" style={{fontSize: "19px"}}>
-                                    <Form.Control type="text" name="nrodoc" placeholder="Numero de documento" style={{fontSize: "20px"}} value= {data.documento} />
+                                    <Form.Control type="text" name="documento" placeholder="Numero de documento" style={{fontSize: "20px"}} value= {data.documento} />
                                 </FloatingLabel>
                             </Form.Group>
 
@@ -174,13 +179,13 @@ export const DatosJugadorResponsable = (props) => {
 
                             <Form.Group as={Col} controlId="formGridPassword">
                                 <FloatingLabel className="floatingInputGridJug" label="Password" style={{fontSize: "19px"}}>
-                                    <Form.Control type="text" placeholder="Password" name="password" style={{fontSize: "20px"}} />
+                                    <Form.Control type="text" placeholder="Password" name="password" style={{fontSize: "20px"}} value = {data.password} />
                                 </FloatingLabel>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridFechaAlta" sm="3">
                                 <FloatingLabel className="floatingInputGridJug" label="Fecha Alta" style={{fontSize: "19px"}}>
-                                    <Form.Control type="date" placeholder="Fecha Alta" name="fechalta" style={{fontSize: "20px"}} value = {data.fechaAlta} readOnly/>
+                                    <Form.Control type="date" placeholder="Fecha Alta" name="fechaAlta" style={{fontSize: "20px"}} value = {data.fechaAlta} readOnly/>
                                 </FloatingLabel>
                             </Form.Group>
                         </Row>
