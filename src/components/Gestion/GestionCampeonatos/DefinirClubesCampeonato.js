@@ -150,6 +150,6 @@ export const DefinirClubesCampeonato = () => {
             </div>
             )
     } else {
-        return (<h1>HOla</h1>)
+        return (<h1>The server isnt working...</h1>)
     }
 }
