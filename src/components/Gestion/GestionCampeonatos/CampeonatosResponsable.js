@@ -6,8 +6,7 @@ import {Link} from "react-router-dom";
 import {ErrorPagina} from "../../NotFound/ErrorPagina";
 import NavBarResponsable from "../../NavBars/NavBarResponsable";
 
-//<td><Button type="submit" class="btn btn-primary btn-sm">Tabla</Button></td>
-//<td><Button type="submit" onClick={"GenerarPartidos"} class="btn btn-primary btn-sm"> <Link to="/TablaPartidos"> Partidos</Link></Button></td>
+
 export const CampeonatosResponsable = (props) => {
     const [campeonatos, setCampeonatos] = useState(null);
     const [todosCampeonatos, setTodosCampeonatos] = useState(null);
@@ -65,9 +64,9 @@ export const CampeonatosResponsable = (props) => {
                                 <td>{campeonato.fechaInicio}</td>
                                 <td>{campeonato.fechaFin}</td>
                                 <td><Link className='btn btn-success botonesRepresentante'
-                                    to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></td>
+                                    to={{pathname: '/tabla/Posiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></td>
                                 <td><Link className='btn btn-success botonesRepresentante'
-                                    to={{pathname: '/partidosAdministrador', state:{id:ids,descrip:descripcion}}}>Partidos</Link></td>
+                                    to={{pathname: '/partidos/Administrador', state:{id:ids,descrip:descripcion}}}>Partidos</Link></td>
                                 <td><Link className='btn btn-success botonesRepresentante'
                                     to={{pathname: '/tabla/habilitacion/jugadores/campeonato', state:{id:ids,descrip:descripcion}}}>Jugadores</Link></td>
                             </tr>)

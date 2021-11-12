@@ -60,7 +60,7 @@ if(data){
               Crear Partidos
           </Link>
       
-          <Link className = 'btn btn-success botonesAdmin' to="/tablaCampeoantos">
+          <Link className = 'btn btn-success botonesAdmin' to="/tabla/Campeonatos">
               Ver Tablas
           </Link>
           
@@ -69,7 +69,7 @@ if(data){
     </div>
   )}
 else{
-  return(<h1>Oye que a pasado</h1>)
+  return(<h1>Server Isnt Working</h1>)
 }
 }
  

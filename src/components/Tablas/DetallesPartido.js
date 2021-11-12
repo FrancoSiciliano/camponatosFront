@@ -37,7 +37,7 @@ export const DetallesPartido = (props) => {
         await fetchDataFaltas();
     }, []);
 
-    if (datosPartido && faltasLocal && faltasVisitante) {
+    if (datosPartido) {
         return (<>
             <div className="titulo-partido">
                 <h1>{datosPartido.clubLocal.nombre}</h1>
@@ -74,6 +74,6 @@ export const DetallesPartido = (props) => {
             </div>
         </>);
     } else {
-        return (<h1>Nada q mostrar</h1>)
+        return (<h1>Server Isnt Working</h1>)
     }
 }

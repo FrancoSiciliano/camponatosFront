@@ -30,6 +30,9 @@ export const ListaJugadoresClub = (props) => {
             return `${elem.nombre} + ${elem.apellido}`.toLowerCase().includes(event.target.value.toLowerCase());
         }));
     }
+    const HandleClickHabilitar =()=>{
+        
+    }
 
     if (jugadores) {
         return (<div>
@@ -84,7 +87,7 @@ export const ListaJugadoresClub = (props) => {
                                 <td>{jugadores.fechaAlta}</td>
                                 <td>{jugadores.estado ? "Activo" : "Inactivo"}</td>
                                 <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm">Habilitar</Button></td>
+                                            class="btn btn-success btn-sm" onClick={HandleClickHabilitar}>Habilitar</Button></td>
                                 <td><Button classname="botonesTablas" type="submit"
                                             class="btn btn-success btn-sm"> Deshabilitar</Button></td>
                             </tr>)

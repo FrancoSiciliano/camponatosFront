@@ -61,8 +61,8 @@ export const TablaCampeonatos = (props) => {
                                 <td>{descripcion}</td>
                                 <td>{campeonato.fechaInicio}</td>
                                 <td>{campeonato.fechaFin}</td>
-                                <td><Link className='btn btn-success' to={{pathname: '/tablaPosiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></td>
-                                <td><Link className='btn btn-success' to={{pathname: '/partidosAdministrador', state:{id:ids,descrip:descripcion}}}>Partidos</Link></td>
+                                <td><Link className='btn btn-success' to={{pathname: '/tabla/Posiciones', state:{id:ids,descrip:descripcion}}}>Tabla</Link></td>
+                                <td><Link className='btn btn-success' to={{pathname: '/partidos/Administrador', state:{id:ids,descrip:descripcion}}}>Partidos</Link></td>
                             </tr>)
     }})}
                     </tbody>

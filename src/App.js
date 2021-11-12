@@ -87,7 +87,9 @@ function App() {
           <Route path="/partidos/Administrador">
             <TablaPartidosCampeonatos/>
           </Route>
-          /
+          <Route path="/partidos/Detalles">
+            <DetallesPartido/>
+          </Route>
           <Route path="/gestionar/campeonato">
             <CampeonatosResponsable />
           </Route>

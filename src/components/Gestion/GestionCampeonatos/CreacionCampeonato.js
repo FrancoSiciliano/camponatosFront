@@ -1,10 +1,9 @@
 import React from "react";
 import {Col, FloatingLabel, Form, Row, Button} from "react-bootstrap"
 import {useState} from "react";
-import axios from "axios";
 import './CreacionCampeonato.css'
 import {PopUp} from "../../PopUp/PopUp";
-import {Link, Redirect, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 export const RegistroCampeonato = () => {
     const url = 'http://localhost:8080/';

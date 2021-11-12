@@ -18,6 +18,8 @@ export const TablaPartidosResponsables=()=>{
     fetchData(links);
     console.log(fetchData(links))
 },[]);
+const handleClick = () =>{
+}
 
   if(data){
     return(
@@ -46,8 +48,8 @@ export const TablaPartidosResponsables=()=>{
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></td>
-      <td><Button classname="botonTablaValidar" type="submit" class="btn btn-primary btn-sm"> Validar</Button></td>
+      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/partidos/Detalles', state:ids}}> Detalles</Link></td>
+      <td><Button classname="botonTablaValidar" type="submit" class="btn btn-primary btn-sm" onClick={handleClick}> Validar</Button></td>
     </tr>)
   })}
 </tbody>
