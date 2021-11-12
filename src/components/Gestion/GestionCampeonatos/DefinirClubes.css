@@ -1,11 +1,33 @@
 .contenedor-principal-difinir-clubes {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    background-size: cover;
+}
+
+.contenedor-titulo-definir-clubes {
     background-image: url("../../../assets/images/fondo-definir-camp.jpg");
     background-size: cover;
+    text-align: center;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo-definir-clubes {
+    margin: 0;
+    background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( 11.5px );
+    -webkit-backdrop-filter: blur( 11.5px );
+    width: 70%;
+}
+
+
+.contenedor-principal-cards-club:nth-of-type(1) {
+    margin-right: 100px;
 }
 
 /* width */

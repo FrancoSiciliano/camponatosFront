@@ -45,9 +45,6 @@ export const RegistroCampeonato = () => {
 
         return true;
     }
-    // const postData = async (datos) => {
-    //     await axios.post(url + `crearCampeonato?descripcion=${datos.descripcion}&fechaInicio=${datos.fechaInicio.replaceAll("-", "/")}&fechaFin=${datos.fechaFin.replaceAll("-", "/")}&estado=${datos.estado}`)
-    // }
 
     const controlInputs = () => {
         if (datos.fechaInicio > datos.fechaFin) {
@@ -87,6 +84,13 @@ export const RegistroCampeonato = () => {
                 setShowModal(true);
                 return false;
             }
+        } else if (datos.tipo === "Puntos" && datos.nroZonas !== 0) {
+            setDatos(
+                {
+                    ...datos,
+                    nroZonas: 0
+                }
+            )
         }
 
         return true;

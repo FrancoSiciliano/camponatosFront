@@ -11,7 +11,7 @@ export const PopUp = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Advertencia
+                    {props.modalTitle ? props.modalTitle : "Advertencia"}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
