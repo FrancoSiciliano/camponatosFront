@@ -86,9 +86,9 @@ export const DefinirClubesCampeonato = () => {
             setModalTitle("Operación exitosa");
             setShowModal(true);
         } catch (e) {
-            setMensajeError(e.message);
-            setTituloError("Error al crear el campeonato");
             setModalTitle("Error")
+            setTituloError("Error al crear el campeonato");
+            setMensajeError(e.response.data.message);
             setShowModal(true);
         }
 

@@ -4,17 +4,19 @@ import {CarouselCard} from "./Carousel/CarouselCard";
 import './landingPageJugador.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
-export const LandingJugador = (props) => {
+export const LandingJugador = () => {
     const [jugador, setJugador] = useState(false);
     const [stats, setStats] = useState(false);
+    const history = useHistory();
+    const idJugador = history.location.state;
 
     useEffect(() => {
         const fetchData = async () => {
-            const datos = await axios.get(`http://localhost:8080/encontrarJugador?idJugador=${props.idJugador}`);
+            const datos = await axios.get(`http://localhost:8080/encontrarJugador?idJugador=${idJugador}`);
             setJugador(datos.data);
-            console.log(JSON.stringify(jugador))
-            const estadisticas = await axios.get(`http://localhost:8080/getStatsByClub?idJugador=${props.idJugador}&idClub=${datos.data.club.idClub}`);
+            const estadisticas = await axios.get(`http://localhost:8080/getStatsByClub?idJugador=${idJugador}&idClub=${datos.data.club.idClub}`);
             setStats(estadisticas.data);
         }
 
