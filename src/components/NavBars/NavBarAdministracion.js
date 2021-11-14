@@ -5,7 +5,6 @@ import {MdSportsSoccer} from 'react-icons/all'
 import { useState } from 'react'
 import { BiLogOut} from 'react-icons/bi';
 import { BsPencil } from 'react-icons/bs'
-import { PopUpEdicion } from '../PopUp/PopUpEdicion'
 
 function NavBarAdministracion () {
   const [show, setShow] = useState(false);
@@ -58,7 +57,7 @@ function NavBarAdministracion () {
             </Nav>
           </Navbar.Collapse>
           
-          <PopUpEdicion handleClose={handleClose} show={show} tipo={tipo ? tipo : "a"}/> 
+         
           
           
       </Container>

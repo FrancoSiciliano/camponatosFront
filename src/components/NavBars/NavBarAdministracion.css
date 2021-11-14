@@ -13,3 +13,16 @@
     flex-direction: row;
     justify-content: center;
 }
+
+.cerrarsesionadmin{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    left:100%;
+}
+
+.cerrarsesionadmin:hover{
+    background-color: #198754;
+    transition: 100ms;
+      
+}
