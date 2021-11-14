@@ -6,30 +6,30 @@
     justify-content: space-between;
 }
 .ColumnasHome{
-    width: 300px;
+    width: 310px;
     margin-bottom: 15px;
 }
 .ColumnasHomeBotones{
     width: 300px;
     height: 50px;
-    margin-bottom: 35px;
+    margin-bottom: 10px;
 }
 
 .boton-home {
-    padding: 20px !important;
+    padding: 5px !important;
     font-size: 20px !important;
-    width: 240px;
 }
 
 .titulo-home {
-    margin-top: 25%;
-    font-size: 200px !important;
+    font-size: 150px !important;
+    padding: 0;
 }
 
 .contenedor-home {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     height: 100vh;
     width: 100vw;
     background-image: url("../../assets/images/fondo-home.jpg");

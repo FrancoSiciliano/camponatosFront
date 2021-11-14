@@ -1,8 +1,9 @@
 import {Link} from "react-router-dom";
 import './home.css'
-import { useState} from "react";
+import {useState} from "react";
 import {Row, Form} from "react-bootstrap";
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
+
 const roles = [
     {
         value: "Admin",
@@ -36,7 +37,6 @@ export const Home = () => {
         });
     };
     return (
-        <div>
         <div className="contenedor-home">
             <div>
                 <h1 className="titulo-home">Furvo</h1>
@@ -46,10 +46,10 @@ export const Home = () => {
                     <FloatingLabel controlId="floatingSelectGrid" label="Rol">
                         <Form.Select aria-label="Floating label select example" name="rol" onChange={handleChange}>
                             <option>Seleccionar</option>
-                                {roles.map((option) => (
-                                    <option key={option.value} value={option.value}>
-                                        {option.label}
-                            </option>
+                            {roles.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
                             ))}
                         </Form.Select>
                     </FloatingLabel>
@@ -67,13 +67,12 @@ export const Home = () => {
                     </FloatingLabel>
                 </Row>
                 <Row className="g-1 ColumnasHomeBotones">
-                <Link to="/" className="boton-home btn btn-success" onClick={handleClick}>Iniciar Sesión</Link>
+                    <Link to="/" className="boton-home btn btn-success" onClick={handleClick}>Iniciar Sesión</Link>
                 </Row>
                 <Row className="g-1 ColumnasHomeBotones">
-                <Link to="/registro/responsable" className="boton-home btn btn-success">Registrarse</Link>
+                    <Link to="/registro/responsable" className="boton-home btn btn-success">Registrarse</Link>
                 </Row>
             </div>
-        </div>
         </div>
     )
 }
