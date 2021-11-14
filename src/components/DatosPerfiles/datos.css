@@ -1,46 +1,54 @@
 .main-container-datos{
     background-image: url(../../assets/images/imagencancha.jpg);
-    background-repeat: repeat;
-    background-size: 100vw 100vh;
-    width: 100vw !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100% !important;
     height: 100vh !important;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 .titledatos{
-    position:relative;
     display: flex;
-    top: 160px;
     justify-content:center;
     font-family: 'Titillium Web', sans-serif;
     font-size: 80px !important;
     color: #ffffff;
-  
+    margin-bottom: 50px;
 }
 .avatar{
-    position: relative;
-    left: 100px;
-    top: 200px !important;
     width: 300px !important;
     height: 250px !important;
 }
 
-.contenedor-datos{
-    font-family: 'Titillium Web', sans-serif;
-    position: relative;
-    width: 1200px;
-    height: 400px;
-    left: 500px;
-    top: -70px !important;
+.datos-perfil {
+    display: flex;
+    justify-content: center;
 }
-.formulario{
-    width: 1200px;
-    height: 400px;
+
+.datos-perfil-club {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
+    width: 60vw;
 }
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario-club {
+    width: 100% !important;
+}
+
 .boton{
-   
-    position: relative;
     margin-top: 20px !important;
-    left: 400px !important;
     width: 300px !important;
     font-size: 30px !important;
 }
