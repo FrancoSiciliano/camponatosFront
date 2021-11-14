@@ -10,7 +10,6 @@ function NavBarJugador() {
             <div className="titulo-nav-jugador">
                 <MdSportsSoccer style={{width: '30px', height: '30px', color: 'white', marginRight: '10px'}}/>
                 <Navbar.Brand href="#"> PERFIL JUGADOR </Navbar.Brand>
-
             </div>
             <Nav>
                 <div className="botones-nav">

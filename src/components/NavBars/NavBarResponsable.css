@@ -4,15 +4,12 @@
     color:black !important;
 }
 
-
 .jugadores-div:hover{
     background-color: #198754;
     transition: 100ms;
 }
 
-.navbarsLanding{
-    display: flex; 
-    width: 400px;
-    position: relative;
-    left: 1200px;
+.jugadores-div {
+    display: flex;
+    align-items: center;
 }
