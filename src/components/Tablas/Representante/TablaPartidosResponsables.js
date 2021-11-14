@@ -6,17 +6,14 @@ import axios from "axios";
 export const TablaPartidosResponsables=()=>{
   let location = useLocation()
   console.log(location)
-  var links=`http://localhost:8080/getPartidosByClubLocal?idClub=1`
-  var links2=`http://localhost:8080/getAllPartidos`
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async (url) => {
-        const response = await axios(url);
+        const response = await axios(`http://localhost:8080/getPartidosByClub?idClub=1`);
         const Datanew = response.data;
         setData(Datanew);
     };
-    fetchData(links);
-    console.log(fetchData(links))
+    fetchData();
 },[]);
 const handleClick = () =>{
 }

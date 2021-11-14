@@ -180,10 +180,7 @@ export const RegistroJugador = () => {
                                 </FloatingLabel>
                             </Form.Group>
                         </Row>
-
                         <Link className="btn btn-success" to="/registroJugador" onClick={handleClick}>Finalizar</Link>
-
-
                         <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al jugador"/>
                     </Form>
                 </div>
