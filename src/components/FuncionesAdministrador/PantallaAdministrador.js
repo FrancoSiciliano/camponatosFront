@@ -38,13 +38,19 @@ if(data){
           </thead>
           <tbody>
           {data.map((partido, index)=>{
-            
+            let fecha= "";
+            if(partido.fechaPartido == null){
+               fecha = "Sin Cargar"
+            }
+            else{
+               fecha = partido.fechaPartido
+            }
           return(
             <tr key={partido.descripcion}>
               <td>{partido.campeonato.descripcion}</td>
               <td>{partido.clubLocal.nombre}</td>
               <td>{partido.clubVisitante.nombre}</td>
-              <td>{partido.fechaPartido}</td>
+              <td>{fecha}</td>
               <td><Link className = 'btn btn-success botonesAdmin-tabla' to="/cargar/datos/partido">Cargar Datos</Link></td>
             </tr>)
           })}

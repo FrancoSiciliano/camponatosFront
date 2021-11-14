@@ -7,7 +7,7 @@ export const TablaPartidosResponsables=()=>{
   let location = useLocation()
   console.log(location)
   var links=`http://localhost:8080/getPartidosByClubLocal?idClub=1`
-  var links2=`http://localhost:8080/getPartidosByClubVisitante?idClub=1`
+  var links2=`http://localhost:8080/getAllPartidos`
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async (url) => {

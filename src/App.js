@@ -13,7 +13,7 @@ import ListaJugadoresClub from "./components/Gestion/GestionJugadores/ListaJugad
 import { RegistroCampeonato } from "./components/Gestion/GestionCampeonatos/CreacionCampeonato";
 import { LandingAdministrador} from "./components/LandingAdministrador/LandingAdmistrador";
 import CargarDatosPartidos from "./components/Gestion/GestionPartidos/CargarDatosPartidos";
-import { DetallesPartido } from "./components/Tablas/DetallesPartido";
+import { DetallesPartido } from "./components/Gestion/GestionPartidos/DetallesPartido";
 import { CrearPartido } from "./components/Gestion/GestionPartidos/CrearPartido";
 import {Home} from "./components/LandingGeneral/Home";
 import './App.css'
@@ -21,6 +21,10 @@ import {DefinirClubesCampeonato} from "./components/Gestion/GestionCampeonatos/D
 import TablaCampeonatos from "./components/Tablas/TablaCampeonatos";
 import {TablaPartidosCampeonatos} from "./components/Tablas/TablaPartidosCampeonatos";
 import { DatosJugadorResponsable } from "./components/DatosPerfiles/DatosJugadorResponsable";
+import { RegistroClub } from "./components/Registros/RegistroClub";
+import { TablaClubes } from "./components/Tablas/TablaClubes";
+import { TablaResponsables } from "./components/Tablas/Representante/TablaResponsables";
+import { RegistroResponsableAdministrador } from "./components/Registros/RegistroResponsableAdminsrador";
 function App() {
   return (
     <div className="App">
@@ -48,7 +52,10 @@ function App() {
             <RegistroJugador />
           </Route>
           <Route path="/registro/responsable">
-            <RegistroResponsable />
+            <RegistroResponsableAdministrador />
+          </Route>
+          <Route path="/registro/club">
+            <RegistroClub/>
           </Route>
           <Route path="/registro/campeonato">
             <RegistroCampeonato />
@@ -71,22 +78,31 @@ function App() {
             <DatosClub/>
           </Route>
 
-
           <Route path="/detalles/partidos">
             <DetallesPartido />
           </Route>
+
           <Route path="/tabla/habilitacion/jugadores/campeonato">
             <ListaJugadoresClub/>
           </Route>
           <Route path="/tabla/Campeonatos">
             <TablaCampeonatos/>
           </Route>
+          <Route path="/tabla/Clubes">
+            <TablaClubes/>
+          </Route>
           <Route path="/tabla/Posiciones">
             <TablaPosicion/>
           </Route>
+          <Route path="/tabla/representantes">
+            <TablaResponsables/>
+          </Route>
+
           <Route path="/partidos/Administrador">
             <TablaPartidosCampeonatos/>
           </Route>
+
+
           <Route path="/partidos/Detalles">
             <DetallesPartido/>
           </Route>

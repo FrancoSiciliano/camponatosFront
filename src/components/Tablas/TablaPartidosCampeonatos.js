@@ -20,7 +20,7 @@ export const TablaPartidosCampeonatos=()=>{
     fetchData();
 },[]);
   if(data){
-    return(<div><NavBarAdministracion/>
+    return(<div>
       <div className="TablaPartidosCampeoantos">
     <Table striped bordered hover>
         <thead>
