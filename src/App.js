@@ -79,7 +79,7 @@ function App() {
           </Route>
 
           <Route path="/detalles/partidos">
-            <DetallesPartido />
+            <DetallesPartido/>
           </Route>
 
           <Route path="/tabla/habilitacion/jugadores/campeonato">
@@ -101,7 +101,7 @@ function App() {
             <TablaResponsables/>
           </Route>
 
-          <Route path="/partidos/Administrador">
+          <Route path="/partidos/campeonatos">
             <TablaPartidosCampeonatos/>
           </Route>
 
