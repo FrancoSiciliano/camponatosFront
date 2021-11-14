@@ -11,7 +11,7 @@ export const PantallaAdministrador = (props) =>{
   const [data, setData] = useState(null);
   useEffect(() => {
         const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=1`);
+        const response = await axios(`http://localhost:8080/getAllPartidos`);
         const newData = response.data;
         setData(newData);};
         fetchData();});

@@ -20,7 +20,7 @@ function NavBarAdministracion () {
       <Navbar>
       <Container fluid>
           <MdSportsSoccer style={{width:'30px', height:'30px', color:'white', marginRight:'10px'}}/>
-          <Navbar.Brand  style = {{marginRight: '60%'}} href="/home/administracion"> PERFIL ADMINISTRADOR </Navbar.Brand>
+          <Navbar.Brand  style = {{marginRight: '60%'}} href="/home/administracion"> ADMINISTRADOR </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto" >

@@ -1,5 +1,4 @@
-import {Link} from "react-router-dom";
-import {Col, FloatingLabel, Form,Row} from "react-bootstrap"
+import {Col, FloatingLabel, Form,Row,Button} from "react-bootstrap"
 
 import ".//Registros.css"
 import {useEffect, useState} from "react";
@@ -8,6 +7,10 @@ import {PopUp} from "../PopUp/PopUp";
 
 export const RegistroJugador = () => {
 
+    const [popUp, setpopUp] = useState ({
+        mensaje: "",
+        titulo: ""
+    })
     const [datos, setDatos] = useState({
         nombre: "",
         apellido: "",
@@ -41,7 +44,7 @@ export const RegistroJugador = () => {
         })
     }
 
-    const handleClick = (event) => {
+    const handleSubmit = (event) => {
         if (datos.nombre === "" || containsNumbers(datos.nombre)) {
             setError("Nombre no válido");
             setShowModal(true);
@@ -92,8 +95,21 @@ export const RegistroJugador = () => {
             setShowModal(true);
         }
 
-        alert(JSON.stringify(datos));
+        postData();
     };
+    const postData = async () => {
+        try{
+            await axios.post(`http://localhost:8080/crearJugador?tipoDoc=${datos.tipoDoc}&documento=${datos.nroDoc}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=1&fechaNac=${datos.fechaNacimiento}&direccion=${datos.direccion}&mail=${datos.mail}&password=${datos.password}&telefono=${datos.nroTelefono}`)
+            setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
+            
+        }catch(e){
+            console.log(e.message)
+            setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
+            
+        }
+        setShowModal(true);
+
+    }
 
     const containsNumbers = (string) => {
         return string.match(/\d+/g) != null;
@@ -109,7 +125,7 @@ export const RegistroJugador = () => {
                 <div className="main-container-registro">
                     <h1 className="titulo-responsable">Registro Jugador</h1>
 
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
 
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGridEmail">
@@ -180,7 +196,7 @@ export const RegistroJugador = () => {
                                 </FloatingLabel>
                             </Form.Group>
                         </Row>
-                        <Link className="btn btn-success" to="/registroJugador" onClick={handleClick}>Finalizar</Link>
+                        <Button type="submit" className="btn-success">Finalizar</Button>
                         <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al jugador"/>
                     </Form>
                 </div>
