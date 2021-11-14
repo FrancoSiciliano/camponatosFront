@@ -1,4 +1,4 @@
-import { Table,Button } from "react-bootstrap"
+import { Table } from "react-bootstrap"
 import { useLocation } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import  axios  from "axios";

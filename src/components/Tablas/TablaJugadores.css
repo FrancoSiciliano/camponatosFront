@@ -1,0 +1,86 @@
+.TablaListaJugadoresClub {
+    background-color: #fff;
+}
+
+tbody, td, th, thead, tr {
+    color: rgb(0, 0, 0) !important;
+    border-color: #40916C !important;
+}
+
+tr {
+    text-align: center;
+}
+
+thead, th {
+    border-top: transparent !important;
+}
+
+td th {
+    font-size: large;
+    color: rgb(78, 76, 76);
+    font-weight: 600;
+    font-family: Helvetica, sans-serif;
+}
+
+.TablaListaJugadoresClub .btn-primary {
+    width: 125px;
+    background-color: #40916C;
+    border-color: transparent;
+}
+
+.TablaListaJugadoresClub .btn-primary:hover {
+    background-color: #40916dcb;
+    border-color: transparent;
+}
+
+.TablaListaJugadoresClub .btn-primary:focus {
+    background-color: #40916dcb;
+    border-color: transparent;
+}
+
+.TablaListaJugadoresClub .btn-primary a {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.searchBar {
+    position: relative;
+    width: 30rem;
+    background: #57bd84;
+    border-radius: .7rem;
+}
+
+th {
+    color: rgb(53, 53, 53);
+    font-size: large;
+    font-weight: 500;
+}
+
+.searchBox {
+    height: 5rem;
+    font-family: 'Lato', sans-serif;
+    color: #2f2f2f;
+    font-size: 1.8rem;
+}
+
+input[type="search"] {
+    margin-right: 5%;
+}
+
+input[type="search"]:focus {
+    border-color: transparent;
+}
+
+.ContenedorGestion {
+    background-color: #D8F3DC;
+}
+
+.scrollable-lista-jugadores{
+    background-color: #FFFF !important;
+    overflow-y:scroll !important;
+    max-height:93vh !important;
+}
+
+.titulo-tabla-jug-camp{
+    font-size: 30px;
+}
