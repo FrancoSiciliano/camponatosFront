@@ -54,6 +54,11 @@ ul {
     list-style-type: none;
     text-align: left;
 }
+
+.links-carrusel {
+    display: flex;
+    justify-content: center;
+}
  
 .botoncarrusel{
     background-color: #40916C !important;

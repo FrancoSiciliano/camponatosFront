@@ -46,10 +46,10 @@ export const CarouselCard = (props) => {
                 <p className='titulo-filtros-carrusel'> Seleccionar estado de los campeonatos </p>
                 <div className="filtros-carrusel">
                     <Form.Select className="filtro" onChange={handleFilteringByState}>
-                    <option value="no-seleccionado">Seleccionar estado</option>
-                    <option value="activo">Activo</option>
-                    <option value="inactivo">Inactivo</option>
-                </Form.Select>
+                        <option value="no-seleccionado">Seleccionar estado</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </Form.Select>
 
                     <Form.Control className="filtro" placeholder="Buscar por Nombre" onChange={handleFilteringByName}/>
                 </div>
@@ -70,8 +70,12 @@ export const CarouselCard = (props) => {
                                                 <li>Estado: {campeonato.estado}</li>
                                             </ul>
                                         </Card.Text>
-                                        <Link to="/test" className="btn btn-success botoncarrusel"> Ir a Tabla</Link>
-                                        <Link to="/test" className="btn btn-success botoncarrusel"> Estadisticas </Link>
+                                        <div className="links-carrusel">
+                                            <Link to={{pathname: "/tabla/Posiciones", state: campeonato}}
+                                                  className="btn btn-success botoncarrusel"> Ir a Tabla</Link>
+                                            <Link to="/test"
+                                                  className="btn btn-success botoncarrusel"> Estadisticas </Link>
+                                        </div>
                                     </Card.Body>
                                 </Card>
                             </Carousel.Item>
