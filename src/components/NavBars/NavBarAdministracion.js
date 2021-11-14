@@ -1,5 +1,4 @@
-import Container from 'react-bootstrap/Container'
-import {Navbar, Nav, NavDropdown, Dropdown, Button, Modal, Form} from 'react-bootstrap'
+import {Navbar, Nav, NavDropdown, Dropdown, Button} from 'react-bootstrap'
 import './NavBarAdministracion.css'
 import {MdSportsSoccer} from 'react-icons/all'
 import {useState} from 'react'
@@ -31,8 +30,14 @@ function NavBarAdministracion() {
                         color: 'white'
                     }}/>
                     <NavDropdown title="EDITAR" id="basic-nav-dropdown" classname="LinkNavbar">
-                        <NavDropdown.Item onClick={() => handleClick('JUGADOR')}> PERFIL
-                            JUGADOR </NavDropdown.Item>
+                    <Dropdown>
+                            <Dropdown.Toggle className='ddJugadores'>JUGADORES</Dropdown.Toggle>
+                            <Dropdown.Menu>
+                            <NavDropdown.Item onClick={() => handleClick('JUGADOR')}> PERFIL JUGADOR </NavDropdown.Item>
+                            <Dropdown.Item href="/tabla/jugadores">LISTADO JUGADORES</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                       
                         <Dropdown>
                             <Dropdown.Toggle className='ddJugadores'>
                                 CLUBES

@@ -1,4 +1,4 @@
-import {Table, Button, Form} from "react-bootstrap";
+import {Table,Form} from "react-bootstrap";
 import './TablaCampeonatos.css'
 import {useEffect, useState} from "react";
 import axios from "axios";

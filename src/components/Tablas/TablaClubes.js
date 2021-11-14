@@ -57,8 +57,8 @@ export const TablaClubes = (props) => {
                                 <td>{ids}</td>
                                 <td>{nombre}</td>
                                 <td>{club.direccion}</td>
-                                <td><Link className='btn btn-success' to={{pathname: '/datos/club', state:{id:ids}}}>Perfil</Link></td>
-                                <td><Link className='btn btn-success' to={{pathname: '/partidos/Administrador', state:{id:ids,descrip:nombre}}}>Eliminar</Link></td>
+                                <td><Link className='btn btn-success' to={{pathname: '/datos/club', state:ids}}>Perfil</Link></td>
+                                <td><Button className='btn btn-success'> Eliminar</Button></td>
                             </tr>)
     })}
                     </tbody>

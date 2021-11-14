@@ -3,7 +3,6 @@ import { useLocation,Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
 
 import axios from "axios";
-import NavBarResponsable from "../NavBars/NavBarResponsable";
 
 import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
@@ -41,9 +40,6 @@ export const TablaPartidosCampeonatos=()=>{
   <tbody>
   {data.map((partido,index)=>{
     var ids=partido.idPartido
-    var validadoLocal=partido.convalidaLocal
-    var validadoVisitante=partido.convalidaVisitante
-
   return(
     <tr key={index}>
       <td>{partido.nroFecha}</td>

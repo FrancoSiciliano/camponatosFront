@@ -1,7 +1,6 @@
 import { Login } from "./components/Login/Login";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { RegistroJugador } from "./components/Registros/RegistroJugador";
-import { RegistroResponsable } from "./components/Registros/RegistroResponsable";
 import { DatosJugador } from "./components/DatosPerfiles/DatosJugador";
 import { DatosRepresentante } from "./components/DatosPerfiles/DatosRepresentante";
 import { DatosClub } from "./components/DatosPerfiles/DatosClub";
@@ -25,6 +24,7 @@ import { RegistroClub } from "./components/Registros/RegistroClub";
 import { TablaClubes } from "./components/Tablas/TablaClubes";
 import { TablaResponsables } from "./components/Tablas/Representante/TablaResponsables";
 import { RegistroResponsableAdministrador } from "./components/Registros/RegistroResponsableAdminsrador";
+import { TablaJugadores } from "./components/Tablas/TablaJugadores";
 function App() {
   return (
     <div className="App">
@@ -90,6 +90,9 @@ function App() {
           </Route>
           <Route path="/tabla/Clubes">
             <TablaClubes/>
+          </Route>
+          <Route path="/tabla/Jugadores">
+            <TablaJugadores/>
           </Route>
           <Route path="/tabla/Posiciones">
             <TablaPosicion/>
