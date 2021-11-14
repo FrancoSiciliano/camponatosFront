@@ -1,28 +1,30 @@
-.navbar{
+.navbar {
     background-color: #2D6A4F;
 }
-.navbar-light .navbar-brand{
-    color: white!important;
-}
-.navbar-light .navbar-nav .nav-link{
-    color: white!important;
+
+.navbar-light .navbar-brand {
+    color: white !important;
 }
 
-.editar-admin{
+.navbar-light .navbar-nav .nav-link {
+    color: white !important;
+}
+
+.editar-admin {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.cerrarsesionadmin{
+.cerrarsesionadmin {
     position: relative;
     display: flex;
     flex-direction: row;
-    left:100%;
+    left: 100%;
 }
 
-.cerrarsesionadmin:hover{
+.cerrarsesionadmin:hover {
     background-color: #198754;
     transition: 100ms;
-      
+
 }

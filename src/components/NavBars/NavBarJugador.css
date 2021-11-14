@@ -1,29 +1,44 @@
 
-.miperfil{
-    margin-right: 10px;
-    position: relative;
+.miperfil {
     display: flex;
     height: 100%;
     flex-direction: row;
-    box-sizing: border-box
+    align-items: center;
+    padding: 5px;
 }
 
-.miperfil:hover{
+.miperfil:hover {
     background-color: #198754;
     transition: 100ms;
-  
+
 }
-.cerrarsesion{
-    margin-left:10px;
-    position: relative;
+
+.cerrarsesion {
+    margin-left: 10px;
     height: 100%;
     display: flex;
     flex-direction: row;
-    box-sizing: border-box
+    align-items: center;
 }
 
-.cerrarsesion:hover{
+.cerrarsesion:hover {
     background-color: #198754;
     transition: 100ms;
-      
+
+}
+
+.navbar-expand {
+    margin: 0 !important;
+    justify-content: space-between !important;
+}
+
+.navbar-jugador {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+}
+
+.botones-nav {
+    display: flex;
+    flex-direction: row;
 }

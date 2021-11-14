@@ -9,6 +9,13 @@
     margin: 10px !important;
     width: 400px;
 }
+
+.filtros-carrusel {
+    display: flex;
+    justify-content: space-around;
+    width: 350px;
+}
+
 .titulo-filtros-carrusel{
     padding: 0 20px;
     background: rgba( 255, 255, 255, 0.7 );
@@ -22,7 +29,7 @@
 }
 .filtro {
     height: 50px;
-    width: 200px !important;
+    width: 150px !important;
     margin-bottom: 30px;
 }
 

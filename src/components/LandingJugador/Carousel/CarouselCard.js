@@ -1,4 +1,4 @@
-import { Card, Carousel, Form} from "react-bootstrap";
+import {Card, Carousel, Form} from "react-bootstrap";
 import "./carousel.css"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -43,14 +43,16 @@ export const CarouselCard = (props) => {
     return (
         <>
             <div className="main-container-carrusel">
-                <p className = 'titulo-filtros-carrusel'> Seleccionar estado de los campeonatos </p>
-                <Form.Select className="filtro" onChange={handleFilteringByState}>
+                <p className='titulo-filtros-carrusel'> Seleccionar estado de los campeonatos </p>
+                <div className="filtros-carrusel">
+                    <Form.Select className="filtro" onChange={handleFilteringByState}>
                     <option value="no-seleccionado">Seleccionar estado</option>
                     <option value="activo">Activo</option>
                     <option value="inactivo">Inactivo</option>
                 </Form.Select>
 
-                <Form.Control className="filtro" placeholder="Buscar por Nombre" onChange={handleFilteringByName}/>
+                    <Form.Control className="filtro" placeholder="Buscar por Nombre" onChange={handleFilteringByName}/>
+                </div>
 
                 <Carousel variant="dark" className="carrusel">
                     {campeonatos.map((campeonato, index) => {

@@ -1,8 +1,9 @@
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import './home.css'
 import {useState} from "react";
 import {Row, Form} from "react-bootstrap";
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import axios from "axios";
 
 const roles = [
     {
@@ -18,6 +19,8 @@ const roles = [
 
 export const Home = () => {
 
+    const history = useHistory();
+
     const [usuario, setUsuario] = useState({
         mail: "",
         password: "",
@@ -26,8 +29,31 @@ export const Home = () => {
 
     const [showModal, setShowModal] = useState(false);
 
-    const handleClick = (event) => {
-        alert(JSON.stringify(usuario));
+    const handleClick = async (event) => {
+        try {
+            let response;
+
+            switch (usuario.rol) {
+                case "Admin":
+                    response = await axios.get(`http://localhost:8080/validarAdministrador?mail=${usuario.mail}&password=${usuario.password}`)
+                    response.data ? history.push("/home/administracion") : setShowModal(true);
+                    break;
+                case "Responsable":
+                    response = await axios.get(`http://localhost:8080/validarResponsable?mail=${usuario.mail}&password=${usuario.password}`)
+                    response.data ? history.push("/home/representante") : setShowModal(true);
+                    break;
+                case "Jugador":
+                    response = await axios.get(`http://localhost:8080/validarJugador?mail=${usuario.mail}&password=${usuario.password}`)
+                    response.data ? history.push("/home/jugador") : setShowModal(true);
+                    break;
+                default:
+                    setShowModal(true);
+            }
+
+        } catch (e) {
+            console.log(e);
+        }
+
     };
 
     const handleChange = (event) => {
@@ -36,6 +62,7 @@ export const Home = () => {
             [event.target.name]: event.target.value,
         });
     };
+
     return (
         <div className="contenedor-home">
             <div>
