@@ -44,7 +44,7 @@ function App() {
             <LandingResponsable />
           </Route>
           <Route path="/home/jugador">
-            <LandingJugador idJugador="60" />
+            <LandingJugador />
           </Route>
 
 

@@ -30,6 +30,7 @@
 .navbar-expand {
     margin: 0 !important;
     justify-content: space-between !important;
+
 }
 
 .navbar-jugador {
@@ -41,4 +42,9 @@
 .botones-nav {
     display: flex;
     flex-direction: row;
+}
+
+.titulo-nav-jugador {
+    display: flex;
+    align-items: center;
 }
