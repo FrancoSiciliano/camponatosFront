@@ -1,5 +1,5 @@
-import { Table } from "react-bootstrap"
-import { useLocation } from 'react-router-dom'
+import {Table} from "react-bootstrap"
+import {useHistory, useLocation} from 'react-router-dom'
 import {useEffect, useState} from "react";
 import  axios  from "axios";
 import NavbarJugador from "../NavBars/NavBarJugador"

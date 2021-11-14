@@ -9,8 +9,12 @@ export const DetallesPartido = (props) => {
     let location = useLocation();
 
     const [datosPartido, setDatosPartido] = useState(null);
-    const [faltasLocal, setFaltasLocal] = useState(null);
-    const [faltasVisitante, setFaltasVisitante] = useState(null);
+    const [faltasLocal, setFaltasLocal] = useState([]);
+    const [faltasVisitante, setFaltasVisitante] = useState([]);
+    const [golesLocal, setGolesLocal] = useState([]);
+    const [golesVisitante, setGolesVisitante] = useState([]);
+    const [momentosDestacadosLocal, setMomentosDestacadosLocal] = useState([]);
+    const [momentosDestacadosVisitante, setMomentosDestadosVisitante] = useState([]);
 
     useEffect(async () => {
         const fetchDataPartido = async () => {
@@ -29,48 +33,124 @@ export const DetallesPartido = (props) => {
 
             setFaltasLocal(dataFaltasL);
             setFaltasVisitante(dataFaltasV);
-            console.log(dataFaltasL);
 
+        }
+
+        const fetchDataGoles = async () => {
+            const responseGolesL = await axios.get(`http://localhost:8080/getGolesByPartidoAndClub?idPartido=1&idClubAContar=1&idClubRival=2`);
+            const responseGolesV = await axios.get(`http://localhost:8080/getGolesByPartidoAndClub?idPartido=1&idClubAContar=2&idClubRival=1`);
+            const dataGolesL = responseGolesL.data;
+            const dataGolesV = responseGolesV.data;
+
+            setGolesLocal(dataGolesL);
+            setGolesVisitante(dataGolesV);
         }
 
         await fetchDataPartido();
         await fetchDataFaltas();
+        await fetchDataGoles();
+
+        let auxL = golesLocal.concat(faltasLocal);
+        auxL.sort((a,b) => {return a.minuto - b.minuto});
+        setMomentosDestacadosLocal(auxL);
+
+        let auxV = golesVisitante.concat(faltasVisitante);
+        auxV.sort((a,b) => {return a.minuto - b.minuto});
+        setMomentosDestadosVisitante(auxV);
+
     }, []);
 
     if (datosPartido) {
         return (<>
-            <div className="titulo-partido">
-                <h1>{datosPartido.clubLocal.nombre}</h1>
-                <h1>VS.</h1>
-                <h1>{datosPartido.clubVisitante.nombre}</h1>
-            </div>
             <div className="comparacion-partido">
-                <Table striped bordered hover sm className="local">
-                    <tbody>
-                    <tr>
-                        <td>Goles: {datosPartido.golesLocal ? datosPartido.golesLocal : "0"}</td>
-                    </tr>
-                    <tr>
-                        <td>Validado: {datosPartido.convalidaLocal ? "Si" : "No"}</td>
-                    </tr>
-                    <tr>
-                        <td>Cantidad Faltas: {faltasLocal.length}</td>
-                    </tr>
-                    </tbody>
-                </Table>
-                <Table striped bordered hover sm className="visitante">
-                    <tbody>
-                    <tr>
-                        <td>Goles: {datosPartido.golesVisitante ? datosPartido.golesVisitante : "0"}</td>
-                    </tr>
-                    <tr>
-                        <td>Validado: {datosPartido.convalidaVisitante ? "Si" : "No"}</td>
-                    </tr>
-                    <tr>
-                        <td>Cantidad Faltas: {faltasVisitante.length}</td>
-                    </tr>
-                    </tbody>
-                </Table>
+                <div className="equipo-detalle-partido">
+                    <h1>{datosPartido.clubLocal.nombre}</h1>
+                    <Table hover sm className="local">
+                        <tbody>
+                        <tr>
+                            <td>Goles: {datosPartido.golesLocal ? datosPartido.golesLocal : "0"}</td>
+                        </tr>
+                        <tr>
+                            <td>Validado: {datosPartido.convalidaLocal ? "Si" : "No"}</td>
+                        </tr>
+                        <tr>
+                            <td>Cantidad Faltas: {faltasLocal.length}</td>
+                        </tr>
+                        </tbody>
+                    </Table>
+                    <h1>Destacado:</h1>
+                    <Table hover sm className="local">
+                        <tbody>
+                        {
+                            momentosDestacadosLocal.map((momento, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{(momento.idFalta ? "Falta: " : "Gol: ") + momento.tipo + " - " + momento.jugador.nombre + " " + momento.jugador.apellido + " - " + momento.minuto + "'"}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                        </tbody>
+                    </Table>
+                    {/*<Table hover sm className="local">*/}
+                    {/*    <tbody>*/}
+                    {/*    {*/}
+                    {/*        golesLocal.map((gol, index) => {*/}
+                    {/*            return (*/}
+                    {/*                <tr key={index}>*/}
+                    {/*                    <td>Gol: {gol.tipo + " - " + gol.jugador.nombre + " " + gol.jugador.apellido + " - " + gol.minuto + "'"}</td>*/}
+                    {/*                </tr>*/}
+                    {/*            )*/}
+                    {/*        })*/}
+                    {/*    }*/}
+                    {/*    </tbody>*/}
+                    {/*</Table>*/}
+
+                </div>
+                <h1>VS.</h1>
+                <div className="equipo-detalle-partido">
+                    <h1>{datosPartido.clubVisitante.nombre}</h1>
+                    <Table hover sm className="visitante">
+                        <tbody>
+                        <tr>
+                            <td>Goles: {datosPartido.golesVisitante ? datosPartido.golesVisitante : "0"}</td>
+                        </tr>
+                        <tr>
+                            <td>Validado: {datosPartido.convalidaVisitante ? "Si" : "No"}</td>
+                        </tr>
+                        <tr>
+                            <td>Cantidad Faltas: {faltasVisitante.length}</td>
+                        </tr>
+                        </tbody>
+                    </Table>
+                    <h1>Destacado:</h1>
+                    <Table hover sm className="local">
+                        <tbody>
+                        {
+                            faltasVisitante.map((falta, index) => {
+                                return (
+                                    <tr>
+                                        <td>Falta: {falta.tipo + " - " + falta.jugador.nombre + " " + falta.jugador.apellido + " - " + falta.minuto + "'"}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                        </tbody>
+                    </Table>
+                    <Table hover sm className="local">
+                        <tbody>
+                        {
+                            golesVisitante.map((gol, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>Gol: {gol.tipo + " - " + gol.jugador.nombre + " " + gol.jugador.apellido + " - " + gol.minuto + "'"}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                        </tbody>
+                    </Table>
+                </div>
             </div>
         </>);
     } else {
