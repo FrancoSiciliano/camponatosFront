@@ -24,7 +24,11 @@ export const TablaJugadores = (props) => {
             return `${elem.nombre} + ${elem.apellido}`.toLowerCase().includes(event.target.value.toLowerCase());
         }));
     }
-    const HandleClickHabilitar =()=>{
+    const HandleClickHabilitar =(id)=>{
+         axios.post(`http://localhost:8080/modificarEstado?idJugador=${id}`)
+    }
+    const HandleClickDeshabilitar = () =>{
+
     }
     if (jugadores) {
         return (<div>
@@ -60,10 +64,10 @@ export const TablaJugadores = (props) => {
                     </thead>
                     <tbody>
                     {jugadores.map((jugadores, index) => {
-                        
+                        let idJug= jugadores.idJugador
                         return (
                             <tr key={index}>
-                                <td>{jugadores.idJugador}</td>
+                                <td>{idJug}</td>
                                 <td>{jugadores.nombre}</td>
                                 <td>{jugadores.apellido}</td>
                                 <td>{jugadores.tipoDocumento}</td>
@@ -76,9 +80,9 @@ export const TablaJugadores = (props) => {
                                 <td>{jugadores.fechaAlta}</td>
                                 <td>{jugadores.estado ? "Activo" : "Inactivo"}</td>
                                 <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm" onClick={HandleClickHabilitar}>Habilitar</Button></td>
+                                            class="btn btn-success btn-sm" onClick={HandleClickHabilitar(idJug)}>Habilitar</Button></td>
                                 <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm"> Deshabilitar</Button></td>
+                                            class="btn btn-success btn-sm" onClick={HandleClickDeshabilitar(jugadores.idJugador)}> Deshabilitar</Button></td>
                             </tr>)
                     })}
                     </tbody>

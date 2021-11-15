@@ -6,8 +6,11 @@ import axios from "axios";
 
 import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import NavBarResponsable from "../NavBars/NavBarResponsable";
+import NavBarJugador from "../NavBars/NavBarJugador";
 export const TablaPartidosCampeonatos=()=>{
   let location = useLocation()
+  console.log(location);
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -18,10 +21,11 @@ export const TablaPartidosCampeonatos=()=>{
     };
     fetchData();
 },[]);
-  if(data){
+  if(data && location.state.tipo==="RESPONSABLES"){
     return(<div>
+      <NavBarResponsable/>
       <div className="TablaPartidosCampeoantos">
-    <Table striped bordered hover>
+      <Table striped bordered hover>
         <thead>
             <tr><th colSpan="8">{location.state.descrip}</th></tr>
           <tr>
@@ -50,6 +54,76 @@ export const TablaPartidosCampeonatos=()=>{
       <td><Button classname="botonesTablasAdministracion" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></Button></td>
     </tr>)
   })}
+</tbody>
+</Table></div></div>)}
+else if(data && location.state.tipo==="ADMINISTRADOR"){
+  return(<div>
+    <NavBarAdministracion/>
+    <div className="TablaPartidosCampeoantos">
+    <Table striped bordered hover>
+      <thead>
+          <tr><th colSpan="8">{location.state.descrip}</th></tr>
+        <tr>
+          <th>Fecha</th>
+          <th>Nro Zona</th>
+          <th>Categoria</th>
+          <th>Club Local</th>
+          <th>Club Visitante</th>
+          <th colSpan="2">
+          <Form.Control classname="searchBox"
+                                        id="search" type="search" placeholder="Filtrar por Nombre"
+                                        onChange={""} autoComplete="off"/>
+</th>
+  </tr>
+</thead>
+<tbody>
+{data.map((partido,index)=>{
+  var ids=partido.idPartido
+return(
+  <tr key={index}>
+    <td>{partido.nroFecha}</td>
+    <td>{partido.nroZona}</td>
+    <td>{partido.categoria}</td>
+    <td>{partido.clubLocal.nombre}</td>
+    <td>{partido.clubVisitante.nombre}</td>
+    <td><Button classname="botonesTablasAdministracion" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></Button></td>
+  </tr>)
+})}
+</tbody>
+</Table></div></div>)}
+else if(data && location.state.tipo==="JUGADOR"){
+  return(<div>
+    <NavBarJugador/>
+    <div className="TablaPartidosCampeoantos">
+    <Table striped bordered hover>
+      <thead>
+          <tr><th colSpan="8">{location.state.descrip}</th></tr>
+        <tr>
+          <th>Fecha</th>
+          <th>Nro Zona</th>
+          <th>Categoria</th>
+          <th>Club Local</th>
+          <th>Club Visitante</th>
+          <th colSpan="2">
+          <Form.Control classname="searchBox"
+                                        id="search" type="search" placeholder="Filtrar por Nombre"
+                                        onChange={""} autoComplete="off"/>
+</th>
+  </tr>
+</thead>
+<tbody>
+{data.map((partido,index)=>{
+  var ids=partido.idPartido
+return(
+  <tr key={index}>
+    <td>{partido.nroFecha}</td>
+    <td>{partido.nroZona}</td>
+    <td>{partido.categoria}</td>
+    <td>{partido.clubLocal.nombre}</td>
+    <td>{partido.clubVisitante.nombre}</td>
+    <td><Button classname="botonesTablasAdministracion" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/detallesPartidos', state:ids}}> Detalles</Link></Button></td>
+  </tr>)
+})}
 </tbody>
 </Table></div></div>)}
 else{
