@@ -1,9 +1,10 @@
-import {Table,Form} from "react-bootstrap";
+import {Table, Form} from "react-bootstrap";
 import './TablaCampeonatos.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+
 export const TablaCampeonatos = (props) => {
     const [campeonatos, setCampeonatos] = useState(null);
     const [todosCampeonatos, setTodosCampeonatos] = useState(null);
@@ -16,7 +17,7 @@ export const TablaCampeonatos = (props) => {
             setTodosCampeonatos(newData);
         };
         fetchData();
-    },[]);
+    }, []);
 
     const handleChange = (event) => {
         setCampeonatos(todosCampeonatos.filter((elem) => {
@@ -50,21 +51,28 @@ export const TablaCampeonatos = (props) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {campeonatos.map((campeonato,index) => {
+                    {campeonatos.map((campeonato, index) => {
                         let descripcion = campeonato.descripcion
                         let ids = campeonato.idCampeonato
                         let estado = campeonato.estado
-                        if(estado.toUpperCase() ==="ACTIVO"){
-                        return (
-                            <tr key={ids}>
-                                <td>{ids}</td>
-                                <td>{descripcion}</td>
-                                <td>{campeonato.fechaInicio}</td>
-                                <td>{campeonato.fechaFin}</td>
-                                <td><Link className='btn btn-success' to={{pathname: '/tabla/Posiciones', state:{id:ids,descrip:descripcion,tipo:"ADMINISTRADOR"}}}>Tabla</Link></td>
-                                <td><Link className='btn btn-success' to={{pathname: '/partidos/campeonatos', state:{id:ids,descrip:descripcion,tipo:"ADMINISTRADOR"}}}>Partidos</Link></td>
-                            </tr>)
-    }})}
+                        if (estado.toUpperCase() === "ACTIVO") {
+                            return (
+                                <tr key={ids}>
+                                    <td>{ids}</td>
+                                    <td>{descripcion}</td>
+                                    <td>{campeonato.fechaInicio}</td>
+                                    <td>{campeonato.fechaFin}</td>
+                                    <td><Link className='btn btn-success' to={{
+                                        pathname: '/tabla/Posiciones',
+                                        state: {id: ids, descrip: descripcion, tipo: "ADMINISTRADOR"}
+                                    }}>Tabla</Link></td>
+                                    <td><Link className='btn btn-success' to={{
+                                        pathname: '/partidos/campeonatos',
+                                        state: {id: ids, descrip: descripcion, tipo: "ADMINISTRADOR"}
+                                    }}>Partidos</Link></td>
+                                </tr>)
+                        }
+                    })}
                     </tbody>
                 </Table>
             </div>

@@ -8,7 +8,7 @@ import {PopUp} from "../PopUp/PopUp";
 
 export const Home = () => {
 
-    const history = useHistory({forceRefresh: true});
+    const history = useHistory();
     const [mensajeError, setMensajeError] = useState("");
     const [tituloError, setTituloError] = useState("");
     const [showModal, setShowModal] = useState(false);
@@ -53,7 +53,7 @@ export const Home = () => {
                                 setShowModal(true);
                             })
                     })
-            })
+            });
     };
 
     const handleChange = (event) => {

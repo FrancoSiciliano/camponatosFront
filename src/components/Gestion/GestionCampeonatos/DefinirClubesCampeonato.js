@@ -14,6 +14,7 @@ export const DefinirClubesCampeonato = () => {
     const [clubesDisponibles, setClubesDisponibles] = useState([]);
     const [clubesAgregados, setClubesAgregados] = useState([]);
 
+    const [error, setError] = useState(false);
     const [mensajeError, setMensajeError] = useState("");
     const [tituloError, setTituloError] = useState("");
     const [showModal, setShowModal] = useState(false);
@@ -25,9 +26,17 @@ export const DefinirClubesCampeonato = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`http://localhost:8080/getClubesHabilitadosPorCategoria?categoria=${categoria}`);
-            const datos = response.data;
-            setClubesDisponibles(datos);
+            try {
+                const response = await axios.get(`http://localhost:8080/getClubesHabilitadosPorCategoria?categoria=${categoria}`);
+                const datos = response.data;
+                setClubesDisponibles(datos);
+            } catch (e) {
+                setModalTitle("Error")
+                setTituloError("Error al cargar los clubes");
+                setMensajeError(e.response.data.message);
+                setError(false);
+                setShowModal(true);
+            }
         };
 
         fetchData();
@@ -81,7 +90,8 @@ export const DefinirClubesCampeonato = () => {
                 await axios.post(`http://localhost:8080/agregarClubACampeonato?idClub=${club.idClub}&idCampeonato=${idCampeonato}`);
             }
             await axios.post(`http://localhost:8080/definirTipoCampeonatoAndCategoria?cantidadZonas=${state.nroZonas}&idCampeonato=${idCampeonato}&categoria=${categoria}`);
-            setMensajeError(`Campeonato ${idCampeonato} - ${state.descripcion} creado con éxito`);
+            setError(false);
+            setMensajeError(`Campeonato ${idCampeonato} - "${state.descripcion}" creado con éxito`);
             setTituloError("Campeonato creado exitosamente");
             setModalTitle("Operación exitosa");
             setShowModal(true);
@@ -89,6 +99,7 @@ export const DefinirClubesCampeonato = () => {
             setModalTitle("Error")
             setTituloError("Error al crear el campeonato");
             setMensajeError(e.response.data.message);
+            setError(true);
             setShowModal(true);
         }
 
@@ -146,7 +157,7 @@ export const DefinirClubesCampeonato = () => {
                         </div>
                     </div>
                 </div>
-                <PopUp modalTitle={modalTitle} show={showModal} onHide={() => setShowModal(false)} text={mensajeError} title={tituloError}/>
+                <PopUp modalTitle={modalTitle} show={showModal} onHide={error ? () => setShowModal(false) : () => history.push("/home/administracion")} text={mensajeError} title={tituloError}/>
             </div>
             )
     } else {

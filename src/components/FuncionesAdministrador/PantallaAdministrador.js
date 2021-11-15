@@ -1,15 +1,15 @@
-import { Table,Button } from "react-bootstrap";
+import {Table, Button} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import './PantallaAdministador.css'
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 
 
-export const PantallaAdministrador = (props) =>{
-  
-  const [data, setData] = useState(null);
-  useEffect(() => {
+export const PantallaAdministrador = (props) => {
+
+    const [data, setData] = useState(null);
+    useEffect(() => {
         const fetchData = async () => {
         const response = await axios(`http://localhost:8080/getAllPartidos`);
         const newData = response.data;
@@ -78,9 +78,5 @@ else{
   return(<h1>Server Isnt Working</h1>)
 }
 }
- 
-  
-  
-  
 
 export default PantallaAdministrador;
