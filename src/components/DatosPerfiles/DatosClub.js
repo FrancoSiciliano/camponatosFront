@@ -12,6 +12,7 @@ import {useState} from 'react';
 import axios from 'axios';
 import {useEffect} from 'react';
 import {PopUp} from "../PopUp/PopUp";
+import NavBarResponsable from '../NavBars/NavBarResponsable';
 
 export const DatosClub = (props) => {
 
@@ -73,8 +74,9 @@ export const DatosClub = (props) => {
 
     return (
         <div>
+            <NavBarResponsable/>
             <div className='main-container-datos'>
-
+                
                 <h2 className='titledatos'>Perfil del Club</h2>
 
                 <div className="datos-perfil-club">

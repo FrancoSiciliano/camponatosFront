@@ -5,6 +5,7 @@ import {Col, FloatingLabel, Form, Row, Button} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
+import NavBarResponsable from '../NavBars/NavBarResponsable';
 
 export const DatosJugadorResponsable = (props) => {
     const [data, setData] = useState([]);
@@ -87,8 +88,9 @@ export const DatosJugadorResponsable = (props) => {
 
     return (
         <div>
+            <NavBarResponsable/>
             <div className='main-container-datos'>
-
+               
                 <h2 className='titledatos'>Perfil del Jugador</h2>
                 <div className="datos-perfil">
                     <div className='avatar'>
