@@ -2,12 +2,13 @@ import React from 'react';
 import './datos.css';
 import Avatar from '../../assets/images/avatar-perfil.png';
 import {Col, FloatingLabel, Form, Row, Button} from "react-bootstrap"
-import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
+import NavBarJugador from '../NavBars/NavBarJugador';
 
 export const DatosJugador = (props) => {
+
     const [data, setData] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [popUp, setpopUp] = useState({
@@ -68,10 +69,12 @@ export const DatosJugador = (props) => {
         return string.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null;
     };
 
+   
     return (
         <div>
+            <NavBarJugador/>
             <div className='main-container-datos'>
-
+                
                 <h2 className='titledatos'>Perfil del Jugador</h2>
 
                 <div className="datos-perfil">

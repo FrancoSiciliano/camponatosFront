@@ -20,6 +20,7 @@ function NavBarJugador() {
                                 height: '30px',
                                 color: 'white'
                             }}/>
+                            
                         <Nav.Link href="/datos/jugador"> MI PERFIL </Nav.Link>
                     </div>
                     <div className='cerrarsesion'>
