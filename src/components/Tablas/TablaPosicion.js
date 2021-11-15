@@ -17,6 +17,7 @@ export const TablaPosicion=(props)=>{
     };
     fetchData();
 });
+  
   if(data && location.state.tipo==="RESPONSABLES"){
     return(
       <div>
