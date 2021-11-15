@@ -29,7 +29,7 @@ if(data){
                     </th>
                   </tr>
               <tr>
-              <th>Camp</th>
+              <th>Campeonato</th>
               <th>Club L</th>
               <th>Club V</th>
               <th>Fecha</th>
@@ -62,7 +62,7 @@ if(data){
               Crear Campeonatos
           </Link>
           
-          <Link className="btn btn-success botonesAdmin" to="/crearPartido">
+          <Link className="btn btn-success botonesAdmin" to="/registro/partido">
               Crear Partidos
           </Link>
       

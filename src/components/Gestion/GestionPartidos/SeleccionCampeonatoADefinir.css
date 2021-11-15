@@ -1,0 +1,5 @@
+.tablaCampeonatosADefinir{
+    background-color: #FFFF !important;
+    overflow-y: scroll !important;
+    max-height: 400px !important;
+}
