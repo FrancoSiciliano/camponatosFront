@@ -4,6 +4,7 @@ import {useState} from "react";
 import './CreacionCampeonato.css'
 import {PopUp} from "../../PopUp/PopUp";
 import {useHistory} from "react-router-dom";
+import NavBarAdministracion from "../../NavBars/NavBarAdministracion";
 
 export const RegistroCampeonato = () => {
     const url = 'http://localhost:8080/';
@@ -113,6 +114,7 @@ export const RegistroCampeonato = () => {
 
     return (
         <div className="main">
+            <NavBarAdministracion/>
             <div className="main-container-registro">
                 <h1 className="TituloRegistroCampeonato">Crear Campeonato</h1>
                 <Form onSubmit={handleSubmit}>

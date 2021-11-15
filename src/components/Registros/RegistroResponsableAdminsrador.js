@@ -5,6 +5,7 @@ import ".//Registros.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
+import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 
 export const RegistroResponsableAdministrador = () => {
     const [popUp, setpopUp] = useState ({
@@ -99,6 +100,7 @@ export const RegistroResponsableAdministrador = () => {
 
     return (
         <div className="main">
+            <NavBarAdministracion/>
             <div className="main-container-registro">
                 <h1 className="titulo-responsable">Registro Responsable</h1>
 

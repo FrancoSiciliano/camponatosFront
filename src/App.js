@@ -13,7 +13,8 @@ import { RegistroCampeonato } from "./components/Gestion/GestionCampeonatos/Crea
 import { LandingAdministrador} from "./components/LandingAdministrador/LandingAdmistrador";
 import CargarDatosPartidos from "./components/Gestion/GestionPartidos/CargarDatosPartidos";
 import { DetallesPartido } from "./components/Gestion/GestionPartidos/DetallesPartido";
-import { CrearPartido } from "./components/Gestion/GestionPartidos/CrearPartido";
+import {SeleccionCampeonatoADefinir } from "./components/Gestion/GestionPartidos/SeleccionCampeonatoADefinir";
+import {CrearPartido } from "./components/Gestion/GestionPartidos/CrearPartido";
 import {Home} from "./components/LandingGeneral/Home";
 import './App.css'
 import {DefinirClubesCampeonato} from "./components/Gestion/GestionCampeonatos/DefinirClubesCampeonato";
@@ -59,6 +60,9 @@ function App() {
           </Route>
           <Route path="/registro/campeonato">
             <RegistroCampeonato />
+          </Route>
+          <Route path="/registro/partido">
+            <SeleccionCampeonatoADefinir />
           </Route>
           <Route path="/agregar/clubes">
             <DefinirClubesCampeonato />

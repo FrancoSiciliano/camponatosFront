@@ -6,6 +6,7 @@ import { useState} from "react";
 
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
+import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 export const RegistroClub = () => {
     const [popUp, setpopUp] = useState ({
         mensaje: "",
@@ -61,6 +62,7 @@ export const RegistroClub = () => {
     };
         return (
             <div className="main">
+                <NavBarAdministracion/>
                 <div className="main-container-registro">
                     <h1 className="titulo-responsable">Registro Club</h1>
                     <Form onSubmit={handleSubmit}>

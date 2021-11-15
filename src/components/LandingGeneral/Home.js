@@ -1,22 +1,10 @@
-import {Link, useHistory} from "react-router-dom";
+import {Link, Redirect, useHistory} from "react-router-dom";
 import './home.css'
 import React, {useState} from "react";
 import {Row, Form} from "react-bootstrap";
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
-
-const roles = [
-    {
-        value: "Admin",
-        label: "Administrador",
-    }, {
-        value: "Responsable",
-        label: "Responsable",
-    }, {
-        value: "Jugador",
-        label: "Jugador",
-    }]
 
 export const Home = () => {
 
@@ -25,6 +13,7 @@ export const Home = () => {
     const [tituloError, setTituloError] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [modalTitle, setModalTitle] = useState("");
+    const [validated, setValidated] = useState(false);
 
     const [usuario, setUsuario] = useState({
         mail: "",
@@ -34,37 +23,37 @@ export const Home = () => {
 
 
     const handleClick = async (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
 
-        try {
-            let response;
-
-            switch (usuario.rol) {
-                case "Admin":
-                    response = await axios.get(`http://localhost:8080/loginAdministrador?mail=${usuario.mail}&password=${usuario.password}`)
-                    response.data ? history.push("/home/administracion", response) : setShowModal(true);
-                    break;
-                case "Responsable":
-                    response = await axios.get(`http://localhost:8080/loginResponsable?mail=${usuario.mail}&password=${usuario.password}`)
-                    response.data ? history.push("/home/representante", response.data) : setShowModal(true);
-                    break;
-                case "Jugador":
-                    response = await axios.get(`http://localhost:8080/loginJugador?mail=${usuario.mail}&password=${usuario.password}`)
-                    history.push("/home/jugador", response.data);
-                    break;
-                default:
-                    setModalTitle("Error");
-                    setTituloError("Error al iniciar Sesión");
-                    setMensajeError("Debe seleccionar un rol para poder iniciar sesión");
-                    setShowModal(true);
-            }
-
-        } catch (e) {
-            setModalTitle("No es posible iniciar sesión")
-            setTituloError("Credenciales incorrectas");
-            setMensajeError(e.response.data.message)
-            setShowModal(true);
+        if (form.checkValidity() === false) {
+            event.stopPropagation();
         }
 
+        setValidated(true);
+
+        await axios.get(`http://localhost:8080/loginAdministrador?mail=${usuario.mail}&password=${usuario.password}`)
+            .then((res) => {
+                history.push("/home/administracion", res.data);
+            })
+            .catch(async () => {
+                await axios.get(`http://localhost:8080/loginResponsable?mail=${usuario.mail}&password=${usuario.password}`)
+                    .then((res) => {
+                        history.push("/home/representante", res.data);
+                    })
+                    .catch(async () => {
+                        await axios.get(`http://localhost:8080/loginJugador?mail=${usuario.mail}&password=${usuario.password}`)
+                            .then((res) => {
+                                history.push("/home/jugador", res.data);
+                            })
+                            .catch((e) => {
+                                setModalTitle("No es posible iniciar sesión")
+                                setTituloError("Credenciales incorrectas");
+                                setMensajeError("No existe un jugador, administrador o representante con ese email o contraseña");
+                                setShowModal(true);
+                            })
+                    })
+            });
     };
 
     const handleChange = (event) => {
@@ -79,38 +68,27 @@ export const Home = () => {
             <div>
                 <h1 className="titulo-home">Furvo</h1>
             </div>
-            <div className="botones-home">
+            <Form className="botones-home" onSubmit={handleClick} noValidate validated={validated}>
                 <Row className="g-1 ColumnasHome">
-                    <FloatingLabel controlId="floatingSelectGrid" label="Rol">
-                        <Form.Select aria-label="Floating label select example" name="rol" onChange={handleChange}>
-                            <option>Seleccionar</option>
-                            {roles.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                    {option.label}
-                                </option>
-                            ))}
-                        </Form.Select>
-                    </FloatingLabel>
-                </Row>
-                <Row className="g-1 ColumnasHome">
-                    <FloatingLabel controlId="floatingInputGrid" label="Email address">
+                    <FloatingLabel controlId="floatingInputGrid" label="Email address" >
                         <Form.Control type="email" placeholder="name@example.com" name="mail" value={usuario.mail}
-                                      onChange={handleChange}/>
+                                      onChange={handleChange} required/>
+                        <Form.Control.Feedback type="invalid" style={{color: "white"}}>
+                            Por favor, ingrese un email válido.
+                        </Form.Control.Feedback>
                     </FloatingLabel>
                 </Row>
-                <Row className="g-1 ColumnasHome">
+                <Row className="g-1 ColumnasHome" >
                     <FloatingLabel controlId="floatingInputGrid" label="Password">
                         <Form.Control type="password" placeholder="Password" name="password" value={usuario.password}
-                                      onChange={handleChange}/>
+                                      onChange={handleChange} required/>
+                        <Form.Control.Feedback type="invalid" style={{color: "white"}}>
+                            Por favor, ingrese una contraseña.
+                        </Form.Control.Feedback>
                     </FloatingLabel>
                 </Row>
-                <Row className="g-1 ColumnasHomeBotones">
-                    <Link to="/" className="boton-home btn btn-success" onClick={handleClick}>Iniciar Sesión</Link>
-                </Row>
-                <Row className="g-1 ColumnasHomeBotones">
-                    <Link to="/registro/responsable" className="boton-home btn btn-success">Registrarse</Link>
-                </Row>
-            </div>
+                <button type="submit" className="boton-home btn btn-success">Iniciar Sesión</button>
+            </Form>
             <PopUp modalTitle={modalTitle} show={showModal} onHide={() => setShowModal(false)} text={mensajeError}
                    title={tituloError}/>
         </div>
