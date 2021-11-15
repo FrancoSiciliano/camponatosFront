@@ -15,6 +15,7 @@ export const PantallaAdministrador = (props) => {
             const newData = response.data;
             setData(newData);
         };
+
         fetchData();
     });
     if (data) {
