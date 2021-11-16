@@ -41,10 +41,13 @@ export const RegistroJugador = () => {
         setDatos({
             ...datos,
             [event.target.name]: event.target.value,
-        })
+            
+        },
+        console.log(datos))
     }
 
     const handleSubmit = (event) => {
+        console.log(datos.fechaNacimiento)
         if (datos.nombre === "" || containsNumbers(datos.nombre)) {
             setError("Nombre no válido");
             setShowModal(true);
@@ -99,7 +102,7 @@ export const RegistroJugador = () => {
     };
     const postData = async () => {
         try{
-            await axios.post(`http://localhost:8080/crearJugador?tipoDoc=${datos.tipoDoc}&documento=${datos.nroDoc}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=1&fechaNac=${datos.fechaNacimiento}&direccion=${datos.direccion}&mail=${datos.mail}&password=${datos.password}&telefono=${datos.nroTelefono}`)
+            axios.post(`http://localhost:8080/crearJugador?tipoDoc=${datos.tipoDoc}&documento=${datos.nroDoc}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=1&fechaNac=${datos.fechaNacimiento.replace(/-/g,"/")}&direccion=${datos.direccion}&mail=${datos.mail}&password=${datos.password}&telefono=${datos.nroTelefono}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
             
         }catch(e){

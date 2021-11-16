@@ -14,7 +14,7 @@ export const ListaJugadoresClub = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getJugadores`);
+            const response = await axios(`http://localhost:8080/getJugadoresByClub?idClub=1`);
             const repuesta = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.id}`);
             const partido = repuesta.data;
             const newData = response.data;

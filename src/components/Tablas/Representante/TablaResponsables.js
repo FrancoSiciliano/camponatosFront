@@ -59,9 +59,7 @@ export const TablaResponsables = (props) => {
                                 <td>{responsable.documento}</td>
                                 <td>{responsable.club.nombre}</td>
                                 <td><Link className='btn btn-success' to={{pathname: '/datos/representante', state:{id:ids}}}>Perfil</Link></td>
-                                <td><Button className='btn btn-success'> Eliminar</Button></td>
-                            </tr>)
-    })}
+                            </tr>)})}
                     </tbody>
                 </Table>
             </div>

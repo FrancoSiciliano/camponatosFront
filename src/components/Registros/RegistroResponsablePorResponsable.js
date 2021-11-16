@@ -1,11 +1,10 @@
-import {Link} from "react-router-dom";
 import {Col, FloatingLabel, Form, Row, Spinner} from "react-bootstrap"
 import {Button} from "react-bootstrap";
 import ".//Registros.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
-import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import NavBarResponsable from "../NavBars/NavBarResponsable";
 
 export const RegistroResponsableAdministrador = () => {
     const [popUp, setpopUp] = useState ({
@@ -17,7 +16,6 @@ export const RegistroResponsableAdministrador = () => {
         nrodocumento: "",
         nombre: "",
         apellido:"",
-        idClub: "",
         mail:"",
         password:""
     });
@@ -68,17 +66,11 @@ export const RegistroResponsableAdministrador = () => {
             setError("No puede dejar la contraseña vacía");
             setShowModal(true);
         }
-
-        else if (datos.idClub === "" || datos.idClub === "Seleccionar") {
-            setError("Por favor, seleccione el club al que pertenece el jugador");
-            setShowModal(true);
-        }
-
         postData()
     };
     const postData = async () => {
         try{
-            await axios.post(`http://localhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${datos.idClub}&mail=${datos.mail}&password=${datos.password}`)
+            await axios.post(`http://localhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=1&mail=${datos.mail}&password=${datos.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
             
         }catch(e){
@@ -100,7 +92,7 @@ export const RegistroResponsableAdministrador = () => {
 
     return (
         <div className="main">
-            <NavBarAdministracion/>
+            <NavBarResponsable/>
             <div className="main-container-registro">
                 <h1 className="titulo-responsable">Registro Responsable</h1>
 
@@ -146,23 +138,6 @@ export const RegistroResponsableAdministrador = () => {
                             </FloatingLabel>
                         </Form.Group>
                     </Row>
-
-                    {data ? <FloatingLabel controlId="floatingSelect" label="Seleccione un equipo">
-                        <Form.Select className="label-select" onChange={handleChange} name="idClub">
-                            <option>Seleccionar</option>
-                            {data.map((club, index) => {
-                                return (
-                                    <option key={index}
-                                            value={club.idClub}>{`${club.idClub} - ${club.nombre}`}</option>)
-                            })}
-                        </Form.Select>
-                    </FloatingLabel> : <div>
-                        <Spinner animation="border" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </Spinner>
-                        <p>Cargando clubes...</p>
-                    </div>
-                    }
                     <Button type="submit" className="btn-success">Finalizar</Button>
                     <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al responsable"/>
                 </Form>
