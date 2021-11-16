@@ -29,9 +29,7 @@ function NavBarAdministracion() {
                         height: '25px',
                         color: 'white'
                     }}/>
-                    <NavDropdown title="OPERACIONES" id="basic-nav-dropdown" classname="LinkNavbar">
-                        <Dropdown>                       
-                        <Dropdown.Item href="/tabla/representantes">LISTADO REPRESENTATES</Dropdown.Item> </Dropdown>  
+                    <NavDropdown title="OPERACIONES" id="basic-nav-dropdown" classname="LinkNavbar">  
                         <Dropdown>
                         <Dropdown>
                             <Dropdown.Item href="/tabla/jugadores">LISTADO JUGADORES</Dropdown.Item>    
@@ -44,10 +42,6 @@ function NavBarAdministracion() {
                                 <Dropdown.Item href="/tabla/clubes">LISTADO CLUBES</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                        
-
-                       
-               
                     </NavDropdown>
                 </div>
                 <div className='cerrarsesion'>

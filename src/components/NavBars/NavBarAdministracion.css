@@ -2,6 +2,9 @@
     background-color: #2D6A4F;
 }
 
+.dropdown a:focus{
+    background-color: #198754b2!important;
+}
 .navbar-light .navbar-brand {
     color: white !important;
 }

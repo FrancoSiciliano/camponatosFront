@@ -42,6 +42,15 @@ export const RegistroClub = () => {
         setShowModal(true);
 
     }
+    const existeClub=(idClub)=>{
+        let club =  axios(`http://localhost:8080/getClubById?idClub=${datos.id}`);
+        if(club){
+            return true
+        }
+        else{
+            return false;
+        }
+    }
 
     const handleSubmit = (event) => {
         if (datos.nombre === "" || containsNumbers(datos.nombre)) {
@@ -54,7 +63,15 @@ export const RegistroClub = () => {
             setShowModal(true);
             return;
         }
-        postData()
+        else if(datos.id ==="" || existeClub()){
+            setError("Id no valida");
+            setShowModal(true);
+            return;
+        }
+        else{
+            postData()
+        }
+        
      
     };
     const containsNumbers = (string) => {
