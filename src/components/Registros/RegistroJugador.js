@@ -1,6 +1,6 @@
 import {Col, FloatingLabel, Form,Row,Button} from "react-bootstrap"
 
-import ".//Registros.css"
+import "./RegistroJugador.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
@@ -125,7 +125,7 @@ export const RegistroJugador = () => {
     if (data) {
         return (
             <div className="main">
-                <div className="main-container-registro">
+                <div className="main-container-registro-Jugador">
                     <h1 className="titulo-responsable">Registro Jugador</h1>
 
                     <Form onSubmit={handleSubmit}>

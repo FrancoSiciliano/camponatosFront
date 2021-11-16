@@ -1,6 +1,6 @@
 import {Col, FloatingLabel, Form, Row, Spinner} from "react-bootstrap"
 import {Button} from "react-bootstrap";
-import ".//Registros.css"
+import "./RegistroResponsable.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
@@ -93,7 +93,7 @@ export const RegistroResponsableAdministrador = () => {
     return (
         <div className="main">
             <NavBarResponsable/>
-            <div className="main-container-registro">
+            <div className="main-container-registro-Responsable">
                 <h1 className="titulo-responsable">Registro Responsable</h1>
 
                 <Form onSubmit={handleSubmit}>

@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {Col, FloatingLabel, Form, Row, Spinner} from "react-bootstrap"
 import {Button} from "react-bootstrap";
-import ".//Registros.css"
+import "./RegistroResponsable.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
@@ -73,7 +73,7 @@ export const RegistroResponsable = () => {
 
     return (
         <div className="main">
-            <div className="main-container-registro">
+            <div className="main-container-registro-Responsable">
                 <h1 className="titulo-responsable">Registro Responsable</h1>
 
                 <Form>

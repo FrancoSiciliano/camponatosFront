@@ -87,9 +87,8 @@ export const ListaJugadoresClub = (props) => {
                                 <td>{jugadores.fechaAlta}</td>
                                 <td>{jugadores.estado ? "Activo" : "Inactivo"}</td>
                                 <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm" onClick={HandleClickHabilitar}>Habilitar</Button></td>
-                                <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm"> Deshabilitar</Button></td>
+                                            class="btn btn-success btn-sm" onClick={HandleClickHabilitar}>Cambiar Estado</Button></td>
+
                             </tr>)
                     }})}
                     </tbody>

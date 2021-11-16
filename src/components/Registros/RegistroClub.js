@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {Col, FloatingLabel, Form,Row,Button} from "react-bootstrap"
 import React from "react";
-import ".//Registros.css"
+import "./RegistroClub.css"
 import { useState} from "react";
 
 import axios from "axios";
@@ -63,7 +63,7 @@ export const RegistroClub = () => {
         return (
             <div className="main">
                 <NavBarAdministracion/>
-                <div className="main-container-registro">
+                <div className="main-container-registro-Club">
                     <h1 className="titulo-responsable">Registro Club</h1>
                     <Form onSubmit={handleSubmit}>
                         <Row className="mb-3">

@@ -46,7 +46,7 @@ const handleClick = () =>{
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
       <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/partidos/Detalles', state:ids}}> Detalles</Link></td>
-      <td><Button classname="botonTablaValidar" type="submit" class="btn btn-primary btn-sm" onClick={handleClick}> Validar</Button></td>
+      <td><Button classname="botonTablaValidar" type="submit" class="btn btn-success" onClick={handleClick}> Validar</Button></td>
     </tr>)
   })}
 </tbody>
