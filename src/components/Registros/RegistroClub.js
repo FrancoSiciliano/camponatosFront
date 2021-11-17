@@ -67,11 +67,7 @@ export const RegistroClub = () => {
             setError("Id no valida");
             setShowModal(true);
             return;
-        }
-        else{
-            postData()
-        }
-        
+        } 
      
     };
     const containsNumbers = (string) => {
@@ -106,7 +102,8 @@ export const RegistroClub = () => {
                             </Form.Group>
                         </Row>
                         <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al Club"/>
-                        <Button type="submit" className="btn btn-success boton"> Registrar</Button>
+                        
+                        <Link className="btn btn-success" type="submit" to={{pathname:"/registro/responsable/administrador",state:{idClub: datos.id, direccionClub: datos.direccion,nombreClub:datos.nombre,tipo:"ADMINISTRADOR"}}}> Registrar</Link>
                     </Form>
                 </div>
             </div>

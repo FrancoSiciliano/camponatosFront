@@ -5,8 +5,11 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
+import { useLocation } from "react-router";
+import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 
 export const RegistroResponsableAdministrador = () => {
+    const location = useLocation();
     const [popUp, setpopUp] = useState ({
         mensaje: "",
         titulo: ""
@@ -70,7 +73,8 @@ export const RegistroResponsableAdministrador = () => {
     };
     const postData = async () => {
         try{
-            await axios.post(`http://localhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=1&mail=${datos.mail}&password=${datos.password}`)
+            await axios.post(`http://localhost:8080/crearClub?idClub=${location.state.idClub}&nombre=${location.state.nombreClub}&direccion=${location.state.direccionClub}`)
+            await axios.post(`http://localhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${location.state.idClub}&mail=${datos.mail}&password=${datos.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
             
         }catch(e){
@@ -90,9 +94,11 @@ export const RegistroResponsableAdministrador = () => {
         return string.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null;
     }
 
+
+
     return (
         <div className="main">
-            <NavBarResponsable/>
+            <NavBarAdministracion/>
             <div className="main-container-registro-Responsable">
                 <h1 className="titulo-responsable">Registro Responsable</h1>
 
