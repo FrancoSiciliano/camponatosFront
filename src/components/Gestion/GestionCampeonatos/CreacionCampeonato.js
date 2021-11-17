@@ -4,6 +4,7 @@ import {useState} from "react";
 import './CreacionCampeonato.css'
 import {PopUp} from "../../PopUp/PopUp";
 import {useHistory} from "react-router-dom";
+import NavBarAdministracion from "../../NavBars/NavBarAdministracion";
 
 export const RegistroCampeonato = () => {
     const url = 'http://localhost:8080/';
@@ -113,23 +114,24 @@ export const RegistroCampeonato = () => {
 
     return (
         <div className="main">
+            <NavBarAdministracion/>
             <div className="main-container-registro">
                 <h1 className="TituloRegistroCampeonato">Crear Campeonato</h1>
                 <Form onSubmit={handleSubmit}>
                     <Row className="mb-2">
-                        <Form.Group as={Col} controlId="formGridFecha" sm="3">
+                        <Form.Group as={Col} controlId="formGridFecha">
                             <FloatingLabel controlId="floatingInputGrid" label="Fecha de Inicio">
                                 <Form.Control type="date" name="fechaInicio" value={datos.fechaInicio}
                                               onChange={handleChange} min={minFecha}/>
                             </FloatingLabel>
                         </Form.Group>
-                        <Form.Group as={Col} controlId="formGridFecha" sm="3">
+                        <Form.Group as={Col} controlId="formGridFecha">
                             <FloatingLabel controlId="floatingInputGrid" label="Fecha de Finalización">
                                 <Form.Control type="date" name="fechaFin" value={datos.fechaFin}
                                               onChange={handleChange} min={minFecha}/>
                             </FloatingLabel>
                         </Form.Group>
-                        <Form.Group as={Col} controlId="formGridTipo" sm="3" style={{width: "150px"}}>
+                        <Form.Group as={Col} controlId="formGridTipo">
                             <FloatingLabel controlId="floatingSelect" label="Tipo de torneo">
                                 <Form.Select className="label-select" onChange={handleChange} name="tipo"
                                              value={datos.tipo}>
@@ -139,7 +141,7 @@ export const RegistroCampeonato = () => {
                                 </Form.Select>
                             </FloatingLabel>
                         </Form.Group>
-                        <Form.Group as={Col} sm="3" controlId="formGridInput">
+                        <Form.Group as={Col} controlId="formGridInput">
                             <FloatingLabel controlId="floatingInputGrid" label="Numero de Zonas">
                                 {datos.tipo !== "Zonas" ?
                                     <Form.Control type="number" placeholder="Zonas" name="nroZonas" className="nroZonas"
@@ -154,7 +156,7 @@ export const RegistroCampeonato = () => {
 
                     </Row>
                     <Row className="mb-2">
-                        <Form.Group as={Col} sm="3" controlId="formGridInput" className="col-2">
+                        <Form.Group as={Col} sm="2" controlId="formGridInput" className="col-2">
                             <FloatingLabel controlId="floatingInputGrid" label="Categoria">
                                 <Form.Control type="number" placeholder="Categoria" name="categoria"
                                               value={datos.categoria}
@@ -162,7 +164,7 @@ export const RegistroCampeonato = () => {
                                 />
                             </FloatingLabel>
                         </Form.Group>
-                        <Form.Group as={Col} sm="8" controlId="formGridDescripcion">
+                        <Form.Group as={Col} controlId="formGridDescripcion">
                             <FloatingLabel controlId="floatingInputGrid" label="Nombre del campeonato">
                                 <Form.Control autoComplete="off" type="textarea" name="descripcion"
                                               placeholder="descripcion" value={datos.descripcion}
