@@ -46,7 +46,8 @@ export const SeleccionCampeonatoADefinir = ()=>{
                                     <td>{campeonato.descripcion}</td>
                                     <td>{campeonato.fechaInicio}</td>
                                     <td>{campeonato.fechaFin}</td>
-                                    <td><Link className = 'btn btn-success botonesAdmin-tabla' to="/crear/partido">Crear Partidos</Link></td>
+                                    <td><Link className = 'btn btn-success botonesAdmin-tabla' to={{pathname: "/crear/partido", state: campeonato.idCampeonato }}> Crear Partidos </Link></td>
+    
                                 </tr>)
                                 
                                 })}
