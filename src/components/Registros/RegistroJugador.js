@@ -1,5 +1,5 @@
 import {Col, FloatingLabel, Form,Row,Button} from "react-bootstrap"
-
+import NavBarResponsable from '../NavBars/NavBarResponsable'
 import ".//Registros.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -122,6 +122,7 @@ export const RegistroJugador = () => {
     if (data) {
         return (
             <div className="main">
+                <NavBarResponsable/>
                 <div className="main-container-registro">
                     <h1 className="titulo-responsable">Registro Jugador</h1>
 
