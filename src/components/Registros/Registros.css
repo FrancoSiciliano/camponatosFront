@@ -1,27 +1,18 @@
-.main-container-registro {
+.main {
     background-image: url("../../assets/images/travel-nomades-JO19K0HDDXI-unsplash.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    padding: 300px;
-    width: 100vw !important;
-    height: 95.7vh !important;
+    height: 100vh;
+}
+
+.main-container-registro {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
+    height: 80%;
 }
 
-.label-select {
-    width: 300px !important;
-    margin-bottom: 10px;
-}
 
-.boton-submit {
-    width: 300px;
-}
-
-.titulo-responsable {
-    margin-bottom: 50px !important;
-    justify-self: flex-start;
-}
 

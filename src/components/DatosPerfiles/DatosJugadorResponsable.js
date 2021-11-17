@@ -87,7 +87,7 @@ export const DatosJugadorResponsable = (props) => {
     };
 
     return (
-        <div>
+        <div className="main-container-datos-navbar-jugador">
             <NavBarResponsable/>
             <div className='main-container-datos'>
                
@@ -98,7 +98,7 @@ export const DatosJugadorResponsable = (props) => {
                     </div>
                     <div className='contenedor-datos'>
                         <Form className='formulario' onSubmit={handleSubmit}>
-                            <Row className="mb-5">
+                            <Row className="mb-3">
                                 <Form.Group as={Col} controlId="formGridNombre" sm="4">
                                     <FloatingLabel className="floatingInputGridJug" label="Nombre"
                                                    style={{fontSize: "19px"}}>
@@ -132,7 +132,7 @@ export const DatosJugadorResponsable = (props) => {
                                 </Form.Group>
                             </Row>
 
-                            <Row className="mb-5">
+                            <Row className="mb-3">
 
                                 <Form.Group as={Col} controlId="formGridTipoDocumento" sm="3">
                                     <FloatingLabel className="floatingInputGridJug" label="Tipo documento"
@@ -169,7 +169,7 @@ export const DatosJugadorResponsable = (props) => {
                                 </Form.Group>
                             </Row>
 
-                            <Row className="mb-5">
+                            <Row className="mb-3">
 
                                 <Form.Group as={Col} controlId="formGridTelefono">
                                     <FloatingLabel className="floatingInputGridJug" label="Numero de Telefono"

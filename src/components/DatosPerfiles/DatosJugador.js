@@ -69,12 +69,12 @@ export const DatosJugador = (props) => {
         return string.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null;
     };
 
-   
+
     return (
-        <div>
+        <div className="main-container-datos-navbar-jugador">
             <NavBarJugador/>
             <div className='main-container-datos'>
-                
+
                 <h2 className='titledatos'>Perfil del Jugador</h2>
 
                 <div className="datos-perfil">
@@ -83,7 +83,7 @@ export const DatosJugador = (props) => {
                     </div>
                     <div className='contenedor-datos'>
                         <Form className='formulario' onSubmit={handleSubmit}>
-                            <Row className="mb-5">
+                            <Row className="mb-3">
                                 <Form.Group as={Col} controlId="formGridNombre" sm="4">
                                     <FloatingLabel className="floatingInputGridJug" label="Nombre"
                                                    style={{fontSize: "19px"}}>
@@ -117,7 +117,7 @@ export const DatosJugador = (props) => {
                                 </Form.Group>
                             </Row>
 
-                            <Row className="mb-5">
+                            <Row className="mb-3">
 
                                 <Form.Group as={Col} controlId="formGridTipoDocumento" sm="3">
                                     <FloatingLabel className="floatingInputGridJug" label="Tipo documento"
@@ -148,12 +148,13 @@ export const DatosJugador = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Estado"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="estado" placeholder="Estado"
-                                                      style={{fontSize: "20px"}} value={data.estado ? "Habilitado" : "Inhabilitado"} readOnly/>
+                                                      style={{fontSize: "20px"}}
+                                                      value={data.estado ? "Habilitado" : "Inhabilitado"} readOnly/>
                                     </FloatingLabel>
                                 </Form.Group>
                             </Row>
 
-                            <Row className="mb-5">
+                            <Row className="mb-3">
 
                                 <Form.Group as={Col} controlId="formGridTelefono">
                                     <FloatingLabel className="floatingInputGridJug" label="Numero de Telefono"
