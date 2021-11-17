@@ -1,12 +1,14 @@
 import {Col, FloatingLabel, Form,Row,Button} from "react-bootstrap"
-
+import {Link,useHistory} from 'react-router-dom';
 import "./RegistroJugador.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
+import { useLocation } from "react-router";
 
 export const RegistroJugador = () => {
-
+    const history = useHistory();
+    let idResponsable = history.location.state;
     const [popUp, setpopUp] = useState ({
         mensaje: "",
         titulo: ""
@@ -24,18 +26,11 @@ export const RegistroJugador = () => {
         idClub: "",
     });
 
-    const [data, setData] = useState(null);
+
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getClubes`);
-            const newData = response.data;
-            setData(newData);
-        };
-        fetchData();
-    },[]);
+
 
     const handleChange = (event) => {
         setDatos({
@@ -102,9 +97,10 @@ export const RegistroJugador = () => {
     };
     const postData = async () => {
         try{
-            axios.post(`http://localhost:8080/crearJugador?tipoDoc=${datos.tipoDoc}&documento=${datos.nroDoc}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=1&fechaNac=${datos.fechaNacimiento.replace(/-/g,"/")}&direccion=${datos.direccion}&mail=${datos.mail}&password=${datos.password}&telefono=${datos.nroTelefono}`)
+            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
+            const res = respuesta.data;
+            axios.post(`http://localhost:8080/crearJugador?tipoDoc=${datos.tipoDoc}&documento=${datos.nroDoc}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${res.club.idClub}&fechaNac=${datos.fechaNacimiento.replace(/-/g,"/")}&direccion=${datos.direccion}&mail=${datos.mail}&password=${datos.password}&telefono=${datos.nroTelefono}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
-            
         }catch(e){
             console.log(e.message)
             setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
@@ -122,7 +118,7 @@ export const RegistroJugador = () => {
         return string.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null;
     };
 
-    if (data) {
+
         return (
             <div className="main">
                 <div className="main-container-registro-Jugador">
@@ -205,7 +201,4 @@ export const RegistroJugador = () => {
                 </div>
             </div>
         );
-    } else {
-        return (<h1>Cargando...</h1>);
     }
-}

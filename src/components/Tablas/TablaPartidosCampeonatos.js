@@ -58,7 +58,7 @@ const navbar = () => {
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Button classname="botonesTablasAdministracion" type="submit" class="btn btn-primary btn-sm"><Link to={{pathname:'/detalles/partidos', state:ids}}> Detalles</Link></Button></td>
+      <td><Link class="btn btn-primary btn-sm" to={{pathname:'/detalles/partidos', state:ids}}> Detalles</Link></td>
     </tr>)
   })}
 </tbody>

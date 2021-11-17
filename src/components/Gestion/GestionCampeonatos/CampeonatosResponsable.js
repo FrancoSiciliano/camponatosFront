@@ -1,19 +1,20 @@
-import {Table, Button, Form} from "react-bootstrap";
+import {Table, Form} from "react-bootstrap";
 import './CampeonatosResponsable.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import {ErrorPagina} from "../../NotFound/ErrorPagina";
-import NavBarResponsable from "../../NavBars/NavBarResponsable";
-
-
 export const CampeonatosResponsable = (props) => {
     const [campeonatos, setCampeonatos] = useState(null);
     const [todosCampeonatos, setTodosCampeonatos] = useState(null);
-
+    const [responsable, setResponsable] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getCampeonatos`);
+        
+            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${props.id}`)
+            const res = respuesta.data;
+            setResponsable(res);
+            console.log(res)
+            const response = await axios(`http://localhost:8080/getCampeonatosByClub?idClub=${res.club.idClub}`);
             const newData = response.data;
             setCampeonatos(newData);
             setTodosCampeonatos(newData);

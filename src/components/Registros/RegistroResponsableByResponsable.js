@@ -4,11 +4,13 @@ import "./RegistroResponsable.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
-import { useLocation } from "react-router";
+import {Link,useHistory} from 'react-router-dom';
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import NavBarResponsable from "../NavBars/NavBarResponsable";
 
-export const RegistroResponsableAdministrador = () => {
-    const location = useLocation();
+export const RegistroResponsableByResponsable = () => {
+    const history = useHistory();
+    let idResponsable = history.location.state;
     const [popUp, setpopUp] = useState ({
         mensaje: "",
         titulo: ""
@@ -21,19 +23,8 @@ export const RegistroResponsableAdministrador = () => {
         mail:"",
         password:""
     });
-
-    const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getClubes`);
-            const newData = response.data;
-            setData(newData);
-        };
-        fetchData();
-    }, [data]);
 
     const handleChange = (event) => {
         setDatos({
@@ -72,8 +63,9 @@ export const RegistroResponsableAdministrador = () => {
     };
     const postData = async () => {
         try{
-            await axios.post(`http://localhost:8080/crearClub?idClub=${location.state.idClub}&nombre=${location.state.nombreClub}&direccion=${location.state.direccionClub}`)
-            await axios.post(`http://localhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${location.state.idClub}&mail=${datos.mail}&password=${datos.password}`)
+            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
+            const res = respuesta.data;
+            await axios.post(`http://localhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${res.club.idClub}&mail=${datos.mail}&password=${datos.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
             
         }catch(e){
@@ -97,7 +89,7 @@ export const RegistroResponsableAdministrador = () => {
 
     return (
         <div className="main">
-            <NavBarAdministracion/>
+            <NavBarResponsable/>
             <div className="main-container-registro-Responsable">
                 <h1 className="titulo-responsable">Registro Responsable</h1>
 

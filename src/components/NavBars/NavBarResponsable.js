@@ -1,20 +1,32 @@
-import Container from 'react-bootstrap/Container'
 import './NavBarResponsable.css'
 import {Navbar, Nav, NavDropdown, Dropdown, Button, Modal, Form} from 'react-bootstrap'
 import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
 import {MdSportsSoccer} from 'react-icons/all'
 import {BiUserCircle, BiLogOut} from 'react-icons/bi';
 
 function NavBarResponsable(props) {
+    const history = useHistory();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleClickMiPerfil = () =>{
+        history.push("/datos/representante", props.id);
+    }
+    const handleClickPerfilClub = () =>{
+        history.push("/datos/club", props.id);
+    }
+    const handleClickAgregarResponsable = () =>{
+        history.push("/registro/responsable", props.id);
+    }
+    const handleClickAgregarJugador = () =>{
+        history.push("/registro/jugador", props.id);
+    }
     return (
         <Navbar className="navbar-jugador">
             <div className="titulo-nav-jugador">
                 <MdSportsSoccer style={{width: '30px', height: '30px', color: 'white', marginRight: '10px'}}/>
-                <Navbar.Brand href="/home/representante" classname="LogoNavbar">PERFIL
+                <Navbar.Brand classname="LogoNavbar">PERFIL
                     REPRESENTANTE</Navbar.Brand>
             </div>
 
@@ -26,7 +38,7 @@ function NavBarResponsable(props) {
                             height: '30px',
                             color: 'white'
                         }}/>
-                        <Nav.Link href="/datos/representante" classname="LinkNavbar">MI PERFIL</Nav.Link>
+                        <Nav.Link classname="LinkNavbar" onClick={handleClickMiPerfil}> MI PERFIL</Nav.Link>
                     </div>
                     <div className='jugadores-div'>
                         <NavDropdown title="GESTIONAR" id="basic-nav-dropdown" classname="LinkNavbar">
@@ -35,8 +47,8 @@ function NavBarResponsable(props) {
                                 CLUB
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <NavDropdown.Item href="/datos/club">PERFIL CLUB</NavDropdown.Item>
-                                    <Dropdown.Item href="/registro/responsable">AGREGAR RESPONSABLE</Dropdown.Item>
+                                    <NavDropdown.Item  onClick={handleClickPerfilClub}>PERFIL CLUB</NavDropdown.Item>
+                                    <Dropdown.Item onClick={handleClickAgregarResponsable}>AGREGAR RESPONSABLE</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                             
@@ -67,7 +79,7 @@ function NavBarResponsable(props) {
                                             </Button>
                                         </Modal.Footer>
                                     </Modal>
-                                    <Dropdown.Item href="/registro/jugador">AGREGAR</Dropdown.Item>
+                                    <Dropdown.Item onClick={handleClickAgregarJugador}>AGREGAR</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </NavDropdown>

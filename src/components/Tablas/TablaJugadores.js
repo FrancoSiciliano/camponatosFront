@@ -24,13 +24,10 @@ export const TablaJugadores = (props) => {
             return `${elem.nombre} + ${elem.apellido}`.toLowerCase().includes(event.target.value.toLowerCase());
         }));
     }
-    const HandleClickHabilitar =(id)=>{
-
-         axios.post(`http://localhost:8080/modificarEstado?idJugador=${{id}}`)
+    const HandleClickCambiarEstado =async (id)=>{
+        await axios.post(`http://localhost:8080/modificarEstado?idJugador=${{id}}`)
     }
-    const HandleClickDeshabilitar = () =>{
-
-    }
+    
     if (jugadores) {
         return (<div>
             <NavBarAdministracion/>
@@ -80,7 +77,7 @@ export const TablaJugadores = (props) => {
                                 <td>{jugadores.fechaNacimiento}</td>
                                 <td>{jugadores.fechaAlta}</td>
                                 <td>{jugadores.estado ? "Activo" : "Inactivo"}</td>
-                                <td><Button classname="botonesTablas" class="btn btn-success btn-sm" onClick={(e)=>axios.post(`http://localhost:8080/modificarEstado?idJugador=${{idJug}}`) }>Cambiar Estado</Button></td>
+                                <td><Button classname="botonesTablas" class="btn btn-success btn-sm" onClick={HandleClickCambiarEstado({idJug})}>Cambiar Estado</Button></td>
                             </tr>)
                     })}
                     </tbody>

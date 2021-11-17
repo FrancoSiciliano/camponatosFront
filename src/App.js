@@ -26,6 +26,7 @@ import { TablaClubes } from "./components/Tablas/TablaClubes";
 import { TablaResponsables } from "./components/Tablas/Representante/TablaResponsables";
 import { RegistroResponsableAdministrador } from "./components/Registros/RegistroResponsableAdministrador";
 import { TablaJugadores } from "./components/Tablas/TablaJugadores";
+import { RegistroResponsableByResponsable } from "./components/Registros/RegistroResponsableByResponsable";
 function App() {
   return (
     <div className="App">
@@ -55,6 +56,9 @@ function App() {
           <Route path="/registro/responsable/administrador">
             <RegistroResponsableAdministrador />
           </Route>
+          <Route path="/registro/responsable">
+            <RegistroResponsableByResponsable/>
+          </Route>
           <Route path="/registro/club">
             <RegistroClub/>
           </Route>
@@ -76,7 +80,7 @@ function App() {
             <DatosJugadorResponsable idJugador="1" />
           </Route>
           <Route path="/datos/representante">
-            <DatosRepresentante idRepresentante="1" />
+            <DatosRepresentante />
           </Route>
           <Route path="/datos/club">
             <DatosClub/>

@@ -9,8 +9,11 @@ import {FloatingLabel, Spinner} from 'react-bootstrap';
 import {useState, useEffect} from 'react';
 import {PopUp} from "../PopUp/PopUp";
 import axios from 'axios';
+import { useLocation,useHistory } from 'react-router';
 
-export const DatosRepresentante = (props) => {
+export const DatosRepresentante = () => {
+    const history = useHistory();
+    let idResponsable = history.location.state;
     const [data, setData] = useState(null);
     const [clubes, setClubes] = useState([]);
     const [popUp, setpopUp] = useState({
@@ -21,7 +24,7 @@ export const DatosRepresentante = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getResponsableById?idResponsable=${props.idRepresentante}`);
+            const response = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`);
             const response2 = await axios(`http://localhost:8080/getClubes`);
             const newData = response.data;
             const newData2 = response2.data;
@@ -47,7 +50,7 @@ export const DatosRepresentante = (props) => {
 
     const postData = async (data) => {
         try {
-            await axios.post(`http://localhost:8080/modificarResponsable?legajo=${props.idRepresentante}&nombre=${data.nombre}&idClub=${data.club.idClub}`)
+            await axios.post(`http://localhost:8080/modificarResponsable?legajo=${idResponsable}&nombre=${data.nombre}&idClub=${data.club.idClub}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
