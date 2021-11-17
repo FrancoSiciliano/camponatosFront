@@ -1,5 +1,11 @@
+.tablaseleccion{
+    height: 400px !important;
+
+}
+
 .tablaCampeonatosADefinir{
+    position: relative;
     background-color: #FFFF !important;
     overflow-y: scroll !important;
-    max-height: 400px !important;
+    max-height: 100%
 }

@@ -30,7 +30,16 @@ function NavBarResponsable(props) {
                     </div>
                     <div className='jugadores-div'>
                         <NavDropdown title="GESTIONAR" id="basic-nav-dropdown" classname="LinkNavbar">
-                            <NavDropdown.Item href="/datos/club">CLUB</NavDropdown.Item>
+                        <Dropdown>
+                                <Dropdown.Toggle className='ddJugadores'>
+                                CLUB
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <NavDropdown.Item href="/datos/club">PERFIL CLUB</NavDropdown.Item>
+                                    <Dropdown.Item href="/registro/responsable">AGREGAR RESPONSABLE</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            
                             <Dropdown>
                                 <Dropdown.Toggle className='ddJugadores'>
                                     JUGADORES

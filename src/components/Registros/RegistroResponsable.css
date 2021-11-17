@@ -1,0 +1,25 @@
+.main-container-registro-Responsable {
+    background-image: url("../../assets/images/travel-nomades-JO19K0HDDXI-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 300px;
+    height: 92.8vh ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.label-select {
+    width: 300px !important;
+    margin-bottom: 10px;
+}
+
+.boton-submit {
+    width: 300px;
+}
+
+.titulo-responsable {
+    margin-bottom: 50px !important;
+    justify-self: flex-start;
+}

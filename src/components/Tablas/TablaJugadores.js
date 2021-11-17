@@ -25,7 +25,8 @@ export const TablaJugadores = (props) => {
         }));
     }
     const HandleClickHabilitar =(id)=>{
-         axios.post(`http://localhost:8080/modificarEstado?idJugador=${id}`)
+
+         axios.post(`http://localhost:8080/modificarEstado?idJugador=${{id}}`)
     }
     const HandleClickDeshabilitar = () =>{
 
@@ -79,10 +80,7 @@ export const TablaJugadores = (props) => {
                                 <td>{jugadores.fechaNacimiento}</td>
                                 <td>{jugadores.fechaAlta}</td>
                                 <td>{jugadores.estado ? "Activo" : "Inactivo"}</td>
-                                <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm" onClick={HandleClickHabilitar(idJug)}>Habilitar</Button></td>
-                                <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm" onClick={HandleClickDeshabilitar(jugadores.idJugador)}> Deshabilitar</Button></td>
+                                <td><Button classname="botonesTablas" class="btn btn-success btn-sm" onClick={(e)=>axios.post(`http://localhost:8080/modificarEstado?idJugador=${{idJug}}`) }>Cambiar Estado</Button></td>
                             </tr>)
                     })}
                     </tbody>
