@@ -1,7 +1,7 @@
 import React from "react";
 import {Col, FloatingLabel, Form, Row, Button} from "react-bootstrap"
 import {useState} from "react";
-import './CreacionCampeonato.css'
+import '../../Registros/Registros.css'
 import {PopUp} from "../../PopUp/PopUp";
 import {useHistory} from "react-router-dom";
 import NavBarAdministracion from "../../NavBars/NavBarAdministracion";

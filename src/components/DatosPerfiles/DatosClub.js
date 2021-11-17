@@ -73,7 +73,7 @@ export const DatosClub = (props) => {
     }
 
     return (
-        <div>
+        <div className="main-container-datos-navbar-jugador">
             <NavBarResponsable/>
             <div className='main-container-datos'>
                 

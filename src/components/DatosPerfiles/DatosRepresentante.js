@@ -9,6 +9,7 @@ import {FloatingLabel, Spinner} from 'react-bootstrap';
 import {useState, useEffect} from 'react';
 import {PopUp} from "../PopUp/PopUp";
 import axios from 'axios';
+import NavBarResponsable from "../NavBars/NavBarResponsable";
 
 export const DatosRepresentante = (props) => {
     const [data, setData] = useState(null);
@@ -77,7 +78,8 @@ export const DatosRepresentante = (props) => {
 
     if (data) {
         return (
-            <div>
+            <div className="main-container-datos-navbar-jugador">
+                <NavBarResponsable/>
                 <div className='main-container-datos'>
 
                     <h2 className='titledatos'>Perfil del Representante </h2>

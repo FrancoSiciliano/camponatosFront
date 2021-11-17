@@ -1,16 +1,24 @@
 .main-container-datos{
-    background-image: url(../../assets/images/imagencancha.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 100% !important;
-    height: 94.7vh !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    height: 100%;
 }
+
+.main-container-datos-navbar-jugador {
+    height: 100vh !important;
+    width: 100vw !important;
+    background-image: url(../../assets/images/imagencancha.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .titledatos{
     display: flex;
     justify-content:center;
