@@ -8,6 +8,7 @@ import {BiCheck} from "react-icons/all";
 import {Button} from "react-bootstrap";
 import transitionEndListener from "react-bootstrap/transitionEndListener";
 import {PopUp} from "../../PopUp/PopUp";
+import NavBarAdministracion from "../../NavBars/NavBarAdministracion";
 
 export const DefinirClubesCampeonato = () => {
     const history = useHistory();
@@ -152,14 +153,18 @@ export const DefinirClubesCampeonato = () => {
                                 {"Cantidad: " + clubesAgregados.length}
                             </h5>
                             {checkClubes() ?
-                                <Button className="btn btn-success" style={{margin: "5px 0"}} onClick={handleClickFinalizar}>Finalizar</Button> :
-                                <Button className="btn btn-success" style={{margin: "5px 0"}} disabled>Finalizar</Button>}
+                                <Button className="btn btn-success" style={{margin: "5px 0"}}
+                                        onClick={handleClickFinalizar}>Finalizar</Button> :
+                                <Button className="btn btn-success" style={{margin: "5px 0"}}
+                                        disabled>Finalizar</Button>}
                         </div>
                     </div>
                 </div>
-                <PopUp modalTitle={modalTitle} show={showModal} onHide={error ? () => setShowModal(false) : () => history.push("/home/administracion")} text={mensajeError} title={tituloError}/>
+                <PopUp modalTitle={modalTitle} show={showModal}
+                       onHide={error ? () => setShowModal(false) : () => history.push("/home/administracion")}
+                       text={mensajeError} title={tituloError}/>
             </div>
-            )
+        )
     } else {
         return (<h1>The server isnt working...</h1>)
     }

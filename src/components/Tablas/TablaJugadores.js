@@ -8,7 +8,7 @@ import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 export const TablaJugadores = (props) => {
     const [jugadores, setJugadores] = useState(null);
     const todosJugadores = useRef(null);
- 
+    const [estado, setEstado] = useState (false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -18,14 +18,20 @@ export const TablaJugadores = (props) => {
             todosJugadores.current = newData;
         };
         fetchData();
-    }, []);
+    }, [estado]);
     const handleChange = (event) => {
         setJugadores(todosJugadores.current.filter((elem) => {
             return `${elem.nombre} + ${elem.apellido}`.toLowerCase().includes(event.target.value.toLowerCase());
         }));
     }
-    const HandleClickCambiarEstado =async (id)=>{
-        await axios.post(`http://localhost:8080/modificarEstado?idJugador=${{id}}`)
+    const handleClickEstado = async (idJug) => {
+        console.log(idJug);
+        try{
+            await axios.post(`http://localhost:8080/modificarEstado?idJugador=${idJug}`);
+            setEstado(!estado);
+        }catch(e){
+            console.log(e.message);
+        }
     }
     
     if (jugadores) {
@@ -77,7 +83,8 @@ export const TablaJugadores = (props) => {
                                 <td>{jugadores.fechaNacimiento}</td>
                                 <td>{jugadores.fechaAlta}</td>
                                 <td>{jugadores.estado ? "Activo" : "Inactivo"}</td>
-                                <td><Button classname="botonesTablas" class="btn btn-success btn-sm" onClick={HandleClickCambiarEstado({idJug})}>Cambiar Estado</Button></td>
+                                <td><Button classname="botonesTablas" class="btn btn-success btn-sm" 
+                                onClick={()=>handleClickEstado(idJug)}> Cambiar Estado </Button></td>
                             </tr>)
                     })}
                     </tbody>

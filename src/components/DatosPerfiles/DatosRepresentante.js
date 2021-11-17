@@ -10,6 +10,7 @@ import {useState, useEffect} from 'react';
 import {PopUp} from "../PopUp/PopUp";
 import axios from 'axios';
 import { useLocation,useHistory } from 'react-router';
+import NavBarResponsable from "../NavBars/NavBarResponsable";
 
 export const DatosRepresentante = () => {
     const history = useHistory();
@@ -80,7 +81,8 @@ export const DatosRepresentante = () => {
 
     if (data) {
         return (
-            <div>
+            <div className="main-container-datos-navbar-jugador">
+                <NavBarResponsable/>
                 <div className='main-container-datos'>
 
                     <h2 className='titledatos'>Perfil del Representante </h2>
