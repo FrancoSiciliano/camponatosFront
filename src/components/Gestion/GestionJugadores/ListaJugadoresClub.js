@@ -14,7 +14,7 @@ export const ListaJugadoresClub = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getJugadores`);
+            const response = await axios(`http://localhost:8080/getJugadoresByClub?idClub=1`);
             const repuesta = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.id}`);
             const partido = repuesta.data;
             const newData = response.data;
@@ -87,9 +87,8 @@ export const ListaJugadoresClub = (props) => {
                                 <td>{jugadores.fechaAlta}</td>
                                 <td>{jugadores.estado ? "Activo" : "Inactivo"}</td>
                                 <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm" onClick={HandleClickHabilitar}>Habilitar</Button></td>
-                                <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm"> Deshabilitar</Button></td>
+                                            class="btn btn-success btn-sm" onClick={HandleClickHabilitar}>Cambiar Estado</Button></td>
+
                             </tr>)
                     }})}
                     </tbody>

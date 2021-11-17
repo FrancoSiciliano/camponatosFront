@@ -29,28 +29,17 @@ function NavBarAdministracion() {
                         height: '25px',
                         color: 'white'
                     }}/>
-                    <NavDropdown title="OPERACIONES" id="basic-nav-dropdown" classname="LinkNavbar">
+                    <NavDropdown title="OPERACIONES" id="basic-nav-dropdown" classname="LinkNavbar">  
+                        <Dropdown>
                         <Dropdown>
                             <Dropdown.Item href="/tabla/jugadores">LISTADO JUGADORES</Dropdown.Item>    
                         </Dropdown>
-                        <Dropdown>
                             <Dropdown.Toggle className='ddJugadores'>
                                 CLUBES
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item href="/registro/club">AGREGAR CLUB</Dropdown.Item>
                                 <Dropdown.Item href="/tabla/clubes">LISTADO CLUBES</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <Dropdown>
-                            <Dropdown.Toggle className='ddJugadores'>
-                                REPRESENTANTES
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="/registro/responsable">AGREGAR
-                                    REPRESENTANTE</Dropdown.Item>
-                                <Dropdown.Item href="/tabla/representantes">LISTADO
-                                    REPRESENTATES</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </NavDropdown>

@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {Col, FloatingLabel, Form,Row,Button} from "react-bootstrap"
 import React from "react";
-import ".//Registros.css"
+import "./RegistroClub.css"
 import { useState} from "react";
 
 import axios from "axios";
@@ -42,6 +42,15 @@ export const RegistroClub = () => {
         setShowModal(true);
 
     }
+    const existeClub=(idClub)=>{
+        let club =  axios(`http://localhost:8080/getClubById?idClub=${datos.id}`);
+        if(club){
+            return true
+        }
+        else{
+            return false;
+        }
+    }
 
     const handleSubmit = (event) => {
         if (datos.nombre === "" || containsNumbers(datos.nombre)) {
@@ -54,7 +63,15 @@ export const RegistroClub = () => {
             setShowModal(true);
             return;
         }
-        postData()
+        else if(datos.id ==="" || existeClub()){
+            setError("Id no valida");
+            setShowModal(true);
+            return;
+        }
+        else{
+            postData()
+        }
+        
      
     };
     const containsNumbers = (string) => {
@@ -63,7 +80,7 @@ export const RegistroClub = () => {
         return (
             <div className="main">
                 <NavBarAdministracion/>
-                <div className="main-container-registro">
+                <div className="main-container-registro-Club">
                     <h1 className="titulo-responsable">Registro Club</h1>
                     <Form onSubmit={handleSubmit}>
                         <Row className="mb-3">
