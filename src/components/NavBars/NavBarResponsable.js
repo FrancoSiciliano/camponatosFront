@@ -22,11 +22,13 @@ function NavBarResponsable(props) {
     const handleClickAgregarJugador = () =>{
         history.push("/registro/jugador", props.id);
     }
+    const handleClickPerfilRepresentante = () =>{
+    }
     return (
         <Navbar className="navbar-jugador">
             <div className="titulo-nav-jugador">
                 <MdSportsSoccer style={{width: '30px', height: '30px', color: 'white', marginRight: '10px'}}/>
-                <Navbar.Brand classname="LogoNavbar">PERFIL
+                <Navbar.Brand classname="LogoNavbar" onClick={handleClickPerfilRepresentante}>PERFIL
                     REPRESENTANTE</Navbar.Brand>
             </div>
 

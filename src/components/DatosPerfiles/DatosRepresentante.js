@@ -82,7 +82,7 @@ export const DatosRepresentante = () => {
     if (data) {
         return (
             <div className="main-container-datos-navbar-jugador">
-                <NavBarResponsable/>
+                <NavBarResponsable id={idResponsable}/>
                 <div className='main-container-datos'>
 
                     <h2 className='titledatos'>Perfil del Representante </h2>
