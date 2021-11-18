@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import {FloatingLabel} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
 import {useState} from 'react';
 import axios from 'axios';
 import {useEffect} from 'react';
@@ -15,8 +15,10 @@ import {PopUp} from "../PopUp/PopUp";
 import NavBarResponsable from '../NavBars/NavBarResponsable';
 
 export const DatosClub = (props) => {
-
+    const history = useHistory();
+    let idResponsable = history.location.state;
     const [data, setData] = useState([]);
+    const [responsable, setResponsable] = useState([]);
     const [jugadores, setJugadores] = useState([]);
     const [popUp, setpopUp] = useState({
         mensaje: "",
@@ -26,10 +28,13 @@ export const DatosClub = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getClubById?idClub=${props.idClub}`);
-            const response2 = await axios(`http://localhost:8080/getJugadoresByClub?idClub=${props.idClub}`);
-            const newData = response.data;
-            const jugadoresClub = response2.data;
+            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
+            const res = respuesta.data;
+            setResponsable(res)
+            const club = await axios(`http://localhost:8080/getClubById?idClub=${res.club.idClub}`);
+            const jugador = await axios(`http://localhost:8080/getJugadoresByClub?idClub=${res.club.idClub}`);
+            const newData = club.data;
+            const jugadoresClub = jugador.data;
             setData(newData);
             setJugadores(jugadoresClub);
         }
@@ -45,7 +50,7 @@ export const DatosClub = (props) => {
 
     const postData = async (data) => {
         try {
-            await axios.post(`http://localhost:8080/modificarClub?idClub=${props.idClub}&nombre=${data.nombre}&direccion=${data.direccion}`)
+            await axios.post(`http://localhost:8080/modificarClub?idClub=${responsable.club.idClub}&nombre=${data.nombre}&direccion=${data.direccion}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
@@ -74,7 +79,7 @@ export const DatosClub = (props) => {
 
     return (
         <div className="main-container-datos-navbar-jugador">
-            <NavBarResponsable/>
+            <NavBarResponsable id={idResponsable}/>
             <div className='main-container-datos'>
                 
                 <h2 className='titledatos'>Perfil del Club</h2>

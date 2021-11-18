@@ -3,15 +3,17 @@ import { useLocation,Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import './TablaPartidosResponsables.css'
 import axios from "axios";
-export const TablaPartidosResponsables=()=>{
-  let location = useLocation()
-  console.log(location)
+export const TablaPartidosResponsables=(props)=>{
   const [data, setData] = useState(null);
+  const [responsable, setResponsable] = useState(null);
   useEffect(() => {
-    const fetchData = async (url) => {
-        const response = await axios(`http://localhost:8080/getPartidosByClub?idClub=1`);
-        const Datanew = response.data;
-        setData(Datanew);
+    const fetchData = async () => {
+      const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${props.id}`)
+      const res = respuesta.data;
+      setResponsable(res);
+      const response = await axios(`http://localhost:8080/getPartidosByClub?idClub=${res.club.idClub}`);
+      const Datanew = response.data;
+      setData(Datanew);
     };
     fetchData();
 },[]);
@@ -30,9 +32,7 @@ const handleClick = () =>{
             <th>Club Local</th>
             <th>Club Visitante</th>
             <th colSpan="2">
-            <Form.Control classname="searchBox"
-                                          id="search" type="search" placeholder="Filtrar por Nombre"
-                                          onChange={""} autoComplete="off"/>
+            <Form.Control classname="searchBox" id="search" type="search" placeholder="Filtrar por Nombre" onChange={""} autoComplete="off"/>
 </th>
     </tr>
   </thead>
