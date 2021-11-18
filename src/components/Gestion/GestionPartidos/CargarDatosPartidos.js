@@ -9,53 +9,13 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 
-export const CargarDatosPartidos = (props = 1) => {
+export const CargarDatosPartidos = () => {
 
   const [errors, setErrors] = useState({});
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [jugadores, setJugadores] = useState([]);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
-
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    setErrors(validateInfo(values))
-  }
-
-
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const handleClose2 = () => setShow2(false);
-  const handleShow2 = () => setShow2(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios(`http://localhost:8080/getJugadoresByClub?idClub=${props.idPartido}`);
-      const newData = response.data;
-      setData(newData);
-    };
-    fetchData();
-  }, []);
-
-
-  const handleChange = (event) => {
-    setValues({
-      ...data,
-      [event.target.name]: event.target.value,
-    })
-  }
-
-  const handleChangeJugador = (event) => {
-    setData({
-      ...data,
-      jugador: { idJugador: event.target.value }
-    })
-  }
-
-
   const [values, setValues] = useState({
     incidentes: "",
     jugadorGol: "",
@@ -65,6 +25,38 @@ export const CargarDatosPartidos = (props = 1) => {
     jugadorFalta: "",
     minutoFalta: ""
   })
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    setErrors(validateInfo(values))
+  }
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios(`http://localhost:8080/getMiembroByPartido?idPartido=132`);
+      const newData = response.data;
+      setData(newData);
+    };
+    fetchData();
+  }, []);
+
+
+  const handleChange = (event) => {
+    
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    })
+    
+  }
+  
+  const handleClick = () => {
+    
+  }
   return (
 
     <div className="containerLogin">
@@ -89,15 +81,17 @@ export const CargarDatosPartidos = (props = 1) => {
                     <Row className="mb-2">
                       <Form.Group as={Col} controlId="formGridJugadorGol" id="formGridJugadorGol" sm="3">
                         <FloatingLabel controlId="floatingInputGrid" label="Jugador">
-                          <Form.Select type="label-select" name="jugador" value={data.jugador.idJugador}
-                            onChange={handleChangeJugador} />
-                          <option>Seleccionar</option>
-                          {jugadores.map((jugador, index) => {
-                            return (
-                              <option key={index}
-                                value={jugador.idJugador}>{`${jugador.idJugador} - ${jugador.nombre}`}</option>)
-                          })}
+                          <Form.Select type="label-select" name='jugadorGol' onChange={handleChange} >
+                            {data.map((dato, index) => {
+                              return (
+                                <option 
+                                key={index}
+                                value={dato.jugador.idJugador}> {`${dato.jugador.idJugador} - ${dato.jugador.nombre}`}
+                                </option>
+                                )
 
+                            })}
+                        </Form.Select>
                         </FloatingLabel>
                       </Form.Group>
                       <Form.Group as={Col} controlId="formGridMinutoGol" sm="3">
@@ -123,7 +117,7 @@ export const CargarDatosPartidos = (props = 1) => {
                   <Button variant="secondary" onClick={handleClose}>
                     Cerrar
                   </Button>
-                  <Button variant="success" onClick={handleClose}>
+                  <Button variant="success" onClick={handleClick}>
                     Agregar
                   </Button>
                 </Modal.Footer>
@@ -152,9 +146,17 @@ export const CargarDatosPartidos = (props = 1) => {
                     <Row className="mb-2">
                       <Form.Group as={Col} controlId="formGridJugadorFalta" id="formGridJugadorFalta" sm="3">
                         <FloatingLabel controlId="floatingInputGrid" label="Jugador">
-                          <Form.Select type="label-select" name="jugador" value={values.jugadorFalta}
-                            onChange={handleChange} />
+                          <Form.Select type="label-select" name='jugadorFalta' onChange={handleChange} >
+                            {data.map((dato, index) => {
+                              return (
+                                <option 
+                                key={index}
+                                  value={dato.jugador.idJugador}> {`${dato.jugador.idJugador} - ${dato.jugador.nombre}`}
+                                </option>
+                                )
 
+                            })}
+                        </Form.Select>
                         </FloatingLabel>
                       </Form.Group>
                       <Form.Group as={Col} controlId="formGridMinutoFalta" sm="3">
@@ -180,7 +182,7 @@ export const CargarDatosPartidos = (props = 1) => {
                   <Button variant="secondary" onClick={handleClose2}>
                     Cerrar
                   </Button>
-                  <Button variant="success" onClick={handleClose2}>
+                  <Button variant="success" onClick={handleClick}>
                     Agregar
                   </Button>
                 </Modal.Footer>

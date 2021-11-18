@@ -35,9 +35,10 @@ export const DatosJugador = (props) => {
 
     const postData = async (data) => {
         try {
-            await axios.post(url + `modificarDireccion?idJugador=${props.idJugador}&direccion=${data.direccion}`)
-            await axios.post(url + `modificarMail?idJugador=${props.idJugador}&mail=${data.mail}`)
-            await axios.post(url + `modificarTelefono?idJugador=${props.idJugador}&telefono=${data.telefono}`)
+            await axios.post(`${url}modificarDireccion?idJugador=${props.idJugador}&direccion=${data.direccion}`)
+            await axios.post(`${url}modificarMail?idJugador=${props.idJugador}&mail=${data.mail}`)
+            await axios.post(`${url}modificarTelefono?idJugador=${props.idJugador}&telefono=${data.telefono}`)
+            await axios.post( `${url}cambiarPasswordJugador?idJugador=${props.idJugador}&password=${data.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
@@ -178,7 +179,7 @@ export const DatosJugador = (props) => {
                                 <Form.Group as={Col} controlId="formGridPassword">
                                     <FloatingLabel className="floatingInputGridJug" label="Password"
                                                    style={{fontSize: "19px"}}>
-                                        <Form.Control type="text" placeholder="Password" name="password"
+                                        <Form.Control type="text" placeholder="Password" name="password" value={data.password}
                                                       style={{fontSize: "20px"}}/>
                                     </FloatingLabel>
                                 </Form.Group>
