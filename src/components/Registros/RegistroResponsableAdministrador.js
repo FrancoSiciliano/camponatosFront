@@ -5,12 +5,16 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
+import {useHistory} from "react-router-dom";
+import {contieneCaracteresEspeciales, contieneNumeros, esUnMail, yaExisteElMail} from "../../controles";
 
 export const RegistroResponsableAdministrador = () => {
-    const [popUp, setpopUp] = useState ({
-        mensaje: "",
-        titulo: ""
-    })
+
+    const history = useHistory();
+    const datosClub = history.location.state;
+
+    const [title, setTitle] = useState("");
+    const [modalTitle, setModalTitle] = useState("");
 
     const [datos, setDatos] = useState({
         nrodocumento: "",
@@ -20,74 +24,76 @@ export const RegistroResponsableAdministrador = () => {
         password:""
     });
 
-    const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getClubes`);
-            const newData = response.data;
-            setData(newData);
-        };
-        fetchData();
-    }, [data]);
 
     const handleChange = (event) => {
         setDatos({
             ...datos,
             [event.target.name]: event.target.value,
         })
+        console.log(datosClub)
     }
     
 
-    const handleSubmit = (event) => {
-        if (datos.nombre === "" || containsNumbers(datos.nombre)) {
-            setError("Nombre no válido");
-            setShowModal(true);
-        }
-        else if (datos.apellido === "" || isNaN(datos.apellido)) {
-            setError("Apellido no válido");
-            setShowModal(true);
-        }
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
+        const existeMail = await yaExisteElMail(datos.mail);
+
+        if (datos.nombre === "" || contieneNumeros(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
+            setError("Nombre no válido");
+            setTitle("Error en nombre");
+            setModalTitle("Advertencia");
+            setShowModal(true);
+        }
+        else if (datos.apellido === "" || contieneNumeros(datos.apellido) || contieneCaracteresEspeciales(datos.nombre)) {
+            setError("Apellido no válido");
+            setTitle("Error en apellido");
+            setModalTitle("Advertencia");
+            setShowModal(true);
+        }
 
         else if (datos.nrodocumento === "" || isNaN(datos.nrodocumento)) {
             setError("Número de documento no válido");
+            setTitle("Error en numero de documento");
+            setModalTitle("Advertencia");
             setShowModal(true);
         }
 
-        else if (datos.mail === "" || !isMail(datos.mail)) {
-            setError("Correo Electrónico no válido");
+        else if (datos.mail === "" || !esUnMail(datos.mail) || existeMail) {
+            setError(existeMail ? "El correo electrónico ingresado ya existe" : "Correo Electrónico no válido");
+            setTitle("Error en el correo electrónico");
+            setModalTitle("Advertencia");
             setShowModal(true);
         }
 
         else if (datos.password === "") {
             setError("No puede dejar la contraseña vacía");
+            setTitle("Error en la contraseña");
+            setModalTitle("Advertencia");
             setShowModal(true);
+        } else {
+            postData();
         }
-        postData()
     };
+
     const postData = async () => {
         try{
-            await axios.post(`http://localhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=1&mail=${datos.mail}&password=${datos.password}`)
-            setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
-            
+            await axios.post(`http://logcalhost:8080/crearClub?nombre=${datosClub.nombre}&direccion=${datosClub.direccion}&idClub=${parseInt(datosClub.id)}`)
+            await axios.post(`http://logcalhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${parseInt(datosClub.id)}&mail=${datos.mail}&password=${datos.password}`)
+            setError("Se registró el responsable con éxito");
+            setTitle("Registro completado");
+            setModalTitle("Operación exitosa");
+            setShowModal(true);
         }catch(e){
-            console.log(e.message)
-            setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
-            
+            setError("No se pudo registrar el responsable");
+            setTitle("Registro fallido");
+            setModalTitle("Operación fallida");
+            setShowModal(true);
         }
-        setShowModal(true);
 
-    }
-
-    const containsNumbers = (string) => {
-        return string.match(/\d+/g) != null;
-    }
-
-    const isMail = (string) => {
-        return string.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null;
     }
 
     return (
@@ -139,7 +145,7 @@ export const RegistroResponsableAdministrador = () => {
                         </Form.Group>
                     </Row>
                     <Button type="submit" className="btn-success">Finalizar</Button>
-                    <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al responsable"/>
+                    <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title={title} modalTitle={modalTitle}/>
                 </Form>
             </div>
         </div>

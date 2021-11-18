@@ -5,6 +5,7 @@ import "./RegistroResponsable.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
+import {contieneNumeros, esUnMail} from "../../controles";
 
 export const RegistroResponsable = () => {
 
@@ -35,7 +36,7 @@ export const RegistroResponsable = () => {
     }
 
     const handleClick = (event) => {
-        if (datos.nombre === "" || containsNumbers(datos.nombre)) {
+        if (datos.nombre === "" || contieneNumeros(datos.nombre)) {
             setError("Nombre no válido");
             setShowModal(true);
         }
@@ -45,7 +46,7 @@ export const RegistroResponsable = () => {
             setShowModal(true);
         }
 
-        else if (datos.mail === "" || !isMail(datos.mail)) {
+        else if (datos.mail === "" || !esUnMail(datos.mail)) {
             setError("Correo Electrónico no válido");
             setShowModal(true);
         }
@@ -62,14 +63,6 @@ export const RegistroResponsable = () => {
 
         alert(JSON.stringify(datos));
     };
-
-    const containsNumbers = (string) => {
-        return string.match(/\d+/g) != null;
-    }
-
-    const isMail = (string) => {
-        return string.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null;
-    }
 
     return (
         <div className="main">

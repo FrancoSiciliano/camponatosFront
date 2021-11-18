@@ -4,6 +4,7 @@ import "./RegistroJugador.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
+import {contieneNumeros, esUnMail} from "../../controles";
 
 export const RegistroJugador = () => {
 
@@ -48,17 +49,17 @@ export const RegistroJugador = () => {
 
     const handleSubmit = (event) => {
         console.log(datos.fechaNacimiento)
-        if (datos.nombre === "" || containsNumbers(datos.nombre)) {
+        if (datos.nombre === "" || contieneNumeros(datos.nombre)) {
             setError("Nombre no válido");
             setShowModal(true);
         }
 
-        else if (datos.apellido === "" || containsNumbers(datos.apellido)) {
+        else if (datos.apellido === "" || contieneNumeros(datos.apellido)) {
             setError("Apellido no válido");
             setShowModal(true);
         }
 
-        else if (datos.tipoDoc === "" || containsNumbers(datos.tipoDoc)){
+        else if (datos.tipoDoc === "" || contieneNumeros(datos.tipoDoc)){
             setError("Tipo de documento no válido");
             setShowModal(true);
         }
@@ -68,7 +69,7 @@ export const RegistroJugador = () => {
             setShowModal(true);
         }
 
-        else if (datos.mail === "" || !isMail(datos.mail)) {
+        else if (datos.mail === "" || !esUnMail(datos.mail)) {
             setError("Correo Electrónico no válido");
             setShowModal(true);
         }
@@ -114,13 +115,7 @@ export const RegistroJugador = () => {
 
     }
 
-    const containsNumbers = (string) => {
-        return string.match(/\d+/g) != null;
-    };
 
-    const isMail = (string) => {
-        return string.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null;
-    };
 
     if (data) {
         return (

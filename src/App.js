@@ -24,7 +24,7 @@ import { DatosJugadorResponsable } from "./components/DatosPerfiles/DatosJugador
 import { RegistroClub } from "./components/Registros/RegistroClub";
 import { TablaClubes } from "./components/Tablas/TablaClubes";
 import { TablaResponsables } from "./components/Tablas/Representante/TablaResponsables";
-import { RegistroResponsableAdministrador } from "./components/Registros/RegistroResponsablePorResponsable";
+import { RegistroResponsableAdministrador } from "./components/Registros/RegistroResponsableAdministrador";
 import { TablaJugadores } from "./components/Tablas/TablaJugadores";
 function App() {
   return (
