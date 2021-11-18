@@ -36,7 +36,7 @@ export const TablaJugadores = (props) => {
     
     if (jugadores) {
         return (<div>
-            <NavBarAdministracion/>
+            <NavBarAdministracion />
             <div className="TablaListaJugadoresClub scrollable-lista-jugadores">
                 <Table striped bordered hover sm>
                     <thead>
