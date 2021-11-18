@@ -23,6 +23,7 @@ function NavBarResponsable(props) {
         history.push("/registro/jugador", props.id);
     }
     const handleClickPerfilRepresentante = () =>{
+        history.push("/home/representante", props.id);
     }
     return (
         <Navbar className="navbar-jugador">

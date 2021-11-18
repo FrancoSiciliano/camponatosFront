@@ -17,7 +17,25 @@ export const TablaPartidosResponsables=(props)=>{
     };
     fetchData();
 },[]);
-const handleClick = () =>{
+const estaValidado = (partido) =>{
+  if(partido.clubLocal.idClub === responsable.club.idClub){
+    if(partido.convalidaLocal === true){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  else{
+    if(partido.convalidaVisitante === true){
+      return true;
+    }
+    else{
+      return false;
+    }
+  
+  }
+
 }
 
   if(data){
@@ -39,6 +57,7 @@ const handleClick = () =>{
   <tbody>
   {data.map((partido,index)=>{
     var ids=partido.idPartido
+if(!estaValidado){
   return(
     <tr key={index}>
       <td>{partido.nroFecha}</td>
@@ -46,9 +65,9 @@ const handleClick = () =>{
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
       <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/partidos/Detalles', state:ids}}> Detalles</Link></td>
-      <td><Button classname="botonTablaValidar" type="submit" class="btn btn-success" onClick={handleClick}> Validar</Button></td>
+      <td><Button classname="botonTablaValidar" type="submit" class="btn btn-success"> Validar</Button></td>
     </tr>)
-  })}
+  }})}
 </tbody>
 </Table></div> )}
 else{
