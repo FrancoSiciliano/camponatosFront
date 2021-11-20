@@ -65,11 +65,11 @@ export const CampeonatosResponsable = (props) => {
                                 <td>{campeonato.fechaInicio}</td>
                                 <td>{campeonato.fechaFin}</td>
                                 <td><Link className='btn btn-success botonesRepresentante'
-                                    to={{pathname: '/tabla/Posiciones', state:{id:ids,descrip:descripcion,tipo:"RESPONSABLES"}}}>Tabla</Link></td>
+                                    to={{pathname: '/tabla/Posiciones', state:{idCampeonato:ids,descrip:descripcion,tipo:"RESPONSABLES"}}}>Tabla</Link></td>
                                 <td><Link className='btn btn-success botonesRepresentante'
-                                    to={{pathname: '/partidos/campeonatos', state:{id:ids,descrip:descripcion,tipo:"RESPONSABLES"}}}>Partidos</Link></td>
+                                    to={{pathname: '/partidos/campeonatos', state:{idCampeonato:ids,descrip:descripcion,tipo:"RESPONSABLES",idResponsable:props.id}}}>Partidos</Link></td>
                                 <td><Link className='btn btn-success botonesRepresentante'
-                                    to={{pathname: '/tabla/habilitacion/jugadores/campeonato', state:{id:ids,descrip:descripcion}}}>Jugadores</Link></td>
+                                    to={{pathname: '/tabla/habilitacion/jugadores/campeonato', state:{idCampeonato:ids,descrip:descripcion,idResponsable:props.id}}}>Jugadores</Link></td>
                             </tr>)
     }})}
                     </tbody>

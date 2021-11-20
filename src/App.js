@@ -1,4 +1,4 @@
-import { Login } from "./components/Login/Login";
+import { Login } from "./components/Basura de Franco/Login";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { RegistroJugador } from "./components/Registros/RegistroJugador";
 import { DatosJugador } from "./components/DatosPerfiles/DatosJugador";
@@ -27,12 +27,14 @@ import { TablaResponsables } from "./components/Tablas/Representante/TablaRespon
 import { RegistroResponsableAdministrador } from "./components/Registros/RegistroResponsableAdministrador";
 import { TablaJugadores } from "./components/Tablas/TablaJugadores";
 import { RegistroResponsableByResponsable } from "./components/Registros/RegistroResponsableByResponsable";
+import { TablaJugadoresPartidos } from "./components/Tablas/TablaJugadoresPartidos";
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
 
+{/* Todos los Homes esta aca abajo */}
           <Route exact path="/">
             <Home />
           </Route>
@@ -48,9 +50,10 @@ function App() {
           <Route path="/home/jugador">
             <LandingJugador />
           </Route>
+{/* Todos los Homes esta aca arriba */}
 
-
-          <Route path="/registro/jugador"> {/* el registro del jugador lo hace el responsable */}
+{/* Todos los registros/Agregar estan aca abajo */}
+          <Route path="/registro/jugador"> 
             <RegistroJugador />
           </Route>
           <Route path="/registro/responsable/administrador">
@@ -71,8 +74,15 @@ function App() {
           <Route path="/agregar/clubes">
             <DefinirClubesCampeonato />
           </Route>
+          <Route path="/cargar/datos/partido">
+            <CargarDatosPartidos />
+          </Route>
+          <Route path="/crear/partido">
+            <CrearPartido/>
+          </Route>
+{/* Todos los registros/Agregar estan aca arriba */}
 
-
+{/* Todos los perfiles/datos de cada usuario esta aca abajo */}
           <Route path="/datos/jugador">
             <DatosJugador idJugador="1" />
           </Route>
@@ -85,11 +95,11 @@ function App() {
           <Route path="/datos/club">
             <DatosClub/>
           </Route>
+{/* Todos los perfiles/datos de cada usuario esta aca arriba */}
 
           <Route path="/detalles/partidos">
             <DetallesPartido/>
           </Route>
-
           <Route path="/tabla/habilitacion/jugadores/campeonato">
             <ListaJugadoresClub/>
           </Route>
@@ -112,6 +122,10 @@ function App() {
           <Route path="/partidos/campeonatos">
             <TablaPartidosCampeonatos/>
           </Route>
+          <Route path="/tabla/partidos/listaJugadores">
+            <TablaJugadoresPartidos/>
+          </Route>
+
 
 
           <Route path="/partidos/Detalles">
@@ -120,19 +134,11 @@ function App() {
           <Route path="/gestionar/campeonato">
             <CampeonatosResponsable />
           </Route>
-          
-          <Route path="/cargar/datos/partido">
-            <CargarDatosPartidos />
-          </Route>
-          <Route path="/crear/partido">
-            <CrearPartido/>
-          </Route>
           <Route path="/gestionar/jugadores">
             <ListaJugadoresClub />
           </Route>
 
-          {/*{de aca para abajo van las rutas de prueba,
-          arriba solo las oficiales}*/}
+
         </Switch>
       </Router>
     </div>

@@ -1,5 +1,5 @@
 import { useState} from "react";
-import '../../../src/components/Login/Login.css'
+import './Login.css'
 import {Row, Form, Button} from "react-bootstrap";
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 

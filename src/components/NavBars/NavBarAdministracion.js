@@ -1,4 +1,4 @@
-import {Navbar, Nav, NavDropdown, Dropdown, Button} from 'react-bootstrap'
+import {Navbar, Nav, NavDropdown, Dropdown} from 'react-bootstrap'
 import './NavBarAdministracion.css'
 import {MdSportsSoccer} from 'react-icons/all'
 import {useState} from 'react'
@@ -7,14 +7,9 @@ import {BsPencil} from 'react-icons/bs'
 
 function NavBarAdministracion() {
     const [show, setShow] = useState(false);
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
+   
     const [tipo, setTipo] = useState("");
-    const handleClick = (tipo) => {
-        console.log(tipo);
-        setTipo(tipo);
-        setShow(true);
-    }
+
     return (
         <Navbar className="navbar-jugador">
             <div className="titulo-nav-jugador">

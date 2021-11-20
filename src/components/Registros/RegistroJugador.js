@@ -1,12 +1,15 @@
 import {Col, FloatingLabel, Form,Row,Button} from "react-bootstrap"
-
+import { useHistory } from "react-router";
 import "./RegistroJugador.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
 import {contieneNumeros, esUnMail} from "../../controles";
+import NavBarResponsable from "../NavBars/NavBarResponsable";
 
 export const RegistroJugador = () => {
+    const history = useHistory();
+    let idResponsable = history.location.state;
 
     const [popUp, setpopUp] = useState ({
         mensaje: "",
@@ -120,7 +123,9 @@ export const RegistroJugador = () => {
     if (data) {
         return (
             <div className="main">
+                 <NavBarResponsable id={idResponsable}/>
                 <div className="main-container-registro-Jugador">
+               
                     <h1 className="titulo-responsable">Registro Jugador</h1>
 
                     <Form onSubmit={handleSubmit}>

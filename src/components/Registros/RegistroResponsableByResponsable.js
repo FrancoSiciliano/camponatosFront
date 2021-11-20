@@ -1,11 +1,10 @@
-import {Col, FloatingLabel, Form, Row, Spinner} from "react-bootstrap"
+import {Col, FloatingLabel, Form, Row} from "react-bootstrap"
 import {Button} from "react-bootstrap";
 import "./RegistroResponsable.css"
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
-import {Link,useHistory} from 'react-router-dom';
-import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import {useHistory} from 'react-router-dom';
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 
 export const RegistroResponsableByResponsable = () => {
@@ -89,7 +88,7 @@ export const RegistroResponsableByResponsable = () => {
 
     return (
         <div className="main">
-            <NavBarResponsable/>
+            <NavBarResponsable id={idResponsable}/>
             <div className="main-container-registro-Responsable">
                 <h1 className="titulo-responsable">Registro Responsable</h1>
 

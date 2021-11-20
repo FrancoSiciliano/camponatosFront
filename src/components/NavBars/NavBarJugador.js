@@ -1,4 +1,4 @@
-import {Navbar, Container, Nav} from 'react-bootstrap'
+import {Navbar, Nav} from 'react-bootstrap'
 import {MdSportsSoccer} from 'react-icons/all'
 import {BiUserCircle, BiLogOut} from 'react-icons/bi';
 import './NavBarJugador.css'

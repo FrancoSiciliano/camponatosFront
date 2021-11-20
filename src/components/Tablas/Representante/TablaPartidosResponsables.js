@@ -57,7 +57,7 @@ const estaValidado = (partido) =>{
   <tbody>
   {data.map((partido,index)=>{
     var ids=partido.idPartido
-if(!estaValidado){
+
   return(
     <tr key={index}>
       <td>{partido.nroFecha}</td>
@@ -67,7 +67,7 @@ if(!estaValidado){
       <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/partidos/Detalles', state:ids}}> Detalles</Link></td>
       <td><Button classname="botonTablaValidar" type="submit" class="btn btn-success"> Validar</Button></td>
     </tr>)
-  }})}
+  })}
 </tbody>
 </Table></div> )}
 else{

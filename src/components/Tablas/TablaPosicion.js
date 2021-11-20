@@ -1,18 +1,19 @@
 import {Table} from "react-bootstrap"
-import {useLocation} from 'react-router-dom'
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { useHistory } from "react-router";
 import NavbarJugador from "../NavBars/NavBarJugador"
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 
 export const TablaPosicion = (props) => {
-    let location = useLocation()
+    const history = useHistory();
+    let location = history.state;
     const [data, setData] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonato?idCampeonato=${location.state.id}`);
+            const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonato?idCampeonato=${location.state.idCampeonato}`);
             const newData = response.data;
             setData(newData);
         };
@@ -21,7 +22,7 @@ export const TablaPosicion = (props) => {
 
     const navbar = () => {
         if (location.state.tipo === "RESPONSABLES") {
-            return (<NavBarResponsable/>);
+            return (<NavBarResponsable id={location.idResponsable}/>);
         } else if (location.state.tipo === "ADMINISTRADOR") {
             return (<NavBarAdministracion/>);
         } else if (location.state.tipo === "JUGADOR") {
@@ -36,7 +37,7 @@ export const TablaPosicion = (props) => {
                 <Table striped bordered hover >
                     <thead >
                     <tr>
-                        <th colSpan="6">Nombre Campeonato: {location.state.descrip}</th>
+                        <th colSpan="6">Nombre Campeonato: {location.descrip}</th>
                     </tr>
                     <tr>
                         <th>Club</th>

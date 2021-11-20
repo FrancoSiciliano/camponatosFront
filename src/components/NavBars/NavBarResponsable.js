@@ -29,8 +29,7 @@ function NavBarResponsable(props) {
         <Navbar className="navbar-jugador">
             <div className="titulo-nav-jugador">
                 <MdSportsSoccer style={{width: '30px', height: '30px', color: 'white', marginRight: '10px'}}/>
-                <Navbar.Brand classname="LogoNavbar" onClick={handleClickPerfilRepresentante}>PERFIL
-                    REPRESENTANTE</Navbar.Brand>
+                <Navbar.Brand classname="LogoNavbar" onClick={handleClickPerfilRepresentante}>PERFIL REPRESENTANTE</Navbar.Brand>
             </div>
 
             <Nav>

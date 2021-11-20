@@ -15,7 +15,7 @@ export const ListaJugadoresClub = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios(`http://localhost:8080/getJugadoresByClub?idClub=1`);
-            const repuesta = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.id}`);
+            const repuesta = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.idCampeonato}`);
             const partido = repuesta.data;
             const newData = response.data;
             setPartidos(partido);
@@ -36,7 +36,7 @@ export const ListaJugadoresClub = (props) => {
 
     if (jugadores) {
         return (<div>
-            <NavBarResponsable/>
+            <NavBarResponsable id={location.state.idResponsable}/>
             <div className="TablaListaJugadoresClub scrollable-lista-jugadores">
                 <Table striped bordered hover sm>
                     <thead>

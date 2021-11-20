@@ -6,13 +6,13 @@ import axios from "axios";
 
 
 export const CarouselCard = (props) => {
-    const [campeonatos, setCampeonatos] = useState(new Array());
+    const [campeonatos, setCampeonatos] = useState([]);
     const [filtro, setFiltro] = useState({
         estado: "",
         fechaDesde: "",
         fechaHasta: ""
     });
-    const [todosCampeonatos, setTodosCampeonatos] = useState(new Array());
+    const [todosCampeonatos, setTodosCampeonatos] = useState([]);
 
     useEffect(() => {
         async function fetchData() {

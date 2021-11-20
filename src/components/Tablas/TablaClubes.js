@@ -2,12 +2,15 @@ import {Table, Button, Form} from "react-bootstrap";
 import './TablaClubes.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
-export const TablaClubes = (props) => {
+export const TablaClubes = () => {
     const [clubes, setClubes] = useState(null);
     const [todosClubes, setTodosClubes] = useState(null);
-
+    const history = useHistory();
+    const HandleClickPerfil = (idClub)=>{
+        history.push('/datos/club',idClub)
+    }
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios(`http://localhost:8080/getClubes`);
@@ -57,15 +60,14 @@ export const TablaClubes = (props) => {
                                 <td>{ids}</td>
                                 <td>{nombre}</td>
                                 <td>{club.direccion}</td>
-                                <td><Link className='btn btn-success' to={{pathname: '/datos/club', state:ids}}>Perfil</Link></td>
+                                <td><Button className='btn btn-success' onClick={ (e) =>HandleClickPerfil(ids)}> Perfil</Button></td>
                                 <td><Button className='btn btn-success'> Eliminar</Button></td>
-                            </tr>)
-    })}
+                            </tr>)})}
                     </tbody>
                 </Table>
             </div>
         </div>)
     } else {
-        return (<h1>Cuando algo se rompe se rompe</h1>)
+        return (<div><NavBarAdministracion/><h1>Server isnt Working</h1></div>)
     }
 }

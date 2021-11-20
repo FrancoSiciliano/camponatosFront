@@ -2,10 +2,12 @@ import {Table, Form} from "react-bootstrap";
 import './TablaCampeonatos.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link,useHistory} from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import { Button } from ".reactstrap-GaoOmAbT";
 
 export const TablaCampeonatos = (props) => {
+    const history = useHistory();
     const [campeonatos, setCampeonatos] = useState(null);
     const [todosCampeonatos, setTodosCampeonatos] = useState(null);
 
@@ -18,7 +20,12 @@ export const TablaCampeonatos = (props) => {
         };
         fetchData();
     }, []);
-
+    const handleClickPartidos =(idcampeonato,Descripcion,Tipo)=>{
+        
+    }
+    const handleClickTabla =(idcampeonato,Descripcion,Tipo)=>{
+        history.push('/tabla/Posiciones',{idCampeonato:idcampeonato,descripcion:Descripcion,tipo:Tipo})
+    }
     const handleChange = (event) => {
         setCampeonatos(todosCampeonatos.filter((elem) => {
             return elem.descripcion.toLowerCase().includes(event.target.value.toLowerCase());
@@ -62,10 +69,7 @@ export const TablaCampeonatos = (props) => {
                                     <td>{descripcion}</td>
                                     <td>{campeonato.fechaInicio}</td>
                                     <td>{campeonato.fechaFin}</td>
-                                    <td><Link className='btn btn-success' to={{
-                                        pathname: '/tabla/Posiciones',
-                                        state: {id: ids, descrip: descripcion, tipo: "ADMINISTRADOR"}
-                                    }}>Tabla</Link></td>
+                                    <td><Button className='btn btn-success' onClick={handleClickTabla(ids,descripcion,"ADMINISTRACION")}>Tabla</Button></td>
                                     <td><Link className='btn btn-success' to={{
                                         pathname: '/partidos/campeonatos',
                                         state: {id: ids, descrip: descripcion, tipo: "ADMINISTRADOR"}
@@ -78,7 +82,7 @@ export const TablaCampeonatos = (props) => {
             </div>
         </div>)
     } else {
-        return (<h1>Cuando algo se rompe se rompe</h1>)
+        return (<div><NavBarAdministracion/><h1>Server Isnt Working</h1></div>)
     }
 }
 
