@@ -14,7 +14,7 @@ export const CampeonatosResponsable = (props) => {
             const res = respuesta.data;
             setResponsable(res);
             console.log(res)
-            const response = await axios(`http://localhost:8080/getCampeonatosByClub?idClub=${res.club.idClub}`);
+            const response = await axios(`http://localhost:8080/getCampeonatosByClub?idClub=${parseInt(res.club.idClub)}`);
             const newData = response.data;
             setCampeonatos(newData);
             setTodosCampeonatos(newData);
@@ -65,7 +65,7 @@ export const CampeonatosResponsable = (props) => {
                                 <td>{campeonato.fechaInicio}</td>
                                 <td>{campeonato.fechaFin}</td>
                                 <td><Link className='btn btn-success botonesRepresentante'
-                                    to={{pathname: '/tabla/Posiciones', state:{idCampeonato:ids,descrip:descripcion,tipo:"RESPONSABLES"}}}>Tabla</Link></td>
+                                    to={{pathname: '/tabla/Posiciones', state:{campeonato:ids,tipo:"RESPONSABLES"}}}>Tabla</Link></td>
                                 <td><Link className='btn btn-success botonesRepresentante'
                                     to={{pathname: '/partidos/campeonatos', state:{idCampeonato:ids,descrip:descripcion,tipo:"RESPONSABLES",idResponsable:props.id}}}>Partidos</Link></td>
                                 <td><Link className='btn btn-success botonesRepresentante'
