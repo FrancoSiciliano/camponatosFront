@@ -70,17 +70,17 @@
 }
 
 #botonCargarGolesPartido {
-    width: 7em;
+    width: 8em;
     display: inline-block !important; 
     padding: 0.5% 0.5%;
-    transform: translate(7em, -2.4em);
+    transform: translate(3em, -0em);
 }
 
 #botonCargarFaltasPartido {
-    width: 7em;
+    width: 8em;
     display: inline-block !important; 
-    padding: 0.5% 0.5%;
-    transform: translate(7em, -2.4em);
+    padding: 0.5% 0%;
+    transform: translate(3em, -0em);
 }
 
 #formGridJugadorGol {
@@ -103,6 +103,23 @@
 
 #formGridFecha {
     padding: 0%;
+}
+
+
+.tablaGolesCargaPartidos thead {
+    background-color: rgb(168, 168, 168);
+}
+
+.tablaGolesCargaPartidos tbody {
+    background-color: rgb(255, 255, 255);
+}
+
+.tablaFaltasCargaPartidos thead {
+    background-color: rgb(168, 168, 168);
+}
+
+.tablaFaltasCargaPartidos tbody {
+    background-color: rgb(255, 255, 255);
 }
 
 .contenedorCargaDatosPartido p {
