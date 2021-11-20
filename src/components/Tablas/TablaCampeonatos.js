@@ -1,10 +1,9 @@
-import {Table, Form} from "react-bootstrap";
+import {Table, Form, Button} from "react-bootstrap";
 import './TablaCampeonatos.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link,useHistory} from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
-import { Button } from ".reactstrap-GaoOmAbT";
 
 export const TablaCampeonatos = (props) => {
     const history = useHistory();
