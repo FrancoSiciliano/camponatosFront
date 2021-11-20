@@ -47,15 +47,16 @@ const navbar = () => {
   <tbody>
   {data.map((partido,index)=>{
     var ids=partido.idPartido
+    var categ = partido.categoria
   return(
     <tr key={index}>
       <td>{partido.nroFecha}</td>
       <td>{partido.nroZona}</td>
-      <td>{partido.categoria}</td>
+      <td>{categ}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
       <td><Link class="btn btn-primary btn-sm" to={{pathname:'/detalles/partidos', state:ids}}> Detalles</Link></td>
-      <td><Link class="btn btn-primary btn-sm" to={{pathname:'/tabla/partidos/listaJugadores', state:{idPartido:ids,idResponsable:location.state.idResponsable}}}> Lista Jugadores</Link></td>
+      <td><Link class="btn btn-primary btn-sm" to={{pathname:'/tabla/partidos/listaJugadores', state:{idPartido:ids,idResponsable:location.state,categoria:categ}}}> Lista Jugadores</Link></td>
     </tr>)
   })}
 </tbody>

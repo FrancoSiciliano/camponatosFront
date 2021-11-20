@@ -8,7 +8,7 @@ import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 
 export const TablaPosicion = (props) => {
     const history = useHistory();
-    let location = history.state;
+    let location = history.location.state;
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -21,11 +21,11 @@ export const TablaPosicion = (props) => {
     });
 
     const navbar = () => {
-        if (location.state.tipo === "RESPONSABLES") {
+        if (location.tipo === "RESPONSABLES") {
             return (<NavBarResponsable id={location.idResponsable}/>);
-        } else if (location.state.tipo === "ADMINISTRADOR") {
+        } else if (location.tipo === "ADMINISTRADOR") {
             return (<NavBarAdministracion/>);
-        } else if (location.state.tipo === "JUGADOR") {
+        } else if (location.tipo === "JUGADOR") {
             return (<NavbarJugador/>);
         }
     }
