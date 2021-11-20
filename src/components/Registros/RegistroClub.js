@@ -63,7 +63,7 @@ export const RegistroClub = () => {
             setShowModal(true);
 
         } else {
-            history.push("/registro/responsable", datos);
+            history.push("/registro/responsable/administrador", datos);
         }
     };
 

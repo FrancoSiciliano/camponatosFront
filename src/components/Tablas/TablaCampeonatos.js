@@ -19,9 +19,6 @@ export const TablaCampeonatos = (props) => {
         };
         fetchData();
     }, []);
-    const handleClickPartidos =(idcampeonato,Descripcion,Tipo)=>{
-        
-    }
     const handleClickTabla =(idcampeonato,Descripcion,Tipo)=>{
         history.push('/tabla/Posiciones',{idCampeonato:idcampeonato,descripcion:Descripcion,tipo:Tipo})
     }

@@ -1,26 +1,27 @@
 import { Table,Button,Form } from "react-bootstrap"
-import { useLocation,Link } from 'react-router-dom'
+import { useLocation,Link,useHistory } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 export const TablaPartidosCampeonatos=()=>{
-  let location = useLocation()
+  const history = useHistory();
+  let location = history.location.state;
   const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-        const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.idCampeonato}`);
+        const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.idCampeonato}`);
         const newData = response.data;
         setData(newData);
     };
     fetchData();
 },[]);
 const navbar = () => {
-  if (location.state.tipo === "RESPONSABLES") {
-      return (<NavBarResponsable id={location.state.idResponsable}/>);
-  } else if (location.state.tipo === "ADMINISTRADOR") {
+  if (location.tipo === "RESPONSABLES") {
+      return (<NavBarResponsable id={location.idResponsable}/>);
+  } else if (location.tipo === "ADMINISTRADOR") {
       return (<NavBarAdministracion/>);}
 }
 
@@ -30,7 +31,7 @@ const navbar = () => {
       <div className="TablaPartidosCampeoantos">
       <Table striped bordered hover>
         <thead>
-            <tr><th colSpan="8">{location.state.descrip}</th></tr>
+            <tr><th colSpan="8">{location.descrip}</th></tr>
           <tr>
             <th>Fecha</th>
             <th>Nro Zona</th>
@@ -56,7 +57,7 @@ const navbar = () => {
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
       <td><Link class="btn btn-primary btn-sm" to={{pathname:'/detalles/partidos', state:ids}}> Detalles</Link></td>
-      <td><Link class="btn btn-primary btn-sm" to={{pathname:'/tabla/partidos/listaJugadores', state:{idPartido:ids,idResponsable:location.state,categoria:categ}}}> Lista Jugadores</Link></td>
+      <td><Link class="btn btn-primary btn-sm" to={{pathname:'/tabla/partidos/listaJugadores', state:{idPartido:ids,idResponsable:location.idResponsable,categoria:categ}}}> Lista Jugadores</Link></td>
     </tr>)
   })}
 </tbody>

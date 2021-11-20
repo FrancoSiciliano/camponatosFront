@@ -6,6 +6,7 @@ import { Form } from "react-bootstrap";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import { useLocation } from "react-router";
 import { Modal } from "react-bootstrap";
+import NavBarResponsable from "../NavBars/NavBarResponsable";
 
 export const TablaJugadoresPartidos = (props) => {
     const location = useLocation();
@@ -20,6 +21,7 @@ export const TablaJugadoresPartidos = (props) => {
     const handleShow = () => setShow(true);
     useEffect(() => {
         const fetchData = async () => {
+            console.log(location.state.idResponsable)
             const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${location.state.idResponsable}`)
             const res = respuesta.data;
             const jugadoresClubRepuesta = await axios(`http://localhost:8080/getJugadoresHabilitadosByClubAndCategoria?idClub=${res.club.idClub}&categoria=${location.state.categoria}`)
@@ -48,7 +50,7 @@ export const TablaJugadoresPartidos = (props) => {
 
     if (listaJugadores) {
         return (<div>
-            <NavBarAdministracion />
+            <NavBarResponsable  id={location.state.idResponsable}/>
             <div className="TablaListaJugadoresClub scrollable-lista-jugadores">
                 <Table striped bordered hover sm>
                     <thead>
@@ -81,7 +83,7 @@ export const TablaJugadoresPartidos = (props) => {
                               return (
                                 <option 
                                 key={index}
-                                value={jugadorClub.idJugador}> {`${jugadorClub.idJugador} - ${jugadorClub.nombre}`}
+                                value={jugadorClub.idJugador}> {`${jugadorClub.idJugador} - ${jugadorClub.nombre} ${jugadorClub.apellido}`}
     
                                 </option>
                                 )
@@ -121,6 +123,6 @@ export const TablaJugadoresPartidos = (props) => {
             </div>
         </div>)
     } else {
-        return (<div><NavBarAdministracion /> <h1>The server isnt working</h1></div>)
+        return (<div><NavBarResponsable/> <h1>The server isnt working</h1></div>)
     }
 }
