@@ -4,11 +4,17 @@ import {MdSportsSoccer} from 'react-icons/all'
 import {useState} from 'react'
 import {BiLogOut} from 'react-icons/bi';
 import {BsPencil} from 'react-icons/bs'
+import {useHistory} from "react-router-dom";
 
 function NavBarAdministracion() {
     const [show, setShow] = useState(false);
-   
     const [tipo, setTipo] = useState("");
+    const history = useHistory();
+
+    const handleClick = () => {
+        localStorage.removeItem("id");
+        history.push("/");
+    }
 
     return (
         <Navbar className="navbar-jugador">
@@ -45,7 +51,7 @@ function NavBarAdministracion() {
                         height: '30px',
                         color: 'white'
                     }}/>
-                    <Nav.Link href="/">CERRAR SESION</Nav.Link>
+                    <Nav.Link onClick={handleClick}>CERRAR SESION</Nav.Link>
                 </div>
             </Nav>
 

@@ -34,17 +34,20 @@ export const Home = () => {
 
         await axios.get(`http://localhost:8080/loginAdministrador?mail=${usuario.mail}&password=${usuario.password}`)
             .then((res) => {
-                history.push("/home/administracion", res.data);
+                localStorage.setItem("id", res.data);
+                history.push("/home/administracion");
             })
             .catch(async () => {
                 await axios.get(`http://localhost:8080/loginResponsable?mail=${usuario.mail}&password=${usuario.password}`)
                     .then((res) => {
-                        history.push("/home/representante", res.data);
+                        localStorage.setItem("id", res.data);
+                        history.push("/home/representante");
                     })
                     .catch(async () => {
                         await axios.get(`http://localhost:8080/loginJugador?mail=${usuario.mail}&password=${usuario.password}`)
                             .then((res) => {
-                                history.push("/home/jugador", res.data);
+                                localStorage.setItem("id", res.data);
+                                history.push("/home/jugador");
                             })
                             .catch((e) => {
                                 setModalTitle("No es posible iniciar sesión")

@@ -10,6 +10,12 @@ function NavBarResponsable(props) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleClick = () => {
+        localStorage.removeItem("id");
+        history.push("/")
+    }
+
     const handleClickMiPerfil = () =>{
         history.push("/datos/representante", props.id);
     }
@@ -92,7 +98,7 @@ function NavBarResponsable(props) {
                             height: '30px',
                             color: 'white'
                         }}/>
-                        <Nav.Link href="/">CERRAR SESION</Nav.Link>
+                        <Nav.Link onClick={handleClick}>CERRAR SESION</Nav.Link>
                     </div>
                 </div>
             </Nav>

@@ -1,18 +1,22 @@
-import {Card, Carousel, Form} from "react-bootstrap";
+import {Button, Card, Carousel, Form} from "react-bootstrap";
 import "./carousel.css"
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
 
 export const CarouselCard = (props) => {
+    const history = useHistory();
     const [campeonatos, setCampeonatos] = useState([]);
-    const [filtro, setFiltro] = useState({
-        estado: "",
-        fechaDesde: "",
-        fechaHasta: ""
-    });
     const [todosCampeonatos, setTodosCampeonatos] = useState([]);
+
+    const handleClickTabla = (campeonato) => {
+        history.push("/tabla/Posiciones", {tipo: "JUGADOR", campeonato: campeonato});
+    }
+
+    const handleClickEstadisticas = (idCampeonato) => {
+        history.push("/estadisticas/campeonato", {idCampeonato: idCampeonato});
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -47,8 +51,8 @@ export const CarouselCard = (props) => {
                 <div className="filtros-carrusel">
                     <Form.Select className="filtro" onChange={handleFilteringByState}>
                         <option value="no-seleccionado">Seleccionar estado</option>
-                        <option value="activo">Activo</option>
-                        <option value="inactivo">Inactivo</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
                     </Form.Select>
 
                     <Form.Control className="filtro" placeholder="Buscar por Nombre" onChange={handleFilteringByName}/>
@@ -71,10 +75,10 @@ export const CarouselCard = (props) => {
                                             </ul>
                                         </Card.Text>
                                         <div className="links-carrusel">
-                                            <Link to={{pathname: "/tabla/Posiciones", state: campeonato}}
-                                                  className="btn btn-success botoncarrusel"> Ir a Tabla</Link>
-                                            <Link to="/test"
-                                                  className="btn btn-success botoncarrusel"> Estadisticas </Link>
+                                            <Button onClick={() => handleClickTabla(campeonato.idCampeonato)}
+                                                  className="btn btn-success botoncarrusel"> Ir a Tabla</Button>
+                                            <Button onClick={() => handleClickEstadisticas(campeonato.idCampeonato)}
+                                                  className="btn btn-success botoncarrusel"> Estadisticas </Button>
                                         </div>
                                     </Card.Body>
                                 </Card>

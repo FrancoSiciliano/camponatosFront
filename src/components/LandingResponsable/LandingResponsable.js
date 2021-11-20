@@ -5,7 +5,7 @@ import { TablaPartidosResponsables } from "../Tablas/Representante/TablaPartidos
 import './LandingResponsable.css'
 export const LandingResponsable = () =>{
     const history = useHistory();
-    const idResponsable = history.location.state;
+    const idResponsable = localStorage.getItem("id");
     return(
     <div className="contenedorHome">
     

@@ -16,7 +16,7 @@ import NavBarResponsable from '../NavBars/NavBarResponsable';
 
 export const DatosClub = (props) => {
     const history = useHistory();
-    let idResponsable = history.location.state;
+    let idResponsable = localStorage.getItem("id");
     const [data, setData] = useState([]);
     const [responsable, setResponsable] = useState([]);
     const [jugadores, setJugadores] = useState([]);

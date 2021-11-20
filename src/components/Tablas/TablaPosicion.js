@@ -1,43 +1,42 @@
 import {Table} from "react-bootstrap"
 import {useEffect, useState} from "react";
 import axios from "axios";
-import { useHistory } from "react-router";
 import NavbarJugador from "../NavBars/NavBarJugador"
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import {useHistory} from "react-router-dom";
 
 export const TablaPosicion = (props) => {
     const history = useHistory();
-    let location = history.location.state;
-    const [data, setData] = useState(null);
+    const [tablaPosiciones, setTablaPosiciones] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonato?idCampeonato=${location.state.idCampeonato}`);
+            const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonato?idCampeonato=${history.location.state.campeonato}`);
             const newData = response.data;
-            setData(newData);
+            setTablaPosiciones(newData);
         };
         fetchData();
     });
 
     const navbar = () => {
-        if (location.tipo === "RESPONSABLES") {
-            return (<NavBarResponsable id={location.idResponsable}/>);
-        } else if (location.tipo === "ADMINISTRADOR") {
+        if (history.location.state.tipo === "RESPONSABLES") {
+            return (<NavBarResponsable id={localStorage.getItem("id")}/>);
+        } else if (history.location.state.tipo === "ADMINISTRADOR") {
             return (<NavBarAdministracion/>);
-        } else if (location.tipo === "JUGADOR") {
+        } else if (history.location.state.tipo === "JUGADOR") {
             return (<NavbarJugador/>);
         }
     }
 
-    if (data) {
+    if (tablaPosiciones) {
         return (
             <div>
                 {navbar()}
-                <Table striped bordered hover >
-                    <thead >
+                <Table striped bordered hover>
+                    <thead>
                     <tr>
-                        <th colSpan="6">Nombre Campeonato: {location.descrip}</th>
+                        <th colSpan="6">Nombre Campeonato: {tablaPosiciones[0].campeonato.descripcion}</th>
                     </tr>
                     <tr>
                         <th>Club</th>
@@ -50,17 +49,10 @@ export const TablaPosicion = (props) => {
                         <th>Dif</th>
                         <th>Puntos</th>
                         <th>Prom</th>
-                        <th colSpan="2">
-                            <form classname="searchBar" onsubmit="event.preventDefault();" role="search">
-                                <input classname="searchBox"
-                                       id="search" type="search" placeholder="Filtrar por Nombre" autofocus required/>
-                                <button type="button" classname="botonsearch">search</button>
-                            </form>
-                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                    {data.map((tabla, index) => {
+                    {tablaPosiciones.map((tabla, index) => {
                         return (
                             <tr key={index}>
                                 <td>{tabla.id.nombre}</td>

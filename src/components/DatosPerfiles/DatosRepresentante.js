@@ -14,7 +14,7 @@ import NavBarResponsable from "../NavBars/NavBarResponsable";
 
 export const DatosRepresentante = () => {
     const history = useHistory();
-    let idResponsable = history.location.state;
+    let idResponsable = localStorage.getItem("id");
     const [data, setData] = useState(null);
     const [clubes, setClubes] = useState([]);
     const [popUp, setpopUp] = useState({

@@ -10,7 +10,7 @@ export const LandingJugador = () => {
     const [jugador, setJugador] = useState(false);
     const [stats, setStats] = useState(false);
     const history = useHistory();
-    const idJugador = history.location.state;
+    const idJugador = localStorage.getItem("id");
 
     useEffect(() => {
         const fetchData = async () => {

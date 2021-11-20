@@ -2,14 +2,22 @@ import {Navbar, Nav} from 'react-bootstrap'
 import {MdSportsSoccer} from 'react-icons/all'
 import {BiUserCircle, BiLogOut} from 'react-icons/bi';
 import './NavBarJugador.css'
+import {useHistory} from "react-router-dom";
 
 function NavBarJugador() {
+    const history = useHistory();
+
+    const handleClick = () => {
+        localStorage.removeItem("id");
+        history.push("/");
+    }
+
     return (
         // style={{marginRight: '70%'}}
         <Navbar className="navbar-jugador">
             <div className="titulo-nav-jugador">
                 <MdSportsSoccer style={{width: '30px', height: '30px', color: 'white', marginRight: '10px'}}/>
-                <Navbar.Brand href="#"> PERFIL JUGADOR </Navbar.Brand>
+                <Navbar.Brand href="/home/jugador"> PERFIL JUGADOR </Navbar.Brand>
             </div>
             <Nav>
                 <div className="botones-nav">
@@ -20,7 +28,7 @@ function NavBarJugador() {
                                 height: '30px',
                                 color: 'white'
                             }}/>
-                            
+
                         <Nav.Link href="/datos/jugador"> MI PERFIL </Nav.Link>
                     </div>
                     <div className='cerrarsesion'>
@@ -30,7 +38,7 @@ function NavBarJugador() {
                                 height: '30px',
                                 color: 'white'
                             }}/>
-                        <Nav.Link href="/"> CERRAR SESION </Nav.Link>
+                        <Nav.Link onClick={handleClick}> CERRAR SESION </Nav.Link>
                     </div>
                 </div>
             </Nav>
