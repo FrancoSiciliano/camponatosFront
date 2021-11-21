@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link,useHistory} from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
-
+//onClick={handleClickTabla(ids,descripcion,"ADMINISTRACION")}
 export const TablaCampeonatos = (props) => {
     const history = useHistory();
     const [campeonatos, setCampeonatos] = useState(null);
@@ -19,7 +19,7 @@ export const TablaCampeonatos = (props) => {
         };
         fetchData();
     }, []);
-    const handleClickTabla =(idcampeonato,Descripcion,Tipo)=>{
+    const handleClickTabla = (idcampeonato,Descripcion,Tipo)=>{
         history.push('/tabla/Posiciones',{idCampeonato:idcampeonato,descripcion:Descripcion,tipo:Tipo})
     }
     const handleChange = (event) => {
@@ -36,7 +36,7 @@ export const TablaCampeonatos = (props) => {
                 <Table striped bordered hover sm>
                     <thead>
                     <tr borderless>
-                        <th colSpan="6">
+                        <th colSpan="8">
                             CAMPEONATOS
                         </th>
                     </tr>
@@ -45,6 +45,8 @@ export const TablaCampeonatos = (props) => {
                         <th>Nombre</th>
                         <th>Fecha Inicio</th>
                         <th>Fecha Fin</th>
+                        <th>Tabla Posicion</th>
+                        <th>Partidos Campeonato</th>
                         <th colSpan="2">
                             <Form.Control classname="searchBox"
                                           id="search" type="search" placeholder="Filtrar por Nombre"
@@ -65,11 +67,12 @@ export const TablaCampeonatos = (props) => {
                                     <td>{descripcion}</td>
                                     <td>{campeonato.fechaInicio}</td>
                                     <td>{campeonato.fechaFin}</td>
-                                    <td><Button className='btn btn-success' onClick={handleClickTabla(ids,descripcion,"ADMINISTRACION")}>Tabla</Button></td>
+                                    <td><Button className='btn btn-success'  >Tabla</Button></td>
                                     <td><Link className='btn btn-success' to={{
                                         pathname: '/partidos/campeonatos',
                                         state: {id: ids, descrip: descripcion, tipo: "ADMINISTRADOR"}
                                     }}>Partidos</Link></td>
+                                    <td><Button className='btn btn-success' >Finalizar Campeonato</Button></td>
                                 </tr>)
                         }
                     })}

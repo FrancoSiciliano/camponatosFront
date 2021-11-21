@@ -28,6 +28,7 @@ import { RegistroResponsableAdministrador } from "./components/Registros/Registr
 import { TablaJugadores } from "./components/Tablas/TablaJugadores";
 import { RegistroResponsableByResponsable } from "./components/Registros/RegistroResponsableByResponsable";
 import { TablaJugadoresPartidos } from "./components/Tablas/TablaJugadoresPartidos";
+import { DetallesPartidoResponsable } from "./components/Gestion/GestionPartidos/DetallesPartidoResponsable";
 function App() {
   return (
     <div className="App">
@@ -99,6 +100,9 @@ function App() {
 
           <Route path="/detalles/partidos">
             <DetallesPartido/>
+          </Route>
+          <Route path="/detalles/partidos/responsables">
+            <DetallesPartidoResponsable/>
           </Route>
           <Route path="/tabla/habilitacion/jugadores/campeonato">
             <ListaJugadoresClub/>

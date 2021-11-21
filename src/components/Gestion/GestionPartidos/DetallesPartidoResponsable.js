@@ -3,9 +3,10 @@ import {useLocation} from 'react-router-dom'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import './DetallesPartido.css'
+import NavBarResponsable from "../../NavBars/NavBarResponsable";
 
 
-export const DetallesPartido = (props) => {
+export const DetallesPartidoResponsable = (props) => {
     let location = useLocation();
 
     const [datosPartido, setDatosPartido] = useState(null);
@@ -69,6 +70,7 @@ export const DetallesPartido = (props) => {
     if (datosPartido) {
         return (<>
             <div className="comparacion-partido">
+            <NavBarResponsable id={location.state}/>
                 <div className="equipo-detalle-partido">
                     <h1>{datosPartido.clubLocal.nombre}</h1>
                     <Table hover sm className="local">
@@ -156,6 +158,10 @@ export const DetallesPartido = (props) => {
                         }
                         </tbody>
                     </Table>
+                </div>
+                <div className="BotonesValidarInvalidar">
+                <Button className='btn btn-success'>Validar</Button>
+                <Button className='btn btn-success'>Invalidar</Button>
                 </div>
             </div>
         </>);

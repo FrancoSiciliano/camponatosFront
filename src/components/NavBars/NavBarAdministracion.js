@@ -26,9 +26,6 @@ function NavBarAdministracion() {
                     }}/>
                     <NavDropdown title="OPERACIONES" id="basic-nav-dropdown" classname="LinkNavbar">  
                         <Dropdown>
-                        <Dropdown>
-                            <Dropdown.Item href="/tabla/jugadores">LISTADO JUGADORES</Dropdown.Item>    
-                        </Dropdown>
                             <Dropdown.Toggle className='ddJugadores'>
                                 CLUBES
                             </Dropdown.Toggle>

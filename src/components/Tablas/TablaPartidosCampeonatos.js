@@ -41,7 +41,7 @@ const navbar = () => {
             <th>Club Visitante</th>
             <th colSpan="2">
             <Form.Control classname="searchBox"
-                                          id="search" type="search" placeholder="Filtrar por Nombre"
+                                          id="search" type="search" placeholder="Filtrar por Fecha"
                                           onChange={""} autoComplete="off"/>
 </th>
     </tr>

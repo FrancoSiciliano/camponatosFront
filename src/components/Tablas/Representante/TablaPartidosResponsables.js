@@ -49,9 +49,8 @@ const estaValidado = (partido) =>{
             <th>Categoria</th>
             <th>Club Local</th>
             <th>Club Visitante</th>
-            <th colSpan="2">
-            <Form.Control classname="searchBox" id="search" type="search" placeholder="Filtrar por Nombre" onChange={""} autoComplete="off"/>
-</th>
+            <th>Detalles del partido</th>
+
     </tr>
   </thead>
   <tbody>
@@ -64,8 +63,7 @@ const estaValidado = (partido) =>{
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/partidos/Detalles', state:idPartido}}> Detalles</Link></td>
-      <td><Button classname="botonTablaValidar" type="submit" class="btn btn-success"> Validar</Button></td>
+      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/detalles/partidos/responsables', state:idPartido}}> Detalles</Link></td>
     </tr>)
   })}
 </tbody>
