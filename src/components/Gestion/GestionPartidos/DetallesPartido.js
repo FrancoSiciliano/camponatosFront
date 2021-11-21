@@ -18,17 +18,18 @@ export const DetallesPartido = (props) => {
 
     useEffect(async () => {
         const fetchDataPartido = async () => {
-            const response = await axios(`http://localhost:8080/encontrarPartido?idPartido=1`);
+            const response = await axios(`http://localhost:8080/encontrarPartido?idPartido=${location.state}`);
             const newData = response.data;
             setDatosPartido(newData);
 
         };
 
         const fetchDataFaltas = async () => {
-            const responseFaltasL = await axios.get(`http://localhost:8080/getFaltasByClubAndPartido?idClub=1&idPartido=1`)
+            
+            const responseFaltasL = await axios.get(`http://localhost:8080/getFaltasByClubAndPartido?idClub=${datosPartido.clubLocal.idClub}&idPartido=${location.state}`)
             const dataFaltasL = responseFaltasL.data;
 
-            const responseFaltasV = await axios.get(`http://localhost:8080/getFaltasByClubAndPartido?idClub=2&idPartido=1`)
+            const responseFaltasV = await axios.get(`http://localhost:8080/getFaltasByClubAndPartido?idClub=${datosPartido.clubVisitante.idClub}&idPartido=${location.state}`)
             const dataFaltasV = responseFaltasV.data;
 
             setFaltasLocal(dataFaltasL);
@@ -37,8 +38,9 @@ export const DetallesPartido = (props) => {
         }
 
         const fetchDataGoles = async () => {
-            const responseGolesL = await axios.get(`http://localhost:8080/getGolesByPartidoAndClub?idPartido=1&idClubAContar=1&idClubRival=2`);
-            const responseGolesV = await axios.get(`http://localhost:8080/getGolesByPartidoAndClub?idPartido=1&idClubAContar=2&idClubRival=1`);
+            console.log(datosPartido)
+            const responseGolesL = await axios.get(`http://localhost:8080/getGolesByPartidoAndClub?idPartido=${location.state}&idClubAContar=${datosPartido.clubLocal.idClub}&idClubRival=${datosPartido.clubVisitante.idClub}`);
+            const responseGolesV = await axios.get(`http://localhost:8080/getGolesByPartidoAndClub?idPartido=${location.state}&idClubAContar=${datosPartido.clubVisitante.idClub}&idClubRival=${datosPartido.clubLocal.idClub}`);
             const dataGolesL = responseGolesL.data;
             const dataGolesV = responseGolesV.data;
 

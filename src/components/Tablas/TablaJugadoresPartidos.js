@@ -7,6 +7,7 @@ import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import { useLocation } from "react-router";
 import { Modal } from "react-bootstrap";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
+import { event } from "jquery";
 
 export const TablaJugadoresPartidos = (props) => {
     const location = useLocation();
@@ -21,7 +22,6 @@ export const TablaJugadoresPartidos = (props) => {
     const handleShow = () => setShow(true);
     useEffect(() => {
         const fetchData = async () => {
-            console.log(location.state.idResponsable)
             const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${location.state.idResponsable}`)
             const res = respuesta.data;
             const jugadoresClubRepuesta = await axios(`http://localhost:8080/getJugadoresHabilitadosByClubAndCategoria?idClub=${res.club.idClub}&categoria=${location.state.categoria}`)
@@ -37,7 +37,7 @@ export const TablaJugadoresPartidos = (props) => {
         };
         fetchData();
     }, [estado]);
-    const HandleClickAgregarJugadores = ()=>{
+    const HandleClickAgregarJugadores = (e)=>{
         try{
         axios.post(`http://localhost:8080/agregarJugadorEnLista?idClub=${responsable.club.idClub}&idPartido=${location.state.idPartido}&idJugador=${jugadorSeleccionado}`)
         }catch(e){
@@ -46,6 +46,16 @@ export const TablaJugadoresPartidos = (props) => {
     }
     const handleChangeJugadorSelect = (event) => {
        setJugadorSeleccionado(event.target.value);
+    }
+    const jugadorYaAgregado= async (idJugador)=>{
+        const repuesta =await axios.get(`http://localhost:8080/getMiembroByPartidoAndJugador?idPartido${location.state.idPartido}&idJugador=${idJugador}`)
+        const res = repuesta.data;
+        if(res.length==0){
+            return false
+        }
+        else{
+            return true
+        }
     }
 
     if (listaJugadores) {
@@ -80,17 +90,16 @@ export const TablaJugadoresPartidos = (props) => {
                                         SELECIONAR JUGADOR
                             <Form.Select type="label-select" name='jugadorGol' onChange={handleChangeJugadorSelect} >
                             {listaJugadoresClub.map((jugadorClub, index) => {
+                              
                               return (
                                 <option 
                                 key={index}
                                 value={jugadorClub.idJugador}> {`${jugadorClub.idJugador} - ${jugadorClub.nombre} ${jugadorClub.apellido}`}
-    
-                                </option>
-                                )
+                                </option>)
                             })}</Form.Select>
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <Button className="btn btn-success"  onClick={HandleClickAgregarJugadores}>
+                                        <Button className="btn btn-success"  onClick={HandleClickAgregarJugadores(event)}>
                                                 Agregar Jugador
                                             </Button>
                                             <Button variant="secondary" onClick={handleClose}>
