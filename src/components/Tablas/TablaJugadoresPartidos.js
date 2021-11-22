@@ -3,7 +3,6 @@ import '../Tablas/TablaJugadores.css'
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Form } from "react-bootstrap";
-import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import { useLocation } from "react-router";
 import { Modal } from "react-bootstrap";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
@@ -28,7 +27,6 @@ export const TablaJugadoresPartidos = (props) => {
             const response = await axios(`http://localhost:8080/getMiembrosByClubAndPartido?idClub=${parseInt(res.club.idClub)}&idPartido=${location.state.idPartido}`);
             const jugadoresClubRepuestaData=jugadoresClubRepuesta.data;
             const newData = response.data;
-            console.log(newData)
             setResponsable(res);
             setListaJugadoresClub(jugadoresClubRepuestaData);
             setListaJugadores(newData);
@@ -50,7 +48,7 @@ export const TablaJugadoresPartidos = (props) => {
     const jugadorYaAgregado= async (idJugador)=>{
         const repuesta =await axios.get(`http://localhost:8080/getMiembroByPartidoAndJugador?idPartido${location.state.idPartido}&idJugador=${idJugador}`)
         const res = repuesta.data;
-        if(res.length==0){
+        if(res.length===0){
             return false
         }
         else{

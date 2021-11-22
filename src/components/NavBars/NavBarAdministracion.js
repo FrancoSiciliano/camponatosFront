@@ -1,15 +1,11 @@
 import {Navbar, Nav, NavDropdown, Dropdown} from 'react-bootstrap'
 import './NavBarAdministracion.css'
 import {MdSportsSoccer} from 'react-icons/all'
-import {useState} from 'react'
 import {BiLogOut} from 'react-icons/bi';
 import {BsPencil} from 'react-icons/bs'
 
 function NavBarAdministracion() {
-    const [show, setShow] = useState(false);
-   
-    const [tipo, setTipo] = useState("");
-
+ 
     return (
         <Navbar className="navbar-jugador">
             <div className="titulo-nav-jugador">

@@ -4,8 +4,7 @@ import "./CargarDatosPartidos.css"
 import { Button } from "react-bootstrap"
 import { Form } from 'react-bootstrap'
 import { Col, FloatingLabel, Row, Modal, Table } from "react-bootstrap"
-import { PopUp } from "../../PopUp/PopUp";
-import { useHistory, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import axios from "axios";
 
 
@@ -14,7 +13,6 @@ export const CargarDatosPartidos = () => {
   const location = useLocation();
   const [errors, setErrors] = useState({});
   const [data, setData] = useState([]);
-  const [jugadores, setJugadores] = useState([]);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const [values, setValues] = useState({

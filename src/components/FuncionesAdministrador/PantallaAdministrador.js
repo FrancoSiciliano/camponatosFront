@@ -1,4 +1,4 @@
-import {Table, Button} from "react-bootstrap";
+import {Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import './PantallaAdministador.css'

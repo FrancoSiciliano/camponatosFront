@@ -68,9 +68,10 @@ export const DetallesPartidoResponsable = (props) => {
     }, []);
 
     if (datosPartido) {
-        return (<>
+        return (<div><NavBarResponsable id={location.state}/>
             <div className="comparacion-partido">
-            <NavBarResponsable id={location.state}/>
+            
+            
                 <div className="equipo-detalle-partido">
                     <h1>{datosPartido.clubLocal.nombre}</h1>
                     <Table hover sm className="local">
@@ -164,7 +165,7 @@ export const DetallesPartidoResponsable = (props) => {
                 <Button className='btn btn-success'>Invalidar</Button>
                 </div>
             </div>
-        </>);
+        </div>);
     } else {
         return (<h1>Server Isnt Working</h1>)
     }

@@ -29,6 +29,7 @@ import { TablaJugadores } from "./components/Tablas/TablaJugadores";
 import { RegistroResponsableByResponsable } from "./components/Registros/RegistroResponsableByResponsable";
 import { TablaJugadoresPartidos } from "./components/Tablas/TablaJugadoresPartidos";
 import { DetallesPartidoResponsable } from "./components/Gestion/GestionPartidos/DetallesPartidoResponsable";
+import { TablaPartidosAdministrador } from "./components/Tablas/TablaPartidosAdministrador";
 function App() {
   return (
     <div className="App">
@@ -122,7 +123,9 @@ function App() {
           <Route path="/tabla/representantes">
             <TablaResponsables/>
           </Route>
-
+          <Route path="/administrador/partidos/campeonatos">
+            <TablaPartidosAdministrador/>
+          </Route>
           <Route path="/partidos/campeonatos">
             <TablaPartidosCampeonatos/>
           </Route>

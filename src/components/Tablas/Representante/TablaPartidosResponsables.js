@@ -1,5 +1,5 @@
-import { Table,Button,Form } from "react-bootstrap"
-import { useLocation,Link } from 'react-router-dom'
+import { Table} from "react-bootstrap"
+import { Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import './TablaPartidosResponsables.css'
 import axios from "axios";
