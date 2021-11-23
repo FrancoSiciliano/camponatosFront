@@ -11,7 +11,7 @@ export const LandingJugador = () => {
     const [stats, setStats] = useState(false);
     const history = useHistory();
     const idJugador = history.location.state;
-
+    console.log(idJugador)
     useEffect(() => {
         const fetchData = async () => {
             const datos = await axios.get(`http://localhost:8080/encontrarJugador?idJugador=${idJugador}`);
@@ -26,7 +26,7 @@ export const LandingJugador = () => {
     if (jugador && stats) {
         return (
             <div className = 'contenedor-home-jugador'>
-                <NavBarJugador/>
+                <NavBarJugador idJugador={idJugador}/>
                 <div className="contenido-landing-jugador">
                     <PerfilJugador jugadorData={jugador} estadisticas={stats}/>
                     <CarouselCard idClub={stats.idClub}/>

@@ -3,12 +3,14 @@ import './datos.css';
 import Avatar from '../../assets/images/avatar-perfil.png';
 import {Col, FloatingLabel, Form, Row, Button} from "react-bootstrap"
 import {useEffect, useState} from "react";
+import { useHistory } from 'react-router';
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
 import NavBarJugador from '../NavBars/NavBarJugador';
 
 export const DatosJugador = (props) => {
-
+    const history = useHistory();
+    let idJugador = history.location.state;
     const [data, setData] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [popUp, setpopUp] = useState({
@@ -18,7 +20,8 @@ export const DatosJugador = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/encontrarJugador?idJugador=${props.idJugador}`);
+            console.log(idJugador)
+            const response = await axios(`http://localhost:8080/encontrarJugador?idJugador=${idJugador}`);
             const newData = response.data;
             setData(newData);
         }
@@ -35,10 +38,10 @@ export const DatosJugador = (props) => {
 
     const postData = async (data) => {
         try {
-            await axios.post(`${url}modificarDireccion?idJugador=${props.idJugador}&direccion=${data.direccion}`)
-            await axios.post(`${url}modificarMail?idJugador=${props.idJugador}&mail=${data.mail}`)
-            await axios.post(`${url}modificarTelefono?idJugador=${props.idJugador}&telefono=${data.telefono}`)
-            await axios.post( `${url}cambiarPasswordJugador?idJugador=${props.idJugador}&password=${data.password}`)
+            await axios.post(`${url}modificarDireccion?idJugador=${idJugador}&direccion=${data.direccion}`)
+            await axios.post(`${url}modificarMail?idJugador=${idJugador}&mail=${data.mail}`)
+            await axios.post(`${url}modificarTelefono?idJugador=${idJugador}&telefono=${data.telefono}`)
+            await axios.post( `${url}cambiarPasswordJugador?idJugador=${idJugador}&password=${data.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
@@ -73,7 +76,7 @@ export const DatosJugador = (props) => {
 
     return (
         <div className="main-container-datos-navbar-jugador">
-            <NavBarJugador/>
+            <NavBarJugador idJugador={idJugador}/>
             <div className='main-container-datos'>
 
                 <h2 className='titledatos'>Perfil del Jugador</h2>

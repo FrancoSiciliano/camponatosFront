@@ -30,6 +30,7 @@ import { RegistroResponsableByResponsable } from "./components/Registros/Registr
 import { TablaJugadoresPartidos } from "./components/Tablas/TablaJugadoresPartidos";
 import { DetallesPartidoResponsable } from "./components/Gestion/GestionPartidos/DetallesPartidoResponsable";
 import { TablaPartidosAdministrador } from "./components/Tablas/TablaPartidosAdministrador";
+import { TablaListaJugadoresAdministrador } from "./components/Tablas/TablaListaJugadoresAdministrador";
 function App() {
   return (
     <div className="App">
@@ -86,7 +87,7 @@ function App() {
 
 {/* Todos los perfiles/datos de cada usuario esta aca abajo */}
           <Route path="/datos/jugador">
-            <DatosJugador idJugador="1" />
+            <DatosJugador />
           </Route>
           <Route exact path="/datos/edicion/responsable">
             <DatosJugadorResponsable idJugador="1" />
@@ -108,10 +109,10 @@ function App() {
           <Route path="/tabla/habilitacion/jugadores/campeonato">
             <ListaJugadoresClub/>
           </Route>
-          <Route path="/tabla/Campeonatos">
+          <Route path="/administracion/Campeonatos">
             <TablaCampeonatos/>
           </Route>
-          <Route path="/tabla/Clubes">
+          <Route path="/administracion/clubes">
             <TablaClubes/>
           </Route>
           <Route path="/tabla/Jugadores">
@@ -123,8 +124,11 @@ function App() {
           <Route path="/tabla/representantes">
             <TablaResponsables/>
           </Route>
-          <Route path="/administrador/partidos/campeonatos">
+          <Route path="/administrador/campeonatos/partidos">
             <TablaPartidosAdministrador/>
+          </Route>
+          <Route path="/administrador/campeonatos/partidos/jugadores">
+            <TablaListaJugadoresAdministrador/>
           </Route>
           <Route path="/partidos/campeonatos">
             <TablaPartidosCampeonatos/>

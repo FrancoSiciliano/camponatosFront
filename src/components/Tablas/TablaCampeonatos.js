@@ -19,8 +19,13 @@ export const TablaCampeonatos = (props) => {
         };
         fetchData();
     }, []);
-    const handleClickTabla = (idcampeonato,Descripcion,Tipo)=>{
-        history.push('/tabla/Posiciones',{idCampeonato:idcampeonato,descripcion:Descripcion,tipo:Tipo})
+    const handleClickEstado = async (idCampeonato) => {
+        console.log(idCampeonato);
+        try{
+            await axios.post(`http://localhost:8080/terminarCampeonato?idCampeonato=${idCampeonato}`);
+        }catch(e){
+            console.log(e.message);
+        }
     }
     const handleChange = (event) => {
         setCampeonatos(todosCampeonatos.filter((elem) => {
@@ -69,10 +74,10 @@ export const TablaCampeonatos = (props) => {
                                     <td>{campeonato.fechaFin}</td>
                                     <td><Button className='btn btn-success'  >Tabla</Button></td>
                                     <td><Link className='btn btn-success' to={{
-                                        pathname: '/administrador/partidos/campeonatos',
+                                        pathname: '/administrador/campeonatos/partidos',
                                         state: {idCampeonato: ids, descrip: descripcion}
                                     }}>Partidos</Link></td>
-                                    <td><Button className='btn btn-success' >Finalizar Campeonato</Button></td>
+                                    <td><Button className='btn btn-success' onClick={()=>handleClickEstado(ids)} >Finalizar Campeonato</Button></td>
                                 </tr>)
                         }
                     })}

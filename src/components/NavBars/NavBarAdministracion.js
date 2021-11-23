@@ -27,7 +27,7 @@ function NavBarAdministracion() {
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item href="/registro/club">AGREGAR CLUB</Dropdown.Item>
-                                <Dropdown.Item href="/tabla/clubes">LISTADO CLUBES</Dropdown.Item>
+                                <Dropdown.Item href="/administracion/clubes">LISTADO CLUBES</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </NavDropdown>

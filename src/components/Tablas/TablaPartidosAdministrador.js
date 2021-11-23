@@ -47,7 +47,7 @@ export const TablaPartidosAdministrador=()=>{
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
       <td><Link class="btn btn-primary btn-sm" to={{pathname:'/detalles/partidos', state:ids}}> Detalles</Link></td>
-      <td><Link class="btn btn-primary btn-sm" to={{pathname:'/tabla/partidos/listaJugadoresAdministrador', state:{idPartido:ids,idResponsable:location.state.idResponsable,categoria:categ}}}> Lista Jugadores</Link></td>
+      <td><Link class="btn btn-primary btn-sm" to={{pathname:'/administrador/campeonatos/partidos/jugadores', state:{idPartido:ids}}}> Lista Jugadores</Link></td>
     </tr>)
   })}
 </tbody>

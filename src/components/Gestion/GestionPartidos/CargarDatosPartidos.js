@@ -11,13 +11,13 @@ import axios from "axios";
 export const CargarDatosPartidos = () => {
 
   const location = useLocation();
+  const [faltas, setFaltas] = useState([]);
+  const [goles, setGoles] = useState([]);
   const [errors, setErrors] = useState({});
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
-  const [values, setValues] = useState({
-    incidentes: "",
-    jugadorGol: "",
+  const [values, setValues] = useState({incidentes: "", jugadorGol: "",
     tipoGol: "",
     minutoGol: "",
     tipoFalta: "",
@@ -40,9 +40,11 @@ export const CargarDatosPartidos = () => {
     minutoGol: "",
 });
 
-
+const [jugadorSeleccionado,setJugadorSeleccionado]=useState(null);
+const handleChangeJugadorSelect = (event) => {
+  setJugadorSeleccionado(event.target.value);
+}
 const [datosFalta, setDatosFalta] = useState({
-  idJugadorFalta: "",
   tipoFalta: "",
   minutoFalta: "",
 });
@@ -50,9 +52,19 @@ const [datosFalta, setDatosFalta] = useState({
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios(`http://localhost:8080/getMiembroByPartido?idPartido=1`);
+      const response = await axios(`http://localhost:8080/getMiembroByPartido?idPartido=${location.state}`);
       const newData = response.data;
       setData(newData);
+
+      const golesRepuesta = await axios(`http://localhost:8080/getGolesByPartido?idPartido=${location.state}`);
+      const golesData = golesRepuesta.data;
+      setGoles(golesData);
+
+      const faltasRepuesta = await axios(`http://localhost:8080/getFaltasPartido?idPartido=${location.state}`);
+      const faltasData = faltasRepuesta.data;
+      setFaltas(faltasData);
+      
+      
     };
     fetchData();
   }, []);
@@ -84,15 +96,18 @@ const handleChangeFaltas = (event) => {
 }
 
 const handleClickGol = () => {
-  axios.post(`http://localhost:3000/cargarGol?idJugador=${datos.idJugadorGol}&idPartido=${location.state}&minuto=${datos.minutoGol}&tipo=${datos.tipoGol}`)
+  console.log(jugadorSeleccionado)
+  console.log(location.state)
+  console.log(datos.minutoGol)
+  console.log(datos.tipoGol)
+  axios.post(`http://localhost:8080/cargarGol?idJugador=${jugadorSeleccionado}&idPartido=${location.state}&minuto=${datos.minutoGol}&tipo=${datos.tipoGol}`)
 }
 
 const handleClickFalta = () => {
-  axios.post(`http://localhost:3000/cargarFalta?idJugador=${datosFalta.idJugadorFalta}&idPartido=${location.state}&minuto=${datosFalta.minutoFalta}&tipo=${datosFalta.tipoFalta}`)
+  axios.post(`http://localhost:8080/cargarFalta?idJugador=${datosFalta.idJugadorFalta}&idPartido=${location.state}&minuto=${datosFalta.minutoFalta}&tipo=${datosFalta.tipoFalta}`)
 }
 
-const handleClick = (props) => {
-}
+
 
 
 return (
@@ -119,12 +134,12 @@ return (
                   <Row className="mb-2">
                     <Form.Group as={Col} controlId="formGridJugadorGol" id="formGridJugadorGol" sm="3">
                       <FloatingLabel controlId="floatingInputGrid" label="Jugador">
-                        <Form.Select type="label-select" name='jugadorGol' onChange={handleChangeGoles} >
+                        <Form.Select type="label-select" name='idJugadorGol' onChange={handleChangeJugadorSelect} >
                           {data.map((dato, index) => {
                             return (
                               <option
                                 key={index}
-                                value={dato.jugador.idJugador}> {`${dato.jugador.idJugador} - ${dato.jugador.nombre}`}
+                                value={dato.jugador.idJugador}> {`${dato.jugador.idJugador} - ${dato.jugador.nombre} ${dato.jugador.apellido}`}
                               </option>
                             )
 
@@ -184,12 +199,12 @@ return (
                   <Row className="mb-2">
                     <Form.Group as={Col} controlId="formGridJugadorFalta" id="formGridJugadorFalta" sm="3">
                       <FloatingLabel controlId="floatingInputGrid" label="Jugador">
-                        <Form.Select type="label-select" name='jugadorFalta' onChange={handleChangeFaltas} >
+                        <Form.Select type="label-select" name='jugadorFalta' onChange={handleChangeJugadorSelect} >
                           {data.map((dato, index) => {
                             return (
                               <option
                                 key={index}
-                                value={dato.jugador.idJugador}> {`${dato.jugador.idJugador} - ${dato.jugador.nombre}`}
+                                value={jugadorSeleccionado}> {`${dato.jugador.idJugador} - ${dato.jugador.nombre}`}
                               </option>
                             )
 
@@ -220,7 +235,7 @@ return (
                 <Button variant="secondary" onClick={handleClose2}>
                   Cerrar
                 </Button>
-                <Button variant="success" onClick={handleClick}>
+                <Button variant="success" onClick={handleClickFalta}>
                   Agregar
                 </Button>
               </Modal.Footer>
@@ -257,14 +272,14 @@ return (
           </tr>
         </thead>
         <tbody>
-          {data.map((dato, index) => {
+          {goles.map((gol, index) => {
             return (
               <tr>
-                <td>dato.jugador.idJugador</td>
-                <td>dato.jugador.nombre</td>
-                <td>dato.jugador.apellido</td>
-                <td>1</td>
-                <td>1</td>
+                <td>{gol.jugador.idJugador}</td>
+                <td>{gol.jugador.nombre}</td>
+                <td>{gol.jugador.apellido}</td>
+                <td>{gol.minuto}</td>
+                <td>{gol.tipo}</td>
               </tr>
             )
           })}

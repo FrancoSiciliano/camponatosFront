@@ -10,6 +10,7 @@ import { event } from "jquery";
 
 export const TablaJugadoresPartidos = (props) => {
     const location = useLocation();
+    const reload =false;
     const [listaJugadoresClub, setListaJugadoresClub] = useState(null);
     const [listaJugadores, setListaJugadores] = useState(null);
     const todosJugadores = useRef(null);
@@ -38,6 +39,10 @@ export const TablaJugadoresPartidos = (props) => {
     const HandleClickAgregarJugadores = (e)=>{
         try{
         axios.post(`http://localhost:8080/agregarJugadorEnLista?idClub=${responsable.club.idClub}&idPartido=${location.state.idPartido}&idJugador=${jugadorSeleccionado}`)
+        reload =true;
+        if({reload}==true){
+            window.location.reload(true)
+        }
         }catch(e){
             console.log(e.message)
         }
