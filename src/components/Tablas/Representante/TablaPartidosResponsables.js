@@ -4,16 +4,20 @@ import {useEffect, useState} from "react";
 import './TablaPartidosResponsables.css'
 import axios from "axios";
 export const TablaPartidosResponsables=(props)=>{
-  const [data, setData] = useState(null);
+  const [clubVisitante, setClubVisitante] = useState(null);
+  const [clubLocal,setClubLocal]= useState(null);
   const [responsable, setResponsable] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${props.id}`)
       const res = respuesta.data;
       setResponsable(res);
-      const response = await axios(`http://localhost:8080/getPartidosByClub?idClub=${res.club.idClub}`);
-      const Datanew = response.data;
-      setData(Datanew);
+      const repuestaclubVisitante = await axios(`http://localhost:8080/getPartidosByClubVisitante?idClub=${res.club.idClub}`);
+      const clubvisitante = repuestaclubVisitante.data;
+      setClubVisitante(clubvisitante);
+      const repuestaClubLocal = await axios(`http://localhost:8080/getPartidosByClubLocal?idClub=${res.club.idClub}`);
+      const clublocal = repuestaClubLocal.data;
+      setClubLocal(clublocal);
     };
     fetchData();
 },[]);
@@ -38,7 +42,7 @@ const estaValidado = (partido) =>{
 
 }
 
-  if(data){
+  if(clubLocal){
     return(
     <div className="TablaPartidosResponsables scrollable-responsable">
     <Table responsive="md">
@@ -54,9 +58,9 @@ const estaValidado = (partido) =>{
     </tr>
   </thead>
   <tbody>
-  {data.map((partido,index)=>{
+  {clubLocal.map((partido,index)=>{
     var idPartido=partido.idPartido
-
+    if(partido.convalidaLocal == false){
   return(
     <tr key={index}>
       <td>{partido.nroFecha}</td>
@@ -65,7 +69,19 @@ const estaValidado = (partido) =>{
       <td>{partido.clubVisitante.nombre}</td>
       <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/detalles/partidos/responsables', state:idPartido}}> Detalles</Link></td>
     </tr>)
-  })}
+  }})}
+  {clubVisitante.map((partido,index)=>{
+    var idPartido=partido.idPartido
+    if(partido.convalidaVisitante == false){
+  return(
+    <tr key={index}>
+      <td>{partido.nroFecha}</td>
+      <td>{partido.categoria}</td>
+      <td>{partido.clubLocal.nombre}</td>
+      <td>{partido.clubVisitante.nombre}</td>
+      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/detalles/partidos/responsables', state:idPartido}}> Detalles</Link></td>
+    </tr>)
+  }})}
 </tbody>
 </Table></div> )}
 else{

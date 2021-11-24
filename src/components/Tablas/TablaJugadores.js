@@ -5,6 +5,7 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import {Form} from "react-bootstrap";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import NavBarResponsable from "../NavBars/NavBarResponsable";
 
 export const TablaJugadores = (props) => {
     const history = useHistory();
@@ -41,7 +42,7 @@ export const TablaJugadores = (props) => {
     
     if (jugadores) {
         return (<div>
-            <NavBarAdministracion />
+            <NavBarResponsable id={location} />
             <div className="TablaListaJugadoresClub scrollable-lista-jugadores">
                 <Table striped bordered hover sm>
                     <thead>

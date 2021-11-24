@@ -102,7 +102,7 @@ export const TablaJugadoresPartidos = (props) => {
                             })}</Form.Select>
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <Button className="btn btn-success"  onClick={HandleClickAgregarJugadores(event)}>
+                                        <Button type = "submit" className="btn btn-success"  onClick={HandleClickAgregarJugadores(event)}>
                                                 Agregar Jugador
                                             </Button>
                                             <Button variant="secondary" onClick={handleClose}>
