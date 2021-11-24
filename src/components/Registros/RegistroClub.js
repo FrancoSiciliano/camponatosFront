@@ -1,4 +1,4 @@
-import {Link, useHistory} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import {Col, FloatingLabel, Form, Row, Button} from "react-bootstrap"
 import React from "react";
 import "./RegistroClub.css"
@@ -63,7 +63,7 @@ export const RegistroClub = () => {
             setShowModal(true);
 
         } else {
-            history.push("/registro/responsable", datos);
+            history.push("/registro/responsable/administrador", datos);
         }
     };
 

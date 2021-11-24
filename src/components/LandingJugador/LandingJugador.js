@@ -10,7 +10,9 @@ export const LandingJugador = () => {
     const [jugador, setJugador] = useState(false);
     const [stats, setStats] = useState(false);
     const history = useHistory();
+
     const idJugador = localStorage.getItem("id");
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,7 +28,7 @@ export const LandingJugador = () => {
     if (jugador && stats) {
         return (
             <div className = 'contenedor-home-jugador'>
-                <NavBarJugador/>
+                <NavBarJugador idJugador={idJugador}/>
                 <div className="contenido-landing-jugador">
                     <PerfilJugador jugadorData={jugador} estadisticas={stats}/>
                     <CarouselCard idClub={stats.idClub}/>

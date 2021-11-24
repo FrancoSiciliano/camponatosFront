@@ -1,8 +1,10 @@
 import {Navbar, Nav} from 'react-bootstrap'
 import {MdSportsSoccer} from 'react-icons/all'
 import {BiUserCircle, BiLogOut} from 'react-icons/bi';
+import { useHistory } from 'react-router';
 import './NavBarJugador.css'
 import {useHistory} from "react-router-dom";
+
 
 function NavBarJugador() {
     const history = useHistory();
@@ -12,12 +14,15 @@ function NavBarJugador() {
         history.push("/");
     }
 
+
     return (
         // style={{marginRight: '70%'}}
         <Navbar className="navbar-jugador">
             <div className="titulo-nav-jugador">
                 <MdSportsSoccer style={{width: '30px', height: '30px', color: 'white', marginRight: '10px'}}/>
+
                 <Navbar.Brand href="/home/jugador"> PERFIL JUGADOR </Navbar.Brand>
+
             </div>
             <Nav>
                 <div className="botones-nav">
@@ -29,7 +34,9 @@ function NavBarJugador() {
                                 color: 'white'
                             }}/>
 
+
                         <Nav.Link href="/datos/jugador"> MI PERFIL </Nav.Link>
+
                     </div>
                     <div className='cerrarsesion'>
                         <BiLogOut

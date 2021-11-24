@@ -12,7 +12,9 @@ export const TablaPosicion = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
+
             const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonato?idCampeonato=${history.location.state.campeonato}`);
+
             const newData = response.data;
             setTablaPosiciones(newData);
         };

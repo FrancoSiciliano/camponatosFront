@@ -3,13 +3,16 @@ import './datos.css';
 import Avatar from '../../assets/images/avatar-perfil.png';
 import {Col, FloatingLabel, Form, Row, Button} from "react-bootstrap"
 import {useEffect, useState} from "react";
+import { useHistory } from 'react-router';
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
 import NavBarJugador from '../NavBars/NavBarJugador';
 
+
 export const DatosJugador = () => {
 
     const [datosJugador, setDatosJugador] = useState([]);
+
     const [showModal, setShowModal] = useState(false);
     const [popUp, setpopUp] = useState({
         mensaje: "",
@@ -74,7 +77,7 @@ export const DatosJugador = () => {
 
     return (
         <div className="main-container-datos-navbar-jugador">
-            <NavBarJugador/>
+            <NavBarJugador idJugador={idJugador}/>
             <div className='main-container-datos'>
 
                 <h2 className='titledatos'>Perfil del Jugador</h2>

@@ -121,23 +121,7 @@ export const DatosRepresentante = () => {
                                         </FloatingLabel>
                                     </Form.Group>
                                 </Row>
-                                <Row className="mb-2">
-                                    <Form.Group as={Col} controlId="formGridClub">
-                                        <FloatingLabel className="floatingInputGridRep" label="Club"
-                                                       style={{fontSize: "19px"}}>
-                                            <Form.Select name="club.idClub" placeholder="Club"
-                                                         style={{fontSize: "20px"}} value={data.club.idClub}
-                                                         onChange={handleChangeClub}>
-                                                <option>Seleccionar</option>
-                                                {clubes.map((club, index) => {
-                                                    return (
-                                                        <option key={index}
-                                                                value={club.idClub}>{`${club.idClub} - ${club.nombre}`}</option>)
-                                                })}
-                                            </Form.Select>
-                                        </FloatingLabel>
-                                    </Form.Group>
-                                </Row>
+                                
 
 
                                 <PopUp show={showModal} onHide={() => setShowModal(false)} text={popUp.mensaje}
@@ -156,3 +140,22 @@ export const DatosRepresentante = () => {
         return (<h1>Cargando...</h1>);
     }
 }
+/*/
+<Row className="mb-2">
+                                    <Form.Group as={Col} controlId="formGridClub">
+                                        <FloatingLabel className="floatingInputGridRep" label="Club"
+                                                       style={{fontSize: "19px"}}>
+                                            <Form.Select name="club.idClub" placeholder="Club"
+                                                         style={{fontSize: "20px"}} value={data.club.idClub}
+                                                         onChange={handleChangeClub}>
+                                                <option>Seleccionar</option>
+                                                {clubes.map((club, index) => {
+                                                    return (
+                                                        <option key={index}
+                                                                value={club.idClub}>{`${club.idClub} - ${club.nombre}`}</option>)
+                                                })}
+                                            </Form.Select>
+                                        </FloatingLabel>
+                                    </Form.Group>
+                                </Row>
+/*/

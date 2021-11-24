@@ -1,12 +1,12 @@
 import {Navbar, Nav, NavDropdown, Dropdown} from 'react-bootstrap'
 import './NavBarAdministracion.css'
 import {MdSportsSoccer} from 'react-icons/all'
-import {useState} from 'react'
 import {BiLogOut} from 'react-icons/bi';
 import {BsPencil} from 'react-icons/bs'
 import {useHistory} from "react-router-dom";
 
 function NavBarAdministracion() {
+
     const [show, setShow] = useState(false);
     const [tipo, setTipo] = useState("");
     const history = useHistory();
@@ -16,8 +16,9 @@ function NavBarAdministracion() {
         history.push("/");
     }
 
+
     return (
-        <Navbar className="navbar-jugador">
+        <Navbar className="navbar-jugador" style={{height: "50px"}}>
             <div className="titulo-nav-jugador">
                 <MdSportsSoccer style={{width: '30px', height: '30px', color: 'white', marginRight: '10px'}}/>
                 <Navbar.Brand href="/home/administracion"> PERFIL
@@ -32,15 +33,12 @@ function NavBarAdministracion() {
                     }}/>
                     <NavDropdown title="OPERACIONES" id="basic-nav-dropdown" classname="LinkNavbar">  
                         <Dropdown>
-                        <Dropdown>
-                            <Dropdown.Item href="/tabla/jugadores">LISTADO JUGADORES</Dropdown.Item>    
-                        </Dropdown>
                             <Dropdown.Toggle className='ddJugadores'>
                                 CLUBES
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item href="/registro/club">AGREGAR CLUB</Dropdown.Item>
-                                <Dropdown.Item href="/tabla/clubes">LISTADO CLUBES</Dropdown.Item>
+                                <Dropdown.Item href="/administracion/clubes">LISTADO CLUBES</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </NavDropdown>
