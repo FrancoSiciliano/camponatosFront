@@ -63,7 +63,7 @@ export const TablaPartidosCampeonatos = () => {
                                           to={{pathname: '/detalles/partidos', state: {idPartido: ids, clubLocal: partido.clubLocal, clubVisitante: partido.clubVisitante, rol: "RESPONSABLE" }}}> Detalles</Link></td>
                                 <td><Link class="btn btn-primary btn-sm" to={{
                                     pathname: '/tabla/partidos/listaJugadores',
-                                    state: {idPartido: ids, idResponsable: location.state, categoria: categ}
+                                    state: {idPartido: ids,  categoria: categ}
                                 }}> Lista Jugadores</Link></td>
                             </tr>)
                     })}
