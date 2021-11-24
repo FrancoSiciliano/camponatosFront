@@ -10,8 +10,10 @@ export const LandingJugador = () => {
     const [jugador, setJugador] = useState(false);
     const [stats, setStats] = useState(false);
     const history = useHistory();
-    const idJugador = history.location.state;
-    console.log(idJugador)
+
+    const idJugador = localStorage.getItem("id");
+
+
     useEffect(() => {
         const fetchData = async () => {
             const datos = await axios.get(`http://localhost:8080/encontrarJugador?idJugador=${idJugador}`);

@@ -3,22 +3,26 @@ import {MdSportsSoccer} from 'react-icons/all'
 import {BiUserCircle, BiLogOut} from 'react-icons/bi';
 import { useHistory } from 'react-router';
 import './NavBarJugador.css'
+import {useHistory} from "react-router-dom";
 
-function NavBarJugador(props) {
+
+function NavBarJugador() {
     const history = useHistory();
-    console.log(props.idJugador)
-    const handleClickPerfilJugador = ()=>{
-        history.push("/datos/jugador", props.idJugador);
+
+    const handleClick = () => {
+        localStorage.removeItem("id");
+        history.push("/");
     }
-    const handleClickLandingJugador = ()=>{
-        history.push("/home/jugador", props.idJugador);
-    }
+
+
     return (
         // style={{marginRight: '70%'}}
         <Navbar className="navbar-jugador">
             <div className="titulo-nav-jugador">
                 <MdSportsSoccer style={{width: '30px', height: '30px', color: 'white', marginRight: '10px'}}/>
-                <Navbar.Brand onClick={handleClickLandingJugador} > PERFIL JUGADOR </Navbar.Brand>
+
+                <Navbar.Brand href="/home/jugador"> PERFIL JUGADOR </Navbar.Brand>
+
             </div>
             <Nav>
                 <div className="botones-nav">
@@ -29,8 +33,10 @@ function NavBarJugador(props) {
                                 height: '30px',
                                 color: 'white'
                             }}/>
-                            
-                        <Nav.Link onClick={handleClickPerfilJugador}> MI PERFIL </Nav.Link>
+
+
+                        <Nav.Link href="/datos/jugador"> MI PERFIL </Nav.Link>
+
                     </div>
                     <div className='cerrarsesion'>
                         <BiLogOut
@@ -39,7 +45,7 @@ function NavBarJugador(props) {
                                 height: '30px',
                                 color: 'white'
                             }}/>
-                        <Nav.Link href="/"> CERRAR SESION </Nav.Link>
+                        <Nav.Link onClick={handleClick}> CERRAR SESION </Nav.Link>
                     </div>
                 </div>
             </Nav>

@@ -1,0 +1,5 @@
+.contenedor-principal-estadisticas-jugador-campeonato {
+    background-image: url("../../assets/images/fondo-estadisticas-jugadores.jpg");
+    height: 100vh;
+    background-size: cover;
+}

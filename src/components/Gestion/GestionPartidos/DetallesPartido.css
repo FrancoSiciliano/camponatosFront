@@ -9,7 +9,6 @@
     background-image: url("../../../assets/images/fondo-detalles-partido.jpg");
     background-size: cover;
     background-position: center;
-    height: 100%;
 }
 
 .local, .visitante{
