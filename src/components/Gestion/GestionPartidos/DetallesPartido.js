@@ -7,7 +7,7 @@ import NavBarResponsable from "../../NavBars/NavBarResponsable";
 import NavBarAdministracion from "../../NavBars/NavBarAdministracion";
 
 
-export const DetallesPartido = (props) => {
+export const DetallesPartido = ({debeValidar}) => {
 
     const history = useHistory();
 
@@ -16,8 +16,6 @@ export const DetallesPartido = (props) => {
     const [faltasVisitante, setFaltasVisitante] = useState([]);
     const [golesLocal, setGolesLocal] = useState([]);
     const [golesVisitante, setGolesVisitante] = useState([]);
-    const [momentosDestacadosLocal, setMomentosDestacadosLocal] = useState([]);
-    const [momentosDestacadosVisitante, setMomentosDestadosVisitante] = useState([]);
 
     useEffect(async () => {
         const fetchDataPartido = async () => {

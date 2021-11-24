@@ -7,6 +7,7 @@ import {Form} from "react-bootstrap";
 import { useLocation } from "react-router";
 
 export const ListaJugadoresClub = (props) => {
+    const idResponsable = localStorage.getItem("id");
     const [jugadores, setJugadores] = useState(null);
     const [partidos, setPartidos]=useState(null)
     const todosJugadores = useRef(null);
@@ -14,7 +15,7 @@ export const ListaJugadoresClub = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${location.state.idResponsable}`)
+            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
             const res = respuesta.data;
             const response = await axios(`http://localhost:8080/getJugadoresByClub?idClub=${res.club.idClub}`);
             const repuesta = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.idCampeonato}`);
@@ -38,7 +39,7 @@ export const ListaJugadoresClub = (props) => {
 
     if (jugadores) {
         return (<div>
-            <NavBarResponsable id={location.state.idResponsable}/>
+            <NavBarResponsable/>
             <div className="TablaListaJugadoresClub scrollable-lista-jugadores">
                 <Table striped bordered hover sm>
                     <thead>

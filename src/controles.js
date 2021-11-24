@@ -2,7 +2,8 @@ import axios from "axios";
 import {deprecate} from "@testing-library/jest-dom/dist/utils";
 
 export const contieneNumeros = (string) => {
-    return string.match(/\d+/g) !== null;
+    console.log(string);
+    return string.match("/\d+/g") !== null;
 };
 
 export const contieneCaracteresEspeciales = (string) => {

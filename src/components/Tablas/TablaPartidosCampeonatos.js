@@ -9,6 +9,7 @@ import NavBarResponsable from "../NavBars/NavBarResponsable";
 export const TablaPartidosCampeonatos = () => {
     let location = useLocation()
     const [data, setData] = useState(null);
+    const idResponsable = localStorage.getItem("id");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,7 +21,7 @@ export const TablaPartidosCampeonatos = () => {
     }, []);
     const navbar = () => {
         if (location.state.tipo === "RESPONSABLES") {
-            return (<NavBarResponsable id={location.state.idResponsable}/>);
+            return (<NavBarResponsable/>);
         } else if (location.state.tipo === "ADMINISTRADOR") {
             return (<NavBarAdministracion/>);
         }
@@ -60,10 +61,17 @@ export const TablaPartidosCampeonatos = () => {
                                 <td>{partido.clubLocal.nombre}</td>
                                 <td>{partido.clubVisitante.nombre}</td>
                                 <td><Link class="btn btn-primary btn-sm"
-                                          to={{pathname: '/detalles/partidos', state: {idPartido: ids, clubLocal: partido.clubLocal, clubVisitante: partido.clubVisitante, rol: "RESPONSABLE" }}}> Detalles</Link></td>
+                                          to={{pathname: '/detalles/partidos',
+                                              state: {
+                                                  idPartido: ids,
+                                                  clubLocal: partido.clubLocal,
+                                                  clubVisitante: partido.clubVisitante,
+                                                  rol: "RESPONSABLE"
+                                              }
+                                          }}> Detalles</Link></td>
                                 <td><Link class="btn btn-primary btn-sm" to={{
                                     pathname: '/tabla/partidos/listaJugadores',
-                                    state: {idPartido: ids, idResponsable: location.state, categoria: categ}
+                                    state: {idPartido: ids, categoria: categ}
                                 }}> Lista Jugadores</Link></td>
                             </tr>)
                     })}

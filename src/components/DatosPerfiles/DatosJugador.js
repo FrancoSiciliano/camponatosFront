@@ -65,7 +65,10 @@ export const DatosJugador = () => {
         } else if (datosJugador.telefono === "" || isNaN(datosJugador.telefono)) {
             setpopUp({mensaje: "Telefono no válido", titulo: "Dato erroneo"});
             setShowModal(true);
-            ;
+
+        } else if (datosJugador.password === "") {
+            setpopUp({mensaje: "Password no válida", titulo: "Dato erroneo"});
+            setShowModal(true);
         }
         postData(datosJugador)
     }
@@ -184,7 +187,8 @@ export const DatosJugador = () => {
                                     <FloatingLabel className="floatingInputGridJug" label="Password"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" placeholder="Password" name="password" value={datosJugador.password}
-                                                      style={{fontSize: "20px"}}/>
+                                                      style={{fontSize: "20px"}}
+                                        onChange={handleChange}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
