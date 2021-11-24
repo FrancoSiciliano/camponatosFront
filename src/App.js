@@ -9,25 +9,25 @@ import {LandingResponsable} from "./components/LandingResponsable/LandingRespons
 import CampeonatosResponsable from "./components/Gestion/GestionCampeonatos/CampeonatosResponsable";
 import {TablaPosicion} from "./components/Tablas/TablaPosicion";
 import ListaJugadoresClub from "./components/Gestion/GestionJugadores/ListaJugadoresClub";
-import {RegistroCampeonato} from "./components/Gestion/GestionCampeonatos/CreacionCampeonato";
 import {LandingAdministrador} from "./components/LandingAdministrador/LandingAdmistrador";
-import CargarDatosPartidos from "./components/Gestion/GestionPartidos/CargarDatosPartidos";
 import {DetallesPartido} from "./components/Gestion/GestionPartidos/DetallesPartido";
-import {SeleccionCampeonatoADefinir} from "./components/Gestion/GestionPartidos/SeleccionCampeonatoADefinir";
-import {CrearPartido} from "./components/Gestion/GestionPartidos/CrearPartido";
 import {Home} from "./components/LandingGeneral/Home";
 import './App.css'
+import { RegistroCampeonato } from "./components/Gestion/GestionCampeonatos/CreacionCampeonato";
+import CargarDatosPartidos from "./components/Gestion/GestionPartidos/CargarDatosPartidos";
+import {CrearPartido } from "./components/Gestion/GestionPartidos/CrearPartido";
+import { RegistroClub } from "./components/Registros/RegistroClub";
+import { RegistroResponsableAdministrador } from "./components/Registros/RegistroResponsableAdministrador";
+import { RegistroResponsableByResponsable } from "./components/Registros/RegistroResponsableByResponsable";
 import {DefinirClubesCampeonato} from "./components/Gestion/GestionCampeonatos/DefinirClubesCampeonato";
+import {SeleccionCampeonatoADefinir } from "./components/Gestion/GestionPartidos/SeleccionCampeonatoADefinir";
+
 import TablaCampeonatos from "./components/Tablas/TablaCampeonatos";
 import {TablaPartidosCampeonatos} from "./components/Tablas/TablaPartidosCampeonatos";
-
 import {DatosJugadorResponsable} from "./components/DatosPerfiles/DatosJugadorResponsable";
-import {RegistroClub} from "./components/Registros/RegistroClub";
 import {TablaClubes} from "./components/Tablas/TablaClubes";
 import {TablaResponsables} from "./components/Tablas/Representante/TablaResponsables";
-import {RegistroResponsableAdministrador} from "./components/Registros/RegistroResponsableAdministrador";
 import {TablaJugadores} from "./components/Tablas/TablaJugadores";
-import {RegistroResponsableByResponsable} from "./components/Registros/RegistroResponsableByResponsable";
 import {TablaJugadoresPartidos} from "./components/Tablas/TablaJugadoresPartidos";
 import {EstadisticasJugadorCampeonato} from "./components/EstadisticasJugadorEnCampeonato/EstadisticasJugadorCampeonato";
 import {DetallesPartidoResponsable} from "./components/Gestion/GestionPartidos/DetallesPartidoResponsable";
@@ -56,7 +56,38 @@ function App() {
                     <Route path="/home/jugador">
                         <LandingJugador/>
                     </Route>
-                    {/* Todos los Homes esta aca arriba */}
+                   
+                    {/* Todos los Registros esta aca abajo */}
+                    <Route path="/registro/jugador"> 
+                    <RegistroJugador />
+                    </Route>
+                    <Route path="/registro/responsable/administrador">
+                    <RegistroResponsableAdministrador />
+                    </Route>
+                    <Route path="/registro/responsable">
+                    <RegistroResponsableByResponsable/>
+                    </Route>
+                    <Route path="/registro/club">
+                    <RegistroClub/>
+                    </Route>
+                    <Route path="/registro/campeonato">
+                    <RegistroCampeonato />
+                    </Route>
+                    <Route path="/registro/partido">
+                    <SeleccionCampeonatoADefinir />
+                    </Route>
+                    <Route path="/agregar/clubes">
+                    <DefinirClubesCampeonato />
+                    </Route>
+                    <Route path="/cargar/datos/partido">
+                    <CargarDatosPartidos />
+                    </Route>
+                    <Route path="/crear/partido">
+                    <CrearPartido/>
+                    </Route>
+                    
+
+                    {/* Todos los Registros esta aca arriba */}
 
                     {/* Todos los perfiles/datos de cada usuario esta aca abajo */}
                     <Route path="/datos/jugador">
@@ -115,7 +146,21 @@ function App() {
                     <Route path="/tabla/partidos/listaJugadores">
                         <TablaJugadoresPartidos/>
                     </Route>
-
+                    <Route path="/administrador/campeonatos/partidos/jugadores">
+                        <TablaListaJugadoresAdministrador/>
+                    </Route>
+                    <Route path="/partidos/campeonatos">
+                        <TablaPartidosCampeonatos/>
+                    </Route>
+                    <Route path="/tabla/partidos/listaJugadores">
+                        <TablaJugadoresPartidos/>
+                    </Route>
+                    <Route path="/partidos/campeonatos">
+                        <TablaPartidosCampeonatos/>
+                    </Route>
+                    <Route path="/tabla/partidos/listaJugadores">
+                        <TablaJugadoresPartidos/>
+                    </Route>
 
                     <Route path="/partidos/Detalles">
                         <DetallesPartido/>

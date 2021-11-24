@@ -8,8 +8,7 @@ import {useState} from "react";
 
 function NavBarAdministracion() {
 
-    const [show, setShow] = useState(false);
-    const [tipo, setTipo] = useState("");
+
     const history = useHistory();
 
     const handleClick = () => {

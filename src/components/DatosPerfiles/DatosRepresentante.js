@@ -16,7 +16,6 @@ export const DatosRepresentante = () => {
     const history = useHistory();
     let idResponsable = localStorage.getItem("id");
     const [data, setData] = useState(null);
-    const [clubes, setClubes] = useState([]);
     const [popUp, setpopUp] = useState({
         mensaje: "",
         titulo: ""
@@ -26,11 +25,8 @@ export const DatosRepresentante = () => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`);
-            const response2 = await axios(`http://localhost:8080/getClubes`);
             const newData = response.data;
-            const newData2 = response2.data;
             setData(newData);
-            setClubes(newData2);
         }
         fetchData();
     }, [])
@@ -110,6 +106,14 @@ export const DatosRepresentante = () => {
                                                           style={{fontSize: "20px"}} value={data.documento} readOnly/>
                                         </FloatingLabel>
                                     </Form.Group>
+                                    <Form.Group as={Col} controlId="formGridNombre">
+                                        <FloatingLabel className="floatingInputGridRep" label="Mail"
+                                                       style={{fontSize: "19px"}}>
+                                            <Form.Control type="text" name="mail" placeholder="Mail"
+                                                          style={{fontSize: "20px"}} value={data.mail}
+                                                          onChange={handleChange}/>
+                                        </FloatingLabel>
+                                    </Form.Group>
                                 </Row>
                                 <Row className="mb-2">
                                     <Form.Group as={Col} controlId="formGridNombre">
@@ -117,6 +121,14 @@ export const DatosRepresentante = () => {
                                                        style={{fontSize: "19px"}}>
                                             <Form.Control type="text" name="nombre" placeholder="Nombre"
                                                           style={{fontSize: "20px"}} value={data.nombre}
+                                                          onChange={handleChange}/>
+                                        </FloatingLabel>
+                                    </Form.Group>
+                                    <Form.Group as={Col} controlId="formGridNombre">
+                                        <FloatingLabel className="floatingInputGridRep" label="Contraseña"
+                                                       style={{fontSize: "19px"}}>
+                                            <Form.Control type="text" name="contraseña" placeholder="Password"
+                                                          style={{fontSize: "20px"}} value={data.contraseña}
                                                           onChange={handleChange}/>
                                         </FloatingLabel>
                                     </Form.Group>
