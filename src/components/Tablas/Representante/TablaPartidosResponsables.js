@@ -1,9 +1,11 @@
 import { Table} from "react-bootstrap"
-import { Link } from 'react-router-dom'
+import { Link,useHistory } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import './TablaPartidosResponsables.css'
 import axios from "axios";
+import { Button } from ".reactstrap-GaoOmAbT";
 export const TablaPartidosResponsables=(props)=>{
+  const history = useHistory();
   const [data, setData] = useState(null);
   const [responsable, setResponsable] = useState(null);
   const idResponsable =localStorage.getItem("id")
@@ -18,6 +20,9 @@ export const TablaPartidosResponsables=(props)=>{
     };
     fetchData();
 },[]);
+const handleClickDetalles = (partido) =>{
+  history.push("/detalles/partidos",{idPartido:partido.idPartido,clubLocal:partido.clubLocal,clubVisitante:partido.clubVisitante,rol:"RESPONSABLE"})
+}
 const estaValidado = (partido) =>{
   console.log(responsable)
   console.log(partido)
@@ -58,7 +63,7 @@ const estaValidado = (partido) =>{
   </thead>
   <tbody>
   {data.map((partido,index)=>{
-    var idPartido=partido.idPartido
+    var partido=partido
   if(!estaValidado(partido)){
   return(
     <tr key={index}>
@@ -66,7 +71,7 @@ const estaValidado = (partido) =>{
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/detalles/partidos/responsables', state:idPartido}}> Detalles</Link></td>
+      <td><Button className='btn btn-success botonTablaValidar' onClick={()=>handleClickDetalles(partido)} > Detalles</Button></td>
     </tr>)
   }})}
 </tbody>

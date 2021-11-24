@@ -52,14 +52,11 @@ export const TablaJugadoresPartidos = (props) => {
        setJugadorSeleccionado(event.target.value);
     }
     const jugadorYaAgregado= async (idJugador)=>{
-        const repuesta =await axios.get(`http://localhost:8080/getMiembroByPartidoAndJugador?idPartido${location.state.idPartido}&idJugador=${idJugador}`)
-        const res = repuesta.data;
-        if(res.length===0){
-            return false
-        }
-        else{
-            return true
-        }
+        {listaJugadores.map((listajugadores, index) => {
+            let idJug = listajugadores.jugador.idJugador
+            if(idJug ===idJugador){ return true;}
+        })}
+        return false;
     }
 
     if (listaJugadores) {
@@ -97,10 +94,11 @@ export const TablaJugadoresPartidos = (props) => {
                               
                               return (
                                 <option 
+                                
                                 key={index}
                                 value={jugadorClub.idJugador}> {`${jugadorClub.idJugador} - ${jugadorClub.nombre} ${jugadorClub.apellido}`}
                                 </option>)
-                            })}</Form.Select>
+    })}</Form.Select>
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button type = "submit" className="btn btn-success"  onClick={HandleClickAgregarJugadores(event)}>
