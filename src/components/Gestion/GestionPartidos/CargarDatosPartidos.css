@@ -35,7 +35,11 @@
 }
 
 
-
+.labelCargarResultadosPartido{
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
 #filaCargaGoles {
     width: 35%;
     display: flex;
@@ -115,8 +119,13 @@
 
 
 .contenedorValidacionGolesAndFaltas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 70%;
-    margin-top: 10%;
+    height: 20% !important;
+    margin-top: 5%;
     padding-left: 0%;
     padding-right: 0.5%;
     padding-bottom: 0.5%;
@@ -130,6 +139,26 @@
     -webkit-backdrop-filter: blur( 20px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.tabla-resultado-goles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 50%;
+    width: 100%;
+    overflow-y: scroll !important;
+}
+
+.tabla-resultado-falta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 50%;
+    width: 100%;
+    overflow-y: scroll !important;
 }
 
 

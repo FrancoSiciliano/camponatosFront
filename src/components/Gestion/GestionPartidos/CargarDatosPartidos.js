@@ -66,7 +66,6 @@ export const CargarDatosPartidos = () => {
       const faltasData = faltasRepuesta.data;
       setFaltas(faltasData);
 
-
     };
     fetchData();
   }, []);
@@ -98,15 +97,22 @@ export const CargarDatosPartidos = () => {
   }
 
   const handleClickGol = () => {
-    console.log(jugadorSeleccionado)
-    console.log(location.state)
-    console.log(datos.minutoGol)
-    console.log(datos.tipoGol)
-    axios.post(`http://localhost:8080/cargarGol?idJugador=${jugadorSeleccionado}&idPartido=${location.state}&minuto=${datos.minutoGol}&tipo=${datos.tipoGol}`)
+    console.log('jugador',jugadorSeleccionado)
+    console.log('idpartido',location.state)
+    console.log('minutogol',datos.minutoGol)
+    console.log('tipogol',datos.tipoGol)
+    axios.post(`http://localhost:8080/cargarGol?idJugador=${jugadorSeleccionado}&idPartido=${location.state}&minuto=${datos.minutoGol}&tipo=${datos.tipoGol.toLowerCase()}`)
+  
+
   }
 
   const handleClickFalta = () => {
-    axios.post(`http://localhost:8080/cargarFalta?idJugador=${datosFalta.idJugadorFalta}&idPartido=${location.state}&minuto=${datosFalta.minutoFalta}&tipo=${datosFalta.tipoFalta}`)
+    console.log(jugadorSeleccionado)
+    console.log(location.state)
+    console.log(datosFalta.minutoFalta)
+    console.log(datosFalta.tipoFalta)
+    axios.post(`http://localhost:8080/cargarFalta?idJugador=${jugadorSeleccionado}&idPartido=${location.state}&minuto=${datosFalta.minutoFalta}&tipo=${datosFalta.tipoFalta.toLowerCase()}`)
+    
   }
 
 
@@ -142,6 +148,9 @@ export const CargarDatosPartidos = () => {
                     <Form.Group as={Col} controlId="formGridJugadorGol" id="formGridJugadorGol" sm="3">
                       <FloatingLabel controlId="floatingInputGrid" label="Jugador">
                         <Form.Select type="label-select" name='idJugadorGol' onChange={handleChangeJugadorSelect} >
+                          <option>
+                            -
+                          </option>
                           {data.map((dato, index) => {
                             return (
                               <option
@@ -207,11 +216,14 @@ export const CargarDatosPartidos = () => {
                     <Form.Group as={Col} controlId="formGridJugadorFalta" id="formGridJugadorFalta" sm="3">
                       <FloatingLabel controlId="floatingInputGrid" label="Jugador">
                         <Form.Select type="label-select" name='jugadorFalta' onChange={handleChangeJugadorSelect} >
+                          <option>
+                            -
+                          </option>
                           {data.map((dato, index) => {
                             return (
                               <option
                                 key={index}
-                                value={jugadorSeleccionado}> {`${dato.jugador.idJugador} - ${dato.jugador.nombre}`}
+                                value={dato.jugador.idJugador}> {`${dato.jugador.idJugador} - ${dato.jugador.nombre} ${dato.jugador.apellido}`}
                               </option>
                             )
 
@@ -261,65 +273,62 @@ export const CargarDatosPartidos = () => {
 
       </div>
 
-
-
-
-
       <div className="contenedorValidacionGolesAndFaltas">
-        <label className="labelCargarResultadosPartido">Goles</label>
-        <Table striped bordered hover size="sm" className="tablaGolesCargaPartidos">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Minuto</th>
-              <th>Tipo gol</th>
-            </tr>
-          </thead>
-          <tbody>
-            {goles.map((gol, index) => {
-              return (
-                <tr>
-                  <td>{gol.jugador.idJugador}</td>
-                  <td>{gol.jugador.nombre}</td>
-                  <td>{gol.jugador.apellido}</td>
-                  <td>{gol.minuto}</td>
-                  <td>{gol.tipo}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-
-        </Table>
-        <label className="labelCargarResultadosPartido">Faltas</label>
-        <Table striped bordered hover size="sm" className="tablaFaltasCargaPartidos">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Minuto</th>
-              <th>Tipo gol</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-            </tr>
-          </tbody>
-        </Table>
+        <div className = "tabla-resultado-goles">
+          <label className="labelCargarResultadosPartido">Goles</label>
+          <Table striped bordered hover size="sm" className="tablaGolesCargaPartidos">
+            <thead>
+              <tr>
+                <th>Id Jug</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Minuto</th>
+                <th>Tipo gol</th>
+              </tr>
+            </thead>
+            <tbody>
+              {goles.map((gol) => {
+                return (
+                  <tr>
+                    <td>{gol.jugador.idJugador}</td>
+                    <td>{gol.jugador.nombre}</td>
+                    <td>{gol.jugador.apellido}</td>
+                    <td>{gol.minuto}</td>
+                    <td>{gol.tipo.toUpperCase()}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </Table>
+        </div>
+        <div className = "tabla-resultado-falta">
+          <label className="labelCargarResultadosPartido">Faltas</label>
+          <Table striped bordered hover size="sm" className="tablaFaltasCargaPartidos">
+            <thead>
+              <tr>
+                <th>Id Jug</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Minuto</th>
+                <th>Tipo falta</th>
+              </tr>
+            </thead>
+            <tbody>
+              {faltas.map((falta) => {
+                  return(
+                    <tr>
+                      <td>{falta.jugador.idJugador}</td>
+                      <td>{falta.jugador.nombre}</td>
+                      <td>{falta.jugador.apellido}</td>
+                      <td>{falta.minuto}</td>
+                      <td>{falta.tipo.toUpperCase()}</td>
+                    </tr>
+                  )
+              })}
+                
+            </tbody>
+          </Table>
+        </div>  
       </div>
     </div >
 
