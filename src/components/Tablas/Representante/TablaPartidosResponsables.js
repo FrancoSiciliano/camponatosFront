@@ -1,9 +1,8 @@
-import { Table} from "react-bootstrap"
+import {Button, Table} from "react-bootstrap"
 import { Link,useHistory } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import './TablaPartidosResponsables.css'
 import axios from "axios";
-import { Button } from ".reactstrap-GaoOmAbT";
 export const TablaPartidosResponsables=(props)=>{
   const history = useHistory();
   const [data, setData] = useState(null);
