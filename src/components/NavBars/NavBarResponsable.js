@@ -5,11 +5,12 @@ import {Link,useHistory} from 'react-router-dom'
 import {MdSportsSoccer} from 'react-icons/all'
 import {BiUserCircle, BiLogOut} from 'react-icons/bi';
 
-function NavBarResponsable(props) {
+function NavBarResponsable() {
     const history = useHistory();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const id = localStorage.getItem("id");
 
     const handleClick = () => {
         localStorage.removeItem("id");
@@ -17,19 +18,19 @@ function NavBarResponsable(props) {
     }
 
     const handleClickMiPerfil = () =>{
-        history.push("/datos/representante", props.id);
+        history.push("/datos/representante", id);
     }
     const handleClickPerfilClub = () =>{
-        history.push("/datos/club", props.id);
+        history.push("/datos/club", id);
     }
     const handleClickAgregarResponsable = () =>{
-        history.push("/registro/responsable", props.id);
+        history.push("/registro/responsable", id);
     }
     const handleClickAgregarJugador = () =>{
-        history.push("/registro/jugador", props.id);
+        history.push("/registro/jugador", id);
     }
     const handleClickPerfilRepresentante = () =>{
-        history.push("/home/representante", props.id);
+        history.push("/home/representante", id);
     }
     return (
         <Navbar className="navbar-jugador">

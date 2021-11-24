@@ -64,7 +64,7 @@ const estaValidado = (partido) =>{
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/partidos/Detalles', state:ids}}> Detalles</Link></td>
+      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname: '/detalles/partidos', state: {idPartido: ids, clubLocal: partido.clubLocal, clubVisitante: partido.clubVisitante, rol: "RESPONSABLE" }}}> Detalles</Link></td>
       <td><Button classname="botonTablaValidar" type="submit" class="btn btn-success"> Validar</Button></td>
     </tr>)
   })}
