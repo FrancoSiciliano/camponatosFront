@@ -48,7 +48,38 @@ function App() {
                     <Route path="/home/jugador">
                         <LandingJugador/>
                     </Route>
-                    {/* Todos los Homes esta aca arriba */}
+                   
+                    {/* Todos los Registros esta aca abajo */}
+                    <Route path="/registro/jugador"> 
+                    <RegistroJugador />
+                    </Route>
+                    <Route path="/registro/responsable/administrador">
+                    <RegistroResponsableAdministrador />
+                    </Route>
+                    <Route path="/registro/responsable">
+                    <RegistroResponsableByResponsable/>
+                    </Route>
+                    <Route path="/registro/club">
+                    <RegistroClub/>
+                    </Route>
+                    <Route path="/registro/campeonato">
+                    <RegistroCampeonato />
+                    </Route>
+                    <Route path="/registro/partido">
+                    <SeleccionCampeonatoADefinir />
+                    </Route>
+                    <Route path="/agregar/clubes">
+                    <DefinirClubesCampeonato />
+                    </Route>
+                    <Route path="/cargar/datos/partido">
+                    <CargarDatosPartidos />
+                    </Route>
+                    <Route path="/crear/partido">
+                    <CrearPartido/>
+                    </Route>
+                    
+
+                    {/* Todos los Registros esta aca arriba */}
 
                     {/* Todos los perfiles/datos de cada usuario esta aca abajo */}
                     <Route path="/datos/jugador">
@@ -107,7 +138,21 @@ function App() {
                     <Route path="/tabla/partidos/listaJugadores">
                         <TablaJugadoresPartidos/>
                     </Route>
-
+                    <Route path="/administrador/campeonatos/partidos/jugadores">
+                        <TablaListaJugadoresAdministrador/>
+                    </Route>
+                    <Route path="/partidos/campeonatos">
+                        <TablaPartidosCampeonatos/>
+                    </Route>
+                    <Route path="/tabla/partidos/listaJugadores">
+                        <TablaJugadoresPartidos/>
+                    </Route>
+                    <Route path="/partidos/campeonatos">
+                        <TablaPartidosCampeonatos/>
+                    </Route>
+                    <Route path="/tabla/partidos/listaJugadores">
+                        <TablaJugadoresPartidos/>
+                    </Route>
 
                     <Route path="/partidos/Detalles">
                         <DetallesPartido/>
