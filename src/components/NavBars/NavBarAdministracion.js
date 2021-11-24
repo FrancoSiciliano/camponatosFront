@@ -7,7 +7,7 @@ import {BsPencil} from 'react-icons/bs'
 function NavBarAdministracion() {
  
     return (
-        <Navbar className="navbar-jugador">
+        <Navbar className="navbar-jugador" style={{height: "50px"}}>
             <div className="titulo-nav-jugador">
                 <MdSportsSoccer style={{width: '30px', height: '30px', color: 'white', marginRight: '10px'}}/>
                 <Navbar.Brand href="/home/administracion"> PERFIL

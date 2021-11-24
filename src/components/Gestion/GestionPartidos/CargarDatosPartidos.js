@@ -4,8 +4,9 @@ import "./CargarDatosPartidos.css"
 import { Button } from "react-bootstrap"
 import { Form } from 'react-bootstrap'
 import { Col, FloatingLabel, Row, Modal, Table } from "react-bootstrap"
-import {  useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
+import NavBarAdministracion from "../../NavBars/NavBarAdministracion.js";
 
 
 export const CargarDatosPartidos = () => {
@@ -17,7 +18,8 @@ export const CargarDatosPartidos = () => {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
-  const [values, setValues] = useState({incidentes: "", jugadorGol: "",
+  const [values, setValues] = useState({
+    incidentes: "", jugadorGol: "",
     tipoGol: "",
     minutoGol: "",
     tipoFalta: "",
@@ -38,16 +40,16 @@ export const CargarDatosPartidos = () => {
     idJugadorGol: "",
     tipoGol: "",
     minutoGol: "",
-});
+  });
 
-const [jugadorSeleccionado,setJugadorSeleccionado]=useState(null);
-const handleChangeJugadorSelect = (event) => {
-  setJugadorSeleccionado(event.target.value);
-}
-const [datosFalta, setDatosFalta] = useState({
-  tipoFalta: "",
-  minutoFalta: "",
-});
+  const [jugadorSeleccionado, setJugadorSeleccionado] = useState(null);
+  const handleChangeJugadorSelect = (event) => {
+    setJugadorSeleccionado(event.target.value);
+  }
+  const [datosFalta, setDatosFalta] = useState({
+    tipoFalta: "",
+    minutoFalta: "",
+  });
 
 
   useEffect(() => {
@@ -63,8 +65,8 @@ const [datosFalta, setDatosFalta] = useState({
       const faltasRepuesta = await axios(`http://localhost:8080/getFaltasPartido?idPartido=${location.state}`);
       const faltasData = faltasRepuesta.data;
       setFaltas(faltasData);
-      
-      
+
+
     };
     fetchData();
   }, []);
@@ -82,48 +84,53 @@ const [datosFalta, setDatosFalta] = useState({
 
   const handleChangeGoles = (event) => {
     setDatos({
-        ...datos,
-        [event.target.name]: event.target.value,
+      ...datos,
+      [event.target.name]: event.target.value,
     })
-}
+  }
 
 
-const handleChangeFaltas = (event) => {
-  setDatosFalta({
+  const handleChangeFaltas = (event) => {
+    setDatosFalta({
       ...datosFalta,
       [event.target.name]: event.target.value,
-  })
-}
+    })
+  }
 
-const handleClickGol = () => {
-  console.log(jugadorSeleccionado)
-  console.log(location.state)
-  console.log(datos.minutoGol)
-  console.log(datos.tipoGol)
-  axios.post(`http://localhost:8080/cargarGol?idJugador=${jugadorSeleccionado}&idPartido=${location.state}&minuto=${datos.minutoGol}&tipo=${datos.tipoGol}`)
-}
+  const handleClickGol = () => {
+    console.log(jugadorSeleccionado)
+    console.log(location.state)
+    console.log(datos.minutoGol)
+    console.log(datos.tipoGol)
+    axios.post(`http://localhost:8080/cargarGol?idJugador=${jugadorSeleccionado}&idPartido=${location.state}&minuto=${datos.minutoGol}&tipo=${datos.tipoGol}`)
+  }
 
-const handleClickFalta = () => {
-  axios.post(`http://localhost:8080/cargarFalta?idJugador=${datosFalta.idJugadorFalta}&idPartido=${location.state}&minuto=${datosFalta.minutoFalta}&tipo=${datosFalta.tipoFalta}`)
-}
-
-
+  const handleClickFalta = () => {
+    axios.post(`http://localhost:8080/cargarFalta?idJugador=${datosFalta.idJugadorFalta}&idPartido=${location.state}&minuto=${datosFalta.minutoFalta}&tipo=${datosFalta.tipoFalta}`)
+  }
 
 
-return (
 
-  <div className="containerLogin">
 
-    <div className="contenedorCargaDatosPartido">
-      <h1>Cargar datos del partido</h1>
+  return (
 
-      <Form>
-        <Row className="mb-2">
-          <label className="labelCargarResultadosPartido">Goles</label>
-          <>
-            <Button variant="success" onClick={handleShow} id="botonCargarGolesPartido">
-              Agregar
-            </Button>
+    <div className="containerLogin">
+      <>
+        <NavBarAdministracion />
+      </>
+      <div className="contenedorCargaDatosPartido">
+        <h1>Cargar datos del partido</h1>
+
+        <Form>
+          <Row className="mb-2">
+
+            <div id="filaCargaGoles">
+              <p>Goles</p>
+              <Button variant="success" onClick={handleShow} id="botonCargarGolesPartido">
+                Agregar
+              </Button>
+            </div>
+
 
             <Modal show={show} onHide={handleClose} size="lg">
               <Modal.Header closeButton>
@@ -175,21 +182,21 @@ return (
                 </Button>
               </Modal.Footer>
             </Modal>
-          </>
-        </Row>
-      </Form>
+          </Row>
+        </Form>
 
 
 
 
-      <Form>
-        <Row className="mb-2">
-          <label className="labelCargarResultadosPartido">Faltas</label>
-          <>
-            <Button variant="success" onClick={handleShow2} id="botonCargarFaltasPartido">
-              Agregar
-            </Button>
+        <Form>
+          <Row className="mb-2">
 
+            <div id="filaCargaFaltas">
+              <p>Faltas</p>
+              <Button variant="success" onClick={handleShow2} id="botonCargarFaltasPartido">
+                Agregar
+              </Button>
+            </div>
             <Modal show={show2} onHide={handleClose2} size="lg" id="faltas">
               <Modal.Header closeButton>
                 <Modal.Title>Agregar una falta</Modal.Title>
@@ -240,84 +247,83 @@ return (
                 </Button>
               </Modal.Footer>
             </Modal>
-          </>
-        </Row>
-      </Form>
+          </Row>
+        </Form>
 
-      <div className="rowCargaResultadosPartidos">
-        <label className="labelCargarResultadosPartido" for="incidentes">Incidentes</label>
-        <Form.Control id="incidentes" type="text-area" name="incidentes" value={values.incidentes} onChange={handleChange} autoComplete="off" />
+        <div id="filaIncidentesPartido">
+          <label className="labelCargarResultadosPartido" for="incidentes">Incidentes</label>
+          <Form.Control id="incidentes" type="text-area" name="incidentes" value={values.incidentes} onChange={handleChange} autoComplete="off" />
+        </div>
+
+        <div id="filaBotonConfirmarResultados">
+          <Button type="submit" className="btn btn-success botonDatosPartido" onClick={handleFormSubmit}>Confirmar</Button>
+        </div>
+
       </div>
 
-      <div>
-        <Button type="submit" className="btn btn-success botonDatosPartido" onClick={handleFormSubmit}>Confirmar</Button>
+
+
+
+
+      <div className="contenedorValidacionGolesAndFaltas">
+        <label className="labelCargarResultadosPartido">Goles</label>
+        <Table striped bordered hover size="sm" className="tablaGolesCargaPartidos">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Minuto</th>
+              <th>Tipo gol</th>
+            </tr>
+          </thead>
+          <tbody>
+            {goles.map((gol, index) => {
+              return (
+                <tr>
+                  <td>{gol.jugador.idJugador}</td>
+                  <td>{gol.jugador.nombre}</td>
+                  <td>{gol.jugador.apellido}</td>
+                  <td>{gol.minuto}</td>
+                  <td>{gol.tipo}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+
+        </Table>
+        <label className="labelCargarResultadosPartido">Faltas</label>
+        <Table striped bordered hover size="sm" className="tablaFaltasCargaPartidos">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Minuto</th>
+              <th>Tipo gol</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>@fat</td>
+            </tr>
+          </tbody>
+        </Table>
       </div>
+    </div >
 
-    </div>
-
-
-
-
-
-    <div className="contenedorValidacionGolesAndFaltas">
-      <label className="labelCargarResultadosPartido">Goles</label>
-      <Table striped bordered hover size="sm" className="tablaGolesCargaPartidos">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Minuto</th>
-            <th>Tipo gol</th>
-          </tr>
-        </thead>
-        <tbody>
-          {goles.map((gol, index) => {
-            return (
-              <tr>
-                <td>{gol.jugador.idJugador}</td>
-                <td>{gol.jugador.nombre}</td>
-                <td>{gol.jugador.apellido}</td>
-                <td>{gol.minuto}</td>
-                <td>{gol.tipo}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-
-      </Table>
-      <label className="labelCargarResultadosPartido">Faltas</label>
-      <Table striped bordered hover size="sm" className="tablaFaltasCargaPartidos">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Minuto</th>
-            <th>Tipo gol</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-          </tr>
-        </tbody>
-      </Table>
-    </div>
-  </div >
-
-);
+  );
 
 }
 
