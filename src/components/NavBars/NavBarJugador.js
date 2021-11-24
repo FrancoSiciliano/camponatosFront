@@ -1,7 +1,6 @@
 import {Navbar, Nav} from 'react-bootstrap'
 import {MdSportsSoccer} from 'react-icons/all'
 import {BiUserCircle, BiLogOut} from 'react-icons/bi';
-import { useHistory } from 'react-router';
 import './NavBarJugador.css'
 import {useHistory} from "react-router-dom";
 
