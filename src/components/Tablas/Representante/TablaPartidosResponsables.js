@@ -1,14 +1,15 @@
-import { Table,Button,Form } from "react-bootstrap"
-import { useLocation,Link } from 'react-router-dom'
+import { Table} from "react-bootstrap"
+import { Link } from 'react-router-dom'
 import {useEffect, useState} from "react";
 import './TablaPartidosResponsables.css'
 import axios from "axios";
 export const TablaPartidosResponsables=(props)=>{
   const [data, setData] = useState(null);
   const [responsable, setResponsable] = useState(null);
+  const idResponsable =localStorage.getItem("id")
   useEffect(() => {
     const fetchData = async () => {
-      const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${props.id}`)
+      const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
       const res = respuesta.data;
       setResponsable(res);
       const response = await axios(`http://localhost:8080/getPartidosByClub?idClub=${res.club.idClub}`);
@@ -18,8 +19,10 @@ export const TablaPartidosResponsables=(props)=>{
     fetchData();
 },[]);
 const estaValidado = (partido) =>{
+  console.log(responsable)
+  console.log(partido)
   if(partido.clubLocal.idClub === responsable.club.idClub){
-    if(partido.convalidaLocal === true){
+    if(partido.convalidaLocal == true){
       return true;
     }
     else{
@@ -27,7 +30,7 @@ const estaValidado = (partido) =>{
     }
   }
   else{
-    if(partido.convalidaVisitante === true){
+    if(partido.convalidaVisitante == true){
       return true;
     }
     else{
@@ -49,25 +52,23 @@ const estaValidado = (partido) =>{
             <th>Categoria</th>
             <th>Club Local</th>
             <th>Club Visitante</th>
-            <th colSpan="2">
-            <Form.Control classname="searchBox" id="search" type="search" placeholder="Filtrar por Nombre" onChange={""} autoComplete="off"/>
-</th>
+            <th>Detalles del partido</th>
+
     </tr>
   </thead>
   <tbody>
   {data.map((partido,index)=>{
-    var ids=partido.idPartido
-
+    var idPartido=partido.idPartido
+  if(!estaValidado(partido)){
   return(
     <tr key={index}>
       <td>{partido.nroFecha}</td>
       <td>{partido.categoria}</td>
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
-      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname: '/detalles/partidos', state: {idPartido: ids, clubLocal: partido.clubLocal, clubVisitante: partido.clubVisitante, rol: "RESPONSABLE" }}}> Detalles</Link></td>
-      <td><Button classname="botonTablaValidar" type="submit" class="btn btn-success"> Validar</Button></td>
+      <td><Link className='btn btn-success botonTablaValidar' style={{ textDecoration: 'none', }} to={{pathname:'/detalles/partidos/responsables', state:idPartido}}> Detalles</Link></td>
     </tr>)
-  })}
+  }})}
 </tbody>
 </Table></div> )}
 else{

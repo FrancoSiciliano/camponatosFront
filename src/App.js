@@ -9,25 +9,17 @@ import {LandingResponsable} from "./components/LandingResponsable/LandingRespons
 import CampeonatosResponsable from "./components/Gestion/GestionCampeonatos/CampeonatosResponsable";
 import {TablaPosicion} from "./components/Tablas/TablaPosicion";
 import ListaJugadoresClub from "./components/Gestion/GestionJugadores/ListaJugadoresClub";
-import {RegistroCampeonato} from "./components/Gestion/GestionCampeonatos/CreacionCampeonato";
 import {LandingAdministrador} from "./components/LandingAdministrador/LandingAdmistrador";
-import CargarDatosPartidos from "./components/Gestion/GestionPartidos/CargarDatosPartidos";
 import {DetallesPartido} from "./components/Gestion/GestionPartidos/DetallesPartido";
-import {SeleccionCampeonatoADefinir} from "./components/Gestion/GestionPartidos/SeleccionCampeonatoADefinir";
-import {CrearPartido} from "./components/Gestion/GestionPartidos/CrearPartido";
 import {Home} from "./components/LandingGeneral/Home";
 import './App.css'
-import {DefinirClubesCampeonato} from "./components/Gestion/GestionCampeonatos/DefinirClubesCampeonato";
 import TablaCampeonatos from "./components/Tablas/TablaCampeonatos";
 import {TablaPartidosCampeonatos} from "./components/Tablas/TablaPartidosCampeonatos";
 
 import {DatosJugadorResponsable} from "./components/DatosPerfiles/DatosJugadorResponsable";
-import {RegistroClub} from "./components/Registros/RegistroClub";
 import {TablaClubes} from "./components/Tablas/TablaClubes";
 import {TablaResponsables} from "./components/Tablas/Representante/TablaResponsables";
-import {RegistroResponsableAdministrador} from "./components/Registros/RegistroResponsableAdministrador";
 import {TablaJugadores} from "./components/Tablas/TablaJugadores";
-import {RegistroResponsableByResponsable} from "./components/Registros/RegistroResponsableByResponsable";
 import {TablaJugadoresPartidos} from "./components/Tablas/TablaJugadoresPartidos";
 import {EstadisticasJugadorCampeonato} from "./components/EstadisticasJugadorEnCampeonato/EstadisticasJugadorCampeonato";
 import {DetallesPartidoResponsable} from "./components/Gestion/GestionPartidos/DetallesPartidoResponsable";
