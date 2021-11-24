@@ -36,3 +36,6 @@
 .equipo-detalle-partido h1 {
     margin-bottom: 30px !important;
 }
+.BotonesValidarInvalidar{
+    height: fit-content;
+}

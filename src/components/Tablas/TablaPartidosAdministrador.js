@@ -4,31 +4,20 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
-import NavBarResponsable from "../NavBars/NavBarResponsable";
-export const TablaPartidosCampeonatos=()=>{
+export const TablaPartidosAdministrador=()=>{
   let location = useLocation();
-  console.log(location)
   const [data,setData]=useState(null);
   useEffect(() => {
     const fetchData = async () => {
-      const responsable = await axios(`http://localhost:8080/getResponsableById?idResponsable=${location.state.idResponsable}`)
-      const res = responsable.data;
-      const club = await axios(`http://localhost:8080/getPartidosByCampeonatoAndClub?idCampeonato=${location.state.idCampeonato}&idClub=${res.club.idClub}`);
-      const partidosClub = club.data;
-      setData(partidosClub);
+      const partidos = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.idCampeonato}`);
+      const partidosAdmin = partidos.data;
+      setData(partidosAdmin);
     };
     fetchData();
 },[]);
-const navbar = () => {
-  if (location.state.tipo === "RESPONSABLES") {
-      return (<NavBarResponsable id={location.state.idResponsable}/>);
-  } else if (location.tipo === "ADMINISTRADOR") {
-      return (<NavBarAdministracion/>);}
-}
-
   if(data){
     return(<div>
-      {navbar()}
+      <NavBarAdministracion/>
       <div className="TablaPartidosCampeoantos">
       <Table striped bordered hover>
         <thead>
@@ -58,12 +47,12 @@ const navbar = () => {
       <td>{partido.clubLocal.nombre}</td>
       <td>{partido.clubVisitante.nombre}</td>
       <td><Link class="btn btn-primary btn-sm" to={{pathname:'/detalles/partidos', state:ids}}> Detalles</Link></td>
-      <td><Link class="btn btn-primary btn-sm" to={{pathname:'/tabla/partidos/listaJugadores', state:{idPartido:ids,idResponsable:location.state.idResponsable,categoria:categ}}}> Lista Jugadores</Link></td>
+      <td><Link class="btn btn-primary btn-sm" to={{pathname:'/administrador/campeonatos/partidos/jugadores', state:{idPartido:ids}}}> Lista Jugadores</Link></td>
     </tr>)
   })}
 </tbody>
 </Table></div></div>)}
 else{
-  return (<div> {navbar()}
-    <h1>The server isnt working</h1></div>)
+  return (<div><NavBarAdministracion/>
+      <h1>The server isnt working</h1></div>)
     }}

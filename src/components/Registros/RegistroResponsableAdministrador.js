@@ -81,8 +81,9 @@ export const RegistroResponsableAdministrador = () => {
 
     const postData = async () => {
         try{
-            await axios.post(`http://logcalhost:8080/crearClub?nombre=${datosClub.nombre}&direccion=${datosClub.direccion}&idClub=${parseInt(datosClub.id)}`)
-            await axios.post(`http://logcalhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${parseInt(datosClub.id)}&mail=${datos.mail}&password=${datos.password}`)
+            console.log(datosClub)
+            await axios.post(`http://localhost:8080/crearClub?nombre=${datosClub.nombre}&direccion=${datosClub.direccion}&idClub=${parseInt(datosClub.id)}`)
+            await axios.post(`http://localhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${parseInt(datosClub.id)}&mail=${datos.mail}&password=${datos.password}`)
             setError("Se registró el responsable con éxito");
             setTitle("Registro completado");
             setModalTitle("Operación exitosa");

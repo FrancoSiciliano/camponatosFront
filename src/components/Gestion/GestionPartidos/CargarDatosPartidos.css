@@ -8,13 +8,13 @@
 
 .contenedorCargaDatosPartido {
     width: 50%;
+    display: flex;
+    flex-direction: column;
     transform: translateY(10%);
-    margin-top: 0%;
-    padding-left: 0.5%;
+    padding-left: 2%;
     padding-right: 0.5%;
     padding-bottom: 0.5%;
-    margin-right: 10%;
-    margin-left: 25%;
+    margin: 1% auto;
     border-style:double;
     border-radius: 5%;
     background: rgba(8, 107, 51, 0.15);
@@ -27,19 +27,106 @@
 
 .contenedorCargaDatosPartido h1 {
     font-family: 'Titillium Web', sans-serif;
-    margin-left: 20%;
+    margin: 3% auto;
     text-align: center;
-    width: 60%;
+    width: 100%;
     font-weight: 600;
-    color: #0b770b;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    color: #ffffff;
 }
 
-.contenedorValidacionGolesAndFaltas {
-    width: 70%;
-    margin-top: 10%;
+
+.labelCargarResultadosPartido{
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+#filaCargaGoles {
+    width: 35%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#filaCargaGoles p {
+    max-width: 50% !important;
+    font-size: 25px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: underline double;
+    font-weight: 700;
+    flex-basis: 30px !important;
+}
+
+#botonCargarGolesPartido {
+    width: 50%;
     padding-left: 0.5%;
+    padding-right: 0.5%;
+    transform: translateX(1em);
+
+}
+
+
+#filaCargaFaltas {
+    width: 35%;
+    margin-top: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#filaCargaFaltas p {
+    font-size: 25px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: underline double;
+    font-weight: 700;
+    flex-basis: 30px;
+}
+
+#botonCargarFaltasPartido {
+    width: 50%;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    transform: translateX(1em);
+    
+}
+
+
+#filaIncidentesPartido {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 3%;
+}
+
+#filaIncidentesPartido input {
+    width: 73%;
+}
+
+#filaIncidentesPartido input:hover {
+    background-color: rgb(238, 238, 238);
+}
+
+#filaIncidentesPartido label {
+    font-size: 25px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: underline double;
+    font-weight: 700;
+    flex-basis: 30px;
+}
+
+
+.contenedorValidacionGolesAndFaltas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 20% !important;
+    margin-top: 5%;
+    padding-left: 0%;
     padding-right: 0.5%;
     padding-bottom: 0.5%;
     margin-right: 10%;
@@ -54,34 +141,26 @@
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-.labelCargarResultadosPartido {
-    font-size: 25px;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    display: block;
-    text-align: left;
-    text-decoration: underline double;
-    font-weight: 700;
-    width: 10%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    margin-left: 0.5%;
-
+.tabla-resultado-goles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 50%;
+    width: 100%;
+    overflow-y: scroll !important;
 }
 
-#botonCargarGolesPartido {
-    width: 8em;
-    display: inline-block !important; 
-    padding: 0.5% 0.5%;
-    transform: translate(3em, -0em);
+.tabla-resultado-falta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 50%;
+    width: 100%;
+    overflow-y: scroll !important;
 }
 
-#botonCargarFaltasPartido {
-    width: 8em;
-    display: inline-block !important; 
-    padding: 0.5% 0%;
-    transform: translate(3em, -0em);
-}
 
 #formGridJugadorGol {
     margin-left: 5%;
@@ -91,15 +170,6 @@
     margin-left: 5%;
 }
 
-.rowCargaResultadosPartidos input {
-    width: 70%;
-    transform: translate(12em, -2.5em);
-    display: inline-block;
-}
-
-.rowCargaResultadosPartidos input:hover {
-    background-color: rgb(238, 238, 238);
-}
 
 #formGridFecha {
     padding: 0%;
@@ -122,21 +192,12 @@
     background-color: rgb(255, 255, 255);
 }
 
-.contenedorCargaDatosPartido p {
-    width: 40%;
-    margin-left: 37%;
-    margin-bottom: -1%;
-    margin-top: 1%;
-    color: #f7e70c;
-    font-weight: bold;
-    font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
+#filaBotonConfirmarResultados {
+    align-self: center;
 }
 
 .botonDatosPartido {
-    margin-top: 1%;
-    margin-left: 40%;
-    font-size: 25px !important; 
+    font-size: 25px ; 
     background-color: #29a11e !important;
     border-radius: 15% !important;
 }
@@ -144,3 +205,4 @@
 .botonDatosPartido:hover {
     background-color: #2b9348 !important;
 }
+

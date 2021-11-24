@@ -19,6 +19,9 @@ function NavBarResponsable(props) {
     const handleClickMiPerfil = () =>{
         history.push("/datos/representante", props.id);
     }
+    const handleClickListadoJugadores = ()=>{
+        history.push("/tabla/Jugadores",props.id)
+    }
     const handleClickPerfilClub = () =>{
         history.push("/datos/club", props.id);
     }
@@ -87,7 +90,8 @@ function NavBarResponsable(props) {
                                             </Button>
                                         </Modal.Footer>
                                     </Modal>
-                                    <Dropdown.Item onClick={handleClickAgregarJugador}>AGREGAR</Dropdown.Item>
+                                    <Dropdown.Item onClick={handleClickAgregarJugador}>AGREGAR JUGADOR</Dropdown.Item>
+                                    <Dropdown.Item onClick={handleClickListadoJugadores}>LISTADO JUGADORES</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </NavDropdown>

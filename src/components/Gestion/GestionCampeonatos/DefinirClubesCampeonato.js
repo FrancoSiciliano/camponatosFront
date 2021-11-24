@@ -1,5 +1,4 @@
 import {useHistory} from "react-router-dom";
-import {ClubesDisponiblesCampeonato} from "./InfoClubesParticipantes/ClubesDisponiblesCampeonato";
 import './DefinirClubes.css'
 import {CardClub} from "./InfoClubesParticipantes/CardClub";
 import React, {useEffect, useState} from "react";
@@ -8,7 +7,6 @@ import {BiCheck} from "react-icons/all";
 import {Button} from "react-bootstrap";
 import transitionEndListener from "react-bootstrap/transitionEndListener";
 import {PopUp} from "../../PopUp/PopUp";
-import NavBarAdministracion from "../../NavBars/NavBarAdministracion";
 
 export const DefinirClubesCampeonato = () => {
     const history = useHistory();

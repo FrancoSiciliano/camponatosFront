@@ -2,17 +2,23 @@ import {Table, Button} from "react-bootstrap";
 import '../Tablas/TablaJugadores.css'
 import {useEffect, useRef, useState} from "react";
 import axios from "axios";
+import { useHistory } from "react-router";
 import {Form} from "react-bootstrap";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import NavBarResponsable from "../NavBars/NavBarResponsable";
 
 export const TablaJugadores = (props) => {
+    const history = useHistory();
+    let location = history.location.state;
     const [jugadores, setJugadores] = useState(null);
     const todosJugadores = useRef(null);
     const [estado, setEstado] = useState (false);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getJugadores`);
+            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${location}`)
+            const res = respuesta.data;
+            const response = await axios(`http://localhost:8080/getJugadoresByClub?idClub=${res.club.idClub}`);
             const newData = response.data;
             setJugadores(newData);
             todosJugadores.current = newData;
@@ -36,7 +42,7 @@ export const TablaJugadores = (props) => {
     
     if (jugadores) {
         return (<div>
-            <NavBarAdministracion />
+            <NavBarResponsable id={location} />
             <div className="TablaListaJugadoresClub scrollable-lista-jugadores">
                 <Table striped bordered hover sm>
                     <thead>

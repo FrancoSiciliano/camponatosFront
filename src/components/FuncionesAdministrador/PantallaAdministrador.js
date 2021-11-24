@@ -1,4 +1,4 @@
-import {Table, Button} from "react-bootstrap";
+import {Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import './PantallaAdministador.css'
@@ -41,14 +41,15 @@ export const PantallaAdministrador = (props) => {
                             </thead>
                             <tbody>
                             {data.map((partido, index) => {
+                                let idPartido = partido.idPartido
                                 return (
                                     <tr key={partido.descripcion}>
                                         <td>{partido.campeonato.descripcion}</td>
                                         <td>{partido.clubLocal.nombre}</td>
                                         <td>{partido.clubVisitante.nombre}</td>
                                         <td>{partido.fechaPartido ? partido.fechaPartido : "Sin cargar"}</td>
-                                        <td><Link className='btn btn-success botonesAdmin-tabla'
-                                                  to="/cargar/datos/partido">Cargar Datos</Link></td>
+                                        <td><Link className='btn btn-success botonesAdmin-tabla' 
+                                                  to={{pathname:"/cargar/datos/partido",state:idPartido}}>Cargar Datos</Link></td>
                                     </tr>)
                             })}
                             </tbody>
@@ -63,7 +64,7 @@ export const PantallaAdministrador = (props) => {
                             Crear Partidos
                         </Link>
 
-                        <Link className='btn btn-success botonesAdmin' to="/tabla/Campeonatos">
+                        <Link className='btn btn-success botonesAdmin' to="/administracion/Campeonatos">
                             Ver Tablas
                         </Link>
 
