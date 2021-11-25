@@ -18,9 +18,9 @@ export const CargarDatosPartidos = () => {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
-  const [incidente, setIncidente] = useState("")
- 
-
+  const [incidente, setIncidente] = useState("");
+  const [modalTitle, setModalTitle] = useState("");
+  const [titleBody, setTitleBody] = useState("");
   const [actualizar, setActualizar] = useState(false);
 
   
@@ -90,6 +90,8 @@ export const CargarDatosPartidos = () => {
     console.log('minutogol',datos.minutoGol)
     console.log('tipogol',datos.tipoGol)
     await axios.post(`http://localhost:8080/cargarGol?idJugador=${jugadorSeleccionado}&idPartido=${location.state}&minuto=${datos.minutoGol}&tipo=${datos.tipoGol.toLowerCase()}`).catch(e => {
+      setModalTitle('ERROR EN LA OPERACION')
+      setTitleBody('ERROR EN LOS DATOS CARGADOS EN EL GOL')
       setTextAlert(e.response.data.message)
       handleShowAlert()
     })
@@ -103,6 +105,8 @@ export const CargarDatosPartidos = () => {
     console.log(datosFalta.minutoFalta)
     console.log(datosFalta.tipoFalta)
     await axios.post(`http://localhost:8080/cargarFalta?idJugador=${jugadorSeleccionado}&idPartido=${location.state}&minuto=${datosFalta.minutoFalta}&tipo=${datosFalta.tipoFalta.toLowerCase()}`).catch(e => {
+      setModalTitle('ERROR EN LA OPERACION')
+      setTitleBody('ERROR EN LOS DATOS CARGADOS EN LA FALTA')
       setTextAlert(e.response.data.message)
       handleShowAlert()
       
@@ -125,6 +129,11 @@ export const CargarDatosPartidos = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     axios.post(`http://localhost:8080/cargarResultadosPartido?idPartido=${location.state}&incidentes=${incidente}`)
+    setModalTitle('OPERACION EXITOSA')
+    setTitleBody('CARGA DE LOS DATOS REALIZADA')
+    setTextAlert('')
+    handleShowAlert()
+
   }
   return (
 
@@ -203,7 +212,7 @@ export const CargarDatosPartidos = () => {
           </Form>
 
           
-          <PopUp show={showAlert} onHide={handleHideAlert} modalTitle='ERROR EN LA OPERACION' title='VALORES INGRESADOS INCORRECTOS' text={textAlert} />
+          <PopUp show={showAlert} onHide={handleHideAlert} modalTitle={modalTitle} title={titleBody} text={textAlert} />
 
           <Form>
             <Row className="mb-2">

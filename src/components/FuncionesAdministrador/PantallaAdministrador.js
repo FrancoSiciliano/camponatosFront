@@ -11,7 +11,7 @@ export const PantallaAdministrador = (props) => {
     const [data, setData] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getAllPartidos`);
+            const response = await axios(`http://localhost:8080/getPartidosNoCargados`);
             const newData = response.data;
             setData(newData);
         };
