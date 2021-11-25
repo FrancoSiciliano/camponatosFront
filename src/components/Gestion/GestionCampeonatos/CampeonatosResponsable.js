@@ -1,4 +1,4 @@
-import {Table, Form} from "react-bootstrap";
+import {Table, Form, Spinner} from "react-bootstrap";
 import './CampeonatosResponsable.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -94,7 +94,10 @@ export const CampeonatosResponsable = () => {
             </div>
         </div>)
     } else {
-        return (<PantallaCarga/>)
+        return (<div className="center">
+            <Spinner animation="border"/>
+            <p style={{position: "relative", top: "-23px", fontSize: "50px"}}>Cargando...</p>
+        </div>)
     }
 }
 

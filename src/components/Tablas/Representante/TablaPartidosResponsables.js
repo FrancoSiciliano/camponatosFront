@@ -1,4 +1,4 @@
-import {Table} from "react-bootstrap"
+import {Spinner, Table} from "react-bootstrap"
 import {Link, useHistory} from 'react-router-dom'
 import {useEffect, useState} from "react";
 import './TablaPartidosResponsables.css'
@@ -89,6 +89,9 @@ export const TablaPartidosResponsables = () => {
                     </tbody>
                 </Table></div>)
     } else {
-        return (<PantallaCarga/>)
+        return (<div className="center">
+            <Spinner animation="border"/>
+            <p style={{position: "relative", top: "-23px", fontSize: "50px"}}>Cargando...</p>
+        </div>)
     }
 }

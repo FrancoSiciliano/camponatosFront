@@ -91,7 +91,7 @@ export const DetallesPartido = ({debeValidar}) => {
 
     if (datosPartido) {
         return (
-            <div>
+            <div className="container-principal-detalle-partido">
                 {navbar()}
                 <div className="comparacion-partido">
                     <div className="equipo-detalle-partido">

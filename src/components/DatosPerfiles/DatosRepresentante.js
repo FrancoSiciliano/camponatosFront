@@ -40,8 +40,7 @@ export const DatosRepresentante = () => {
 
     const postData = async (data) => {
         try {
-            await axios.post(`http://localhost:8080/modificarResponsable?legajo=${idResponsable}&nombre=${data.nombre}&idClub=${data.club.idClub}&mail=${data.mail}&password=${data.contraseña}`)
-            await axios.post(`http://localhost:8080/modificarPasswordResponsable?idResponsable=${idResponsable}&password=${data.password}`);
+            await axios.post(`http://localhost:8080/modificarResponsable?legajo=${idResponsable}&nombre=${data.nombre}&idClub=${data.club.idClub}&mail=${data.mail}&password=${data.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {

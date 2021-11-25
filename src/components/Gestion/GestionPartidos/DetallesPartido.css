@@ -10,17 +10,23 @@
 }
 .BotonesValidarInvalidar{
     margin: 2px;
-    border-radius: 10;
-    border-width: 1;
-    border-color: '#fff';
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: #fff;
     display: flex;
 }
-.comparacion-partido {
-    display: flex;
-    justify-content: space-evenly;
+
+.container-principal-detalle-partido {
     background-image: url("../../../assets/images/fondo-detalles-partido.jpg");
     background-size: cover;
     background-position: center;
+    min-height: 100vh;
+}
+
+.comparacion-partido {
+    display: flex;
+    justify-content: space-evenly;
+
 }
 
 .local, .visitante{
