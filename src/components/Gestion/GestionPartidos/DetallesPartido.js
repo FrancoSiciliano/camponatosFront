@@ -23,6 +23,7 @@ export const DetallesPartido = ({debeValidar}) => {
     const [clubRep, setClubRep] = useState(null);
     const id = localStorage.getItem("id");
     const rol = localStorage.getItem("rol");
+    const [actualizar, setActualizar] = useState(false);
 
     useEffect(async () => {
         const fetchDataPartido = async () => {
@@ -64,13 +65,19 @@ export const DetallesPartido = ({debeValidar}) => {
         await fetchDataGoles();
         rol === "RESPONSABLE" && await fetchClubResponsable();
 
-    }, []);
+    }, [actualizar]);
 
     const navbar = () => {
         return rol === "RESPONSABLE" ? <NavBarResponsable/> : <NavBarAdministracion/>
     }
-    const HandleClickValidar = ()=>{
-        
+    const HandleClickValidar = async ()=>{
+        if (clubVisitante.idClub === clubRep) {
+            await axios.post(`http://localhost:8080/validadoByClubVisitante?idClub=${clubRep}&idPartido=${idPartido}`);
+            setActualizar(!actualizar);
+        } else {
+            await axios.post(`http://localhost:8080/validadoByClubLocal?idClub=${clubRep}&idPartido=${idPartido}`);
+            setActualizar(!actualizar);
+        }
     }
 
     const BotonesValidarInvalidar = ()=>{
