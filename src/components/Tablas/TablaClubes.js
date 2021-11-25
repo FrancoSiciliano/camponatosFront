@@ -61,7 +61,6 @@ export const TablaClubes = () => {
                                 <td>{nombre}</td>
                                 <td>{club.direccion}</td>
                                 <td><Button className='btn btn-success' onClick={ (e) =>HandleClickPerfil(ids)}> Perfil</Button></td>
-                                <td><Button className='btn btn-success'> Eliminar</Button></td>
                             </tr>)})}
                     </tbody>
                 </Table>
