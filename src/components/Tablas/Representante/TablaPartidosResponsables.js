@@ -35,8 +35,6 @@ export const TablaPartidosResponsables = () => {
     }
 
     const estaValidado = (partido) => {
-        console.log(responsable)
-        console.log(partido)
         if (partido.clubLocal.idClub === responsable.club.idClub) {
             if (partido.convalidaLocal == true) {
                 return true;
