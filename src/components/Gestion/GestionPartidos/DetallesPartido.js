@@ -99,7 +99,7 @@ export const DetallesPartido = ({debeValidar}) => {
                         <Table hover sm className="local">
                             <tbody>
                             <tr>
-                                <td>Goles: {datosPartido.golesLocal ? datosPartido.golesLocal : "0"}</td>
+                                <td>Goles: {golesLocal.length}</td>
                             </tr>
                             <tr>
                                 <td>Validado: {datosPartido.convalidaLocal ? "Si" : "No"}</td>
@@ -147,7 +147,7 @@ export const DetallesPartido = ({debeValidar}) => {
                         <Table hover sm className="visitante">
                             <tbody>
                             <tr>
-                                <td>Goles: {datosPartido.golesVisitante ? datosPartido.golesVisitante : "0"}</td>
+                                <td>Goles: {golesVisitante.length}</td>
                             </tr>
                             <tr>
                                 <td>Validado: {datosPartido.convalidaVisitante ? "Si" : "No"}</td>
