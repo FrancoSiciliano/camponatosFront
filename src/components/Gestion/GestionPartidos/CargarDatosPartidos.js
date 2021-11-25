@@ -21,12 +21,26 @@ export const CargarDatosPartidos = () => {
   const [incidente, setIncidente] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const [titleBody, setTitleBody] = useState("");
-  const [actualizar, setActualizar] = useState(false);
 
   
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setDatos({
+      idJugadorGol: "",
+      tipoGol: "",
+      minutoGol: "",
+    })
+  };
   const handleShow = () => setShow(true);
-  const handleClose2 = () => setShow2(false);
+
+  const handleClose2 = () => {
+    setShow2(false);
+    setDatosFalta({
+      tipoFalta: "",
+      minutoFalta: "",
+    });
+  };
+
   const handleShow2 = () => setShow2(true);
 
   const [datos, setDatos] = useState({
@@ -50,18 +64,9 @@ export const CargarDatosPartidos = () => {
       const response = await axios(`http://localhost:8080/getMiembroByPartido?idPartido=${location.state}`);
       const newData = response.data;
       setData(newData);
-
-      const golesRepuesta = await axios(`http://localhost:8080/getGolesByPartido?idPartido=${location.state}`);
-      const golesData = golesRepuesta.data;
-      setGoles(golesData);
-
-      const faltasRepuesta = await axios(`http://localhost:8080/getFaltasPartido?idPartido=${location.state}`);
-      const faltasData = faltasRepuesta.data;
-      setFaltas(faltasData);
-
     };
     fetchData();
-  }, [actualizar]);
+  }, []);
 
 
   const handleChangeIncidente = (event) => {
@@ -84,35 +89,49 @@ export const CargarDatosPartidos = () => {
     })
   }
 
+  const handleEliminarFalta = (index) => {
+    const auxFaltas = faltas.slice();
+    auxFaltas.splice(index, 1);
+    setFaltas(auxFaltas);
+  }
+
+  const handleEliminarGol = (index) => {
+    const auxGol = goles.slice();
+    auxGol.splice(index, 1);
+    setGoles(auxGol);
+  }
+
   const handleClickGol = async () => {
-    console.log('jugador',jugadorSeleccionado)
-    console.log('idpartido',location.state)
-    console.log('minutogol',datos.minutoGol)
-    console.log('tipogol',datos.tipoGol)
-    await axios.post(`http://localhost:8080/cargarGol?idJugador=${jugadorSeleccionado}&idPartido=${location.state}&minuto=${datos.minutoGol}&tipo=${datos.tipoGol.toLowerCase()}`).catch(e => {
-      setModalTitle('ERROR EN LA OPERACION')
-      setTitleBody('ERROR EN LOS DATOS CARGADOS EN EL GOL')
-      setTextAlert(e.response.data.message)
-      handleShowAlert()
+    const auxGoles = goles.slice();
+    const res = await axios.get(`http://localhost:8080/encontrarJugador?idJugador=${jugadorSeleccionado}`);
+    const jugador = res.data;
+
+    auxGoles.push({
+      jugadorSeleccionado: jugadorSeleccionado,
+      idPartido: location.state,
+      nombre: jugador.nombre,
+      apellido: jugador.apellido,
+      minutoGol: datos.minutoGol,
+      tipoGol: datos.tipoGol.toLowerCase(),
     })
-    setActualizar(!actualizar)
+    setGoles(auxGoles);
     handleClose()
   }
 
   const handleClickFalta = async () => {
-    console.log(jugadorSeleccionado)
-    console.log(location.state)
-    console.log(datosFalta.minutoFalta)
-    console.log(datosFalta.tipoFalta)
-    await axios.post(`http://localhost:8080/cargarFalta?idJugador=${jugadorSeleccionado}&idPartido=${location.state}&minuto=${datosFalta.minutoFalta}&tipo=${datosFalta.tipoFalta.toLowerCase()}`).catch(e => {
-      setModalTitle('ERROR EN LA OPERACION')
-      setTitleBody('ERROR EN LOS DATOS CARGADOS EN LA FALTA')
-      setTextAlert(e.response.data.message)
-      handleShowAlert()
-      
+    const auxFaltas = faltas.slice();
+    const res = await axios.get(`http://localhost:8080/encontrarJugador?idJugador=${jugadorSeleccionado}`);
+    const jugador = res.data;
+
+    auxFaltas.push({
+      jugadorSeleccionado: jugadorSeleccionado,
+      idPartido: location.state,
+      nombre: jugador.nombre,
+      apellido: jugador.apellido,
+      minutoFalta: datosFalta.minutoFalta,
+      tipoFalta: datosFalta.tipoFalta.toLowerCase(),
     })
-    
-    setActualizar(!actualizar)
+    setFaltas(auxFaltas);
     handleClose2()
   }
 
@@ -123,12 +142,20 @@ export const CargarDatosPartidos = () => {
   }
 
   const handleHideAlert  = () => {
-    setShowAlert(false)
+    setShowAlert(false);
   }
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:8080/cargarResultadosPartido?idPartido=${location.state}&incidentes=${incidente}`)
+    for (const gol of goles) {
+      await axios.post(`http://localhost:8080/cargarGol?idJugador=${gol.jugadorSeleccionado}&idPartido=${gol.idPartido}&minuto=${gol.minutoGol}&tipo=${gol.tipoGol}`)
+    }
+
+    for (const falta of faltas) {
+      await axios.post(`http://localhost:8080/cargarFalta?idJugador=${falta.jugadorSeleccionado}&idPartido=${falta.idPartido}&minuto=${falta.minutoFalta}&tipo=${falta.tipoFalta}`)
+    }
+
+    await axios.post(`http://localhost:8080/cargarResultadosPartido?idPartido=${location.state}&incidentes=${incidente}`)
     setModalTitle('OPERACION EXITOSA')
     setTitleBody('CARGA DE LOS DATOS REALIZADA')
     setTextAlert('')
@@ -305,14 +332,15 @@ export const CargarDatosPartidos = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {goles.map((gol) => {
+                  {goles.map((gol, index) => {
                     return (
                       <tr>
-                        <td>{gol.jugador.idJugador}</td>
-                        <td>{gol.jugador.nombre}</td>
-                        <td>{gol.jugador.apellido}</td>
-                        <td>{gol.minuto}</td>
-                        <td>{gol.tipo.toUpperCase()}</td>
+                        <td>{gol.jugadorSeleccionado}</td>
+                        <td>{gol.nombre}</td>
+                        <td>{gol.apellido}</td>
+                        <td>{gol.minutoGol}</td>
+                        <td>{gol.tipoGol.toUpperCase()}</td>
+                        <td><Button className="btn btn-success" onClick={() => handleEliminarGol(index)}>Eliminar</Button></td>
                       </tr>
                     )
                   })}
@@ -335,14 +363,15 @@ export const CargarDatosPartidos = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {faltas.map((falta) => {
+                  {faltas.map((falta, index) => {
                       return(
                         <tr>
-                          <td>{falta.jugador.idJugador}</td>
-                          <td>{falta.jugador.nombre}</td>
-                          <td>{falta.jugador.apellido}</td>
-                          <td>{falta.minuto}</td>
-                          <td>{falta.tipo.toUpperCase()}</td>
+                          <td>{falta.jugadorSeleccionado}</td>
+                          <td>{falta.nombre}</td>
+                          <td>{falta.apellido}</td>
+                          <td>{falta.minutoFalta}</td>
+                          <td>{falta.tipoFalta.toUpperCase()}</td>
+                          <td><Button className="btn btn-success" onClick={() => handleEliminarFalta(index)}>Eliminar</Button></td>
                         </tr>
                       )
                   })}
