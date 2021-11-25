@@ -57,7 +57,7 @@ export const TablaPartidosResponsables = () => {
     if (data) {
         return (
             <div className="TablaPartidosResponsables scrollable-responsable">
-                <Table responsive="md">
+                <Table striped bordered hover sm responsive="md">
                     <thead>
                     <tr>
                         <th colSpan="8" className='tituloTablaPartidos'>Partidos A Validar</th>
@@ -67,6 +67,7 @@ export const TablaPartidosResponsables = () => {
                         <th>Categoria</th>
                         <th>Club Local</th>
                         <th>Club Visitante</th>
+                        <th>Campeonato</th> 
                         <th>Detalles del partido</th>
 
                     </tr>
@@ -81,6 +82,7 @@ export const TablaPartidosResponsables = () => {
                                     <td>{partido.categoria}</td>
                                     <td>{partido.clubLocal.nombre}</td>
                                     <td>{partido.clubVisitante.nombre}</td>
+                                    <td>{partido.campeonato.descripcion}</td>
                                     <td><Button className='btn btn-success botonTablaValidar'
                                                 onClick={() => handleClickDetalles(partido)}> Detalles</Button></td>
                                 </tr>)
