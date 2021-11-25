@@ -150,6 +150,12 @@ function App() {
                     {/*</Route> NO ESTABA EN USO ????????????????????*/}
 
 
+                    <Route path="/cargar/datos/partido">
+                        <CargarDatosPartidos/>
+                    </Route>
+                    <Route path="/partidos/Detalles">
+                        <DetallesPartido/>
+                    </Route>
 
                     <Route path="/gestionar/campeonato">
                         <CampeonatosResponsable/>
