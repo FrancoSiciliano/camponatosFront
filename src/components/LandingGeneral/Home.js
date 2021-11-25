@@ -5,6 +5,8 @@ import {Row, Form} from "react-bootstrap";
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
+import auth from "../../auth";
+import {GiSoccerKick} from "react-icons/all";
 
 export const Home = () => {
 
@@ -34,20 +36,29 @@ export const Home = () => {
 
         await axios.get(`http://localhost:8080/loginAdministrador?mail=${usuario.mail}&password=${usuario.password}`)
             .then((res) => {
-                localStorage.setItem("id", res.data);
-                history.push("/home/administracion");
+                auth.login(() => {
+                    localStorage.setItem("id", res.data);
+                    localStorage.setItem("rol", "ADMIN");
+                    history.push("/home/administracion");
+                })
             })
             .catch(async () => {
                 await axios.get(`http://localhost:8080/loginResponsable?mail=${usuario.mail}&password=${usuario.password}`)
                     .then((res) => {
-                        localStorage.setItem("id", res.data);
-                        history.push("/home/representante");
+                        auth.login(() => {
+                            localStorage.setItem("id", res.data);
+                            localStorage.setItem("rol", "RESPONSABLE");
+                            history.push("/home/representante");
+                        })
                     })
                     .catch(async () => {
                         await axios.get(`http://localhost:8080/loginJugador?mail=${usuario.mail}&password=${usuario.password}`)
                             .then((res) => {
-                                localStorage.setItem("id", res.data);
-                                history.push("/home/jugador");
+                                auth.login(() => {
+                                    localStorage.setItem("id", res.data);
+                                    localStorage.setItem("rol", "JUGADOR");
+                                    history.push("/home/jugador");
+                                })
                             })
                             .catch((e) => {
                                 setModalTitle("No es posible iniciar sesión")
@@ -69,7 +80,7 @@ export const Home = () => {
     return (
         <div className="contenedor-home">
             <div>
-                <h1 className="titulo-home">Furvo</h1>
+                <h1 className="titulo-home">MATCHDAY <GiSoccerKick/></h1>
             </div>
             <Form className="botones-home" onSubmit={handleClick} noValidate validated={validated}>
                 <Row className="g-1 ColumnasHome">

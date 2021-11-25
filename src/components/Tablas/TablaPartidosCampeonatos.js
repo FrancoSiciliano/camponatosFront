@@ -70,7 +70,7 @@ export const TablaPartidosCampeonatos = () => {
                                               }
                                           }}> Detalles</Link></td>
                                 <td><Link class="btn btn-primary btn-sm" to={{
-                                    pathname: '/tabla/partidos/listaJugadores',
+                                    pathname: '/tabla/partidos/lista_jugadores',
                                     state: {idPartido: ids, categoria: categ}
                                 }}> Lista Jugadores</Link></td>
                             </tr>)

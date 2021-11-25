@@ -3,14 +3,18 @@ import {MdSportsSoccer} from 'react-icons/all'
 import {BiUserCircle, BiLogOut} from 'react-icons/bi';
 import './NavBarJugador.css'
 import {useHistory} from "react-router-dom";
+import auth from "../../auth";
 
 
 function NavBarJugador() {
     const history = useHistory();
 
     const handleClick = () => {
-        localStorage.removeItem("id");
-        history.push("/");
+        auth.logout(() => {
+            localStorage.removeItem("id");
+            localStorage.removeItem("rol");
+            history.push("/")
+        })
     }
 
 

@@ -5,6 +5,7 @@ import {Link, useHistory} from 'react-router-dom'
 import {MdSportsSoccer} from 'react-icons/all'
 import {BiUserCircle, BiLogOut} from 'react-icons/bi';
 import axios from "axios";
+import auth from "../../auth";
 
 function NavBarResponsable() {
     const history = useHistory();
@@ -16,15 +17,18 @@ function NavBarResponsable() {
     const [jugadorSeleccionado, setJugadorSeleccionado] = useState(null);
 
     const handleClick = () => {
-        localStorage.removeItem("id");
-        history.push("/")
+        auth.logout(() => {
+            localStorage.removeItem("id");
+            localStorage.removeItem("rol");
+            history.push("/")
+        })
     }
 
     const handleClickMiPerfil = () => {
         history.push("/datos/representante", id);
     }
     const handleClickListadoJugadores = () => {
-        history.push("/tabla/Jugadores", id)
+        history.push("/tabla/jugadores", id)
     }
     const handleClickPerfilClub = () => {
         history.push("/datos/club", id);

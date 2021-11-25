@@ -5,6 +5,7 @@ import {BiLogOut} from 'react-icons/bi';
 import {BsPencil} from 'react-icons/bs'
 import {useHistory} from "react-router-dom";
 import {useState} from "react";
+import auth from "../../auth";
 
 function NavBarAdministracion() {
 
@@ -12,8 +13,11 @@ function NavBarAdministracion() {
     const history = useHistory();
 
     const handleClick = () => {
-        localStorage.removeItem("id");
-        history.push("/");
+        auth.logout(() => {
+            localStorage.removeItem("id");
+            localStorage.removeItem("rol");
+            history.push("/")
+        })
     }
 
 

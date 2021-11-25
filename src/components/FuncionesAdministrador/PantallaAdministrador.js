@@ -60,11 +60,11 @@ export const PantallaAdministrador = (props) => {
                             Crear Campeonatos
                         </Link>
 
-                        <Link className="btn btn-success botonesAdmin" to="/crearPartido">
+                        <Link className="btn btn-success botonesAdmin" to="/crear/partido">
                             Crear Partidos
                         </Link>
 
-                        <Link className='btn btn-success botonesAdmin' to="/administracion/Campeonatos">
+                        <Link className='btn btn-success botonesAdmin' to="/administracion/campeonatos">
                             Ver Tablas
                         </Link>
 

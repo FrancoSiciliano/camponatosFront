@@ -68,7 +68,7 @@ export const CampeonatosResponsable = () => {
                                     <td>{campeonato.fechaFin}</td>
                                     <td><Link className='btn btn-success botonesRepresentante'
                                               to={{
-                                                  pathname: '/tabla/Posiciones',
+                                                  pathname: '/tabla/posiciones',
                                                   state: {campeonato: ids, tipo: "RESPONSABLES"}
                                               }}>Tabla</Link></td>
                                     <td><Link className='btn btn-success botonesRepresentante'

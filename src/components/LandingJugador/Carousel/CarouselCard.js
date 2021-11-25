@@ -11,7 +11,7 @@ export const CarouselCard = (props) => {
     const [todosCampeonatos, setTodosCampeonatos] = useState([]);
 
     const handleClickTabla = (campeonato) => {
-        history.push("/tabla/Posiciones", {tipo: "JUGADOR", campeonato: campeonato});
+        history.push("/tabla/posiciones", {tipo: "JUGADOR", campeonato: campeonato});
     }
 
     const handleClickEstadisticas = (idCampeonato) => {
