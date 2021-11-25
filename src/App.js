@@ -144,20 +144,6 @@ function App() {
                     <ProtectedRoute exact path="/estadisticas/campeonato" rol={["JUGADOR"]} componente={EstadisticasJugadorCampeonato}>
                     </ProtectedRoute>
 
-                    {/* Todos los Registros esta aca abajo */}
-
-                    {/* Todos los Registros esta aca arriba */}
-
-                    {/* Todos los perfiles/datos de cada usuario esta aca abajo */}
-
-
-                    {/* Todos los perfiles/datos de cada usuario esta aca arriba */}
-
-
-
-
-
-
 
                     {/*<Route path="/tabla/representantes">*/}
                     {/*    <TablaResponsables/>*/}

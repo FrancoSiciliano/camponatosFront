@@ -6,30 +6,34 @@ import axios from "axios";
 import {Button} from "react-bootstrap";
 import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
 
-export const TablaPartidosResponsables = (props) => {
+export const TablaPartidosResponsables = () => {
     const history = useHistory();
     const [data, setData] = useState(null);
     const [responsable, setResponsable] = useState(null);
-    const idResponsable = localStorage.getItem("id")
+    const idResponsable = localStorage.getItem("id");
+    const [clubResponsable, setClubResponsable] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
             const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
             const res = respuesta.data;
             setResponsable(res);
+            setClubResponsable(res.club.idClub);
             const response = await axios(`http://localhost:8080/getPartidosByClub?idClub=${res.club.idClub}`);
             const Datanew = response.data;
             setData(Datanew);
         };
         fetchData();
     }, []);
+
     const handleClickDetalles = (partido) => {
         history.push("/detalles/partidos", {
             idPartido: partido.idPartido,
             clubLocal: partido.clubLocal,
             clubVisitante: partido.clubVisitante,
-            rol: "RESPONSABLE"
+            clubResponsable: clubResponsable
         })
     }
+
     const estaValidado = (partido) => {
         console.log(responsable)
         console.log(partido)
