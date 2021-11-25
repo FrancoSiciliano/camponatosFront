@@ -1,13 +1,19 @@
-.containerLogin {
-    height: 100%;
-    width: 100%;
+.contenedor-datos-partido {
+    min-height: 100vh;
     background-image: url("../../../assets/images/imagencancha.jpg");
     background-size: cover;
     background-position: center;
 }
 
+.tablas-carga-datos{
+    display: flex;
+    min-height: 90vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 .contenedorCargaDatosPartido {
-    width: 50%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     transform: translateY(10%);
@@ -39,16 +45,17 @@
     font-size: 20px;
     font-weight: 600;
     color: white;
+    margin: 0 !important;
 }
 #filaCargaGoles {
-    width: 35%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 #filaCargaGoles p {
-    max-width: 50% !important;
+    margin-left: 5%;
     font-size: 25px;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -58,16 +65,19 @@
 }
 
 #botonCargarGolesPartido {
-    width: 50%;
-    padding-left: 0.5%;
-    padding-right: 0.5%;
-    transform: translateX(1em);
+    width: 30%;
+    margin-right: 20%;
+    background-color: #29a11e !important;
+    border-radius: 5% !important;
+}
 
+#botonCargarGolesPartido:hover{
+    background-color: #2b9348 !important;
 }
 
 
 #filaCargaFaltas {
-    width: 35%;
+    width: 100%;
     margin-top: 3%;
     display: flex;
     flex-direction: row;
@@ -75,24 +85,28 @@
 }
 
 #filaCargaFaltas p {
+    margin-left: 5%;
     font-size: 25px;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-decoration: underline double;
     font-weight: 700;
-    flex-basis: 30px;
 }
 
 #botonCargarFaltasPartido {
-    width: 50%;
-    padding-left: 0.5%;
-    padding-right: 0.5%;
-    transform: translateX(1em);
-    
+    width: 30%;
+    margin-right: 20%;
+    background-color: #29a11e !important;
+    border-radius: 5% !important;
+}
+
+#botonCargarFaltasPartido:hover{
+    background-color: #2b9348 !important;
 }
 
 
 #filaIncidentesPartido {
+    width: 100%;
     margin-top: 3%;
     display: flex;
     flex-direction: row;
@@ -101,7 +115,8 @@
 }
 
 #filaIncidentesPartido input {
-    width: 73%;
+    width: 65%;
+    margin-right: 2%;
 }
 
 #filaIncidentesPartido input:hover {
@@ -114,25 +129,18 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-decoration: underline double;
     font-weight: 700;
-    flex-basis: 30px;
+    flex-basis: 2px;
 }
 
 
 .contenedorValidacionGolesAndFaltas {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 70%;
-    height: 20% !important;
-    margin-top: 5%;
-    padding-left: 0%;
-    padding-right: 0.5%;
-    padding-bottom: 0.5%;
+    justify-content: space-around;
+    width: 50%;
+    min-height: 300px !important;
+    max-height: 650px !important;
     margin-right: 10%;
-    margin-left: 15%;
-    border-style:double;
-    border-radius: 5%;
     background: rgba(8, 107, 51, 0.15);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 17.5px );
@@ -146,9 +154,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-height: 50%;
     width: 100%;
-    overflow-y: scroll !important;
+    max-height: 50%;
+   
 }
 
 .tabla-resultado-falta{
@@ -156,9 +164,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;   
     max-height: 50%;
-    width: 100%;
-    overflow-y: scroll !important;
 }
 
 
@@ -175,22 +182,19 @@
     padding: 0%;
 }
 
-
-.tablaGolesCargaPartidos thead {
-    background-color: rgb(168, 168, 168);
+.tablaGolesCargaPartidos{
+    width: 100%;
+    max-height: 75% !important;
+    overflow-y: scroll !important;
+    background-color: white;
+}
+.tablaFaltasCargaPartidos{
+    width: 100%;
+    max-height: 75% !important;
+    overflow-y: scroll !important;
+    background-color: white;
 }
 
-.tablaGolesCargaPartidos tbody {
-    background-color: rgb(255, 255, 255);
-}
-
-.tablaFaltasCargaPartidos thead {
-    background-color: rgb(168, 168, 168);
-}
-
-.tablaFaltasCargaPartidos tbody {
-    background-color: rgb(255, 255, 255);
-}
 
 #filaBotonConfirmarResultados {
     align-self: center;
@@ -199,7 +203,7 @@
 .botonDatosPartido {
     font-size: 25px ; 
     background-color: #29a11e !important;
-    border-radius: 15% !important;
+    border-radius: 5% !important;
 }
 
 .botonDatosPartido:hover {

@@ -38,21 +38,13 @@ export const DatosRepresentante = () => {
         })
     }
 
-    const handleChangeClub = (event) => {
-        setData({
-            ...data,
-            club: {idClub: event.target.value}
-        })
-    }
-
     const postData = async (data) => {
         try {
-            await axios.post(`http://localhost:8080/modificarResponsable?legajo=${idResponsable}&nombre=${data.nombre}&idClub=${data.club.idClub}&mail=${data.mail}&password=${data.contraseña}`)
+            await axios.post(`http://localhost:8080/modificarResponsable?legajo=${idResponsable}&nombre=${data.nombre}&idClub=${data.club.idClub}&mail=${data.mail}&password=${data.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
-            console.log(e.message)
-            setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
+            setpopUp({mensaje: e.response.data.message, titulo: "Operacion fallida"})
 
         }
         setShowModal(true);
@@ -127,8 +119,8 @@ export const DatosRepresentante = () => {
                                     <Form.Group as={Col} controlId="formGridNombre">
                                         <FloatingLabel className="floatingInputGridRep" label="Contraseña"
                                                        style={{fontSize: "19px"}}>
-                                            <Form.Control type="text" name="contraseña" placeholder="Password"
-                                                          style={{fontSize: "20px"}} value={data.contraseña}
+                                            <Form.Control type="text" name="password" placeholder="Password"
+                                                          style={{fontSize: "20px"}} value={data.password}
                                                           onChange={handleChange}/>
                                         </FloatingLabel>
                                     </Form.Group>

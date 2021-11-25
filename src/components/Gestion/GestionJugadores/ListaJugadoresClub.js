@@ -5,6 +5,7 @@ import axios from "axios";
 import NavBarResponsable from "../../NavBars/NavBarResponsable";
 import {Form} from "react-bootstrap";
 import { useLocation } from "react-router";
+import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
 
 export const ListaJugadoresClub = (props) => {
     const idResponsable = localStorage.getItem("id");
@@ -124,7 +125,7 @@ export const ListaJugadoresClub = (props) => {
             </div>
         </div>)
     } else {
-        return (<div><NavBarResponsable/> <h1>The server isnt working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }
 

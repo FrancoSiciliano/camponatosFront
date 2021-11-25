@@ -7,6 +7,7 @@ import {BiCheck} from "react-icons/all";
 import {Button} from "react-bootstrap";
 import transitionEndListener from "react-bootstrap/transitionEndListener";
 import {PopUp} from "../../PopUp/PopUp";
+import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
 
 export const DefinirClubesCampeonato = () => {
     const history = useHistory();
@@ -164,6 +165,6 @@ export const DefinirClubesCampeonato = () => {
             </div>
         )
     } else {
-        return (<h1>The server isnt working...</h1>)
+        return (<PantallaCarga/>)
     }
 }

@@ -4,6 +4,7 @@ import axios from "axios";
 import './PantallaAdministador.css'
 import {Link} from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 
 
 export const PantallaAdministrador = (props) => {
@@ -11,7 +12,7 @@ export const PantallaAdministrador = (props) => {
     const [data, setData] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getAllPartidos`);
+            const response = await axios(`http://localhost:8080/getPartidosNoCargados`);
             const newData = response.data;
             setData(newData);
         };
@@ -73,7 +74,7 @@ export const PantallaAdministrador = (props) => {
             </div>
         )
     } else {
-        return (<h1>Server Isnt Working</h1>)
+        return (<PantallaCarga/>)
     }
 }
 

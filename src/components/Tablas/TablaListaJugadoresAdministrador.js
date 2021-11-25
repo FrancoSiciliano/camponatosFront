@@ -8,6 +8,7 @@ import { Modal } from "react-bootstrap";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import { event } from "jquery";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion"
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 export const TablaListaJugadoresAdministrador = (props) => {
     const location = useLocation();
     const [listaJugadores, setListaJugadores] = useState(null);
@@ -69,6 +70,6 @@ export const TablaListaJugadoresAdministrador = (props) => {
             </div>
         </div>)
     } else {
-        return (<div><NavBarAdministracion/> <h1>The server isnt working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }

@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import {Form} from "react-bootstrap";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 
 export const TablaJugadores = (props) => {
     const idResponsable =localStorage.getItem("id")
@@ -96,7 +97,7 @@ export const TablaJugadores = (props) => {
             </div>
         </div>)
     } else {
-        return (<div><NavBarAdministracion/> <h1>The server isnt working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }
 

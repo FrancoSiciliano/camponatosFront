@@ -5,6 +5,7 @@ import axios from "axios";
 import './DetallesPartido.css'
 import NavBarResponsable from "../../NavBars/NavBarResponsable";
 import NavBarAdministracion from "../../NavBars/NavBarAdministracion";
+import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
 
 
 export const DetallesPartido = ({debeValidar}) => {
@@ -16,20 +17,27 @@ export const DetallesPartido = ({debeValidar}) => {
     const [faltasVisitante, setFaltasVisitante] = useState([]);
     const [golesLocal, setGolesLocal] = useState([]);
     const [golesVisitante, setGolesVisitante] = useState([]);
+    const clubLocal = history.location.state.clubLocal;
+    const clubVisitante = history.location.state.clubVisitante;
+    const idPartido = history.location.state.idPartido;
+    const [clubRep, setClubRep] = useState(null);
+    const id = localStorage.getItem("id");
+    const rol = localStorage.getItem("rol");
+    const [actualizar, setActualizar] = useState(false);
 
     useEffect(async () => {
         const fetchDataPartido = async () => {
-            const response = await axios(`http://localhost:8080/encontrarPartido?idPartido=${history.location.state.idPartido}`);
+            const response = await axios(`http://localhost:8080/encontrarPartido?idPartido=${idPartido}`);
             const newData = response.data;
             setDatosPartido(newData);
 
         };
 
         const fetchDataFaltas = async () => {
-            const responseFaltasL = await axios.get(`http://localhost:8080/getFaltasByClubAndPartido?idClub=${history.location.state.clubLocal.idClub}&idPartido=${history.location.state.idPartido}`)
+            const responseFaltasL = await axios.get(`http://localhost:8080/getFaltasByClubAndPartido?idClub=${clubLocal.idClub}&idPartido=${idPartido}`)
             const dataFaltasL = responseFaltasL.data;
 
-            const responseFaltasV = await axios.get(`http://localhost:8080/getFaltasByClubAndPartido?idClub=${history.location.state.clubVisitante.idClub}&idPartido=${history.location.state.idPartido}`)
+            const responseFaltasV = await axios.get(`http://localhost:8080/getFaltasByClubAndPartido?idClub=${clubVisitante.idClub}&idPartido=${idPartido}`)
             const dataFaltasV = responseFaltasV.data;
 
             setFaltasLocal(dataFaltasL);
@@ -38,8 +46,8 @@ export const DetallesPartido = ({debeValidar}) => {
         }
 
         const fetchDataGoles = async () => {
-            const responseGolesL = await axios.get(`http://localhost:8080/getGolesByPartidoAndClub?idPartido=${history.location.state.idPartido}&idClubAContar=${history.location.state.clubLocal.idClub}&idClubRival=${history.location.state.clubVisitante.idClub}`);
-            const responseGolesV = await axios.get(`http://localhost:8080/getGolesByPartidoAndClub?idPartido=${history.location.state.idPartido}&idClubAContar=${history.location.state.clubVisitante.idClub}&idClubRival=${history.location.state.clubLocal.idClub}`);
+            const responseGolesL = await axios.get(`http://localhost:8080/getGolesByPartidoAndClub?idPartido=${idPartido}&idClubAContar=${clubLocal.idClub}&idClubRival=${clubVisitante.idClub}`);
+            const responseGolesV = await axios.get(`http://localhost:8080/getGolesByPartidoAndClub?idPartido=${idPartido}&idClubAContar=${clubVisitante.idClub}&idClubRival=${clubLocal.idClub}`);
             const dataGolesL = responseGolesL.data;
             const dataGolesV = responseGolesV.data;
 
@@ -47,21 +55,33 @@ export const DetallesPartido = ({debeValidar}) => {
             setGolesVisitante(dataGolesV);
         }
 
+        const fetchClubResponsable = async () => {
+            const res = await axios.get(`http://localhost:8080/getResponsableById?idResponsable=${id}`)
+            setClubRep(res.data.club.idClub);
+        }
+
         await fetchDataPartido();
         await fetchDataFaltas();
         await fetchDataGoles();
+        rol === "RESPONSABLE" && await fetchClubResponsable();
 
-    }, []);
+    }, [actualizar]);
 
     const navbar = () => {
-        return history.location.state.rol === "RESPONSABLE" ? <NavBarResponsable/> : <NavBarAdministracion/>
+        return rol === "RESPONSABLE" ? <NavBarResponsable/> : <NavBarAdministracion/>
     }
-    const HandleClickValidar = ()=>{
-        
+    const HandleClickValidar = async ()=>{
+        if (clubVisitante.idClub === clubRep) {
+            await axios.post(`http://localhost:8080/validadoByClubVisitante?idClub=${clubRep}&idPartido=${idPartido}`);
+            setActualizar(!actualizar);
+        } else {
+            await axios.post(`http://localhost:8080/validadoByClubLocal?idClub=${clubRep}&idPartido=${idPartido}`);
+            setActualizar(!actualizar);
+        }
     }
 
     const BotonesValidarInvalidar = ()=>{
-        if(history.location.state.rol === "RESPONSABLE"){
+        if(rol === "RESPONSABLE" && (clubVisitante.idClub === clubRep || clubLocal.idClub === clubRep)){
             return(<div className="SegmentoBotonesValidarInvalidar">
                 <Button variant="success" className="BotonesValidarInvalidar" onClick={HandleClickValidar}> VALIDAR PARTIDO </Button>
                 <Button variant="success" className="BotonesValidarInvalidar"> INVALIDAR PARTIDO </Button>
@@ -71,7 +91,7 @@ export const DetallesPartido = ({debeValidar}) => {
 
     if (datosPartido) {
         return (
-            <div>
+            <div className="container-principal-detalle-partido">
                 {navbar()}
                 <div className="comparacion-partido">
                     <div className="equipo-detalle-partido">
@@ -172,6 +192,6 @@ export const DetallesPartido = ({debeValidar}) => {
 
         );
     } else {
-        return (<h1>Server Isnt Working</h1>)
+        return (<PantallaCarga/>)
     }
 }

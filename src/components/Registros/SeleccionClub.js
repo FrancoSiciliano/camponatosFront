@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {FloatingLabel, Form} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 
 export const SeleccionClub = () => {
 
@@ -32,6 +33,6 @@ export const SeleccionClub = () => {
             </div>
         )
     } else {
-        return (<h1>The server isn't working ...</h1>)
+        return (<PantallaCarga/>)
     }
 }

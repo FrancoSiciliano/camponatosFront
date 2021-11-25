@@ -9,14 +9,14 @@ export const LandingResponsable = () =>{
     return(
     <div className="contenedorHome">
     
-        <NavBarResponsable id={idResponsable}/>
+        <NavBarResponsable/>
     
         <div className="TablasHomeCampeonatosResponsables">
             <div className = 'tablas-home-responsable'>
-                <CampeonatosResponsable id={idResponsable}/> 
+                <CampeonatosResponsable/>
             </div> 
             <div className = 'tablas-home-responsable'>
-                <TablaPartidosResponsables id={idResponsable}/>   
+                <TablaPartidosResponsables/>
             </div>
                
         </div>

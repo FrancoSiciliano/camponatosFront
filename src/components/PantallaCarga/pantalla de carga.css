@@ -1,0 +1,9 @@
+.center {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    left: 40%;
+    top: 40%;
+}
+

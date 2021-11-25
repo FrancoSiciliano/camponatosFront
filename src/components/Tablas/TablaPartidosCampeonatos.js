@@ -5,11 +5,13 @@ import axios from "axios";
 import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 
 export const TablaPartidosCampeonatos = () => {
     let location = useLocation()
     const [data, setData] = useState(null);
-    const idResponsable = localStorage.getItem("id");
+    const id = localStorage.getItem("id");
+    const rol = localStorage.getItem("rol");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,12 +19,14 @@ export const TablaPartidosCampeonatos = () => {
             const newData = response.data;
             setData(newData);
         };
+
         fetchData();
     }, []);
+
     const navbar = () => {
-        if (location.state.tipo === "RESPONSABLES") {
+        if (rol === "RESPONSABLE") {
             return (<NavBarResponsable/>);
-        } else if (location.state.tipo === "ADMINISTRADOR") {
+        } else if (rol === "ADMIN") {
             return (<NavBarAdministracion/>);
         }
     }
@@ -61,12 +65,12 @@ export const TablaPartidosCampeonatos = () => {
                                 <td>{partido.clubLocal.nombre}</td>
                                 <td>{partido.clubVisitante.nombre}</td>
                                 <td><Link class="btn btn-primary btn-sm"
-                                          to={{pathname: '/detalles/partidos',
+                                          to={{
+                                              pathname: '/detalles/partidos',
                                               state: {
                                                   idPartido: ids,
                                                   clubLocal: partido.clubLocal,
                                                   clubVisitante: partido.clubVisitante,
-                                                  rol: "RESPONSABLE"
                                               }
                                           }}> Detalles</Link></td>
                                 <td><Link class="btn btn-primary btn-sm" to={{
@@ -79,7 +83,6 @@ export const TablaPartidosCampeonatos = () => {
                 </Table></div>
         </div>)
     } else {
-        return (<div> {navbar()}
-            <h1>The server isnt working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }
