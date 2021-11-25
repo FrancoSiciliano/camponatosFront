@@ -32,6 +32,12 @@
     height: 250px !important;
 }
 
+.avatar-club{
+    background-color: rgb(140, 206, 87);
+    width: 300px !important;
+    height: 280px !important;
+    margin-bottom: 10%;
+}
 .datos-perfil {
     display: flex;
     justify-content: center;
