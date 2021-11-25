@@ -150,9 +150,9 @@ function App() {
                     {/*</Route> NO ESTABA EN USO ????????????????????*/}
 
 
-                    <Route path="/cargar/datos/partido">
-                        <CargarDatosPartidos/>
-                    </Route>
+                    <ProtectedRoute exact path="/cargar/datos/partido" rol={["ADMIN"]} componente={CargarDatosPartidos}>
+                    </ProtectedRoute>
+                    
                     <Route path="/partidos/Detalles">
                         <DetallesPartido/>
                     </Route>
