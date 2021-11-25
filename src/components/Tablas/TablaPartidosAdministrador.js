@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 
 export const TablaPartidosAdministrador = () => {
     let location = useLocation();
@@ -68,7 +69,6 @@ export const TablaPartidosAdministrador = () => {
                 </Table></div>
         </div>)
     } else {
-        return (<div><NavBarAdministracion/>
-            <h1>The server isnt working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }

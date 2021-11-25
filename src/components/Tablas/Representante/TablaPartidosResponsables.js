@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import './TablaPartidosResponsables.css'
 import axios from "axios";
 import {Button} from "react-bootstrap";
+import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
 
 export const TablaPartidosResponsables = (props) => {
     const history = useHistory();
@@ -84,6 +85,6 @@ export const TablaPartidosResponsables = (props) => {
                     </tbody>
                 </Table></div>)
     } else {
-        return (<h1>The server isnt working</h1>)
+        return (<PantallaCarga/>)
     }
 }

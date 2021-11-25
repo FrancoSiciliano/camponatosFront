@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 //onClick={handleClickTabla(ids,descripcion,"ADMINISTRACION")}
 export const TablaCampeonatos = (props) => {
     const history = useHistory();
@@ -111,7 +112,7 @@ export const TablaCampeonatos = (props) => {
             </div>
         </div>)
     } else {
-        return (<div><NavBarAdministracion /><h1>Server Isnt Working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }
 

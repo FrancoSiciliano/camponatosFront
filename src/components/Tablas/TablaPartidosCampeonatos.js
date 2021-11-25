@@ -5,6 +5,7 @@ import axios from "axios";
 import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 
 export const TablaPartidosCampeonatos = () => {
     let location = useLocation()
@@ -79,7 +80,6 @@ export const TablaPartidosCampeonatos = () => {
                 </Table></div>
         </div>)
     } else {
-        return (<div> {navbar()}
-            <h1>The server isnt working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }

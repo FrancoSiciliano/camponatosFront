@@ -5,6 +5,7 @@ import axios from "axios";
 import './DetallesPartido.css'
 import NavBarResponsable from "../../NavBars/NavBarResponsable";
 import NavBarAdministracion from "../../NavBars/NavBarAdministracion";
+import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
 
 
 export const DetallesPartido = ({debeValidar}) => {
@@ -172,6 +173,6 @@ export const DetallesPartido = ({debeValidar}) => {
 
         );
     } else {
-        return (<h1>Server Isnt Working</h1>)
+        return (<PantallaCarga/>)
     }
 }

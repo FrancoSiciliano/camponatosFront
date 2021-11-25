@@ -3,6 +3,7 @@ import './CampeonatosResponsable.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
 
 export const CampeonatosResponsable = () => {
     const [campeonatos, setCampeonatos] = useState(null);
@@ -93,7 +94,7 @@ export const CampeonatosResponsable = () => {
             </div>
         </div>)
     } else {
-        return (<h1>The server isnt working</h1>)
+        return (<PantallaCarga/>)
     }
 }
 

@@ -7,6 +7,7 @@ import { useLocation } from "react-router";
 import { Modal } from "react-bootstrap";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import { event } from "jquery";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 
 export const TablaJugadoresPartidos = (props) => {
     const location = useLocation();
@@ -134,6 +135,6 @@ export const TablaJugadoresPartidos = (props) => {
             </div>
         </div>)
     } else {
-        return (<div><NavBarResponsable/> <h1>The server isnt working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }

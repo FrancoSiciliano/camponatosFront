@@ -13,6 +13,7 @@ import axios from 'axios';
 import {useEffect} from 'react';
 import {PopUp} from "../PopUp/PopUp";
 import NavBarResponsable from '../NavBars/NavBarResponsable';
+import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 
 export const DatosClub = (props) => {
     const history = useHistory();
@@ -40,6 +41,14 @@ export const DatosClub = (props) => {
         }
         fetchData();
     }, [])
+
+    const navbar = () => {
+        if (localStorage.getItem("rol") === "RESPONSABLE") {
+            return <NavBarResponsable/>;
+        } else {
+            return <NavBarAdministracion/>;
+        }
+    }
 
     const handleChange = (event) => {
         setData({
@@ -79,7 +88,7 @@ export const DatosClub = (props) => {
 
     return (
         <div className="main-container-datos-navbar-jugador">
-            <NavBarResponsable id={idResponsable}/>
+            {navbar()}
             <div className='main-container-datos'>
                 
                 <h2 className='titledatos'>Perfil del Club</h2>
