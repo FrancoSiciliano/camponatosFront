@@ -40,6 +40,9 @@ export const TablaCampeonatos = (props) => {
         }));
         console.log(campeonatos);
     }
+    const handleClickTabla = (idCampeonato,Tipo)=>{
+        history.push("/tabla/posiciones",{campeonato:idCampeonato,tipo:Tipo})
+    }
 
     if (campeonatos) {
         return (<div className="ContenedorGestion">
@@ -79,7 +82,7 @@ export const TablaCampeonatos = (props) => {
                                         <td>{descripcion}</td>
                                         <td>{campeonato.fechaInicio}</td>
                                         <td>{campeonato.fechaFin}</td>
-                                        <td><Button className='btn btn-success'  >Tabla</Button></td>
+                                        <td><Button className='btn btn-success' onClick={() => handleClickTabla(ids,"ADMINISTRADOR")} >Tabla</Button></td>
                                         <td><Link className='btn btn-success' to={{
                                             pathname: '/administrador/campeonatos/partidos',
                                             state: { idCampeonato: ids, descrip: descripcion }

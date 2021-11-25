@@ -56,6 +56,18 @@ export const DetallesPartido = ({debeValidar}) => {
     const navbar = () => {
         return history.location.state.rol === "RESPONSABLE" ? <NavBarResponsable/> : <NavBarAdministracion/>
     }
+    const HandleClickValidar = ()=>{
+        
+    }
+
+    const BotonesValidarInvalidar = ()=>{
+        if(history.location.state.rol === "RESPONSABLE"){
+            return(<div className="SegmentoBotonesValidarInvalidar">
+                <Button variant="success" className="BotonesValidarInvalidar" onClick={HandleClickValidar}> VALIDAR PARTIDO </Button>
+                <Button variant="success" className="BotonesValidarInvalidar"> INVALIDAR PARTIDO </Button>
+            </div>)
+        }
+    }
 
     if (datosPartido) {
         return (
@@ -108,7 +120,8 @@ export const DetallesPartido = ({debeValidar}) => {
                         </Table> : <h1>No hubo faltas</h1>}
 
                     </div>
-                    <h1>VS.</h1>
+                   
+                    {BotonesValidarInvalidar()}
                     <div className="equipo-detalle-partido">
                         <h1>{datosPartido.clubVisitante.nombre}</h1>
                         <Table hover sm className="visitante">
@@ -154,6 +167,7 @@ export const DetallesPartido = ({debeValidar}) => {
                         </Table> : <h1>No hubo faltas</h1>}
                     </div>
                 </div>
+                
             </div>
 
         );
