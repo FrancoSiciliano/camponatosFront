@@ -11,6 +11,9 @@ export const ListaJugadoresClub = (props) => {
     const [jugadores, setJugadores] = useState(null);
     const [partidos, setPartidos]=useState(null)
     const todosJugadores = useRef(null);
+    const [datos, setDatos] = useState({
+        idJugador: "",
+    });
     let location = useLocation()
 
     useEffect(() => {
@@ -27,14 +30,36 @@ export const ListaJugadoresClub = (props) => {
         };
         fetchData();
     }, []);
+
     var categoria =0;
     const handleChange = (event) => {
         setJugadores(todosJugadores.current.filter((elem) => {
             return `${elem.nombre} + ${elem.apellido}`.toLowerCase().includes(event.target.value.toLowerCase());
         }));
     }
-    const HandleClickHabilitar =()=>{
-        
+
+    const HandleClickHabilitar = async (event) =>{
+        try {
+            setDatos({
+                ...datos,
+                [event.target.name]: event.target.value,
+            })
+            console.log(jugadores.idJugador)
+            console.log(location.state.idCampeonato)
+            await axios.post(`http://localhost:8080/modificarEstadoCampeonato?idJugador=${datos.idJugador}&idCampeonato=${location.state.idCampeonato}`)
+        } catch (e) {
+            console.log(e.message)
+        }
+    }
+
+    const HandleClickHabilitar2 = (event) =>{
+            setDatos({
+                ...datos,
+                [event.target.name]: event.target.value,
+            })
+            console.log(jugadores.idJugador)
+            console.log(location.state.idCampeonato)
+             axios.post(`http://localhost:8080/modificarEstadoCampeonato?idJugador=${datos.idJugador}&idCampeonato=${location.state.idCampeonato}`)
     }
 
     if (jugadores) {
@@ -90,7 +115,7 @@ export const ListaJugadoresClub = (props) => {
                                 <td>{jugadores.fechaAlta}</td>
                                 <td>{jugadores.estado ? "Activo" : "Inactivo"}</td>
                                 <td><Button classname="botonesTablas" type="submit"
-                                            class="btn btn-success btn-sm" onClick={HandleClickHabilitar}>Cambiar Estado</Button></td>
+                                            class="btn btn-success btn-sm" onClick={HandleClickHabilitar2}>Cambiar Estado</Button></td>
 
                             </tr>)
                     }})}
