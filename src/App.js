@@ -116,7 +116,9 @@ function App() {
                         <TablaJugadoresPartidos/>
                     </Route>
 
-
+                    <Route path="/cargar/datos/partido">
+                        <CargarDatosPartidos/>
+                    </Route>
                     <Route path="/partidos/Detalles">
                         <DetallesPartido/>
                     </Route>
