@@ -5,6 +5,7 @@ import './landingPageJugador.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 
 export const LandingJugador = () => {
     const [jugador, setJugador] = useState(false);
@@ -36,6 +37,6 @@ export const LandingJugador = () => {
             </div>
         )
     } else {
-        return (<h1>The server isnt working</h1>)
+        return (<PantallaCarga/>)
     }
 }

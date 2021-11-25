@@ -7,6 +7,7 @@ import { useLocation } from "react-router";
 import { Modal } from "react-bootstrap";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import { event } from "jquery";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 
 export const TablaJugadoresPartidos = (props) => {
     const location = useLocation();
@@ -20,9 +21,10 @@ export const TablaJugadoresPartidos = (props) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const idResponsable =localStorage.getItem("id")
     useEffect(() => {
         const fetchData = async () => {
-            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${location.state.idResponsable}`)
+            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
             const res = respuesta.data;
             const jugadoresClubRepuesta = await axios(`http://localhost:8080/getJugadoresHabilitadosByClubAndCategoria?idClub=${res.club.idClub}&categoria=${location.state.categoria}`)
             const response = await axios(`http://localhost:8080/getMiembrosByClubAndPartido?idClub=${parseInt(res.club.idClub)}&idPartido=${location.state.idPartido}`);
@@ -51,14 +53,11 @@ export const TablaJugadoresPartidos = (props) => {
        setJugadorSeleccionado(event.target.value);
     }
     const jugadorYaAgregado= async (idJugador)=>{
-        const repuesta =await axios.get(`http://localhost:8080/getMiembroByPartidoAndJugador?idPartido${location.state.idPartido}&idJugador=${idJugador}`)
-        const res = repuesta.data;
-        if(res.length===0){
-            return false
-        }
-        else{
-            return true
-        }
+        {listaJugadores.map((listajugadores, index) => {
+            let idJug = listajugadores.jugador.idJugador
+            if(idJug ===idJugador){ return true;}
+        })}
+        return false;
     }
 
     if (listaJugadores) {
@@ -96,10 +95,11 @@ export const TablaJugadoresPartidos = (props) => {
                               
                               return (
                                 <option 
+                                
                                 key={index}
                                 value={jugadorClub.idJugador}> {`${jugadorClub.idJugador} - ${jugadorClub.nombre} ${jugadorClub.apellido}`}
                                 </option>)
-                            })}</Form.Select>
+    })}</Form.Select>
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button type = "submit" className="btn btn-success"  onClick={HandleClickAgregarJugadores(event)}>
@@ -135,6 +135,6 @@ export const TablaJugadoresPartidos = (props) => {
             </div>
         </div>)
     } else {
-        return (<div><NavBarResponsable/> <h1>The server isnt working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }

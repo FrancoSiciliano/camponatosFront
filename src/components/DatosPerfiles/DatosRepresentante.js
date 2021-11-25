@@ -16,7 +16,6 @@ export const DatosRepresentante = () => {
     const history = useHistory();
     let idResponsable = localStorage.getItem("id");
     const [data, setData] = useState(null);
-    const [clubes, setClubes] = useState([]);
     const [popUp, setpopUp] = useState({
         mensaje: "",
         titulo: ""
@@ -26,11 +25,8 @@ export const DatosRepresentante = () => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`);
-            const response2 = await axios(`http://localhost:8080/getClubes`);
             const newData = response.data;
-            const newData2 = response2.data;
             setData(newData);
-            setClubes(newData2);
         }
         fetchData();
     }, [])
@@ -42,21 +38,14 @@ export const DatosRepresentante = () => {
         })
     }
 
-    const handleChangeClub = (event) => {
-        setData({
-            ...data,
-            club: {idClub: event.target.value}
-        })
-    }
-
     const postData = async (data) => {
         try {
-            await axios.post(`http://localhost:8080/modificarResponsable?legajo=${idResponsable}&nombre=${data.nombre}&idClub=${data.club.idClub}`)
+            await axios.post(`http://localhost:8080/modificarResponsable?legajo=${idResponsable}&nombre=${data.nombre}&idClub=${data.club.idClub}&mail=${data.mail}&password=${data.contraseña}`)
+            await axios.post(`http://localhost:8080/modificarPasswordResponsable?idResponsable=${idResponsable}&password=${data.password}`);
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
-            console.log(e.message)
-            setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
+            setpopUp({mensaje: e.response.data.message, titulo: "Operacion fallida"})
 
         }
         setShowModal(true);
@@ -110,6 +99,14 @@ export const DatosRepresentante = () => {
                                                           style={{fontSize: "20px"}} value={data.documento} readOnly/>
                                         </FloatingLabel>
                                     </Form.Group>
+                                    <Form.Group as={Col} controlId="formGridNombre">
+                                        <FloatingLabel className="floatingInputGridRep" label="Mail"
+                                                       style={{fontSize: "19px"}}>
+                                            <Form.Control type="text" name="mail" placeholder="Mail"
+                                                          style={{fontSize: "20px"}} value={data.mail}
+                                                          onChange={handleChange}/>
+                                        </FloatingLabel>
+                                    </Form.Group>
                                 </Row>
                                 <Row className="mb-2">
                                     <Form.Group as={Col} controlId="formGridNombre">
@@ -117,6 +114,14 @@ export const DatosRepresentante = () => {
                                                        style={{fontSize: "19px"}}>
                                             <Form.Control type="text" name="nombre" placeholder="Nombre"
                                                           style={{fontSize: "20px"}} value={data.nombre}
+                                                          onChange={handleChange}/>
+                                        </FloatingLabel>
+                                    </Form.Group>
+                                    <Form.Group as={Col} controlId="formGridNombre">
+                                        <FloatingLabel className="floatingInputGridRep" label="Contraseña"
+                                                       style={{fontSize: "19px"}}>
+                                            <Form.Control type="text" name="password" placeholder="Password"
+                                                          style={{fontSize: "20px"}} value={data.password}
                                                           onChange={handleChange}/>
                                         </FloatingLabel>
                                     </Form.Group>

@@ -16,7 +16,7 @@ export const LandingResponsable = () =>{
                 <CampeonatosResponsable id={idResponsable}/> 
             </div> 
             <div className = 'tablas-home-responsable'>
-                <TablaPartidosResponsables id={idResponsable}/>   
+                <TablaPartidosResponsables/>
             </div>
                
         </div>

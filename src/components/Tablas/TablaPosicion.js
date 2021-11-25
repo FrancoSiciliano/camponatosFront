@@ -38,7 +38,7 @@ export const TablaPosicion = (props) => {
                 <Table striped bordered hover>
                     <thead>
                     <tr>
-                        <th colSpan="6">Nombre Campeonato: {tablaPosiciones[0].campeonato.descripcion}</th>
+                        <th colSpan="12">{tablaPosiciones[0].campeonato.descripcion}</th>
                     </tr>
                     <tr>
                         <th>Club</th>

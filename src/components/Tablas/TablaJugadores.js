@@ -6,17 +6,17 @@ import { useHistory } from "react-router";
 import {Form} from "react-bootstrap";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 
 export const TablaJugadores = (props) => {
-    const history = useHistory();
-    let location = history.location.state;
+    const idResponsable =localStorage.getItem("id")
     const [jugadores, setJugadores] = useState(null);
     const todosJugadores = useRef(null);
     const [estado, setEstado] = useState (false);
 
     useEffect(() => {
         const fetchData = async () => {
-            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${location}`)
+            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
             const res = respuesta.data;
             const response = await axios(`http://localhost:8080/getJugadoresByClub?idClub=${res.club.idClub}`);
             const newData = response.data;
@@ -31,7 +31,6 @@ export const TablaJugadores = (props) => {
         }));
     }
     const handleClickEstado = async (idJug) => {
-        console.log(idJug);
         try{
             await axios.post(`http://localhost:8080/modificarEstado?idJugador=${idJug}`);
             setEstado(!estado);
@@ -42,7 +41,7 @@ export const TablaJugadores = (props) => {
     
     if (jugadores) {
         return (<div>
-            <NavBarResponsable id={location} />
+            <NavBarResponsable/>
             <div className="TablaListaJugadoresClub scrollable-lista-jugadores">
                 <Table striped bordered hover sm>
                     <thead>
@@ -98,7 +97,7 @@ export const TablaJugadores = (props) => {
             </div>
         </div>)
     } else {
-        return (<div><NavBarAdministracion/> <h1>The server isnt working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }
 

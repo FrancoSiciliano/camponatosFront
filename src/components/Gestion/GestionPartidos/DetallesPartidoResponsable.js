@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import './DetallesPartido.css'
 import NavBarResponsable from "../../NavBars/NavBarResponsable";
+import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
 
 
 export const DetallesPartidoResponsable = (props) => {
@@ -167,6 +168,6 @@ export const DetallesPartidoResponsable = (props) => {
             </div>
         </div>);
     } else {
-        return (<h1>Server Isnt Working</h1>)
+        return (<PantallaCarga/>)
     }
 }

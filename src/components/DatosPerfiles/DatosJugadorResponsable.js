@@ -6,9 +6,13 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
 import NavBarResponsable from '../NavBars/NavBarResponsable';
+import {useHistory} from "react-router-dom";
+import {contieneNumeros, esUnMail} from "../../controles";
 
-export const DatosJugadorResponsable = (props) => {
-    const [data, setData] = useState([]);
+export const DatosJugadorResponsable = () => {
+
+    const history = useHistory();
+    const [datosJugador, setDatosJugador] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [popUp, setpopUp] = useState({
         mensaje: "",
@@ -17,16 +21,18 @@ export const DatosJugadorResponsable = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/encontrarJugador?idJugador=${props.idJugador}`);
+            const response = await axios(`http://localhost:8080/encontrarJugador?idJugador=${history.location.state.idJugador}`);
             const newData = response.data;
-            setData(newData);
+            setDatosJugador(newData);
         }
+
+
         fetchData();
     }, []);
 
     const handleChange = (event) => {
-        setData({
-            ...data,
+        setDatosJugador({
+            ...datosJugador,
             [event.target.name]: event.target.value,
         })
     }
@@ -35,13 +41,14 @@ export const DatosJugadorResponsable = (props) => {
     const postData = async (data) => {
         try {
             /* AGREGAR METODOS QUE FALTAN PARA MODIFICAR LOS DATOS*/
-            await axios.post(url + `modificarDireccion?idJugador=${props.idJugador}&direccion=${data.direccion}`)
-            await axios.post(url + `modificarMail?idJugador=${props.idJugador}&mail=${data.mail}`)
-            await axios.post(url + `modificarTelefono?idJugador=${props.idJugador}&telefono=${data.telefono}`)
+            await axios.post(url + `modificarDireccion?idJugador=${history.location.state.idJugador}&direccion=${data.direccion}`)
+            await axios.post(url + `modificarMail?idJugador=${history.location.state.idJugador}&mail=${data.mail}`)
+            await axios.post(url + `modificarTelefono?idJugador=${history.location.state.idJugador}&telefono=${data.telefono}`)
+            await axios.post(url + `cambiarPasswordJugador?idJugador=${history.location.state.idJugador}&password=${data.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
-            setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
+            setpopUp({mensaje: e.target.value, titulo: "Operacion fallida"})
 
         }
         setShowModal(true);
@@ -50,41 +57,33 @@ export const DatosJugadorResponsable = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (data.nombre === "" || containsNumbers(data.nombre)) {
+        if (datosJugador.nombre === "" || contieneNumeros(datosJugador.nombre)) {
             setpopUp({mensaje: "Nombre no válido", titulo: "Dato erroneo"});
             setShowModal(true);
-        } else if (data.apellido === "" || containsNumbers(data.apellido)) {
+        } else if (datosJugador.apellido === "" || contieneNumeros(datosJugador.apellido)) {
             setpopUp({mensaje: "Apellido no válido", titulo: "Dato erroneo"});
             setShowModal(true);
-        } else if (data.tipoDocumento === "" || containsNumbers(data.tipoDoc)) {
+        } else if (datosJugador.tipoDocumento === "" || contieneNumeros(datosJugador.tipoDocumento)) {
             setpopUp({mensaje: "Tipo de documento no válido", titulo: "Dato erroneo"});
             setShowModal(true);
-        } else if (data.documento === "" || isNaN(data.nroDoc)) {
+        } else if (datosJugador.documento === "" || isNaN(datosJugador.documento)) {
             setpopUp({mensaje: "Número de documento no válido", titulo: "Dato erroneo"});
             setShowModal(true);
-        } else if (data.direccion === "") {
+        } else if (datosJugador.direccion === "") {
             setpopUp({mensaje: "Dirección no válida", titulo: "Dato erroneo"});
             setShowModal(true);
-        } else if (data.mail === "" || !isMail(data.mail)) {
+        } else if (datosJugador.mail === "" || !esUnMail(datosJugador.mail)) {
             setpopUp({mensaje: "E-Mail no válido", titulo: "Dato erroneo"});
             setShowModal(true);
-        } else if (data.telefono === "" || isNaN(data.telefono)) {
+        } else if (datosJugador.telefono === "" || isNaN(datosJugador.telefono)) {
             setpopUp({mensaje: "Telefono no válido", titulo: "Dato erroneo"});
             setShowModal(true);
-        } else if (data.password === "") {
+        } else if (datosJugador.password === "") {
             setpopUp({mensaje: "Password inválida", titulo: "Dato erroneo"});
             setShowModal(true);
         }
-        postData(data)
+        postData(datosJugador)
     }
-
-    const containsNumbers = (string) => {
-        return string.match(/\d+/g) != null;
-    };
-
-    const isMail = (string) => {
-        return string.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null;
-    };
 
     return (
         <div className="main-container-datos-navbar-jugador">
@@ -103,7 +102,7 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Nombre"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="nombre" placeholder="Nombre"
-                                                      style={{fontSize: "20px"}} value={data.nombre}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.nombre}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -111,7 +110,7 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Apellido"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="apellido" placeholder="Apellido"
-                                                      style={{fontSize: "20px"}} value={data.apellido}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.apellido}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -119,7 +118,7 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Fecha Nacimiento"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="date" placeholder="Fecha Nacimiento" name="fechaNacimiento"
-                                                      style={{fontSize: "20px"}} value={data.fechaNacimiento}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.fechaNacimiento}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -127,7 +126,7 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Categ."
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="categoria" placeholder="Categ."
-                                                      style={{fontSize: "20px"}} value={data.categoria} readOnly/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.categoria} readOnly/>
                                     </FloatingLabel>
                                 </Form.Group>
                             </Row>
@@ -138,7 +137,7 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Tipo documento"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="tipoDocumento" placeholder="Tipo documento"
-                                                      style={{fontSize: "20px"}} value={data.tipoDocumento}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.tipoDocumento}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -146,7 +145,7 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Numero de documento"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="documento" placeholder="Numero de documento"
-                                                      style={{fontSize: "20px"}} value={data.documento}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.documento}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -154,7 +153,7 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Dirección"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" placeholder="Dirección" name="direccion"
-                                                      style={{fontSize: "20px"}} value={data.direccion}
+                                                      style={{fontSize: "20px"}} value={datosJugador.direccion}
                                                       onChange={handleChange}/>
                                     </FloatingLabel>
                                 </Form.Group>
@@ -164,7 +163,7 @@ export const DatosJugadorResponsable = (props) => {
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="estado" placeholder="Estado"
                                                       style={{fontSize: "20px"}}
-                                                      value={data.estado ? "Habilitado" : "Deshabilitado"}/>
+                                                      value={datosJugador.estado ? "Habilitado" : "Deshabilitado"}/>
                                     </FloatingLabel>
                                 </Form.Group>
                             </Row>
@@ -175,7 +174,7 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Numero de Telefono"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="tel" placeholder="Numero de Telefono" name="telefono"
-                                                      style={{fontSize: "20px"}} value={data.telefono}
+                                                      style={{fontSize: "20px"}} value={datosJugador.telefono}
                                                       onChange={handleChange}/>
                                     </FloatingLabel>
                                 </Form.Group>
@@ -184,7 +183,7 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Correo Electrónico"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="email" placeholder="mail" name="mail"
-                                                      style={{fontSize: "20px"}} value={data.mail}
+                                                      style={{fontSize: "20px"}} value={datosJugador.mail}
                                                       onChange={handleChange}/>
                                     </FloatingLabel>
                                 </Form.Group>
@@ -194,7 +193,8 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Password"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" placeholder="Password" name="password"
-                                                      style={{fontSize: "20px"}} value={data.password}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.password}
+                                        onChange={handleChange}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -202,7 +202,7 @@ export const DatosJugadorResponsable = (props) => {
                                     <FloatingLabel className="floatingInputGridJug" label="Fecha Alta"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="date" placeholder="Fecha Alta" name="fechaAlta"
-                                                      style={{fontSize: "20px"}} value={data.fechaAlta} readOnly/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.fechaAlta} readOnly/>
                                     </FloatingLabel>
                                 </Form.Group>
                             </Row>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 //onClick={handleClickTabla(ids,descripcion,"ADMINISTRACION")}
 export const TablaCampeonatos = (props) => {
     const history = useHistory();
@@ -39,6 +40,9 @@ export const TablaCampeonatos = (props) => {
             return elem.descripcion.toLowerCase().includes(event.target.value.toLowerCase());
         }));
         console.log(campeonatos);
+    }
+    const handleClickTabla = (idCampeonato,Tipo)=>{
+        history.push("/tabla/posiciones",{campeonato:idCampeonato,tipo:Tipo})
     }
 
     if (campeonatos) {
@@ -79,7 +83,7 @@ export const TablaCampeonatos = (props) => {
                                         <td>{descripcion}</td>
                                         <td>{campeonato.fechaInicio}</td>
                                         <td>{campeonato.fechaFin}</td>
-                                        <td><Button className='btn btn-success'  >Tabla</Button></td>
+                                        <td><Button className='btn btn-success' onClick={() => handleClickTabla(ids,"ADMINISTRADOR")} >Tabla</Button></td>
                                         <td><Link className='btn btn-success' to={{
                                             pathname: '/administrador/campeonatos/partidos',
                                             state: { idCampeonato: ids, descrip: descripcion }
@@ -108,7 +112,7 @@ export const TablaCampeonatos = (props) => {
             </div>
         </div>)
     } else {
-        return (<div><NavBarAdministracion /><h1>Server Isnt Working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }
 

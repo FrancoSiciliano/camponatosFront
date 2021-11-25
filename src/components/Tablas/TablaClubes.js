@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 export const TablaClubes = () => {
     const [clubes, setClubes] = useState(null);
     const [todosClubes, setTodosClubes] = useState(null);
@@ -61,13 +62,12 @@ export const TablaClubes = () => {
                                 <td>{nombre}</td>
                                 <td>{club.direccion}</td>
                                 <td><Button className='btn btn-success' onClick={ (e) =>HandleClickPerfil(ids)}> Perfil</Button></td>
-                                <td><Button className='btn btn-success'> Eliminar</Button></td>
                             </tr>)})}
                     </tbody>
                 </Table>
             </div>
         </div>)
     } else {
-        return (<div><NavBarAdministracion/><h1>Server isnt Working</h1></div>)
+        return (<PantallaCarga/>)
     }
 }
