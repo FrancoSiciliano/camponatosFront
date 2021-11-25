@@ -94,7 +94,7 @@ export const DatosClub = (props) => {
                 <h2 className='titledatos'>Perfil del Club</h2>
 
                 <div className="datos-perfil-club">
-                    <div className='avatar'>
+                    <div className='avatar-club'>
                         <img src={Avatar} alt='avatarPerfil' width='300px' height='280px'/>
                     </div>
                     <div className='contenedor-datos'>
