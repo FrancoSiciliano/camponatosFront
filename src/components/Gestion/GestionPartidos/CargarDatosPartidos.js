@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import validateInfo from "../../FuncionesAdministrador/validacion.js"
 import "./CargarDatosPartidos.css"
 import {Button} from "react-bootstrap"
 import {Form} from 'react-bootstrap'
@@ -8,7 +7,6 @@ import {useHistory, useLocation} from "react-router-dom";
 import axios from "axios";
 import NavBarAdministracion from "../../NavBars/NavBarAdministracion.js";
 import {PopUp} from "../../PopUp/PopUp.js";
-import {flushSync} from "react-dom";
 
 
 export const CargarDatosPartidos = () => {

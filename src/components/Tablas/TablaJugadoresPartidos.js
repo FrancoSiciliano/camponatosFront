@@ -52,13 +52,7 @@ export const TablaJugadoresPartidos = (props) => {
     const handleChangeJugadorSelect = (event) => {
        setJugadorSeleccionado(event.target.value);
     }
-    const jugadorYaAgregado= async (idJugador)=>{
-        {listaJugadores.map((listajugadores, index) => {
-            let idJug = listajugadores.jugador.idJugador
-            if(idJug ===idJugador){ return true;}
-        })}
-        return false;
-    }
+
 
     if (listaJugadores) {
         return (<div>
@@ -92,14 +86,10 @@ export const TablaJugadoresPartidos = (props) => {
                                         SELECIONAR JUGADOR
                             <Form.Select type="label-select" name='jugadorGol' onChange={handleChangeJugadorSelect} >
                             {listaJugadoresClub.map((jugadorClub, index) => {
-                              
                               return (
-                                <option 
-                                
-                                key={index}
-                                value={jugadorClub.idJugador}> {`${jugadorClub.idJugador} - ${jugadorClub.nombre} ${jugadorClub.apellido}`}
-                                </option>)
-    })}</Form.Select>
+                            <option key={index} value={jugadorClub.idJugador}> {`${jugadorClub.idJugador} - ${jugadorClub.nombre} ${jugadorClub.apellido}`}</option>)}
+                                )}
+                                </Form.Select>
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button type = "submit" className="btn btn-success"  onClick={HandleClickAgregarJugadores(event)}>

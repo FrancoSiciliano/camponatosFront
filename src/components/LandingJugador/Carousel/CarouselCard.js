@@ -43,7 +43,6 @@ export const CarouselCard = (props) => {
             return elem.descripcion.toLowerCase().includes(event.target.value.toLowerCase());
         }));
     }
-
     return (
         <>
             <div className="main-container-carrusel">
