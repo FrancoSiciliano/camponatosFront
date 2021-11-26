@@ -107,7 +107,7 @@ function App() {
 
                     <ProtectedRoute exact path="/registro/campeonato" rol={["ADMIN"]} componente={RegistroCampeonato}>
                     </ProtectedRoute>
-                    <ProtectedRoute exact path="/cargar/datos/partido/ingeroEgreso" rol={["ADMIN"]} componente={IngresoEgreso}>
+                    <ProtectedRoute exact path="/cargar/datos/partido/ingresoEgreso" rol={["ADMIN"]} componente={IngresoEgreso}>
                     </ProtectedRoute>
 
                     <ProtectedRoute exact path="/cargar/datos/partido" rol={["ADMIN"]} componente={CargarDatosPartidos}>
