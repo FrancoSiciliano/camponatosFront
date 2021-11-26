@@ -50,7 +50,7 @@ export const PantallaAdministrador = (props) => {
                                         <td>{partido.clubVisitante.nombre}</td>
                                         <td>{partido.fechaPartido ? partido.fechaPartido : "Sin cargar"}</td>
                                         <td><Link className='btn btn-success botonesAdmin-tabla' 
-                                                  to={{pathname:"/cargar/datos/partido/ingeroEgreso",state:idPartido}}>Cargar Datos</Link>
+                                                  to={{pathname:"/cargar/datos/partido/ingresoEgreso",state:idPartido}}>Cargar Datos</Link>
                                         </td>
                                     </tr>)
                             })}
