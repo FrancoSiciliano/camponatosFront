@@ -24,7 +24,17 @@ export const TablaPartidosResponsables = () => {
         };
         fetchData();
     }, []);
+    const isSinCargarDatos = async (idPartido) =>{
+        const respuesta = await axios(`http://localhost:8080/encontrarPartido?idPartido=${idPartido}`)
+        const res = respuesta.data;
+        if(!res.golesLocal || !res.golesVisitante ){
+            return true;
+        }
+        else{
+            return false;
+        }
 
+    }
     const handleClickDetalles = (partido) => {
         history.push("/detalles/partidos", {
             idPartido: partido.idPartido,
@@ -73,7 +83,7 @@ export const TablaPartidosResponsables = () => {
                     <tbody>
                     {data.map((partido, index) => {
                         var partido = partido
-                        if (!estaValidado(partido)) {
+                        if (!estaValidado(partido) && !isSinCargarDatos(partido)) {
                             return (
                                 <tr key={index}>
                                     <td>{partido.nroFecha}</td>
