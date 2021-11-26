@@ -1,6 +1,39 @@
-contenedor-principal-ingreso-egreso{
+.ingreso-egreso-principal{
     min-height: 100vh;
     background-image: url("../../../assets/images/imagencancha.jpg");
     background-size: cover;
     background-position: center;
+}
+
+.IngresoEgresoJugadores{
+    background-color: white;
+    display: flex;
+    margin-top:5%;
+    margin-left: 10%;
+    width: 80%;
+    max-height: 400px;
+    overflow-y: scroll;
+
+}
+
+.IngresoEgresoJugadores .btn-primary {
+    background-color: #40916C;
+    border-color: transparent;
+}
+
+.IngresoEgresoJugadores .btn-primary:hover {
+    background-color: #40916dcb;
+    border-color: transparent;
+}
+
+.boton-siguiente-carga{
+    margin-top: 2%;
+    margin-left: 40%;
+    background-color: #40916C !important;
+    border-color: #40916C !important;
+}
+
+.boton-siguiente-carga:hover {
+    background-color: #40916dcb !important;
+    border-color: transparent !important;
 }

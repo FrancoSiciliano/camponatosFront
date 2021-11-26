@@ -151,10 +151,6 @@ function App() {
                     {/*<Route path="/tabla/representantes">*/}
                     {/*    <TablaResponsables/>*/}
                     {/*</Route> NO ESTABA EN USO ????????????????????*/}
-
-
-                    <ProtectedRoute exact path="/cargar/minutos" rol={["ADMIN"]} componente={IngresoEgreso}> </ProtectedRoute>
-                    <ProtectedRoute exact path="/cargar/datos/partido" rol={["ADMIN"]} componente={CargarDatosPartidos}></ProtectedRoute>
                     
                     <Route path="/partidos/Detalles">
                         <DetallesPartido/>
