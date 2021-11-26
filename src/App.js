@@ -35,6 +35,7 @@ import {TablaPartidosAdministrador} from "./components/Tablas/TablaPartidosAdmin
 import {TablaListaJugadoresAdministrador} from "./components/Tablas/TablaListaJugadoresAdministrador";
 import {useState} from "react";
 import {ProtectedRoute} from "./protected.route";
+import { IngresoEgreso } from "./components/Gestion/GestionJugadores/IngresoEgreso";
 
 function App() {
     return (
@@ -150,8 +151,8 @@ function App() {
                     {/*</Route> NO ESTABA EN USO ????????????????????*/}
 
 
-                    <ProtectedRoute exact path="/cargar/datos/partido" rol={["ADMIN"]} componente={CargarDatosPartidos}>
-                    </ProtectedRoute>
+                    <ProtectedRoute exact path="/cargar/minutos" rol={["ADMIN"]} componente={IngresoEgreso}> </ProtectedRoute>
+                    <ProtectedRoute exact path="/cargar/datos/partido" rol={["ADMIN"]} componente={CargarDatosPartidos}></ProtectedRoute>
                     
                     <Route path="/partidos/Detalles">
                         <DetallesPartido/>
