@@ -1,4 +1,6 @@
 .contenedorHome{
+    display: flex;
+    flex-direction: column;
     background-image: url(../../assets/images/ben-wiens-91yHQ1JMK9Y-unsplash.jpg);
     background-repeat: no-repeat;
     background-size: 100vw 100vh;
@@ -6,7 +8,8 @@
     height: 100vh !important;
 }
 .TablasHomeCampeonatosResponsables{
-    width: 100%;
+    align-self: center;
+    width: 90%;
     height: 90% ;
     position: relative;
     display: flex;
