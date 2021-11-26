@@ -1,12 +1,9 @@
-import { Table, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import '../Tablas/TablaJugadores.css'
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { Form } from "react-bootstrap";
 import { useLocation } from "react-router";
-import { Modal } from "react-bootstrap";
-import NavBarResponsable from "../NavBars/NavBarResponsable";
-import { event } from "jquery";
+
 import NavBarAdministracion from "../NavBars/NavBarAdministracion"
 import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 export const TablaListaJugadoresAdministrador = (props) => {
