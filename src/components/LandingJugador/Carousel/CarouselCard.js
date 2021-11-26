@@ -31,7 +31,7 @@ export const CarouselCard = (props) => {
     const handleFilteringByState = (event) => {
         if (event.target.value !== "no-seleccionado") {
             setCampeonatos(todosCampeonatos.filter((elem) => {
-                return elem.estado === event.target.value
+                return elem.estado.toLowerCase() === event.target.value.toLowerCase()
             }));
         } else {
             setCampeonatos(todosCampeonatos);
