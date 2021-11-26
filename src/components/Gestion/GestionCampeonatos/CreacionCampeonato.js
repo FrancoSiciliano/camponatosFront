@@ -35,7 +35,7 @@ export const RegistroCampeonato = () => {
     const esDivisiblePor2n = (num) => {
         num = parseInt(num);
         while (num !== 2) {
-            console.log("hola")
+
             if ((num / 2) % 2 === 0) {
                 num = num / 2
             } else {
@@ -78,7 +78,7 @@ export const RegistroCampeonato = () => {
             return false;
 
         } else if (datos.tipo === "Zonas") {
-            if (datos.nroZonas === 0 || !esDivisiblePor2n(datos.nroZonas)) {
+            if (datos.nroZonas === 0 || (datos.nroZonas !== 0 && !esDivisiblePor2n(datos.nroZonas))) {
                 setMensajeError("No puede crearse un campeonato con " + datos.nroZonas + " zonas");
                 setTituloError("Número de zonas no válido");
                 setShowModal(true);
