@@ -1,10 +1,9 @@
 import {Spinner, Table} from "react-bootstrap"
-import {Link, useHistory} from 'react-router-dom'
+import { useHistory} from 'react-router-dom'
 import {useEffect, useState} from "react";
 import './TablaPartidosResponsables.css'
 import axios from "axios";
 import {Button} from "react-bootstrap";
-import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
 
 export const TablaPartidosResponsables = () => {
     const history = useHistory();
@@ -24,7 +23,17 @@ export const TablaPartidosResponsables = () => {
         };
         fetchData();
     }, []);
+    const isSinCargarDatos = async (idPartido) =>{
+        const respuesta = await axios(`http://localhost:8080/encontrarPartido?idPartido=${idPartido}`)
+        const res = respuesta.data;
+        if(!res.golesLocal || !res.golesVisitante ){
+            return true;
+        }
+        else{
+            return false;
+        }
 
+    }
     const handleClickDetalles = (partido) => {
         history.push("/detalles/partidos", {
             idPartido: partido.idPartido,
@@ -36,13 +45,13 @@ export const TablaPartidosResponsables = () => {
 
     const estaValidado = (partido) => {
         if (partido.clubLocal.idClub === responsable.club.idClub) {
-            if (partido.convalidaLocal == true) {
+            if (partido.convalidaLocal === true) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            if (partido.convalidaVisitante == true) {
+            if (partido.convalidaVisitante === true) {
                 return true;
             } else {
                 return false;
@@ -72,8 +81,8 @@ export const TablaPartidosResponsables = () => {
                     </thead>
                     <tbody>
                     {data.map((partido, index) => {
-                        var partido = partido
-                        if (!estaValidado(partido)) {
+                        var idPartido = partido.idPartido
+                        if (!estaValidado(partido) && !isSinCargarDatos(idPartido)) {
                             return (
                                 <tr key={index}>
                                     <td>{partido.nroFecha}</td>

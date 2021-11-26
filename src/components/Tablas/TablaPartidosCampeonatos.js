@@ -1,4 +1,4 @@
-import {Table, Button, Form} from "react-bootstrap"
+import {Table, Form} from "react-bootstrap"
 import {useLocation, Link} from 'react-router-dom'
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -10,7 +10,6 @@ import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 export const TablaPartidosCampeonatos = () => {
     let location = useLocation()
     const [data, setData] = useState(null);
-    const id = localStorage.getItem("id");
     const rol = localStorage.getItem("rol");
 
     useEffect(() => {
@@ -64,15 +63,6 @@ export const TablaPartidosCampeonatos = () => {
                                 <td>{categ}</td>
                                 <td>{partido.clubLocal.nombre}</td>
                                 <td>{partido.clubVisitante.nombre}</td>
-                                <td><Link class="btn btn-primary btn-sm"
-                                          to={{
-                                              pathname: '/detalles/partidos',
-                                              state: {
-                                                  idPartido: ids,
-                                                  clubLocal: partido.clubLocal,
-                                                  clubVisitante: partido.clubVisitante,
-                                              }
-                                          }}> Detalles</Link></td>
                                 <td><Link class="btn btn-primary btn-sm" to={{
                                     pathname: '/tabla/partidos/lista_jugadores',
                                     state: {idPartido: ids, categoria: categ}

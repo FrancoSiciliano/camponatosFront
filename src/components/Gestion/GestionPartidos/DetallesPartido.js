@@ -79,12 +79,15 @@ export const DetallesPartido = ({debeValidar}) => {
             setActualizar(!actualizar);
         }
     }
+    const HandleClickInvalidar = async ()=>{
+        
+    }
 
     const BotonesValidarInvalidar = ()=>{
         if(rol === "RESPONSABLE" && (clubVisitante.idClub === clubRep || clubLocal.idClub === clubRep)){
             return(<div className="SegmentoBotonesValidarInvalidar">
                 <Button variant="success" className="BotonesValidarInvalidar" onClick={HandleClickValidar}> VALIDAR PARTIDO </Button>
-                <Button variant="success" className="BotonesValidarInvalidar"> INVALIDAR PARTIDO </Button>
+                <Button variant="success" className="BotonesValidarInvalidar" onClick={HandleClickInvalidar}> INVALIDAR PARTIDO </Button>
             </div>)
         }
     }

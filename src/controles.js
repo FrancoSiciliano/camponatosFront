@@ -1,5 +1,4 @@
 import axios from "axios";
-import {deprecate} from "@testing-library/jest-dom/dist/utils";
 
 export const contieneNumeros = (string) => {
     console.log(string);
@@ -21,4 +20,17 @@ export const yaExisteElMail = async (email) => {
     const jugadores = await axios.get(`http://localhost:8080/existeMailJugador?mail=${email}`);
 
     return (admin.data || responsable.data || jugadores.data);
+}
+
+export const yaExisteDocumento = async(documento) => {
+    const responsable = await axios.get(`http://localhost:8080/existeDocumentoResponsable?documento=${documento}`);
+    const jugador = await axios.get(`http://localhost:8080/existeDocumentoJugador?documento=${documento}`);
+
+    return (responsable.data || jugador.data);
+}
+
+export const yaExisteTelefono = async(telefono) => {
+    const jugadores = await axios.get(`http://localhost:8080/existeTelefonoJugador?telefono=${telefono}`);
+    
+    return (jugadores.data);
 }

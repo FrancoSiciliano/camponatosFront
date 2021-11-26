@@ -6,6 +6,8 @@ import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
 import {useHistory} from 'react-router-dom';
 import NavBarResponsable from "../NavBars/NavBarResponsable";
+import {yaExisteElMail,yaExisteDocumento} from "../../controles";
+
 
 export const RegistroResponsableByResponsable = () => {
     const history = useHistory();
@@ -33,23 +35,28 @@ export const RegistroResponsableByResponsable = () => {
     }
     
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const existeMail = await yaExisteElMail(datos.mail);
+        const existeDocumento = await yaExisteDocumento(datos.nrodocumento);
+
         if (datos.nombre === "" || containsNumbers(datos.nombre)) {
             setError("Nombre no válido");
             setShowModal(true);
         }
-        else if (datos.apellido === "" || isNaN(datos.apellido)) {
+        else if (datos.apellido === "" || containsNumbers(datos.apellido)) {
             setError("Apellido no válido");
             setShowModal(true);
         }
 
 
-        else if (datos.nrodocumento === "" || isNaN(datos.nrodocumento)) {
+        else if (datos.nrodocumento === "" || isNaN(datos.nrodocumento) || existeDocumento) {
             setError("Número de documento no válido");
             setShowModal(true);
         }
 
-        else if (datos.mail === "" || !isMail(datos.mail)) {
+        else if (datos.mail === "" || !isMail(datos.mail) || existeMail) {
             setError("Correo Electrónico no válido");
             setShowModal(true);
         }
@@ -57,8 +64,11 @@ export const RegistroResponsableByResponsable = () => {
         else if (datos.password === "") {
             setError("No puede dejar la contraseña vacía");
             setShowModal(true);
+        } else{
+            postData();
+            setShowModal(true);
         }
-        postData()
+        
     };
     const postData = async () => {
         try{
@@ -72,7 +82,7 @@ export const RegistroResponsableByResponsable = () => {
             setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
             
         }
-        setShowModal(true);
+        setShowModal(false);
 
     }
 

@@ -19,6 +19,17 @@ export const PantallaAdministrador = (props) => {
 
         fetchData();
     });
+    const isSinCargarDatos = async (idPartido) =>{
+        const respuesta = await axios(`http://localhost:8080/encontrarPartido?idPartido=${idPartido}`)
+        const res = respuesta.data;
+        if(!res.golesLocal || !res.golesVisitante ){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
     if (data) {
         return (
             <div className='contenedorHome'>
@@ -53,7 +64,7 @@ export const PantallaAdministrador = (props) => {
                                                   to={{pathname:"/cargar/datos/partido/ingresoEgreso",state:idPartido}}>Cargar Datos</Link>
                                         </td>
                                     </tr>)
-                            })}
+                                })}
                             </tbody>
                         </Table>
                     </div>

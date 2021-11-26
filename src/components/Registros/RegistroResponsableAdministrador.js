@@ -6,7 +6,7 @@ import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import {useHistory} from "react-router-dom";
-import {contieneCaracteresEspeciales, contieneNumeros, esUnMail, yaExisteElMail} from "../../controles";
+import {contieneCaracteresEspeciales, contieneNumeros, esUnMail, yaExisteDocumento, yaExisteElMail} from "../../controles";
 
 export const RegistroResponsableAdministrador = () => {
 
@@ -29,6 +29,7 @@ export const RegistroResponsableAdministrador = () => {
 
 
     const handleChange = (event) => {
+        
         setDatos({
             ...datos,
             [event.target.name]: event.target.value,
@@ -41,6 +42,8 @@ export const RegistroResponsableAdministrador = () => {
         event.preventDefault();
 
         const existeMail = await yaExisteElMail(datos.mail);
+        const existeDocumento = await yaExisteDocumento(datos.nrodocumento);
+
 
         if (datos.nombre === "" || contieneNumeros(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
             setError("Nombre no válido");
@@ -48,14 +51,14 @@ export const RegistroResponsableAdministrador = () => {
             setModalTitle("Advertencia");
             setShowModal(true);
         }
-        else if (datos.apellido === "" || contieneNumeros(datos.apellido) || contieneCaracteresEspeciales(datos.nombre)) {
+        else if (datos.apellido === "" || contieneNumeros(datos.apellido) || contieneCaracteresEspeciales(datos.apellido)) {
             setError("Apellido no válido");
             setTitle("Error en apellido");
             setModalTitle("Advertencia");
             setShowModal(true);
         }
 
-        else if (datos.nrodocumento === "" || isNaN(datos.nrodocumento)) {
+        else if (datos.nrodocumento === "" || isNaN(datos.nrodocumento) || existeDocumento) {
             setError("Número de documento no válido");
             setTitle("Error en numero de documento");
             setModalTitle("Advertencia");
@@ -76,6 +79,7 @@ export const RegistroResponsableAdministrador = () => {
             setShowModal(true);
         } else {
             postData();
+            setShowModal(true);
         }
     };
 
@@ -87,12 +91,12 @@ export const RegistroResponsableAdministrador = () => {
             setError("Se registró el responsable con éxito");
             setTitle("Registro completado");
             setModalTitle("Operación exitosa");
-            setShowModal(true);
+            setShowModal(false);
         }catch(e){
             setError("No se pudo registrar el responsable");
             setTitle("Registro fallido");
             setModalTitle("Operación fallida");
-            setShowModal(true);
+            setShowModal(false);
         }
 
     }
