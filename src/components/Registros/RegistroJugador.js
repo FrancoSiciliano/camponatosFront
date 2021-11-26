@@ -4,8 +4,9 @@ import "./RegistroJugador.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
-import {contieneNumeros, esUnMail} from "../../controles";
+import {contieneNumeros, esUnMail, yaExisteElMail,contieneCaracteresEspeciales} from "../../controles";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
+import { ErrorPagina } from "../NotFound/ErrorPagina";
 
 export const RegistroJugador = () => {
     const history = useHistory();
@@ -49,20 +50,22 @@ export const RegistroJugador = () => {
         },
         console.log(datos))
     }
+    const existeMail =  yaExisteElMail(datos.mail);
+
 
     const handleSubmit = (event) => {
         console.log(datos.fechaNacimiento)
-        if (datos.nombre === "" || contieneNumeros(datos.nombre)) {
+        if (datos.nombre === "" || contieneNumeros(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
             setError("Nombre no válido");
             setShowModal(true);
         }
 
-        else if (datos.apellido === "" || contieneNumeros(datos.apellido)) {
+        else if (datos.apellido === "" || contieneNumeros(datos.apellido) || contieneCaracteresEspeciales(datos.nombre)) {
             setError("Apellido no válido");
             setShowModal(true);
         }
 
-        else if (datos.tipoDoc === "" || contieneNumeros(datos.tipoDoc)){
+        else if (datos.tipoDoc === "" || contieneNumeros(datos.tipoDoc) || contieneCaracteresEspeciales(datos.nombre)){
             setError("Tipo de documento no válido");
             setShowModal(true);
         }
@@ -72,7 +75,7 @@ export const RegistroJugador = () => {
             setShowModal(true);
         }
 
-        else if (datos.mail === "" || !esUnMail(datos.mail)) {
+        else if (datos.mail === "" || !esUnMail(datos.mail) || existeMail) {
             setError("Correo Electrónico no válido");
             setShowModal(true);
         }
@@ -91,12 +94,6 @@ export const RegistroJugador = () => {
             setError("Número de telefono no válido");
             setShowModal(true);
         }
-
-        else if (datos.idClub === "" || datos.idClub === "Seleccionar") {
-            setError("Por favor, seleccione el club al que pertenece el jugador");
-            setShowModal(true);
-        }
-
         else if (datos.fechaNacimiento === "") {
             setError("Por favor, Ingrese una fecha de nacimiento");
             setShowModal(true);
@@ -206,6 +203,6 @@ export const RegistroJugador = () => {
             </div>
         );
     } else {
-        return (<h1>Cargando...</h1>);
+        return (<ErrorPagina/>);
     }
 }
