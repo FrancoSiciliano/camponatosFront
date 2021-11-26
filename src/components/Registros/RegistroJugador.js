@@ -4,13 +4,14 @@ import "./RegistroJugador.css"
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
-import {contieneNumeros, esUnMail, yaExisteElMail,contieneCaracteresEspeciales} from "../../controles";
+import {contieneNumeros, esUnMail, yaExisteElMail,contieneCaracteresEspeciales, yaExisteDocumento, yaExisteTelefono} from "../../controles";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import { ErrorPagina } from "../NotFound/ErrorPagina";
 
 export const RegistroJugador = () => {
     const history = useHistory();
-    let idResponsable = history.location.state;
+    const idResponsable = localStorage.getItem('id');
+
 
     const [popUp, setpopUp] = useState ({
         mensaje: "",
@@ -41,11 +42,17 @@ export const RegistroJugador = () => {
         },
         console.log(datos))
     }
-    const existeMail =  yaExisteElMail(datos.mail);
 
 
-    const handleSubmit = (event) => {
-        console.log(datos.fechaNacimiento)
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+
+        const existeMail = await yaExisteElMail(datos.mail);
+        const existeTelefono = await yaExisteTelefono(datos.nroTelefono);
+        const existeDocumento = await yaExisteDocumento(datos.nroDoc);
+
         if (datos.nombre === "" || contieneNumeros(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
             setError("Nombre no válido");
             setShowModal(true);
@@ -61,7 +68,7 @@ export const RegistroJugador = () => {
             setShowModal(true);
         }
 
-        else if (datos.nroDoc === "" || isNaN(datos.nroDoc)) {
+        else if (datos.nroDoc === "" || isNaN(datos.nroDoc) || existeDocumento ) {
             setError("Número de documento no válido");
             setShowModal(true);
         }
@@ -81,20 +88,24 @@ export const RegistroJugador = () => {
             setShowModal(true);
         }
 
-        else if (datos.nroTelefono === "" || isNaN(datos.nroTelefono) ) {
+        else if (datos.nroTelefono === "" || isNaN(datos.nroTelefono) || existeTelefono ) {
             setError("Número de telefono no válido");
             setShowModal(true);
         }
         else if (datos.fechaNacimiento === "") {
             setError("Por favor, Ingrese una fecha de nacimiento");
             setShowModal(true);
+        } else {
+            postData();
+            setShowModal(true);
         }
 
-        postData();
     };
     const postData = async () => {
         try{
-            axios.post(`http://localhost:8080/crearJugador?tipoDoc=${datos.tipoDoc}&documento=${datos.nroDoc}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=1&fechaNac=${datos.fechaNacimiento.replace(/-/g,"/")}&direccion=${datos.direccion}&mail=${datos.mail}&password=${datos.password}&telefono=${datos.nroTelefono}`)
+            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`);
+            const res = respuesta.data;
+            axios.post(`http://localhost:8080/crearJugador?tipoDoc=${datos.tipoDoc}&documento=${datos.nroDoc}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${res.club.idClub}&fechaNac=${datos.fechaNacimiento.replace(/-/g,"/")}&direccion=${datos.direccion}&mail=${datos.mail}&password=${datos.password}&telefono=${datos.nroTelefono}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
             
         }catch(e){
@@ -102,13 +113,13 @@ export const RegistroJugador = () => {
             setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
             
         }
-        setShowModal(true);
+        setShowModal(false);
 
     }
 
 
 
-    if (data) {
+   
         return (
             <div className="main">
                  <NavBarResponsable id={idResponsable}/>
@@ -159,7 +170,7 @@ export const RegistroJugador = () => {
 
                             <Form.Group as={Col} controlId="formGridEmail">
                                 <FloatingLabel controlId="floatingInputGrid" label="Correo Electrónico">
-                                    <Form.Control type="email" placeholder="Correo Electrónico" name="mail" value={datos.mail}
+                                    <Form.Control type="email" placeholder="Correo Electrónico" name="mail" value={datos.mail} 
                                                   onChange={handleChange}/>
                                 </FloatingLabel>
                             </Form.Group>
@@ -193,7 +204,5 @@ export const RegistroJugador = () => {
                 </div>
             </div>
         );
-    } else {
-        return (<ErrorPagina/>);
-    }
+  
 }
