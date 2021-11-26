@@ -1,5 +1,4 @@
 import axios from "axios";
-import {deprecate} from "@testing-library/jest-dom/dist/utils";
 
 export const contieneNumeros = (string) => {
     console.log(string);

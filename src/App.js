@@ -1,5 +1,4 @@
-import {Login} from "./components/Basura de Franco/Login";
-import {Route, BrowserRouter as Router, Switch, Redirect} from "react-router-dom";
+import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
 import {RegistroJugador} from "./components/Registros/RegistroJugador";
 import {DatosJugador} from "./components/DatosPerfiles/DatosJugador";
 import {DatosRepresentante} from "./components/DatosPerfiles/DatosRepresentante";
@@ -26,14 +25,12 @@ import TablaCampeonatos from "./components/Tablas/TablaCampeonatos";
 import {TablaPartidosCampeonatos} from "./components/Tablas/TablaPartidosCampeonatos";
 import {DatosJugadorResponsable} from "./components/DatosPerfiles/DatosJugadorResponsable";
 import {TablaClubes} from "./components/Tablas/TablaClubes";
-import {TablaResponsables} from "./components/Tablas/Representante/TablaResponsables";
 import {TablaJugadores} from "./components/Tablas/TablaJugadores";
 import {TablaJugadoresPartidos} from "./components/Tablas/TablaJugadoresPartidos";
 import {EstadisticasJugadorCampeonato} from "./components/EstadisticasJugadorEnCampeonato/EstadisticasJugadorCampeonato";
 import {DetallesPartidoResponsable} from "./components/Gestion/GestionPartidos/DetallesPartidoResponsable";
 import {TablaPartidosAdministrador} from "./components/Tablas/TablaPartidosAdministrador";
 import {TablaListaJugadoresAdministrador} from "./components/Tablas/TablaListaJugadoresAdministrador";
-import {useState} from "react";
 import {ProtectedRoute} from "./protected.route";
 import { IngresoEgreso } from "./components/Gestion/GestionJugadores/IngresoEgreso";
 

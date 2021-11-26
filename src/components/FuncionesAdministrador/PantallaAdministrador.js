@@ -54,7 +54,7 @@ export const PantallaAdministrador = (props) => {
                             <tbody>
                             {data.map((partido, index) => {
                                 let idPartido = partido.idPartido
-                                if(isSinCargarDatos(partido)){
+                                if(isSinCargarDatos(idPartido)){
                                 return (
                                     <tr key={partido.descripcion}>
                                         <td>{partido.campeonato.descripcion}</td>

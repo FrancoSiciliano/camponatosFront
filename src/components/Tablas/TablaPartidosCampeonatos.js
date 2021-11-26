@@ -1,4 +1,4 @@
-import {Table, Button, Form} from "react-bootstrap"
+import {Table, Form} from "react-bootstrap"
 import {useLocation, Link} from 'react-router-dom'
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -10,7 +10,6 @@ import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 export const TablaPartidosCampeonatos = () => {
     let location = useLocation()
     const [data, setData] = useState(null);
-    const id = localStorage.getItem("id");
     const rol = localStorage.getItem("rol");
 
     useEffect(() => {
