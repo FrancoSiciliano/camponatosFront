@@ -33,15 +33,6 @@ export const RegistroJugador = () => {
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getClubes`);
-            const newData = response.data;
-            setData(newData);
-        };
-        fetchData();
-    },[]);
-
     const handleChange = (event) => {
         setDatos({
             ...datos,

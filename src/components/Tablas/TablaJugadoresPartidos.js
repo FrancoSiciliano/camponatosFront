@@ -52,7 +52,7 @@ export const TablaJugadoresPartidos = (props) => {
     const handleChangeJugadorSelect = (event) => {
        setJugadorSeleccionado(event.target.value);
     }
-
+    
 
     if (listaJugadores) {
         return (<div>

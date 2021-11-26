@@ -54,7 +54,6 @@ export const PantallaAdministrador = (props) => {
                             <tbody>
                             {data.map((partido, index) => {
                                 let idPartido = partido.idPartido
-                                if(isSinCargarDatos(idPartido)){
                                 return (
                                     <tr key={partido.descripcion}>
                                         <td>{partido.campeonato.descripcion}</td>
@@ -65,7 +64,7 @@ export const PantallaAdministrador = (props) => {
                                                   to={{pathname:"/cargar/datos/partido/ingresoEgreso",state:idPartido}}>Cargar Datos</Link>
                                         </td>
                                     </tr>)
-                                }})}
+                                })}
                             </tbody>
                         </Table>
                     </div>
