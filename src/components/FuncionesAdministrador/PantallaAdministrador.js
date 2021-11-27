@@ -12,24 +12,14 @@ export const PantallaAdministrador = (props) => {
     const [data, setData] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getPartidosNoCargados`);
+            const response = await axios(`http://localhost:8080/getPartidosNoCargados`).catch(e=>alert(e.response.data.message));
             const newData = response.data;
             setData(newData);
         };
 
         fetchData();
     });
-    const isSinCargarDatos = async (idPartido) =>{
-        const respuesta = await axios(`http://localhost:8080/encontrarPartido?idPartido=${idPartido}`)
-        const res = respuesta.data;
-        if(!res.golesLocal || !res.golesVisitante ){
-            return true;
-        }
-        else{
-            return false;
-        }
-
-    }
+    
     if (data) {
         return (
             <div className='contenedorHome'>

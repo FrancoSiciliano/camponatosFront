@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import './TablaPartidosResponsables.css'
 import axios from "axios";
 import {Button} from "react-bootstrap";
+import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
 
 export const TablaPartidosResponsables = () => {
     const history = useHistory();
@@ -17,7 +18,7 @@ export const TablaPartidosResponsables = () => {
             const res = respuesta.data;
             setResponsable(res);
             setClubResponsable(res.club.idClub);
-            const response = await axios(`http://localhost:8080/getPartidosByClub?idClub=${res.club.idClub}`);
+            const response = await axios(`http://localhost:8080/getPartidosByClub?idClub=${res.club.idClub}`).catch(e=>alert(e.response.data.message));
             const Datanew = response.data;
             setData(Datanew);
             console.log('partidos-> ',data)
@@ -95,9 +96,6 @@ export const TablaPartidosResponsables = () => {
                     </tbody>
                 </Table></div>)
     } else {
-        return (<div className="center">
-            <Spinner animation="border"/>
-            <p style={{position: "relative", top: "-23px", fontSize: "50px"}}>Cargando...</p>
-        </div>)
+        return (<PantallaCarga/>)
     }
 }
