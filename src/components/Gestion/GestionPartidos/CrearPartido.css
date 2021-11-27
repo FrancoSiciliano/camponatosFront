@@ -42,14 +42,14 @@
     display: flex;
     flex-direction: column;
     height: 100% !important;
-    width: 50% !important;
-   
+    width: 100% !important;
+
      
 }
 .columna-creacion-partido-mitad{
-    margin: 5%;
+    margin: 0;
     margin-left: 10%;
     width: 100%;
-    height: 50%;
+    height: 100%;
     
 }
