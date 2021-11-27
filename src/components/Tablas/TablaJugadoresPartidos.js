@@ -1,127 +1,143 @@
-import { Table, Button } from "react-bootstrap";
+import {Table, Button} from "react-bootstrap";
 import '../Tablas/TablaJugadores.css'
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import axios from "axios";
-import { Form } from "react-bootstrap";
-import { useLocation } from "react-router";
-import { Modal } from "react-bootstrap";
+import {Form} from "react-bootstrap";
+import {useLocation} from "react-router";
+import {Modal} from "react-bootstrap";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
-import { event } from "jquery";
+import {event} from "jquery";
 import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
+import {useHistory} from "react-router-dom";
+import {PopUp} from "../PopUp/PopUp";
+import {Login} from "../Basura de Franco/Login";
 
-export const TablaJugadoresPartidos = (props) => {
-    const location = useLocation();
-    const reload =false;
-    const [listaJugadoresClub, setListaJugadoresClub] = useState(null);
-    const [listaJugadores, setListaJugadores] = useState(null);
-    const todosJugadores = useRef(null);
+export const TablaJugadoresPartidos = () => {
+    const history = useHistory();
+    const idPartido = history.location.state.idPartido;
+    const categoria = history.location.state.categoria;
+    const idCampeonato = history.location.state.campeonato;
+    const [jugadoresDisponibles, setJugadoresDisponibles] = useState(null);
+    const [listaJugadoresAgregados, setListaJugadoresAgregados] = useState(null);
     const [estado, setEstado] = useState(false);
-    const [responsable,setResponsable]=useState(null);
-    const [jugadorSeleccionado,setJugadorSeleccionado]=useState(null);
+    const [responsable, setResponsable] = useState(null);
+    const [jugadorSeleccionado, setJugadorSeleccionado] = useState(null);
     const [show, setShow] = useState(false);
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const idResponsable =localStorage.getItem("id")
+    const idResponsable = localStorage.getItem("id")
+
     useEffect(() => {
         const fetchData = async () => {
             const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
-            const res = respuesta.data;
-            const jugadoresClubRepuesta = await axios(`http://localhost:8080/getJugadoresHabilitadosByClubAndCategoria?idClub=${res.club.idClub}&categoria=${location.state.categoria}`)
-            const response = await axios(`http://localhost:8080/getMiembrosByClubAndPartido?idClub=${parseInt(res.club.idClub)}&idPartido=${location.state.idPartido}`);
-            const jugadoresClubRepuestaData=jugadoresClubRepuesta.data;
+            const responsable = respuesta.data;
+            const jugadoresClubRespuesta = await axios(`http://localhost:8080/getJugadoresHabilitadosByClubAndCategoriaAndCampeonato?idClub=${responsable.club.idClub}&categoria=${categoria}&idCampeonato=${idCampeonato}`)
+            const response = await axios(`http://localhost:8080/getMiembrosByClubAndPartido?idClub=${parseInt(responsable.club.idClub)}&idPartido=${idPartido}`);
+            const jugadoresClubRespuestaData = jugadoresClubRespuesta.data;
             const newData = response.data;
-            setResponsable(res);
-            setListaJugadoresClub(jugadoresClubRepuestaData);
-            setListaJugadores(newData);
-            
-            todosJugadores.current = newData;
+
+            setResponsable(responsable);
+            // setJugadoresDisponibles(jugadoresClubRespuestaData);
+            setListaJugadoresAgregados(newData);
+            const auxJugadoresDisponibles = [];
+            const auxJugadoresAgregado = [];
+            newData.forEach((miembro) => {
+                auxJugadoresAgregado.push(miembro.jugador.idJugador);
+            })
+
+            jugadoresClubRespuestaData.forEach((jugador)  => {
+                if (!auxJugadoresAgregado.includes(jugador.idJugador)) {
+                    auxJugadoresDisponibles.push(jugador);
+                }
+            })
+
+            setJugadoresDisponibles(auxJugadoresDisponibles);
         };
         fetchData();
     }, [estado]);
-    const HandleClickAgregarJugadores = (e)=>{
-        try{
-        axios.post(`http://localhost:8080/agregarJugadorEnLista?idClub=${responsable.club.idClub}&idPartido=${location.state.idPartido}&idJugador=${jugadorSeleccionado}`)
-        reload =true;
-        if({reload}==true){
-            window.location.reload(true)
-        }
-        }catch(e){
+
+    const HandleClickAgregarJugadores = async () => {
+        try {
+            await axios.post(`http://localhost:8080/agregarJugadorEnLista?idClub=${responsable.club.idClub}&idPartido=${idPartido}&idJugador=${jugadorSeleccionado}`)
+            setEstado(!estado);
+            setShow(false);
+        } catch (e) {
             console.log(e.message)
         }
     }
     const handleChangeJugadorSelect = (event) => {
-       setJugadorSeleccionado(event.target.value);
+        console.log(event.target.value);
+        setJugadorSeleccionado(event.target.value);
     }
     
 
-    if (listaJugadores) {
+    if (listaJugadoresAgregados) {
         return (<div>
-            <NavBarResponsable  id={location.state.idResponsable}/>
+            <NavBarResponsable/>
             <div className="TablaListaJugadoresClub scrollable-lista-jugadores">
                 <Table striped bordered hover sm>
                     <thead>
-                        <tr>
-                            <th colSpan="15" className='titulo-tabla-jug-camp'>
-                                Lista Jugadores
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Tipo Documento</th>
-                            <th>Nro Documento</th>
-                            <th>Direccion</th>
-                            <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th>Categoria</th>
-                            <th>Fecha Nacimiento</th>
-                            <th>Fecha de Alta</th>
-                            <th><Button  className="btn btn-success" onClick={handleShow}>Agregar Jugador</Button>
+                    <tr>
+                        <th colSpan="15" className='titulo-tabla-jug-camp'>
+                            Lista Jugadores: {history.location.state.nombrePartido}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Tipo Documento</th>
+                        <th>Nro Documento</th>
+                        <th>Correo</th>
+                        <th>Categoria</th>
+                        <th><Button className={"btn btn-success " + (jugadoresDisponibles && jugadoresDisponibles.length === 0 && "disabled")} onClick={handleShow}>Agregar Jugador</Button>
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>AGREGAR JUGADOR</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                        SELECIONAR JUGADOR
-                            <Form.Select type="label-select" name='jugadorGol' onChange={handleChangeJugadorSelect} >
-                            {listaJugadoresClub.map((jugadorClub, index) => {
-                              return (
-                            <option key={index} value={jugadorClub.idJugador}> {`${jugadorClub.idJugador} - ${jugadorClub.nombre} ${jugadorClub.apellido}`}</option>)}
-                                )}
-                                </Form.Select>
-                                    </Modal.Body>
-                                    <Modal.Footer>
-                                        <Button type = "submit" className="btn btn-success"  onClick={HandleClickAgregarJugadores(event)}>
-                                                Agregar Jugador
-                                            </Button>
-                                            <Button variant="secondary" onClick={handleClose}>
-                                                Cerrar
-                                            </Button>
-                                        </Modal.Footer>
-                                    </Modal></th>
-                        </tr>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    SELECIONAR JUGADOR
+                                    <Form.Select type="label-select" name='jugadorGol'
+                                                 onChange={handleChangeJugadorSelect}>
+                                        <option value="nada" selected>-</option>
+                                        {jugadoresDisponibles && jugadoresDisponibles.map((jugadorClub, index) => {
+                                                return (
+                                                    <option key={index}
+                                                            value={jugadorClub.idJugador}> {`${jugadorClub.idJugador} - ${jugadorClub.nombre} ${jugadorClub.apellido}`}</option>)
+                                            }
+                                        )}
+                                    </Form.Select>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button type="submit" className="btn btn-success"
+                                            onClick={HandleClickAgregarJugadores}>
+                                        Agregar Jugador
+                                    </Button>
+                                    <Button variant="secondary" onClick={handleClose}>
+                                        Cerrar
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {listaJugadores.map((listajugadores, index) => {
-                            let idJug = listajugadores.jugador.idJugador
-                            return (
-                                <tr key={index}>
-                                    <td>{idJug}</td>
-                                    <td>{listajugadores.jugador.nombre}</td>
-                                    <td>{listajugadores.jugador.apellido}</td>
-                                    <td>{listajugadores.jugador.tipoDocumento}</td>
-                                    <td>{listajugadores.jugador.documento}</td>
-                                    <td>{listajugadores.jugador.direccion}</td>
-                                    <td>{listajugadores.jugador.mail}</td>
-                                    <td>{listajugadores.jugador.telefono}</td>
-                                    <td>{listajugadores.jugador.categoria}</td>
-                                    <td>{listajugadores.jugador.fechaNacimiento}</td>
-                                    <td>{listajugadores.jugador.fechaAlta}</td>                
-                                </tr>)
-                        })}
+                    {listaJugadoresAgregados.map((listajugadores, index) => {
+                        let idJug = listajugadores.jugador.idJugador
+                        return (
+                            <tr key={index}>
+                                <td>{idJug}</td>
+                                <td>{listajugadores.jugador.nombre}</td>
+                                <td>{listajugadores.jugador.apellido}</td>
+                                <td>{listajugadores.jugador.tipoDocumento}</td>
+                                <td>{listajugadores.jugador.documento}</td>
+                                <td>{listajugadores.jugador.mail}</td>
+                                <td>{listajugadores.jugador.categoria}</td>
+                            </tr>)
+                    })}
                     </tbody>
                 </Table>
+                <PopUp/>
             </div>
         </div>)
     } else {
