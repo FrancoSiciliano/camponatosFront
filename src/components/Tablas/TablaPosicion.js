@@ -5,7 +5,7 @@ import NavbarJugador from "../NavBars/NavBarJugador"
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import {useHistory} from "react-router-dom";
-
+import { Spinner } from "react-bootstrap";
 export const TablaPosicion = (props) => {
     const history = useHistory();
     const [tablaPosiciones, setTablaPosiciones] = useState(null);
@@ -75,7 +75,8 @@ export const TablaPosicion = (props) => {
     } else {
         return (<div>
             {navbar()}
-            <h1>No existe Tabla posicion para el campeonato</h1>
+            <Spinner animation="border"/>
+            <p style={{position: "relative", top: "-23px", fontSize: "50px"}}>Cargando...</p>
         </div>)
     }
 }

@@ -24,6 +24,7 @@ export const DetallesPartido = ({debeValidar}) => {
     const id = localStorage.getItem("id");
     const rol = localStorage.getItem("rol");
     const [actualizar, setActualizar] = useState(false);
+    const [validado, setValidado] = useState (true);
 
     useEffect(async () => {
         const fetchDataPartido = async () => {
@@ -71,6 +72,7 @@ export const DetallesPartido = ({debeValidar}) => {
         return rol === "RESPONSABLE" ? <NavBarResponsable/> : <NavBarAdministracion/>
     }
     const HandleClickValidar = async ()=>{
+        setValidado(false)
         if (clubVisitante.idClub === clubRep) {
             await axios.post(`http://localhost:8080/validadoByClubVisitante?idClub=${clubRep}&idPartido=${idPartido}`);
             setActualizar(!actualizar);
@@ -80,14 +82,21 @@ export const DetallesPartido = ({debeValidar}) => {
         }
     }
     const HandleClickInvalidar = async ()=>{
-        
+        setValidado(true)
+        if (clubVisitante.idClub === clubRep) {
+            await axios.post(`http://localhost:8080/validadoByClubVisitante?idClub=${clubRep}&idPartido=${idPartido}`);
+            setActualizar(!actualizar);
+        } else {
+            await axios.post(`http://localhost:8080/validadoByClubLocal?idClub=${clubRep}&idPartido=${idPartido}`);
+            setActualizar(!actualizar);
+        }
     }
 
     const BotonesValidarInvalidar = ()=>{
         if(rol === "RESPONSABLE" && (clubVisitante.idClub === clubRep || clubLocal.idClub === clubRep)){
             return(<div className="SegmentoBotonesValidarInvalidar">
-                <Button variant="success" className="BotonesValidarInvalidar" onClick={HandleClickValidar}> VALIDAR PARTIDO </Button>
-                <Button variant="success" className="BotonesValidarInvalidar" onClick={HandleClickInvalidar}> INVALIDAR PARTIDO </Button>
+                <Button variant="success" disabled={validado === false} className="BotonesValidarInvalidar" onClick={HandleClickValidar}> VALIDAR PARTIDO </Button>
+                <Button variant="success" disabled={validado === true} className="BotonesValidarInvalidar" onClick={HandleClickInvalidar}> INVALIDAR PARTIDO </Button>
             </div>)
         }
     }
