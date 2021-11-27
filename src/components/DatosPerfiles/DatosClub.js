@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import {FloatingLabel} from 'react-bootstrap';
-import {Link,useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {useState} from 'react';
 import axios from 'axios';
 import {useEffect} from 'react';
@@ -26,18 +26,32 @@ export const DatosClub = (props) => {
         titulo: ""
     })
     const [showModal, setShowModal] = useState(false);
+    const rol = localStorage.getItem("rol");
 
     useEffect(() => {
         const fetchData = async () => {
-            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
-            const res = respuesta.data;
-            setResponsable(res)
-            const club = await axios(`http://localhost:8080/getClubById?idClub=${res.club.idClub}`);
-            const jugador = await axios(`http://localhost:8080/getJugadoresByClub?idClub=${res.club.idClub}`);
-            const newData = club.data;
-            const jugadoresClub = jugador.data;
-            setData(newData);
-            setJugadores(jugadoresClub);
+            if (rol === "RESPONSABLE") {
+                const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
+                const res = respuesta.data;
+                setResponsable(res)
+                const club = await axios(`http://localhost:8080/getClubById?idClub=${res.club.idClub}`);
+                const jugador = await axios(`http://localhost:8080/getJugadoresByClub?idClub=${res.club.idClub}`);
+                const newData = club.data;
+                const jugadoresClub = jugador.data;
+                setData(newData);
+                setJugadores(jugadoresClub);
+            } else {
+                const respuesta = await axios(`http://localhost:8080/getClubById?idClub=${history.location.state}`);
+                const res = respuesta.data;
+                try {
+                    const jugadores = await axios(`http://localhost:8080/getJugadoresByClub?idClub=${history.location.state}`);
+                    const jugadoresClub = jugadores.data;
+                    setJugadores(jugadoresClub);
+                } catch (e) {
+                    setJugadores([]);
+                }
+                setData(res);
+            }
         }
         fetchData();
     }, [])
@@ -90,7 +104,7 @@ export const DatosClub = (props) => {
         <div className="main-container-datos-navbar-jugador">
             {navbar()}
             <div className='main-container-datos'>
-                
+
                 <h2 className='titledatos'>Perfil del Club</h2>
 
                 <div className="datos-perfil-club">

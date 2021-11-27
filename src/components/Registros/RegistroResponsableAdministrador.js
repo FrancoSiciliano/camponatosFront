@@ -7,6 +7,7 @@ import {PopUp} from "../PopUp/PopUp";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import {useHistory} from "react-router-dom";
 import {contieneCaracteresEspeciales, contieneNumeros, esUnMail, yaExisteDocumento, yaExisteElMail} from "../../controles";
+import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 
 export const RegistroResponsableAdministrador = () => {
 
@@ -29,7 +30,6 @@ export const RegistroResponsableAdministrador = () => {
 
 
     const handleChange = (event) => {
-        
         setDatos({
             ...datos,
             [event.target.name]: event.target.value,
@@ -79,7 +79,6 @@ export const RegistroResponsableAdministrador = () => {
             setShowModal(true);
         } else {
             postData();
-            setShowModal(true);
         }
     };
 
@@ -91,19 +90,19 @@ export const RegistroResponsableAdministrador = () => {
             setError("Se registró el responsable con éxito");
             setTitle("Registro completado");
             setModalTitle("Operación exitosa");
-            setShowModal(false);
+            setShowModal(true);
         }catch(e){
             setError("No se pudo registrar el responsable");
             setTitle("Registro fallido");
             setModalTitle("Operación fallida");
-            setShowModal(false);
+            setShowModal(true);
         }
 
     }
 
     return (
         <div className="main">
-            <NavBarResponsable/>
+            <NavBarAdministracion/>
             <div className="main-container-registro-Responsable">
                 <h1 className="titulo-responsable">Registro Responsable</h1>
 

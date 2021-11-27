@@ -6,6 +6,7 @@ import './DetallesPartido.css'
 import NavBarResponsable from "../../NavBars/NavBarResponsable";
 import NavBarAdministracion from "../../NavBars/NavBarAdministracion";
 import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
+import {GiBootKick, GiGoalKeeper} from "react-icons/all";
 
 
 export const DetallesPartido = ({debeValidar}) => {
@@ -24,7 +25,9 @@ export const DetallesPartido = ({debeValidar}) => {
     const id = localStorage.getItem("id");
     const rol = localStorage.getItem("rol");
     const [actualizar, setActualizar] = useState(false);
-    const [validado, setValidado] = useState (true);
+    const [validado, setValidado] = useState(true);
+    const [jugadoresLocal, setJugadoresLocal] = useState(null);
+    const [jugadoresVisitante, setJugadoresVisitante] = useState(null);
 
     useEffect(async () => {
         const fetchDataPartido = async () => {
@@ -61,9 +64,17 @@ export const DetallesPartido = ({debeValidar}) => {
             setClubRep(res.data.club.idClub);
         }
 
+        const fetchMiembros = async () => {
+            const resL = await axios.get(`http://localhost:8080/getMiembrosByClubAndPartido?idClub=${clubLocal.idClub}&idPartido=${idPartido}`);
+            const resV = await axios.get(`http://localhost:8080/getMiembrosByClubAndPartido?idClub=${clubVisitante.idClub}&idPartido=${idPartido}`);
+            setJugadoresVisitante(resV.data);
+            setJugadoresLocal(resL.data);
+        }
+
         await fetchDataPartido();
         await fetchDataFaltas();
         await fetchDataGoles();
+        await fetchMiembros();
         rol === "RESPONSABLE" && await fetchClubResponsable();
 
     }, [actualizar]);
@@ -71,7 +82,7 @@ export const DetallesPartido = ({debeValidar}) => {
     const navbar = () => {
         return rol === "RESPONSABLE" ? <NavBarResponsable/> : <NavBarAdministracion/>
     }
-    const HandleClickValidar = async ()=>{
+    const HandleClickValidar = async () => {
         setValidado(false)
         if (clubVisitante.idClub === clubRep) {
             await axios.post(`http://localhost:8080/validadoByClubVisitante?idClub=${clubRep}&idPartido=${idPartido}`);
@@ -81,7 +92,7 @@ export const DetallesPartido = ({debeValidar}) => {
             setActualizar(!actualizar);
         }
     }
-    const HandleClickInvalidar = async ()=>{
+    const HandleClickInvalidar = async () => {
         setValidado(true)
         if (clubVisitante.idClub === clubRep) {
             await axios.post(`http://localhost:8080/validadoByClubVisitante?idClub=${clubRep}&idPartido=${idPartido}`);
@@ -92,11 +103,13 @@ export const DetallesPartido = ({debeValidar}) => {
         }
     }
 
-    const BotonesValidarInvalidar = ()=>{
-        if(rol === "RESPONSABLE" && (clubVisitante.idClub === clubRep || clubLocal.idClub === clubRep)){
-            return(<div className="SegmentoBotonesValidarInvalidar">
-                <Button variant="success" disabled={validado === false} className="BotonesValidarInvalidar" onClick={HandleClickValidar}> VALIDAR PARTIDO </Button>
-                <Button variant="success" disabled={validado === true} className="BotonesValidarInvalidar" onClick={HandleClickInvalidar}> INVALIDAR PARTIDO </Button>
+    const BotonesValidarInvalidar = () => {
+        if (rol === "RESPONSABLE" && (clubVisitante.idClub === clubRep || clubLocal.idClub === clubRep)) {
+            return (<div className="SegmentoBotonesValidarInvalidar">
+                <Button variant="success" disabled={validado === false} className="BotonesValidarInvalidar"
+                        onClick={HandleClickValidar}> VALIDAR PARTIDO </Button>
+                <Button variant="success" disabled={validado === true} className="BotonesValidarInvalidar"
+                        onClick={HandleClickInvalidar}> INVALIDAR PARTIDO </Button>
             </div>)
         }
     }
@@ -150,9 +163,30 @@ export const DetallesPartido = ({debeValidar}) => {
                             }
                             </tbody>
                         </Table> : <h1>No hubo faltas</h1>}
+                        <h1>Jugadores:</h1>
+                        <Table hover sm className="local" >
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Ingreso</th>
+                                <th>Egreso</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {jugadoresLocal && jugadoresLocal.map((miembro, index) => {
+                                return (<tr key={index}>
+                                    <td>{miembro.jugador.idJugador}</td>
+                                    <td>{miembro.jugador.nombre + " " + miembro.jugador.apellido}</td>
+                                    <td>{miembro.ingreso}'</td>
+                                    <td>{miembro.egreso}'</td>
+                                </tr>)
+                            })}
+                            </tbody>
+                        </Table>
 
                     </div>
-                   
+
                     {BotonesValidarInvalidar()}
                     <div className="equipo-detalle-partido">
                         <h1>{datosPartido.clubVisitante.nombre}</h1>
@@ -197,9 +231,30 @@ export const DetallesPartido = ({debeValidar}) => {
                             }
                             </tbody>
                         </Table> : <h1>No hubo faltas</h1>}
+                        <h1>Jugadores:</h1>
+                        <Table hover sm className="visitante" >
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Ingreso</th>
+                                <th>Egreso</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {jugadoresVisitante && jugadoresVisitante.map((miembro, index) => {
+                                return (<tr key={index}>
+                                    <td>{miembro.jugador.idJugador}</td>
+                                    <td>{miembro.jugador.nombre + " " + miembro.jugador.apellido}</td>
+                                    <td>{miembro.ingreso}'</td>
+                                    <td>{miembro.egreso}'</td>
+                                </tr>)
+                            })}
+                            </tbody>
+                        </Table>
                     </div>
                 </div>
-                
+
             </div>
 
         );

@@ -65,7 +65,7 @@ export const TablaPartidosCampeonatos = () => {
                                 <td>{partido.clubVisitante.nombre}</td>
                                 <td><Link class="btn btn-primary btn-sm" to={{
                                     pathname: '/tabla/partidos/lista_jugadores',
-                                    state: {idPartido: ids, categoria: categ}
+                                    state: {idPartido: ids, categoria: categ, campeonato: location.state.idCampeonato, nombrePartido: `${partido.clubLocal.nombre} - ${partido.clubVisitante.nombre} | Fecha número: ${partido.nroFecha} | Fecha: ${partido.fechaPartido}`}
                                 }}> Lista Jugadores</Link></td>
                             </tr>)
                     })}

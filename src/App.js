@@ -62,9 +62,9 @@ function App() {
                                     componente={DatosJugadorResponsable}>
                     </ProtectedRoute>
 
-                    <ProtectedRoute exact path="/detalles/partidos/responsables" rol={["RESPONSABLE"]}
-                                    componente={DetallesPartidoResponsable}>
-                    </ProtectedRoute>
+                    {/*<ProtectedRoute exact path="/detalles/partidos/responsables" rol={["RESPONSABLE"]}*/}
+                    {/*                componente={DetallesPartidoResponsable}>*/}
+                    {/*</ProtectedRoute>*/}
 
                     <ProtectedRoute exact path="/datos/representante" rol={["RESPONSABLE"]} componente={DatosRepresentante}>
                     </ProtectedRoute>
