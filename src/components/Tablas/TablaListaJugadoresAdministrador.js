@@ -8,13 +8,12 @@ import NavBarAdministracion from "../NavBars/NavBarAdministracion"
 import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 export const TablaListaJugadoresAdministrador = (props) => {
     const history = useHistory();
-    const location = history.location();
     const [listaJugadores, setListaJugadores] = useState(null);
     const todosJugadores = useRef(null);
     const [estado, setEstado] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios(`http://localhost:8080/getMiembroByPartido?idPartido=${location.state.idPartido}`);
+            const response = await axios(`http://localhost:8080/getMiembroByPartido?idPartido=${history.location.state.idPartido}`);
             const newData = response.data;
             setListaJugadores(newData);            
             todosJugadores.current = newData;
@@ -29,7 +28,7 @@ export const TablaListaJugadoresAdministrador = (props) => {
                     <thead>
                         <tr>
                             <th colSpan="15" className='titulo-tabla-jug-camp'>
-                                Lista Jugadores: {location.state.nombrePartido}
+                                Lista Jugadores: {history.location.state.nombrePartido}
                             </th>
                         </tr>
                         <tr>

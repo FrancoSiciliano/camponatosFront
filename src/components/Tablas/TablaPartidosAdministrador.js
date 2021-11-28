@@ -34,7 +34,7 @@ export const TablaPartidosAdministrador = () => {
             setError("No existe la lista de jugadores del partido");
             setShowModal(true);
         } else {
-            history.push('/tabla/partidos/lista_jugadores', datosPartido)
+            history.push('/administrador/campeonatos/partidos/jugadores', datosPartido)
 
         }
     }
