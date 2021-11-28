@@ -100,8 +100,7 @@ export const DetallesPartido = ({debeValidar}) => {
 
     const HandleClickInvalidar = async () => {
         handleClose()
-        setValidado(true)
-
+        setValidado(false);
         await axios.post(`http://localhost:8080/invalidarPartido?idPartido=${idPartido}`)
 
         history.push("/home/representante");
@@ -113,7 +112,7 @@ export const DetallesPartido = ({debeValidar}) => {
             return (<div className="SegmentoBotonesValidarInvalidar">
                 <Button variant="success" disabled={validado === false} className="BotonesValidarInvalidar"
                         onClick={HandleClickValidar}> VALIDAR PARTIDO </Button>
-                <Button variant="success" disabled={validado === true} className="BotonesValidarInvalidar"
+                <Button variant="success" disabled={validado === false} className="BotonesValidarInvalidar"
                         onClick={handleShow}> INVALIDAR PARTIDO </Button>
             </div>)
         }
