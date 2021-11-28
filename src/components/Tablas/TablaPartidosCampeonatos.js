@@ -6,14 +6,15 @@ import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
-
+import {PopUp} from "../PopUp/PopUp";
 export const TablaPartidosCampeonatos = () => {
     const history = useHistory();
     const [data, setData] = useState(null);
     const rol = localStorage.getItem("rol");
     const [clubResponsable, setClubResponsable] = useState(null);
     const [isPartidoSeleccionadoCargado, setIsPartidoSeleccionadoCargado] = useState(false);
-
+    const [showModal, setShowModal] = useState(false);
+    const [error, setError] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${history.location.state.idCampeonato}`);
@@ -46,7 +47,8 @@ export const TablaPartidosCampeonatos = () => {
 
     const handleClick = async (idPartido, datosPartido) => {
         if (await isPartidoCargado(idPartido)) {
-            alert("No puede editar la lista de jugadores en un partido cuyos datos ya fueron cargados")
+            setError("No se puede editar la lista de jugadores de un partido que ya a sucecedido");
+            setShowModal(true);
         } else {
             history.push('/tabla/partidos/lista_jugadores', datosPartido)
 
@@ -57,7 +59,8 @@ export const TablaPartidosCampeonatos = () => {
         if (await isPartidoCargado(idPartido)) {
             history.push('/detalles/partidos', datosPartido)
         } else {
-            alert("Los resultados del partido aún no fueron cargados por el administrador");
+            setError("Los resultados del partido aún no fueron cargados por el administrador");
+            setShowModal(true);
         }
     }
 
@@ -109,6 +112,7 @@ export const TablaPartidosCampeonatos = () => {
                     })}
                     </tbody>
                 </Table></div>
+                <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="Lista Jugadores"/>
         </div>)
     } else {
         return (<PantallaCarga/>)

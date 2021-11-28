@@ -2,10 +2,7 @@
     background-color: #fff;
 }
 
-tbody, td, th, thead, tr {
-    color: rgb(0, 0, 0) !important;
-    border-color: #40916C !important;
-}
+
 
 tr {
     text-align: center;
