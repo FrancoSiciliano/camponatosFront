@@ -58,6 +58,10 @@ export const IngresoEgreso = () => {
             setShowModal(true);
             
         }
+        else if(ingreso === egreso  &&  egreso !== 0 ){
+            setError("El ingreso y el egreso no puede ser iguales ");
+            setShowModal(true);
+        }
         else{ await axios.post(`http://localhost:8080/definirIngresoEgreso?idMiembro=${idJug}&ingreso=${ingreso}&egreso=${egreso}`).catch(e=> alert(e.response.data.message))
         setError("El ingreso y el egreso fueron registrados correctamente");
         setShowModal(true);
