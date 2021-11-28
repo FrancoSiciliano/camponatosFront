@@ -6,7 +6,7 @@ import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
 import {useHistory} from 'react-router-dom';
 import NavBarResponsable from "../NavBars/NavBarResponsable";
-import {yaExisteElMail,yaExisteDocumento} from "../../controles";
+import {yaExisteElMail,yaExisteDocumento,contieneCaracteresEspeciales} from "../../controles";
 
 
 export const RegistroResponsableByResponsable = () => {
@@ -39,17 +39,16 @@ export const RegistroResponsableByResponsable = () => {
         event.preventDefault();
 
         const existeMail = await yaExisteElMail(datos.mail);
-        const existeDocumento = await yaExisteDocumento(datos.nrodocumento);
+        const existeDocumento = !isNaN(datos.nrodocumento) && await yaExisteDocumento(datos.nrodocumento);;
 
-        if (datos.nombre === "" || containsNumbers(datos.nombre)) {
+        if (datos.nombre === "" || containsNumbers(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
             setError("Nombre no válido");
             setShowModal(true);
         }
-        else if (datos.apellido === "" || containsNumbers(datos.apellido)) {
+        else if (datos.apellido === "" || containsNumbers(datos.apellido) || contieneCaracteresEspeciales(datos.nombre)) {
             setError("Apellido no válido");
             setShowModal(true);
         }
-
 
         else if (datos.nrodocumento === "" || isNaN(datos.nrodocumento) || existeDocumento) {
             setError("Número de documento no válido");
@@ -145,7 +144,7 @@ export const RegistroResponsableByResponsable = () => {
                         </Form.Group>
                     </Row>
                     <Button type="submit" className="btn-success">Finalizar</Button>
-                    <PopUp show={showModal} onHide={() => ( datosCargados ? setShowModal(false) : history.push("/home/representante") )} text={error} title="No se puede registrar al responsable"/>
+                    <PopUp show={showModal} onHide={() => ( !datosCargados ? setShowModal(false) : history.push("/home/representante") )} text={error} title="No se puede registrar al responsable"/>
                 </Form>
             </div>
         </div>
