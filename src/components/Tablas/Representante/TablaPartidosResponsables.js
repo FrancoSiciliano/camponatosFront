@@ -14,14 +14,17 @@ export const TablaPartidosResponsables = () => {
     const [clubResponsable, setClubResponsable] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
-            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
-            const res = respuesta.data;
-            setResponsable(res);
-            setClubResponsable(res.club.idClub);
-            const response = await axios(`http://localhost:8080/getPartidosByClub?idClub=${res.club.idClub}`).catch(e=>alert(e.response.data.message));
-            const Datanew = response.data;
-            setData(Datanew);
-            console.log('partidos-> ',data)
+            try {
+                const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
+                const res = respuesta.data;
+                setResponsable(res);
+                setClubResponsable(res.club.idClub);
+                const response = await axios(`http://localhost:8080/getPartidosByClub?idClub=${res.club.idClub}`);
+                const Datanew = response.data;
+                setData(Datanew);
+                console.log('partidos-> ', data)
+            } catch (e) {
+            }
         };
         fetchData();
     }, []);
@@ -60,7 +63,6 @@ export const TablaPartidosResponsables = () => {
 
     }
 
-    if (data) {
         return (
             <div className="TablaPartidosResponsables scrollable-responsable">
                 <Table striped bordered hover sm responsive="md">
@@ -79,7 +81,7 @@ export const TablaPartidosResponsables = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {data.map((partido, index) => {
+                    {data && data.map((partido, index) => {
                         if (!estaValidado(partido) && datosCargados(partido)) {
                             return (
                                 <tr key={index}>
@@ -95,7 +97,4 @@ export const TablaPartidosResponsables = () => {
                     })}
                     </tbody>
                 </Table></div>)
-    } else {
-        return (<PantallaCarga/>)
-    }
 }

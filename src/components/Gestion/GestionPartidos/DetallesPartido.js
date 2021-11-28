@@ -109,7 +109,7 @@ export const DetallesPartido = ({debeValidar}) => {
 
     
     const BotonesValidarInvalidar = () => {
-        if (rol === "RESPONSABLE" && (clubVisitante.idClub === clubRep || clubLocal.idClub === clubRep)) {
+        if (rol === "RESPONSABLE" && (clubVisitante.idClub === clubRep || clubLocal.idClub === clubRep) && !history.location.state.vieneDeListado) {
             return (<div className="SegmentoBotonesValidarInvalidar">
                 <Button variant="success" disabled={validado === false} className="BotonesValidarInvalidar"
                         onClick={HandleClickValidar}> VALIDAR PARTIDO </Button>

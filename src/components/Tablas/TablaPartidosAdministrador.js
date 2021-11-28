@@ -58,7 +58,7 @@ export const TablaPartidosAdministrador = () => {
                                           }}> Detalles</Link></td>
                                 <td><Link class="btn btn-primary btn-sm" to={{
                                     pathname: '/administrador/campeonatos/partidos/jugadores',
-                                    state: {idPartido: ids}
+                                    state: {idPartido: ids, nombrePartido: `${partido.clubLocal.nombre} - ${partido.clubVisitante.nombre} | Fecha número: ${partido.nroFecha} | Fecha: ${partido.fechaPartido}`}
                                 }}> Lista Jugadores</Link></td>
                             </tr>)
                     })}

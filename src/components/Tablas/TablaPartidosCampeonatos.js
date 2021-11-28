@@ -47,7 +47,7 @@ export const TablaPartidosCampeonatos = () => {
 
     const handleClick = async (idPartido, datosPartido) => {
         if (await isPartidoCargado(idPartido)) {
-            setError("No se puede editar la lista de jugadores de un partido que ya a sucecedido");
+            setError("No se puede editar la lista de jugadores de un partido que cuyos datos ya han sido cargados");
             setShowModal(true);
         } else {
             history.push('/tabla/partidos/lista_jugadores', datosPartido)
@@ -98,7 +98,8 @@ export const TablaPartidosCampeonatos = () => {
                                     idPartido: partido.idPartido,
                                     clubLocal: partido.clubLocal,
                                     clubVisitante: partido.clubVisitante,
-                                    clubResponsable: clubResponsable
+                                    clubResponsable: clubResponsable,
+                                    vieneDeListado: true,
                                 })}>Detalles</Button></td>
                                 {rol === "RESPONSABLE" && (partido.clubLocal.idClub === clubResponsable || partido.clubVisitante.idClub === clubResponsable) &&
                                 <td><Button onClick={() => handleClick(partido.idPartido, {idPartido: ids,

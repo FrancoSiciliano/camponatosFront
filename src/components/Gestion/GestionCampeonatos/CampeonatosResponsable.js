@@ -12,15 +12,17 @@ export const CampeonatosResponsable = () => {
     const idResponsable = localStorage.getItem("id");
     useEffect(() => {
         const fetchData = async () => {
+            try {
+                const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
+                const res = respuesta.data;
+                setResponsable(res);
+                const response = await axios(`http://localhost:8080/getCampeonatosByClub?idClub=${parseInt(res.club.idClub)}`);
+                const newData = response.data;
+                setCampeonatos(newData);
+                setTodosCampeonatos(newData);
+            } catch (e) {
 
-            const respuesta = await axios(`http://localhost:8080/getResponsableById?idResponsable=${idResponsable}`)
-            const res = respuesta.data;
-            setResponsable(res);
-            console.log(res)
-            const response = await axios(`http://localhost:8080/getCampeonatosByClub?idClub=${parseInt(res.club.idClub)}`);
-            const newData = response.data;
-            setCampeonatos(newData);
-            setTodosCampeonatos(newData);
+            }
         };
         fetchData();
     }, []);
@@ -32,7 +34,6 @@ export const CampeonatosResponsable = () => {
         console.log(campeonatos);
     }
 
-    if (campeonatos) {
         return (<div className="ContenedorGestion">
             <div className="TablaCampeonatosResponsables scrollable-responsable">
                 <Table striped bordered hover sm>
@@ -56,7 +57,7 @@ export const CampeonatosResponsable = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {campeonatos.map((campeonato, index) => {
+                    {campeonatos && campeonatos.map((campeonato, index) => {
                         let descripcion = campeonato.descripcion
                         let ids = campeonato.idCampeonato
                         let estado = campeonato.estado
@@ -93,12 +94,7 @@ export const CampeonatosResponsable = () => {
                 </Table>
             </div>
         </div>)
-    } else {
-        return (<div className="center">
-            <Spinner animation="border"/>
-            <p style={{position: "relative", top: "-23px", fontSize: "50px"}}>Cargando...</p>
-        </div>)
-    }
+
 }
 
 

@@ -63,7 +63,7 @@ export const PerfilJugador = (props) => {
                             </div>
                         </Accordion.Body>
                     </Accordion.Item>
-                    <Accordion.Item eventKey="2">
+                    {stats && <Accordion.Item eventKey="2">
                         <Accordion.Header>Estadisticas en el Club</Accordion.Header>
                         <Accordion.Body>
                             <div className="datos-formulario-stats">
@@ -85,7 +85,7 @@ export const PerfilJugador = (props) => {
                                 </div>
                             </div>
                         </Accordion.Body>
-                    </Accordion.Item>
+                    </Accordion.Item>}
                 </Accordion>
 
             </div>

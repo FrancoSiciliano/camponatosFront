@@ -92,7 +92,7 @@ function App() {
                     </ProtectedRoute>
 
                     {/*RUTAS ADMIN*/}
-
+F
                     <ProtectedRoute exact path="/home/administracion" rol={["ADMIN"]} componente={LandingAdministrador}>
                     </ProtectedRoute>
 
@@ -138,27 +138,9 @@ function App() {
                     <ProtectedRoute exact path="/datos/jugador" rol={["JUGADOR"]} componente={DatosJugador}>
                     </ProtectedRoute>
 
-                    <ProtectedRoute exact path="/administrador/campeonatos/partidos/jugadores" rol={["ADMIN"]} componente={TablaListaJugadoresAdministrador}>
-                    </ProtectedRoute>
 
                     <ProtectedRoute exact path="/estadisticas/campeonato" rol={["JUGADOR"]} componente={EstadisticasJugadorCampeonato}>
                     </ProtectedRoute>
-
-
-                    {/*<Route path="/tabla/representantes">*/}
-                    {/*    <TablaResponsables/>*/}
-                    {/*</Route> NO ESTABA EN USO ????????????????????*/}
-                    
-                    <Route path="/partidos/Detalles">
-                        <DetallesPartido/>
-                    </Route>
-
-                    <Route path="/gestionar/campeonato">
-                        <CampeonatosResponsable/>
-                    </Route>
-                    <Route path="/gestionar/jugadores">
-                        <ListaJugadoresClub/>
-                    </Route>
 
                     <Route path="*" component={() => "404 NOT FOUND"}/>
 

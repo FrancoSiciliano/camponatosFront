@@ -26,17 +26,13 @@ export const LandingJugador = () => {
         fetchData();
     }, [])
 
-    if (jugador && stats) {
         return (
             <div className = 'contenedor-home-jugador'>
                 <NavBarJugador idJugador={idJugador}/>
-                <div className="contenido-landing-jugador">
+                {jugador && <div className="contenido-landing-jugador">
                     <PerfilJugador jugadorData={jugador} estadisticas={stats}/>
-                    <CarouselCard idClub={stats.idClub}/>
-                </div>
+                    {stats && <CarouselCard idClub={stats.idClub}/>}
+                </div>}
             </div>
         )
-    } else {
-        return (<PantallaCarga/>)
-    }
 }

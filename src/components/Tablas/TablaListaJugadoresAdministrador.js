@@ -20,7 +20,7 @@ export const TablaListaJugadoresAdministrador = (props) => {
         };
         fetchData();
     }, [estado]);
-    if (listaJugadores) {
+
         return (<div>
             <NavBarAdministracion/>
             <div className="TablaListaJugadores scrollable-lista-jugadores">
@@ -28,7 +28,7 @@ export const TablaListaJugadoresAdministrador = (props) => {
                     <thead>
                         <tr>
                             <th colSpan="15" className='titulo-tabla-jug-camp'>
-                                Lista Jugadores
+                                Lista Jugadores: {location.state.nombrePartido}
                             </th>
                         </tr>
                         <tr>
@@ -46,7 +46,7 @@ export const TablaListaJugadoresAdministrador = (props) => {
                            </tr>
                     </thead>
                     <tbody>
-                        {listaJugadores.map((listajugadores, index) => {
+                        {listaJugadores && listaJugadores.map((listajugadores, index) => {
                             return (
                                 <tr key={index}>
                                     <td>{listajugadores.jugador.idJugador}</td>
@@ -66,7 +66,5 @@ export const TablaListaJugadoresAdministrador = (props) => {
                 </Table>
             </div>
         </div>)
-    } else {
-        return (<PantallaCarga/>)
-    }
+
 }
