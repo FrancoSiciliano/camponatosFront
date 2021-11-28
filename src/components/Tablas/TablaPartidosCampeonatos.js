@@ -6,15 +6,14 @@ import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
-import {PopUp} from "../PopUp/PopUp";
+
 export const TablaPartidosCampeonatos = () => {
     const history = useHistory();
     const [data, setData] = useState(null);
     const rol = localStorage.getItem("rol");
     const [clubResponsable, setClubResponsable] = useState(null);
     const [isPartidoSeleccionadoCargado, setIsPartidoSeleccionadoCargado] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-    const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${history.location.state.idCampeonato}`);
@@ -47,8 +46,10 @@ export const TablaPartidosCampeonatos = () => {
 
     const handleClick = async (idPartido, datosPartido) => {
         if (await isPartidoCargado(idPartido)) {
+
             setError("No se puede editar la lista de jugadores de un partido que cuyos datos ya han sido cargados");
             setShowModal(true);
+
         } else {
             history.push('/tabla/partidos/lista_jugadores', datosPartido)
 
@@ -59,8 +60,7 @@ export const TablaPartidosCampeonatos = () => {
         if (await isPartidoCargado(idPartido)) {
             history.push('/detalles/partidos', datosPartido)
         } else {
-            setError("Los resultados del partido aún no fueron cargados por el administrador");
-            setShowModal(true);
+            alert("Los resultados del partido aún no fueron cargados por el administrador");
         }
     }
 
@@ -79,8 +79,11 @@ export const TablaPartidosCampeonatos = () => {
                         <th>Categoria</th>
                         <th>Club Local</th>
                         <th>Club Visitante</th>
-                        <th>Detalles</th>
-                        <th>Listado Jugadores</th>
+                        <th colSpan="2">
+                            <Form.Control classname="searchBox"
+                                          id="search" type="search" placeholder="Filtrar por Nombre"
+                                          onChange={""} autoComplete="off"/>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -98,8 +101,10 @@ export const TablaPartidosCampeonatos = () => {
                                     idPartido: partido.idPartido,
                                     clubLocal: partido.clubLocal,
                                     clubVisitante: partido.clubVisitante,
+
                                     clubResponsable: clubResponsable,
                                     vieneDeListado: true,
+
                                 })}>Detalles</Button></td>
                                 {rol === "RESPONSABLE" && (partido.clubLocal.idClub === clubResponsable || partido.clubVisitante.idClub === clubResponsable) &&
                                 <td><Button onClick={() => handleClick(partido.idPartido, {idPartido: ids,
@@ -110,7 +115,6 @@ export const TablaPartidosCampeonatos = () => {
                     })}
                     </tbody>
                 </Table></div>
-                <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="Lista Jugadores"/>
         </div>)
     } else {
         return (<PantallaCarga/>)
