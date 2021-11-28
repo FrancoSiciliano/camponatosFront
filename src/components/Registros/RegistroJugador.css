@@ -1,11 +1,6 @@
 .main-container-registro-Jugador {
-    background-image: url("../../assets/images/travel-nomades-JO19K0HDDXI-unsplash.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    padding: 300px;
+    padding: 5%;
     width: 100vw ;
-    height: 100vh ;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,4 +18,12 @@
 .titulo-responsable {
     margin-bottom: 50px !important;
     justify-self: flex-start;
+}
+
+.main-page-registro-jugador {
+    background-image: url("../../assets/images/travel-nomades-JO19K0HDDXI-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
 }

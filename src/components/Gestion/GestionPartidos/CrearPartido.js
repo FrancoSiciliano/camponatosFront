@@ -7,6 +7,10 @@ import {Table, Form, Row, Button, Col} from "react-bootstrap";
 import {useHistory} from "react-router-dom";
 
 export const CrearPartido = () => {
+    const [showModal, setShowModal] = useState(false);
+    const [error, setError] = useState("");
+    const [title, setTitle] = useState("");
+    const [modalTitle, setModalTitle] = useState("");
 
     const history = useHistory();
     const idCampeonato = history.location.state;
@@ -60,14 +64,23 @@ export const CrearPartido = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const res = await axios.get(`http://localhost:8080/crearPartido?nroZona=100&categoria=${datosPartido.categoria}&idClubLocal=${datosPartido.clubLocal}&idClubVisitante=${datosPartido.clubVisitante}&idCampeonato=${idCampeonato}`);
-        const idPartidoA = res.data;
-        const resB = await axios.get(`http://localhost:8080/crearPartido?nroZona=100&categoria=${datosPartido.categoria}&idClubLocal=${datosPartido.clubVisitante}&idClubVisitante=${datosPartido.clubLocal}&idCampeonato=${idCampeonato}`);
-        const idPartidoB = resB.data;
+        if (datosPartido.clubLocal.idClub === datosPartido.clubVisitante.idClub) {
+            setError("El club local no puede ser igual al visitante");
+            setTitle("Club no válido");
+            setModalTitle("Advertencia")
+            setShowModal(true);
 
-        const cargarFecha = await axios.get(`http://localhost:8080/cargarNroFechaYFechaPartido?idParitdo=${idPartidoA}&nroFecha=${datosPartido.nroFecha}&fecha=${datosPartido.fechaPartidoL.replaceAll("-", "/")}`);
-        const cargarFechaB = await axios.get(`http://localhost:8080/cargarNroFechaYFechaPartido?idParitdo=${idPartidoB}&nroFecha=${datosPartido.nroFecha+1}&fecha=${datosPartido.fechaPartidoV.replaceAll("-", "/")}`);
+        } else {
+            const res = await axios.get(`http://localhost:8080/crearPartido?nroZona=100&categoria=${datosPartido.categoria}&idClubLocal=${datosPartido.clubLocal}&idClubVisitante=${datosPartido.clubVisitante}&idCampeonato=${idCampeonato}`);
+            const idPartidoA = res.data;
+            const resB = await axios.get(`http://localhost:8080/crearPartido?nroZona=100&categoria=${datosPartido.categoria}&idClubLocal=${datosPartido.clubVisitante}&idClubVisitante=${datosPartido.clubLocal}&idCampeonato=${idCampeonato}`);
+            const idPartidoB = resB.data;
+    
+            const cargarFecha = await axios.get(`http://localhost:8080/cargarNroFechaYFechaPartido?idParitdo=${idPartidoA}&nroFecha=${datosPartido.nroFecha}&fecha=${datosPartido.fechaPartidoL.replaceAll("-", "/")}`);
+            const cargarFechaB = await axios.get(`http://localhost:8080/cargarNroFechaYFechaPartido?idParitdo=${idPartidoB}&nroFecha=${datosPartido.nroFecha+1}&fecha=${datosPartido.fechaPartidoV.replaceAll("-", "/")}`);
+        }
     }
+       
 
     return (
         <div>

@@ -42,7 +42,7 @@ export const TablaJugadores = (props) => {
     if (jugadores) {
         return (<div>
             <NavBarResponsable/>
-            <div className="TablaListaJugadoresClub scrollable-lista-jugadores">
+            <div className="TablaListaJugadoresClub">
                 <Table striped bordered hover sm>
                     <thead>
                     <tr>
@@ -61,7 +61,6 @@ export const TablaJugadores = (props) => {
                         <th>Teléfono</th>
                         <th>Categoria</th>
                         <th>Fecha Nacimiento</th>
-                        <th>Fecha de Alta</th>
                         <th>Estado Global</th>
                         <th colSpan="2">
                             <Form.Control classname="searchBox"
@@ -86,7 +85,6 @@ export const TablaJugadores = (props) => {
                                 <td>{jugadores.telefono}</td>
                                 <td>{jugadores.categoria}</td>
                                 <td>{jugadores.fechaNacimiento}</td>
-                                <td>{jugadores.fechaAlta}</td>
                                 <td>{jugadores.estado ? "Activo" : "Inactivo"}</td>
                                 <td><Button classname="botonesTablas" class="btn btn-success btn-sm" 
                                 onClick={()=>handleClickEstado(idJug)}> Cambiar Estado </Button></td>
