@@ -9,6 +9,7 @@
     flex-direction: column;
 }
 .BotonesValidarInvalidar{
+    width: 200px !important;
     margin: 2px;
     border-radius: 10px;
     border-width: 1px;

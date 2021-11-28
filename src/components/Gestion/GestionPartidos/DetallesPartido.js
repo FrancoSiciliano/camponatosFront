@@ -1,4 +1,4 @@
-import {Table, Button} from "react-bootstrap"
+import {Table, Button, Modal} from "react-bootstrap"
 import {useHistory, useLocation} from 'react-router-dom'
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -6,7 +6,7 @@ import './DetallesPartido.css'
 import NavBarResponsable from "../../NavBars/NavBarResponsable";
 import NavBarAdministracion from "../../NavBars/NavBarAdministracion";
 import {PantallaCarga} from "../../PantallaCarga/PantallaCarga";
-import {GiBootKick, GiGoalKeeper} from "react-icons/all";
+
 
 
 export const DetallesPartido = ({debeValidar}) => {
@@ -28,7 +28,12 @@ export const DetallesPartido = ({debeValidar}) => {
     const [validado, setValidado] = useState(true);
     const [jugadoresLocal, setJugadoresLocal] = useState(null);
     const [jugadoresVisitante, setJugadoresVisitante] = useState(null);
+    const [show, setShow] = useState(false);
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    
     useEffect(async () => {
         const fetchDataPartido = async () => {
             const response = await axios(`http://localhost:8080/encontrarPartido?idPartido=${idPartido}`);
@@ -92,24 +97,24 @@ export const DetallesPartido = ({debeValidar}) => {
             setActualizar(!actualizar);
         }
     }
+
     const HandleClickInvalidar = async () => {
+        handleClose()
         setValidado(true)
-        if (clubVisitante.idClub === clubRep) {
-            await axios.post(`http://localhost:8080/validadoByClubVisitante?idClub=${clubRep}&idPartido=${idPartido}`);
-            setActualizar(!actualizar);
-        } else {
-            await axios.post(`http://localhost:8080/validadoByClubLocal?idClub=${clubRep}&idPartido=${idPartido}`);
-            setActualizar(!actualizar);
-        }
+
+        await axios.post(`http://localhost:8080/invalidarPartido?idPartido=${idPartido}`)
+
+        history.push("/home/representante");
     }
 
+    
     const BotonesValidarInvalidar = () => {
         if (rol === "RESPONSABLE" && (clubVisitante.idClub === clubRep || clubLocal.idClub === clubRep)) {
             return (<div className="SegmentoBotonesValidarInvalidar">
                 <Button variant="success" disabled={validado === false} className="BotonesValidarInvalidar"
                         onClick={HandleClickValidar}> VALIDAR PARTIDO </Button>
                 <Button variant="success" disabled={validado === true} className="BotonesValidarInvalidar"
-                        onClick={HandleClickInvalidar}> INVALIDAR PARTIDO </Button>
+                        onClick={handleShow}> INVALIDAR PARTIDO </Button>
             </div>)
         }
     }
@@ -188,6 +193,26 @@ export const DetallesPartido = ({debeValidar}) => {
                     </div>
 
                     {BotonesValidarInvalidar()}
+
+                    {show && 
+                        <Modal 
+                        show={show}
+                        onHide={handleClose}
+                        centered>
+                            <Modal.Header closeButton>
+                                <Modal.Title>¡ADVERTENCIA!</Modal.Title>
+                            </Modal.Header>
+
+                            <Modal.Body>
+                                <p>SI USTED SELECCIONA EN "ACEPTAR" ELIMINARÁ TODOS LOS DATOS DEL PARTIDO Y EL ADMINISTRADOR DEBERA CARGARLOS NUEVAMENTE</p>
+                            </Modal.Body>
+
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>CERRAR</Button>
+                                <Button onClick={HandleClickInvalidar} variant="primary">ACEPTAR</Button>
+                            </Modal.Footer>
+                        </Modal>
+                    }
                     <div className="equipo-detalle-partido">
                         <h1>{datosPartido.clubVisitante.nombre}</h1>
                         <Table hover sm className="visitante">
