@@ -66,7 +66,7 @@ export const CrearPartido = () => {
         const idPartidoB = resB.data;
 
         const cargarFecha = await axios.get(`http://localhost:8080/cargarNroFechaYFechaPartido?idParitdo=${idPartidoA}&nroFecha=${datosPartido.nroFecha}&fecha=${datosPartido.fechaPartidoL.replaceAll("-", "/")}`);
-        const cargarFechaB = await axios.get(`http://localhost:8080/cargarNroFechaYFechaPartido?idParitdo=${idPartidoB}&nroFecha=${datosPartido.nroFecha}&fecha=${datosPartido.fechaPartidoV.replaceAll("-", "/")}`);
+        const cargarFechaB = await axios.get(`http://localhost:8080/cargarNroFechaYFechaPartido?idParitdo=${idPartidoB}&nroFecha=${datosPartido.nroFecha+1}&fecha=${datosPartido.fechaPartidoV.replaceAll("-", "/")}`);
     }
 
     return (
