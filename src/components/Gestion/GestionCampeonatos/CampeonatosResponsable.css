@@ -6,10 +6,7 @@
     background-color: #40916C!important;
     border-color: transparent !important;
 }
-tbody, td, th, thead, tr {
-    color: rgb(0, 0, 0) !important;
-    border-color: #40916C !important;
-}
+
 .tituloTablaCamp{
     font-size: 30px;
 }
