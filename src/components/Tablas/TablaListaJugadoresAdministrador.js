@@ -2,13 +2,13 @@ import { Table } from "react-bootstrap";
 import '../Tablas/TablaJugadores.css'
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { useLocation,useHistory } from "react-router";
+import { useHistory } from "react-router";
 
 import NavBarAdministracion from "../NavBars/NavBarAdministracion"
 import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
 export const TablaListaJugadoresAdministrador = (props) => {
     const history = useHistory();
-    const location = history.location();
+    const location = history.location;
     const [listaJugadores, setListaJugadores] = useState(null);
     const todosJugadores = useRef(null);
     const [estado, setEstado] = useState(false);
