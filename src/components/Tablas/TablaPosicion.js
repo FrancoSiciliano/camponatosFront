@@ -5,7 +5,8 @@ import NavbarJugador from "../NavBars/NavBarJugador"
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import {useHistory} from "react-router-dom";
-import { Spinner } from "react-bootstrap";
+import {Spinner} from "react-bootstrap";
+
 export const TablaPosicion = (props) => {
     const history = useHistory();
     const [tablaPosiciones, setTablaPosiciones] = useState(null);
@@ -15,20 +16,20 @@ export const TablaPosicion = (props) => {
             const camp = await axios(`http://localhost:8080/encontrarCampeonato?idCampeonato=${history.location.state.campeonato}`)
             const newCamp = camp.data;
             setCampeonato(newCamp);
-            if(newCamp.tipoCampeonato == 'Puntos'){
+            if (newCamp.tipoCampeonato == 'Puntos') {
                 const response = await axios(`http://localhost:8080/getTablaPosicionesByCampeonato?idCampeonato=${history.location.state.campeonato}`);
                 const newData = response.data;
                 setTablaPosiciones(newData);
 
-            }else{
+            } else {
                 const response = await axios(`http://localhost:8080/getTablaPosicionesByZona?idCampeonato=${history.location.state.campeonato}`);
                 const newData = response.data;
                 setTablaPosiciones(newData);
             }
-        
+
         };
         fetchData();
-    },[]);
+    }, []);
 
     const navbar = () => {
         if (history.location.state.tipo === "RESPONSABLES") {
@@ -41,7 +42,7 @@ export const TablaPosicion = (props) => {
     }
 
     if (tablaPosiciones) {
-        if(campeonato.tipoCampeonato == 'Puntos' ){
+        if (campeonato.tipoCampeonato == 'Puntos') {
             return (
                 <div>
                     {navbar()}
@@ -82,58 +83,59 @@ export const TablaPosicion = (props) => {
                         })}
                         </tbody>
                     </Table></div>)
-        }else{
+        } else {
             return (
                 <div>
                     {navbar()}
-                    <Table striped bordered hover>
-                        <thead>
-                        <tr>
-                            <th colSpan="12">{campeonato.descripcion}</th>
-                        </tr>
-                        <tr>
-                            <th>Club</th>
-                            <th>J</th>
-                            <th>G</th>
-                            <th>E</th>
-                            <th>P</th>
-                            <th>GA</th>
-                            <th>GE</th>
-                            <th>Dif</th>
-                            <th>Puntos</th>
-                            <th>Zona</th>
-                            <th>Prom</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
+                    {
                         tablaPosiciones.map((tabla, index) => {
                             return (
-                                tabla.map((elemento) => {
-                                    return(
-                                    <tr key={index}>
-                                        <td>{elemento.id.nombre}</td>
-                                        <td>{elemento.cantidadJugados}</td>
-                                        <td>{elemento.cantidadGanados}</td>
-                                        <td>{elemento.cantidadEmpatados}</td>
-                                        <td>{elemento.cantidadPerdidos}</td>
-                                        <td>{elemento.golesFavor}</td>
-                                        <td>{elemento.golesContra}</td>
-                                        <td>{elemento.diferenciaGoles}</td>
-                                        <td>{elemento.puntos}</td>
-                                        <td>{index+1}</td>
-                                        <td>{elemento.promedio}</td>
+                                <Table striped bordered hover>
+                                    <thead>
+                                    <tr>
+                                        <th colSpan="12">{campeonato.descripcion} - Zona: {index + 1}</th>
                                     </tr>
-                                    )
-                                })
-                                
+                                    <tr>
+                                        <th>Club</th>
+                                        <th>J</th>
+                                        <th>G</th>
+                                        <th>E</th>
+                                        <th>P</th>
+                                        <th>GA</th>
+                                        <th>GE</th>
+                                        <th>Dif</th>
+                                        <th>Puntos</th>
+                                        <th>Prom</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {
+                                        tabla.map((elemento) => {
+                                            return (
+                                                <tr key={index}>
+                                                    <td>{elemento.id.nombre}</td>
+                                                    <td>{elemento.cantidadJugados}</td>
+                                                    <td>{elemento.cantidadGanados}</td>
+                                                    <td>{elemento.cantidadEmpatados}</td>
+                                                    <td>{elemento.cantidadPerdidos}</td>
+                                                    <td>{elemento.golesFavor}</td>
+                                                    <td>{elemento.golesContra}</td>
+                                                    <td>{elemento.diferenciaGoles}</td>
+                                                    <td>{elemento.puntos}</td>
+                                                    <td>{elemento.promedio}</td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                    </tbody>
+                                </Table>
                             )
                         })
-                        }
-                        </tbody>
-                    </Table></div>)
+                    }
+
+                </div>)
         }
-        
+
     } else {
         return (<div>
             {navbar()}
