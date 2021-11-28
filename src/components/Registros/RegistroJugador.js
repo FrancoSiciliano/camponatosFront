@@ -54,46 +54,46 @@ export const RegistroJugador = () => {
         const existeDocumento = await yaExisteDocumento(datos.nroDoc);
 
         if (datos.nombre === "" || contieneNumeros(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
-            setError("Nombre no válido");
+            setpopUp({mensaje: "Por favor, Ingrese un nombre valido", titulo: "Nombre Invalido"})
             setShowModal(true);
         }
 
-        else if (datos.apellido === "" || contieneNumeros(datos.apellido) || contieneCaracteresEspeciales(datos.nombre)) {
-            setError("Apellido no válido");
+        else if (datos.apellido === "" || contieneNumeros(datos.apellido) || contieneCaracteresEspeciales(datos.apellido)) {
+            setpopUp({mensaje: "Por favor, Ingrese un apellido valido", titulo: "Apellido Invalido"})
             setShowModal(true);
         }
 
-        else if (datos.tipoDoc === "" || contieneNumeros(datos.tipoDoc) || contieneCaracteresEspeciales(datos.nombre)){
-            setError("Tipo de documento no válido");
+        else if (datos.tipoDoc === "" || contieneNumeros(datos.tipoDoc) || contieneCaracteresEspeciales(datos.tipoDoc)){
+            setpopUp({mensaje: "Por favor, Ingrese un tipo de documento valido", titulo: "Tipo de documento Invalido"})
             setShowModal(true);
         }
 
         else if (datos.nroDoc === "" || isNaN(datos.nroDoc) || existeDocumento ) {
-            setError("Número de documento no válido");
+            setpopUp({mensaje: "Por favor, Ingrese un numero de documento valido", titulo: "Numero de documento Invalido"})
             setShowModal(true);
         }
 
         else if (datos.mail === "" || !esUnMail(datos.mail) || existeMail) {
-            setError("Correo Electrónico no válido");
+            setpopUp({mensaje: "Por favor, Ingrese un email valido", titulo: "Email Invalido"})
             setShowModal(true);
         }
 
         else if (datos.password === "") {
-            setError("No puede dejar la contraseña vacía");
+            setpopUp({mensaje: "Por favor, Ingrese una contraseña", titulo: "Contraseña Invalido"})
             setShowModal(true);
         }
 
         else if (datos.direccion === "") {
-            setError("Dirección no Válida");
+            setpopUp({mensaje: "Por favor, Ingrese una direccion valida", titulo: "Direccion Invalido"})
             setShowModal(true);
         }
 
         else if (datos.nroTelefono === "" || existeTelefono ) {
-            setError("Número de telefono no válido");
+            setpopUp({mensaje: "Por favor, Ingrese un numero de telefono valido", titulo: "Numero de telefono Invalido"})
             setShowModal(true);
         }
         else if (datos.fechaNacimiento === "") {
-            setError("Por favor, Ingrese una fecha de nacimiento");
+            setpopUp({mensaje: "Por favor, Ingrese una fecha de nacimiento", titulo: "Fecha Invalida"})
             setShowModal(true);
         } else {
             await postData();
@@ -198,7 +198,7 @@ export const RegistroJugador = () => {
                             </Form.Group>
                         </Row>
                         <Button type="submit" className="btn-success">Finalizar</Button>
-                        <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al jugador"/>
+                        <PopUp show={showModal} onHide={() => setShowModal(false)} text={popUp.mensaje} title={popUp.titulo}/>
                     </Form>
                 </div>
             </div>
