@@ -88,7 +88,7 @@ export const RegistroJugador = () => {
             setShowModal(true);
         }
 
-        else if (datos.nroTelefono === "" || isNaN(datos.nroTelefono) || existeTelefono ) {
+        else if (datos.nroTelefono === "" || existeTelefono ) {
             setError("Número de telefono no válido");
             setShowModal(true);
         }
@@ -96,7 +96,7 @@ export const RegistroJugador = () => {
             setError("Por favor, Ingrese una fecha de nacimiento");
             setShowModal(true);
         } else {
-            postData();
+            await postData();
             setShowModal(true);
         }
 
@@ -109,8 +109,7 @@ export const RegistroJugador = () => {
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
             
         }catch(e){
-            console.log(e.message)
-            setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
+            setpopUp({mensaje: e.response.data.message, titulo: "Operacion fallida"})
             
         }
         setShowModal(false);

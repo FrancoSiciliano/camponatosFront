@@ -15,6 +15,7 @@ export const TablaCampeonatos = (props) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [estado, setEstado] = useState(false);
 
 
 
@@ -26,11 +27,13 @@ export const TablaCampeonatos = (props) => {
             setTodosCampeonatos(newData);
         };
         fetchData();
-    }, []);
+    }, [estado]);
     const handleClickEstado = async (idCampeonato) => {
         console.log(idCampeonato);
         try {
             await axios.post(`http://localhost:8080/terminarCampeonato?idCampeonato=${idCampeonato}`);
+            setShow(false);
+            setEstado(!estado);
         } catch (e) {
             console.log(e.message);
         }
@@ -45,7 +48,6 @@ export const TablaCampeonatos = (props) => {
         history.push("/tabla/posiciones",{campeonato:idCampeonato,tipo:Tipo})
     }
 
-    if (campeonatos) {
         return (<div className="ContenedorGestion">
             <NavBarAdministracion />
             <div className="TablaCampeonatosResponsables">
@@ -61,6 +63,7 @@ export const TablaCampeonatos = (props) => {
                             <th>Nombre</th>
                             <th>Fecha Inicio</th>
                             <th>Fecha Fin</th>
+                            <th>Estado</th>
                             <th>Tabla Posicion</th>
                             <th>Partidos Campeonato</th>
                             <th colSpan="2">
@@ -72,17 +75,17 @@ export const TablaCampeonatos = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {campeonatos.map((campeonato, index) => {
+                        {campeonatos && campeonatos.map((campeonato, index) => {
                             let descripcion = campeonato.descripcion
                             let ids = campeonato.idCampeonato
                             let estado = campeonato.estado
-                            if (estado.toUpperCase() === "ACTIVO") {
                                 return (
                                     <tr key={ids}>
                                         <td>{ids}</td>
                                         <td>{descripcion}</td>
                                         <td>{campeonato.fechaInicio}</td>
                                         <td>{campeonato.fechaFin}</td>
+                                        <td>{estado}</td>
                                         <td><Button className='btn btn-success' onClick={() => handleClickTabla(ids,"ADMINISTRADOR")} >Tabla</Button></td>
                                         <td><Link className='btn btn-success' to={{
                                             pathname: '/administrador/campeonatos/partidos',
@@ -104,16 +107,13 @@ export const TablaCampeonatos = (props) => {
                                             </Modal.Footer>
                                         </Modal>
                                     </tr>)
-                            }
+
 
                         })}
                     </tbody>
                 </Table>
             </div>
         </div>)
-    } else {
-        return (<PantallaCarga/>)
-    }
 }
 
 
