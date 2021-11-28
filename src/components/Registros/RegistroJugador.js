@@ -30,8 +30,7 @@ export const RegistroJugador = () => {
         idClub: "",
     });
 
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
+
     const [showModal, setShowModal] = useState(false);
 
     const handleChange = (event) => {

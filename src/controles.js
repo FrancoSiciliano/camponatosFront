@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const contieneNumeros = (string) => {
     console.log(string);
-    return string.match("/\d+/g") !== null;
+    return string.match(/^\d+$/) !== null;
 };
 
 export const contieneCaracteresEspeciales = (string) => {
