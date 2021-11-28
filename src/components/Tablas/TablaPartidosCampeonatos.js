@@ -45,14 +45,8 @@ export const TablaPartidosCampeonatos = () => {
         return partido.golesLocal !== null && partido.golesVisitante !== null;
     }
 
-    const handleClick = async (idPartido, datosPartido) => {
-        if (await isPartidoCargado(idPartido)) {
-            setError("No se puede editar la lista de jugadores de un partido que ya a sucecedido");
-            setShowModal(true);
-        } else {
-            history.push('/tabla/partidos/lista_jugadores', datosPartido)
-
-        }
+    const handleClick = async ( datosPartido) => {
+        history.push('/administrador/campeonatos/partidos/jugadores', datosPartido)
     }
 
     const handleClickDetalles = async (idPartido, datosPartido) => {
@@ -97,14 +91,13 @@ export const TablaPartidosCampeonatos = () => {
                                 <td><Button class="btn btn-primary btn-sm" onClick={() => handleClickDetalles(partido.idPartido, {
                                     idPartido: partido.idPartido,
                                     clubLocal: partido.clubLocal,
-                                    clubVisitante: partido.clubVisitante,
-                                    clubResponsable: clubResponsable
+                                    clubVisitante: partido.clubVisitante
                                 })}>Detalles</Button></td>
-                                {rol === "RESPONSABLE" && (partido.clubLocal.idClub === clubResponsable || partido.clubVisitante.idClub === clubResponsable) &&
+                                
                                 <td><Button onClick={() => handleClick(partido.idPartido, {idPartido: ids,
                                     categoria: categ,
                                     campeonato: history.location.state.idCampeonato,
-                                    nombrePartido: `${partido.clubLocal.nombre} - ${partido.clubVisitante.nombre} | Fecha número: ${partido.nroFecha} | Fecha: ${partido.fechaPartido}`})} class="btn btn-primary btn-sm" > Lista Jugadores</Button></td>}
+                                    nombrePartido: `${partido.clubLocal.nombre} - ${partido.clubVisitante.nombre} | Fecha número: ${partido.nroFecha} | Fecha: ${partido.fechaPartido}`})} class="btn btn-primary btn-sm" > Lista Jugadores</Button></td>
                             </tr>)
                     })}
                     </tbody>
