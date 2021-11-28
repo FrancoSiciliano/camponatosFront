@@ -4,11 +4,16 @@ import { useHistory, useLocation } from 'react-router';
 import {Table, Button} from "react-bootstrap";
 import axios from "axios";
 import { useEffect, useState } from 'react';
+import { PopUp } from '../../PopUp/PopUp';
 export const IngresoEgreso = () => {
     const history = useHistory();
     const location = useLocation();
     const idPartido = location.state;
     const [miembrosPartido, setMiembrosPartido] = useState([]);
+
+    const [showModal, setShowModal] = useState(false);
+    const [error, setError] = useState(null);
+
    
     useEffect(() => {
         const fetchData = async () => {
@@ -39,7 +44,6 @@ export const IngresoEgreso = () => {
         }else{
             copiaMiembros[index].egreso = event.target.value;
         }
-        console.log(copiaMiembros[index])
         setMiembrosPartido(copiaMiembros)
         
     }
@@ -49,8 +53,15 @@ export const IngresoEgreso = () => {
         const idJug = miembrosPartido[index].id;
         const ingreso = parseInt(miembrosPartido[index].ingreso);
         const egreso = parseInt(miembrosPartido[index].egreso);
-        await axios.post(`http://localhost:8080/definirIngresoEgreso?idMiembro=${idJug}&ingreso=${ingreso}&egreso=${egreso}`).catch(e=> alert(e.response.data.message))
-    }
+        if(ingreso < 0 || egreso < 0){
+            setError("El ingreso y el egreso no puede ser menor a 0");
+            setShowModal(true);
+            
+        }
+        else{ await axios.post(`http://localhost:8080/definirIngresoEgreso?idMiembro=${idJug}&ingreso=${ingreso}&egreso=${egreso}`).catch(e=> alert(e.response.data.message))
+        setError("El ingreso y el egreso fueron registrados correctamente");
+        setShowModal(true);
+ }  }
     return(
         <div className='ingreso-egreso-principal'>
             
@@ -86,7 +97,8 @@ export const IngresoEgreso = () => {
                                 <td>{miembro.egreso}</td>
                                 <td><input onChange={(event)=> handleChange(event, index, true)} value={miembro.ingreso} type='number' placeholder='Ingreso'/></td>
                                 <td><input onChange={(event)=> handleChange(event, index, false)} value={miembro.egreso} type='number' placeholder='Egreso'/></td>
-                                <td><Button onClick={() => handleClick(index)}> CARGAR </Button></td>
+                                <td><Button onClick={() => handleClick(index,)}> CARGAR </Button></td>
+                                
                                 
                             </tr>
                         )
@@ -94,7 +106,10 @@ export const IngresoEgreso = () => {
                     </tbody>
                 </Table>
             </div>
+            
             <Button onClick={()=>history.push("/cargar/datos/partido", idPartido)} className='boton-siguiente-carga'> SIGUIENTE</Button>
+            <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="Ingreso/Egreso Jugadores"/>
+
         </div>
     );
 }
