@@ -6,6 +6,7 @@ import './TablaPartidosCampeonatos.css'
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
 import NavBarResponsable from "../NavBars/NavBarResponsable";
 import {PantallaCarga} from "../PantallaCarga/PantallaCarga";
+import {PopUp} from "../PopUp/PopUp";
 
 export const TablaPartidosCampeonatos = () => {
     const history = useHistory();
@@ -13,7 +14,9 @@ export const TablaPartidosCampeonatos = () => {
     const rol = localStorage.getItem("rol");
     const [clubResponsable, setClubResponsable] = useState(null);
     const [isPartidoSeleccionadoCargado, setIsPartidoSeleccionadoCargado] = useState(false);
-
+    const [error, setError] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [title, setTitle] = useState("");
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${history.location.state.idCampeonato}`);
@@ -47,7 +50,8 @@ export const TablaPartidosCampeonatos = () => {
     const handleClick = async (idPartido, datosPartido) => {
         if (await isPartidoCargado(idPartido)) {
 
-            setError("No se puede editar la lista de jugadores de un partido que cuyos datos ya han sido cargados");
+            setError("No se puede editar la lista de jugadores de un partido cuyos datos ya han sido cargados");
+            setTitle("Error Lista de Jugadores")
             setShowModal(true);
 
         } else {
@@ -60,7 +64,9 @@ export const TablaPartidosCampeonatos = () => {
         if (await isPartidoCargado(idPartido)) {
             history.push('/detalles/partidos', datosPartido)
         } else {
-            alert("Los resultados del partido aún no fueron cargados por el administrador");
+            setError("Los resultados del partido aún no fueron cargados por el administrador");
+            setTitle("Error detalles de partido")
+            setShowModal(true);
         }
     }
 
@@ -87,7 +93,7 @@ export const TablaPartidosCampeonatos = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {data.map( (partido, index) => {
+                    {data.map((partido, index) => {
                         var ids = partido.idPartido
                         var categ = partido.categoria
                         return (
@@ -97,24 +103,28 @@ export const TablaPartidosCampeonatos = () => {
                                 <td>{categ}</td>
                                 <td>{partido.clubLocal.nombre}</td>
                                 <td>{partido.clubVisitante.nombre}</td>
-                                <td><Button class="btn btn-primary btn-sm" onClick={() => handleClickDetalles(partido.idPartido, {
-                                    idPartido: partido.idPartido,
-                                    clubLocal: partido.clubLocal,
-                                    clubVisitante: partido.clubVisitante,
+                                <td><Button class="btn btn-primary btn-sm"
+                                            onClick={() => handleClickDetalles(partido.idPartido, {
+                                                idPartido: partido.idPartido,
+                                                clubLocal: partido.clubLocal,
+                                                clubVisitante: partido.clubVisitante,
 
-                                    clubResponsable: clubResponsable,
-                                    vieneDeListado: true,
+                                                clubResponsable: clubResponsable,
+                                                vieneDeListado: true,
 
-                                })}>Detalles</Button></td>
+                                            })}>Detalles</Button></td>
                                 {rol === "RESPONSABLE" && (partido.clubLocal.idClub === clubResponsable || partido.clubVisitante.idClub === clubResponsable) &&
-                                <td><Button onClick={() => handleClick(partido.idPartido, {idPartido: ids,
+                                <td><Button onClick={() => handleClick(partido.idPartido, {
+                                    idPartido: ids,
                                     categoria: categ,
                                     campeonato: history.location.state.idCampeonato,
-                                    nombrePartido: `${partido.clubLocal.nombre} - ${partido.clubVisitante.nombre} | Fecha número: ${partido.nroFecha} | Fecha: ${partido.fechaPartido}`})} class="btn btn-primary btn-sm" > Lista Jugadores</Button></td>}
+                                    nombrePartido: `${partido.clubLocal.nombre} - ${partido.clubVisitante.nombre} | Fecha número: ${partido.nroFecha} | Fecha: ${partido.fechaPartido}`
+                                })} class="btn btn-primary btn-sm"> Lista Jugadores</Button></td>}
                             </tr>)
                     })}
                     </tbody>
                 </Table></div>
+            <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title={title}/>
         </div>)
     } else {
         return (<PantallaCarga/>)
