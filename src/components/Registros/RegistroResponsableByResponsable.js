@@ -26,7 +26,7 @@ export const RegistroResponsableByResponsable = () => {
     });
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
-
+    const [datosCargados, setDatosCargados] = useState(false);
     const handleChange = (event) => {
         setDatos({
             ...datos,
@@ -65,7 +65,7 @@ export const RegistroResponsableByResponsable = () => {
             setError("No puede dejar la contraseña vacía");
             setShowModal(true);
         } else{
-            postData();
+            await postData();
             setShowModal(true);
         }
         
@@ -76,7 +76,7 @@ export const RegistroResponsableByResponsable = () => {
             const res = respuesta.data;
             await axios.post(`http://localhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${res.club.idClub}&mail=${datos.mail}&password=${datos.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
-            
+            setDatosCargados(true);
         }catch(e){
             console.log(e.message)
             setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
@@ -145,7 +145,7 @@ export const RegistroResponsableByResponsable = () => {
                         </Form.Group>
                     </Row>
                     <Button type="submit" className="btn-success">Finalizar</Button>
-                    <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al responsable"/>
+                    <PopUp show={showModal} onHide={() => ( datosCargados ? setShowModal(false) : history.push("/home/representante") )} text={error} title="No se puede registrar al responsable"/>
                 </Form>
             </div>
         </div>
