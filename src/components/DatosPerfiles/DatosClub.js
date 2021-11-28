@@ -73,6 +73,7 @@ export const DatosClub = (props) => {
 
     const postData = async (data) => {
         try {
+            console.log(responsable);
             await axios.post(`http://localhost:8080/modificarClub?idClub=${responsable.club.idClub}&nombre=${data.nombre}&direccion=${data.direccion}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
