@@ -121,10 +121,10 @@ export const RegistroJugador = () => {
 
    
         return (
-            <div className="main">
-                 <NavBarResponsable id={idResponsable}/>
+            <div className="main-page-registro-jugador">
+                 <NavBarResponsable />
                 <div className="main-container-registro-Jugador">
-               
+
                     <h1 className="titulo-responsable">Registro Jugador</h1>
 
                     <Form onSubmit={handleSubmit}>
