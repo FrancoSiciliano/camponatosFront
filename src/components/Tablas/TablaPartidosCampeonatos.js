@@ -79,11 +79,8 @@ export const TablaPartidosCampeonatos = () => {
                         <th>Categoria</th>
                         <th>Club Local</th>
                         <th>Club Visitante</th>
-                        <th colSpan="2">
-                            <Form.Control classname="searchBox"
-                                          id="search" type="search" placeholder="Filtrar por Nombre"
-                                          onChange={""} autoComplete="off"/>
-                        </th>
+                        <th>Detalles</th>
+                        <th>Listado Jugadores</th>
                     </tr>
                     </thead>
                     <tbody>

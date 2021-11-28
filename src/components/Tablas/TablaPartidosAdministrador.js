@@ -32,11 +32,8 @@ export const TablaPartidosAdministrador = () => {
                         <th>Categoria</th>
                         <th>Club Local</th>
                         <th>Club Visitante</th>
-                        <th colSpan="2">
-                            <Form.Control classname="searchBox"
-                                          id="search" type="search" placeholder="Filtrar por Fecha"
-                                          onChange={""} autoComplete="off"/>
-                        </th>
+                        <th>Detalles</th>
+                        <th>Listado de Jugadores</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -67,6 +64,7 @@ export const TablaPartidosAdministrador = () => {
                     })}
                     </tbody>
                 </Table></div>
+                
         </div>)
     } else {
         return (<PantallaCarga/>)

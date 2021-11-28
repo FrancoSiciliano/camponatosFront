@@ -58,6 +58,10 @@ export const IngresoEgreso = () => {
             setShowModal(true);
             
         }
+        else if(ingreso > egreso){
+            setError("El ingreso no puede ser mayor al egreso");
+            setShowModal(true);
+        }
         else if(ingreso === egreso  &&  egreso !== 0 ){
             setError("El ingreso y el egreso no puede ser iguales ");
             setShowModal(true);

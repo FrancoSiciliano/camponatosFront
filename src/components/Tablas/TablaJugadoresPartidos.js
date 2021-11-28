@@ -123,10 +123,9 @@ export const TablaJugadoresPartidos = () => {
                     </thead>
                     <tbody>
                     {listaJugadoresAgregados.map((listajugadores, index) => {
-                        let idJug = listajugadores.jugador.idJugador
                         return (
                             <tr key={index}>
-                                <td>{idJug}</td>
+                                <td>{index+1}</td>
                                 <td>{listajugadores.jugador.nombre}</td>
                                 <td>{listajugadores.jugador.apellido}</td>
                                 <td>{listajugadores.jugador.tipoDocumento}</td>
