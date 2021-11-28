@@ -88,7 +88,7 @@ export const RegistroJugador = () => {
             setShowModal(true);
         }
 
-        else if (datos.nroTelefono === "" || existeTelefono ) {
+        else if (datos.nroTelefono === "" || existeTelefono || isNaN(datos.nroTelefono) ) {
             setpopUp({mensaje: "Por favor, Ingrese un numero de telefono valido", titulo: "Numero de telefono Invalido"})
             setShowModal(true);
         }
