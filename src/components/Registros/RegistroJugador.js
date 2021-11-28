@@ -29,7 +29,7 @@ export const RegistroJugador = () => {
         fechaNacimiento: "",
         idClub: "",
     });
-
+    const [datosCargados,setDatosCargados] = useState(false);
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
@@ -97,6 +97,7 @@ export const RegistroJugador = () => {
             setShowModal(true);
         } else {
             await postData();
+            setDatosCargados(true);
             setShowModal(true);
         }
 
@@ -112,7 +113,6 @@ export const RegistroJugador = () => {
             setpopUp({mensaje: e.response.data.message, titulo: "Operacion fallida"})
             
         }
-        setShowModal(false);
 
     }
 
@@ -198,7 +198,7 @@ export const RegistroJugador = () => {
                             </Form.Group>
                         </Row>
                         <Button type="submit" className="btn-success">Finalizar</Button>
-                        <PopUp show={showModal} onHide={() => setShowModal(false)} text={popUp.mensaje} title={popUp.titulo}/>
+                        <PopUp show={showModal} onHide={() => (!datosCargados ? setShowModal(false) : history.push('/home/representante'))} text={popUp.mensaje} title={popUp.titulo}/>
                     </Form>
                 </div>
             </div>
