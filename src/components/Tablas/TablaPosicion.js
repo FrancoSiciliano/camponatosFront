@@ -96,7 +96,7 @@ export const TablaPosicion = (props) => {
                                         <th colSpan="12">{campeonato.descripcion} - Zona: {index + 1}</th>
                                     </tr>
                                     <tr>
-                                        <th>Club</th>
+                                        <th style={{width:'300px'}}>Club</th>
                                         <th>J</th>
                                         <th>G</th>
                                         <th>E</th>
