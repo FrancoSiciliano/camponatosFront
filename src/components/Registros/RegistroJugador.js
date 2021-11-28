@@ -11,7 +11,7 @@ import { ErrorPagina } from "../NotFound/ErrorPagina";
 export const RegistroJugador = () => {
     const history = useHistory();
     const idResponsable = localStorage.getItem('id');
-
+    const regex = /\d/;
 
     const [popUp, setpopUp] = useState ({
         mensaje: "",
@@ -51,9 +51,9 @@ export const RegistroJugador = () => {
 
         const existeMail = await yaExisteElMail(datos.mail);
         const existeTelefono = await yaExisteTelefono(datos.nroTelefono);
-        const existeDocumento = await yaExisteDocumento(datos.nroDoc);
+        const existeDocumento = !isNaN(datos.nroDoc) && await yaExisteDocumento(datos.nroDoc);
 
-        if (datos.nombre === "" || contieneNumeros(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
+        if (datos.nombre === "" || contieneNumeros(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)  ) {
             setpopUp({mensaje: "Por favor, Ingrese un nombre valido", titulo: "Nombre Invalido"})
             setShowModal(true);
         }
@@ -68,7 +68,7 @@ export const RegistroJugador = () => {
             setShowModal(true);
         }
 
-        else if (datos.nroDoc === "" || isNaN(datos.nroDoc) || existeDocumento ) {
+        else if (datos.nroDoc === "" || existeDocumento || isNaN(datos.nroDoc) ) {
             setpopUp({mensaje: "Por favor, Ingrese un numero de documento valido", titulo: "Numero de documento Invalido"})
             setShowModal(true);
         }

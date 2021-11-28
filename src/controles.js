@@ -1,8 +1,8 @@
 import axios from "axios";
-
+const regex = /\d/;
 export const contieneNumeros = (string) => {
     console.log(string);
-    return string.match(/^\d+$/) !== null;
+    return regex.test(string);
 };
 
 export const contieneCaracteresEspeciales = (string) => {
