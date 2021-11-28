@@ -1,6 +1,6 @@
 import {Table, Button} from "react-bootstrap";
 import '../Tablas/TablaJugadores.css'
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {Form} from "react-bootstrap";
 import {useLocation} from "react-router";
@@ -23,6 +23,10 @@ export const TablaJugadoresPartidos = () => {
     const [responsable, setResponsable] = useState(null);
     const [jugadorSeleccionado, setJugadorSeleccionado] = useState(null);
     const [show, setShow] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [error, setError] = useState(null);
+    const [title, setTitle] = useState("No es posible agregar el jugador para este partido");
+    const [modalTitle, setModalTitle] = useState("Error al cargar miembro");
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -38,7 +42,6 @@ export const TablaJugadoresPartidos = () => {
             const newData = response.data;
 
             setResponsable(responsable);
-            // setJugadoresDisponibles(jugadoresClubRespuestaData);
             setListaJugadoresAgregados(newData);
             const auxJugadoresDisponibles = [];
             const auxJugadoresAgregado = [];
@@ -63,7 +66,10 @@ export const TablaJugadoresPartidos = () => {
             setEstado(!estado);
             setShow(false);
         } catch (e) {
-            console.log(e.message)
+            const mensaje = e.response.data.message;
+            setError(mensaje);
+            setShow(false);
+            setShowModal(true);
         }
     }
     const handleChangeJugadorSelect = (event) => {
@@ -136,8 +142,9 @@ export const TablaJugadoresPartidos = () => {
                     })}
                     </tbody>
                 </Table>
-                <PopUp/>
             </div>
+            <PopUp show={showModal} onHide={() => setShowModal(false)} text={error}
+                   title={title} modalTitle={modalTitle}/>
         </div>)
     } else {
         return (<PantallaCarga/>)
