@@ -42,7 +42,7 @@ export const RegistroResponsableAdministrador = () => {
         event.preventDefault();
 
         const existeMail = await yaExisteElMail(datos.mail);
-        const existeDocumento = await yaExisteDocumento(datos.nrodocumento);
+        const existeDocumento = !isNaN(datos.nrodocumento) && await yaExisteDocumento(datos.nrodocumento);;
 
 
         if (datos.nombre === "" || contieneNumeros(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
