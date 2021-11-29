@@ -27,7 +27,7 @@ export const RegistroResponsableAdministrador = () => {
 
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
-
+    const [datosCargados, setDatosCagados] = useState(false);
 
     const handleChange = (event) => {
         setDatos({
@@ -42,7 +42,7 @@ export const RegistroResponsableAdministrador = () => {
         event.preventDefault();
 
         const existeMail = await yaExisteElMail(datos.mail);
-        const existeDocumento = await yaExisteDocumento(datos.nrodocumento);
+        const existeDocumento = !isNaN(datos.nrodocumento) && await yaExisteDocumento(datos.nrodocumento);;
 
 
         if (datos.nombre === "" || contieneNumeros(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
@@ -69,6 +69,7 @@ export const RegistroResponsableAdministrador = () => {
             setError(existeMail ? "El correo electrónico ingresado ya existe" : "Correo Electrónico no válido");
             setTitle("Error en el correo electrónico");
             setModalTitle("Advertencia");
+            setDatosCagados(true);
             setShowModal(true);
         }
 
@@ -149,7 +150,7 @@ export const RegistroResponsableAdministrador = () => {
                         </Form.Group>
                     </Row>
                     <Button type="submit" className="btn-success">Finalizar</Button>
-                    <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title={title} modalTitle={modalTitle}/>
+                    <PopUp show={showModal} onHide={() => (!datosCargados ? setShowModal(false) : history.push("/home/administracion"))} text={error} title={title} modalTitle={modalTitle}/>
                 </Form>
             </div>
         </div>

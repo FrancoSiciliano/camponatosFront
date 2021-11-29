@@ -91,7 +91,7 @@ export const TablaCampeonatos = (props) => {
                                             pathname: '/administrador/campeonatos/partidos',
                                             state: { idCampeonato: ids, descrip: descripcion }
                                         }}>Partidos</Link></td>
-                                        <td><Button className='btn btn-success' onClick={handleShow} >Finalizar Campeonato</Button></td>
+                                        <td>{estado === "activo" && <Button className='btn btn-success' onClick={handleShow} >Finalizar Campeonato</Button>}</td>
                                         <Modal show={show} onHide={handleClose}>
                                             <Modal.Header closeButton>
                                                 <Modal.Title>Finalizar Campeonato</Modal.Title>

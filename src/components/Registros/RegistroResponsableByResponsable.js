@@ -6,7 +6,7 @@ import axios from "axios";
 import {PopUp} from "../PopUp/PopUp";
 import {useHistory} from 'react-router-dom';
 import NavBarResponsable from "../NavBars/NavBarResponsable";
-import {yaExisteElMail,yaExisteDocumento} from "../../controles";
+import {yaExisteElMail,yaExisteDocumento,contieneCaracteresEspeciales} from "../../controles";
 
 
 export const RegistroResponsableByResponsable = () => {
@@ -26,7 +26,7 @@ export const RegistroResponsableByResponsable = () => {
     });
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
-
+    const [datosCargados, setDatosCargados] = useState(false);
     const handleChange = (event) => {
         setDatos({
             ...datos,
@@ -39,33 +39,32 @@ export const RegistroResponsableByResponsable = () => {
         event.preventDefault();
 
         const existeMail = await yaExisteElMail(datos.mail);
-        const existeDocumento = await yaExisteDocumento(datos.nrodocumento);
+        const existeDocumento = !isNaN(datos.nrodocumento) && await yaExisteDocumento(datos.nrodocumento);
 
-        if (datos.nombre === "" || containsNumbers(datos.nombre)) {
-            setError("Nombre no válido");
+        if (datos.nombre === "" || containsNumbers(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
+            setpopUp({mensaje: "Por favor, Ingrese un nombre valido", titulo: "Nombre Invalido"})
             setShowModal(true);
         }
-        else if (datos.apellido === "" || containsNumbers(datos.apellido)) {
-            setError("Apellido no válido");
+        else if (datos.apellido === "" || containsNumbers(datos.apellido) || contieneCaracteresEspeciales(datos.apellido)) {
+            setpopUp({mensaje: "Por favor, Ingrese un apellido valido", titulo: "Apellido Invalido"})
             setShowModal(true);
         }
-
 
         else if (datos.nrodocumento === "" || isNaN(datos.nrodocumento) || existeDocumento) {
-            setError("Número de documento no válido");
+            setpopUp({mensaje: "Por favor, Ingrese un numero de documento valido", titulo: "Numero de documento Invalido"})
             setShowModal(true);
         }
 
         else if (datos.mail === "" || !isMail(datos.mail) || existeMail) {
-            setError("Correo Electrónico no válido");
+            setpopUp({mensaje: "Por favor, Ingrese un email valido", titulo: "Email Invalido"})
             setShowModal(true);
         }
 
         else if (datos.password === "") {
-            setError("No puede dejar la contraseña vacía");
+            setpopUp({mensaje: "Por favor, Ingrese una contraseña", titulo: "Contraseña Invalido"})
             setShowModal(true);
         } else{
-            postData();
+            await postData();
             setShowModal(true);
         }
         
@@ -76,7 +75,7 @@ export const RegistroResponsableByResponsable = () => {
             const res = respuesta.data;
             await axios.post(`http://localhost:8080/crearResponsable?documento=${datos.nrodocumento}&nombre=${datos.nombre}&apellido=${datos.apellido}&idClub=${res.club.idClub}&mail=${datos.mail}&password=${datos.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
-            
+            setDatosCargados(true);
         }catch(e){
             console.log(e.message)
             setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
@@ -145,7 +144,7 @@ export const RegistroResponsableByResponsable = () => {
                         </Form.Group>
                     </Row>
                     <Button type="submit" className="btn-success">Finalizar</Button>
-                    <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="No se puede registrar al responsable"/>
+                    <PopUp show={showModal} onHide={() => ( !datosCargados ? setShowModal(false) : history.push("/home/representante") )} text={popUp.mensaje} title={popUp.titulo}/>
                 </Form>
             </div>
         </div>
