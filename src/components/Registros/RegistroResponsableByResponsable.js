@@ -39,29 +39,29 @@ export const RegistroResponsableByResponsable = () => {
         event.preventDefault();
 
         const existeMail = await yaExisteElMail(datos.mail);
-        const existeDocumento = !isNaN(datos.nrodocumento) && await yaExisteDocumento(datos.nrodocumento);;
+        const existeDocumento = !isNaN(datos.nrodocumento) && await yaExisteDocumento(datos.nrodocumento);
 
         if (datos.nombre === "" || containsNumbers(datos.nombre) || contieneCaracteresEspeciales(datos.nombre)) {
-            setError("Nombre no válido");
+            setpopUp({mensaje: "Por favor, Ingrese un nombre valido", titulo: "Nombre Invalido"})
             setShowModal(true);
         }
-        else if (datos.apellido === "" || containsNumbers(datos.apellido) || contieneCaracteresEspeciales(datos.nombre)) {
-            setError("Apellido no válido");
+        else if (datos.apellido === "" || containsNumbers(datos.apellido) || contieneCaracteresEspeciales(datos.apellido)) {
+            setpopUp({mensaje: "Por favor, Ingrese un apellido valido", titulo: "Apellido Invalido"})
             setShowModal(true);
         }
 
         else if (datos.nrodocumento === "" || isNaN(datos.nrodocumento) || existeDocumento) {
-            setError("Número de documento no válido");
+            setpopUp({mensaje: "Por favor, Ingrese un numero de documento valido", titulo: "Numero de documento Invalido"})
             setShowModal(true);
         }
 
         else if (datos.mail === "" || !isMail(datos.mail) || existeMail) {
-            setError("Correo Electrónico no válido");
+            setpopUp({mensaje: "Por favor, Ingrese un email valido", titulo: "Email Invalido"})
             setShowModal(true);
         }
 
         else if (datos.password === "") {
-            setError("No puede dejar la contraseña vacía");
+            setpopUp({mensaje: "Por favor, Ingrese una contraseña", titulo: "Contraseña Invalido"})
             setShowModal(true);
         } else{
             await postData();
@@ -144,7 +144,7 @@ export const RegistroResponsableByResponsable = () => {
                         </Form.Group>
                     </Row>
                     <Button type="submit" className="btn-success">Finalizar</Button>
-                    <PopUp show={showModal} onHide={() => ( !datosCargados ? setShowModal(false) : history.push("/home/representante") )} text={error} title="No se puede registrar al responsable"/>
+                    <PopUp show={showModal} onHide={() => ( !datosCargados ? setShowModal(false) : history.push("/home/representante") )} text={popUp.mensaje} title={popUp.titulo}/>
                 </Form>
             </div>
         </div>
