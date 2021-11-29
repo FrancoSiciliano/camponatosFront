@@ -11,6 +11,7 @@ import {PopUp} from "../PopUp/PopUp";
 import axios from 'axios';
 import { useLocation,useHistory } from 'react-router';
 import NavBarResponsable from "../NavBars/NavBarResponsable";
+import {contieneNumeros, esUnMail} from "../../controles";
 
 export const DatosRepresentante = () => {
     const history = useHistory();
@@ -53,18 +54,24 @@ export const DatosRepresentante = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (data.nombre === "") {
+        if (data.nombre === "" || contieneNumeros(data.nombre)) {
             setpopUp({mensaje: "Nombre no válido", titulo: "Dato erroneo"});
             setShowModal(true);
             return;
 
-        }
-        if (data.club.idClub === "") {
+        }else if (data.club.idClub === "") {
             setpopUp({mensaje: "Club no válido", titulo: "Dato erroneo"});
             setShowModal(true);
             return;
+        }else if(data.mail === "" || !esUnMail(data.mail)){
+            setpopUp({mensaje: "Mail no valido", titulo: "Dato erroneo"});
+            setShowModal(true);
+            return;
         }
-        postData(data)
+        else{
+            postData(data)
+        }
+       
     }
 
     if (data) {
