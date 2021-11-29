@@ -46,7 +46,7 @@ export const DatosJugador = () => {
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
-            setpopUp({mensaje: e.response.data.message, titulo: "Operacion fallida"})
+            setpopUp({mensaje:'No se pudieron actualizar ciertos datos', titulo: "Operacion fallida"})
 
         }
         setShowModal(true);

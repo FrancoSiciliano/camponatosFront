@@ -18,12 +18,14 @@ export const DatosJugadorResponsable = () => {
         mensaje: "",
         titulo: ""
     })
+    const [modificarDocumento, setModificarDocumento] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios(`http://localhost:8080/encontrarJugador?idJugador=${history.location.state.idJugador}`);
             const newData = response.data;
             setDatosJugador(newData);
+            setModificarDocumento(newData.documento);
         }
 
         fetchData();
@@ -45,23 +47,23 @@ export const DatosJugadorResponsable = () => {
         console.log(data.tipoDocumento)
         console.log(data.direccion)
         console.log(data.mail)
-        console.log(data.telefono)
+        console.log('telefono -> ', data.telefono)
         console.log(data.password)
         try {
             /* AGREGAR METODOS QUE FALTAN PARA MODIFICAR LOS DATOS*/
             await axios.post(url + `modificarNombre?idJugador=${history.location.state.idJugador}&nombre=${data.nombre}`)
             await axios.post(url + `modificarApellido?idJugador=${history.location.state.idJugador}&apellido=${data.apellido}`)
             await axios.post(url + `modificarFechaNac?idJugador=${history.location.state.idJugador}&fechaNac=${data.fechaNacimiento.replaceAll('-','/')}`)
-            await axios.post(url + `modificarDocumento?idJugador=${history.location.state.idJugador}&documento=${data.documento}&tipoDoc=${data.tipoDocumento}`)
             await axios.post(url + `modificarTipoDocumento?idJugador=${history.location.state.idJugador}&tipo=${data.tipoDocumento}`)
+            modificarDocumento !== data.documento && await axios.post(url + `modificarDocumento?idJugador=${history.location.state.idJugador}&documento=${data.documento}&tipoDoc=${data.tipoDocumento}`)
             await axios.post(url + `modificarDireccion?idJugador=${history.location.state.idJugador}&direccion=${data.direccion}`)
-            await axios.post(url + `modificarMail?idJugador=${history.location.state.idJugador}&mail=${data.mail}`)
             await axios.post(url + `modificarTelefono?idJugador=${history.location.state.idJugador}&telefono=${data.telefono}`)
+            await axios.post(url + `modificarMail?idJugador=${history.location.state.idJugador}&mail=${data.mail}`)
             await axios.post(url + `cambiarPasswordJugador?idJugador=${history.location.state.idJugador}&password=${data.password}`)
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
-            setpopUp({mensaje: e.response.data.message, titulo: "Operacion fallida"})
+            setpopUp({mensaje: e.response.data.message , titulo: "Operacion fallida"})
 
         }
         setShowModal(true);
