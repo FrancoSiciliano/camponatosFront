@@ -46,7 +46,7 @@ export const DatosJugador = () => {
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
-            setpopUp({mensaje: e.message, titulo: "Operacion fallida"})
+            setpopUp({mensaje: e.response.data.message, titulo: "Operacion fallida"})
 
         }
         setShowModal(true);
@@ -69,8 +69,10 @@ export const DatosJugador = () => {
         } else if (datosJugador.password === "") {
             setpopUp({mensaje: "Password no válida", titulo: "Dato erroneo"});
             setShowModal(true);
+        } else{
+            postData(datosJugador)
         }
-        postData(datosJugador)
+        
     }
 
     const isMail = (string) => {

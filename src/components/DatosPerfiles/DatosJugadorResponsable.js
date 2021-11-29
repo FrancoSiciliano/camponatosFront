@@ -26,7 +26,6 @@ export const DatosJugadorResponsable = () => {
             setDatosJugador(newData);
         }
 
-
         fetchData();
     }, []);
 
@@ -39,8 +38,22 @@ export const DatosJugadorResponsable = () => {
     const url = 'http://localhost:8080/'
 
     const postData = async (data) => {
+        console.log(data.nombre)
+        console.log(data.apellido)
+        console.log(data.fechaNacimiento)
+        console.log(data.documento)
+        console.log(data.tipoDocumento)
+        console.log(data.direccion)
+        console.log(data.mail)
+        console.log(data.telefono)
+        console.log(data.password)
         try {
             /* AGREGAR METODOS QUE FALTAN PARA MODIFICAR LOS DATOS*/
+            await axios.post(url + `modificarNombre?idJugador=${history.location.state.idJugador}&nombre=${data.nombre}`)
+            await axios.post(url + `modificarApellido?idJugador=${history.location.state.idJugador}&apellido=${data.apellido}`)
+            await axios.post(url + `modificarFechaNac?idJugador=${history.location.state.idJugador}&fechaNac=${data.fechaNacimiento.replaceAll('-','/')}`)
+            await axios.post(url + `modificarDocumento?idJugador=${history.location.state.idJugador}&documento=${data.documento}&tipoDoc=${data.tipoDocumento}`)
+            await axios.post(url + `modificarTipoDocumento?idJugador=${history.location.state.idJugador}&tipo=${data.tipoDocumento}`)
             await axios.post(url + `modificarDireccion?idJugador=${history.location.state.idJugador}&direccion=${data.direccion}`)
             await axios.post(url + `modificarMail?idJugador=${history.location.state.idJugador}&mail=${data.mail}`)
             await axios.post(url + `modificarTelefono?idJugador=${history.location.state.idJugador}&telefono=${data.telefono}`)
@@ -48,7 +61,7 @@ export const DatosJugadorResponsable = () => {
             setpopUp({mensaje: "Se actualizaron los datos", titulo: "Operacion exitosa"})
 
         } catch (e) {
-            setpopUp({mensaje: e.target.value, titulo: "Operacion fallida"})
+            setpopUp({mensaje: e.response.data.message, titulo: "Operacion fallida"})
 
         }
         setShowModal(true);
@@ -81,8 +94,10 @@ export const DatosJugadorResponsable = () => {
         } else if (datosJugador.password === "") {
             setpopUp({mensaje: "Password inválida", titulo: "Dato erroneo"});
             setShowModal(true);
+        } else{
+            postData(datosJugador)
         }
-        postData(datosJugador)
+       
     }
 
     return (
@@ -102,7 +117,7 @@ export const DatosJugadorResponsable = () => {
                                     <FloatingLabel className="floatingInputGridJug" label="Nombre"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="nombre" placeholder="Nombre"
-                                                      style={{fontSize: "20px"}} value={datosJugador.nombre}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.nombre} onChange={handleChange}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -110,7 +125,7 @@ export const DatosJugadorResponsable = () => {
                                     <FloatingLabel className="floatingInputGridJug" label="Apellido"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="apellido" placeholder="Apellido"
-                                                      style={{fontSize: "20px"}} value={datosJugador.apellido}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.apellido} onChange={handleChange}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -118,7 +133,7 @@ export const DatosJugadorResponsable = () => {
                                     <FloatingLabel className="floatingInputGridJug" label="Fecha Nacimiento"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="date" placeholder="Fecha Nacimiento" name="fechaNacimiento"
-                                                      style={{fontSize: "20px"}} value={datosJugador.fechaNacimiento}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.fechaNacimiento} onChange={handleChange}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -137,7 +152,7 @@ export const DatosJugadorResponsable = () => {
                                     <FloatingLabel className="floatingInputGridJug" label="Tipo documento"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="tipoDocumento" placeholder="Tipo documento"
-                                                      style={{fontSize: "20px"}} value={datosJugador.tipoDocumento}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.tipoDocumento} onChange={handleChange}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -145,7 +160,7 @@ export const DatosJugadorResponsable = () => {
                                     <FloatingLabel className="floatingInputGridJug" label="Numero de documento"
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="documento" placeholder="Numero de documento"
-                                                      style={{fontSize: "20px"}} value={datosJugador.documento}/>
+                                                      style={{fontSize: "20px"}} value={datosJugador.documento} onChange={handleChange}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
