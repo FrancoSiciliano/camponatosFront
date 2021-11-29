@@ -13,6 +13,8 @@ export const TablaPartidosAdministrador = () => {
     const [data, setData] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [error, setError] = useState(null);
+    const [title, setTitle] = useState("");
+
     useEffect(() => {
         const fetchData = async () => {
             const partidos = await axios(`http://localhost:8080/getPartidosByCampeonato?idCampeonato=${location.state.idCampeonato}`);
@@ -26,12 +28,14 @@ export const TablaPartidosAdministrador = () => {
             history.push('/detalles/partidos', datosPartido)
         } else {
             setError("Los resultados del partido aún no fueron cargados por el administrador");
+            setTitle("Error detalles de partido")
             setShowModal(true);
         }
     }
     const handleClick = async (idPartido, datosPartido) => {
         if (await !isMiembroCargado(idPartido)) {
             setError("No existe la lista de jugadores del partido");
+            setTitle("Error Lista de Jugadores");
             setShowModal(true);
         } else {
             history.push('/administrador/campeonatos/partidos/jugadores', datosPartido)
@@ -92,7 +96,7 @@ export const TablaPartidosAdministrador = () => {
                     })}
                     </tbody>
                 </Table></div>
-                <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title="Lista Jugadores"/>
+                <PopUp show={showModal} onHide={() => setShowModal(false)} text={error} title={title}/>
 
         </div>)
     } else {
