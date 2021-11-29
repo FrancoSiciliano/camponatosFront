@@ -14,6 +14,7 @@ import {useEffect} from 'react';
 import {PopUp} from "../PopUp/PopUp";
 import NavBarResponsable from '../NavBars/NavBarResponsable';
 import NavBarAdministracion from "../NavBars/NavBarAdministracion";
+import {contieneNumeros} from "../../controles";
 
 export const DatosClub = (props) => {
     const history = useHistory();
@@ -92,13 +93,14 @@ export const DatosClub = (props) => {
             setShowModal(true);
             return;
 
-        }
-        if (data.nombre === "") {
+        }else if (data.nombre === "" || contieneNumeros(data.nombre)) {
             setpopUp({mensaje: "Nombre no válido", titulo: "Dato erroneo"});
             setShowModal(true);
             return;
+        }else{
+            postData(data)
         }
-        postData(data)
+        
     }
 
     return (
