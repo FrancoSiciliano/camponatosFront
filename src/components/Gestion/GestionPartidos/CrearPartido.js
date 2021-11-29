@@ -1,10 +1,12 @@
 import NavBarAdministracion from "../../NavBars/NavBarAdministracion";
 import './CrearPartido.css'
-import {useState} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import {useEffect} from "react";
 import {Table, Form, Row, Button, Col} from "react-bootstrap";
 import {useHistory} from "react-router-dom";
+import {PopUp} from "../../PopUp/PopUp";
+import {Login} from "../../Basura de Franco/Login";
 
 export const CrearPartido = () => {
     const [showModal, setShowModal] = useState(false);
@@ -64,20 +66,35 @@ export const CrearPartido = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (datosPartido.clubLocal.idClub === datosPartido.clubVisitante.idClub) {
-            setError("El club local no puede ser igual al visitante");
-            setTitle("Club no válido");
+        const clubesIguales = datosPartido.clubLocal === datosPartido.clubVisitante;
+        const fechasIguales = datosPartido.fechaPartidoV === datosPartido.fechaPartidoL;
+        if (clubesIguales || fechasIguales) {
+            setError(clubesIguales ? "El club local no puede ser igual al visitante" : "Las fechas de ambos partidos (ida y vuelta) no pueden ser iguales");
+            setTitle(clubesIguales ? "Clubes no válidos" : "Fechas No válidas");
             setModalTitle("Advertencia")
             setShowModal(true);
 
         } else {
-            const res = await axios.get(`http://localhost:8080/crearPartido?nroZona=100&categoria=${datosPartido.categoria}&idClubLocal=${datosPartido.clubLocal}&idClubVisitante=${datosPartido.clubVisitante}&idCampeonato=${idCampeonato}`);
-            const idPartidoA = res.data;
-            const resB = await axios.get(`http://localhost:8080/crearPartido?nroZona=100&categoria=${datosPartido.categoria}&idClubLocal=${datosPartido.clubVisitante}&idClubVisitante=${datosPartido.clubLocal}&idCampeonato=${idCampeonato}`);
-            const idPartidoB = resB.data;
-    
-            const cargarFecha = await axios.get(`http://localhost:8080/cargarNroFechaYFechaPartido?idParitdo=${idPartidoA}&nroFecha=${datosPartido.nroFecha}&fecha=${datosPartido.fechaPartidoL.replaceAll("-", "/")}`);
-            const cargarFechaB = await axios.get(`http://localhost:8080/cargarNroFechaYFechaPartido?idParitdo=${idPartidoB}&nroFecha=${datosPartido.nroFecha+1}&fecha=${datosPartido.fechaPartidoV.replaceAll("-", "/")}`);
+            try {
+                const res = await axios.post(`http://localhost:8080/crearPartido?nroZona=100&categoria=${datosPartido.categoria}&idClubLocal=${datosPartido.clubLocal}&idClubVisitante=${datosPartido.clubVisitante}&idCampeonato=${idCampeonato}`);
+                const idPartidoA = res.data;
+                const resB = await axios.post(`http://localhost:8080/crearPartido?nroZona=100&categoria=${datosPartido.categoria}&idClubLocal=${datosPartido.clubVisitante}&idClubVisitante=${datosPartido.clubLocal}&idCampeonato=${idCampeonato}`);
+                const idPartidoB = resB.data;
+
+                const cargarFecha = await axios.post(`http://localhost:8080/cargarNroFechaYFechaPartido?idPartido=${parseInt(idPartidoA)}&nroFecha=${nroFecha}&fecha=${datosPartido.fechaPartidoL.replaceAll("-", "/")}`);
+                const cargarFechaB = await axios.post(`http://localhost:8080/cargarNroFechaYFechaPartido?idPartido=${parseInt(idPartidoB)}&nroFecha=${nroFecha + 1}&fecha=${datosPartido.fechaPartidoV.replaceAll("-", "/")}`);
+
+                setError("Operacion realizada con éxito");
+                setTitle("Operación exitosa");
+                setModalTitle("Datos Cargados");
+                setShowModal(true);
+            } catch (e) {
+                setError(e.response.data.message);
+                setTitle("Error al cargar los datos del partido");
+                setModalTitle("Error");
+                setShowModal(true);
+            }
+
         }
     }
        
@@ -94,6 +111,8 @@ export const CrearPartido = () => {
                                 <Form.Label>CLUB LOCAL</Form.Label>
                                 <Form.Select name="clubLocal" type="text" placeholder="Club local"
                                              onChange={handleChange}>
+                                    <option value="nada">-</option>
+
                                     {
                                         listadoClubes && listadoClubes.map((club, index) => {
                                             return (<option value={club.idClub}>{club.idClub} - {club.nombre}</option>)
@@ -106,6 +125,7 @@ export const CrearPartido = () => {
                                 <Form.Label>CLUB VISITANTE</Form.Label>
                                 <Form.Select name="clubVisitante" type="text" placeholder="Club visitante"
                                              onChange={handleChange}>
+                                    <option value="nada">-</option>
                                     {
                                         listadoClubes && listadoClubes.map((club, index) => {
                                             return (<option value={club.idClub}>{club.idClub} - {club.nombre}</option>)
@@ -132,8 +152,15 @@ export const CrearPartido = () => {
 
                         <Row className="mb-4">
                             <Form.Group>
-                                <Form.Label>NRO DE FECHA</Form.Label>
+                                <Form.Label>NRO DE FECHA IDA</Form.Label>
                                 <Form.Control name="nroFecha" type="number" value={nroFecha} readOnly/>
+                            </Form.Group>
+                        </Row>
+
+                        <Row className="mb-4">
+                            <Form.Group>
+                                <Form.Label>NRO DE FECHA VUELTA</Form.Label>
+                                <Form.Control name="nroFecha" type="number" value={nroFecha+1} readOnly/>
                             </Form.Group>
                         </Row>
 
@@ -142,6 +169,8 @@ export const CrearPartido = () => {
                         </Button>
                     </Form>
                 </div>
+                <PopUp show={showModal} onHide={() => setShowModal(false)} text={error}
+                       title={title} modalTitle={modalTitle}/>
             </div>
         </div>
     );

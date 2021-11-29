@@ -120,7 +120,7 @@ export const DatosClub = (props) => {
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" name="nombre" placeholder="Nombre"
                                                       style={{fontSize: "20px"}} value={data.nombre}
-                                                      onChange={handleChange}/>
+                                                      onChange={handleChange} readOnly={rol === "ADMIN"}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -129,7 +129,7 @@ export const DatosClub = (props) => {
                                                    style={{fontSize: "19px"}}>
                                         <Form.Control type="text" placeholder="Dirección" name="direccion"
                                                       style={{fontSize: "20px"}} value={data.direccion}
-                                                      onChange={handleChange}/>
+                                                      onChange={handleChange} readOnly={rol === "ADMIN"}/>
                                     </FloatingLabel>
                                 </Form.Group>
 
@@ -169,7 +169,7 @@ export const DatosClub = (props) => {
                             <PopUp show={showModal} onHide={() => setShowModal(false)} text={popUp.mensaje}
                                    title={popUp.titulo}/>
 
-                            <Button type="submit" className="btn btn-success boton"> Actualizar</Button>
+                            <Button type="submit" className="btn btn-success boton " disabled={rol === "ADMIN"}> Actualizar</Button>
 
                         </Form>
                     </div>
